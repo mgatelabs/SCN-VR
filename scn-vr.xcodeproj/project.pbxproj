@@ -7,9 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AC3E0F5F1A4934FA00AFE6AA /* scn_vr.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F5E1A4934FA00AFE6AA /* scn_vr.h */; };
-		AC3E0F611A4934FA00AFE6AA /* scn_vr.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F601A4934FA00AFE6AA /* scn_vr.m */; };
 		AC3E0F671A4934FB00AFE6AA /* libscn-vr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3E0F5B1A4934FA00AFE6AA /* libscn-vr.a */; };
+		AC3E0FA01A49374600AFE6AA /* ColorCorrection.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F761A49374600AFE6AA /* ColorCorrection.m */; };
+		AC3E0FA11A49374600AFE6AA /* CoreMotionTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F791A49374600AFE6AA /* CoreMotionTracker.m */; };
+		AC3E0FA21A49374600AFE6AA /* DistortionMeshGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F7B1A49374600AFE6AA /* DistortionMeshGenerator.m */; };
+		AC3E0FA31A49374600AFE6AA /* EyeTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F7D1A49374600AFE6AA /* EyeTexture.m */; };
+		AC3E0FA41A49374600AFE6AA /* HmdDeviceConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F7F1A49374600AFE6AA /* HmdDeviceConfiguration.m */; };
+		AC3E0FA51A49374600AFE6AA /* HmdDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F811A49374600AFE6AA /* HmdDeviceManager.m */; };
+		AC3E0FA61A49374600AFE6AA /* HmdMobileDevicePair.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F831A49374600AFE6AA /* HmdMobileDevicePair.m */; };
+		AC3E0FA71A49374600AFE6AA /* MobileDeviceConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F851A49374600AFE6AA /* MobileDeviceConfiguration.m */; };
+		AC3E0FA81A49374600AFE6AA /* MobileDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F871A49374600AFE6AA /* MobileDeviceManager.m */; };
+		AC3E0FA91A49374600AFE6AA /* MonoRenderInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F891A49374600AFE6AA /* MonoRenderInstance.m */; };
+		AC3E0FAA1A49374600AFE6AA /* RenderBase.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F8B1A49374600AFE6AA /* RenderBase.m */; };
+		AC3E0FAB1A49374600AFE6AA /* RenderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F8D1A49374600AFE6AA /* RenderManager.m */; };
+		AC3E0FAC1A49374600AFE6AA /* RenderTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F901A49374600AFE6AA /* RenderTexture.m */; };
+		AC3E0FAD1A49374600AFE6AA /* SBSRenderInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F921A49374600AFE6AA /* SBSRenderInstance.m */; };
+		AC3E0FAE1A49374600AFE6AA /* SCNEye.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F941A49374600AFE6AA /* SCNEye.m */; };
+		AC3E0FAF1A49374600AFE6AA /* SCNViewpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F961A49374600AFE6AA /* SCNViewpoint.m */; };
+		AC3E0FB01A49374600AFE6AA /* SCNVirtualRealityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F981A49374600AFE6AA /* SCNVirtualRealityViewController.m */; };
+		AC3E0FB11A49374600AFE6AA /* TrackerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F9B1A49374600AFE6AA /* TrackerBase.m */; };
+		AC3E0FB21A49374600AFE6AA /* TrackingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F9D1A49374600AFE6AA /* TrackingManager.m */; };
+		AC3E0FB31A49374600AFE6AA /* VBOWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F9F1A49374600AFE6AA /* VBOWrap.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +47,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				AC3E0F5F1A4934FA00AFE6AA /* scn_vr.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -37,10 +54,50 @@
 
 /* Begin PBXFileReference section */
 		AC3E0F5B1A4934FA00AFE6AA /* libscn-vr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libscn-vr.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC3E0F5E1A4934FA00AFE6AA /* scn_vr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scn_vr.h; sourceTree = "<group>"; };
-		AC3E0F601A4934FA00AFE6AA /* scn_vr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = scn_vr.m; sourceTree = "<group>"; };
 		AC3E0F661A4934FB00AFE6AA /* scn-vrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "scn-vrTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3E0F6C1A4934FB00AFE6AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC3E0F751A49374600AFE6AA /* ColorCorrection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorCorrection.h; sourceTree = "<group>"; };
+		AC3E0F761A49374600AFE6AA /* ColorCorrection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorCorrection.m; sourceTree = "<group>"; };
+		AC3E0F771A49374600AFE6AA /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		AC3E0F781A49374600AFE6AA /* CoreMotionTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreMotionTracker.h; sourceTree = "<group>"; };
+		AC3E0F791A49374600AFE6AA /* CoreMotionTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreMotionTracker.m; sourceTree = "<group>"; };
+		AC3E0F7A1A49374600AFE6AA /* DistortionMeshGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistortionMeshGenerator.h; sourceTree = "<group>"; };
+		AC3E0F7B1A49374600AFE6AA /* DistortionMeshGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistortionMeshGenerator.m; sourceTree = "<group>"; };
+		AC3E0F7C1A49374600AFE6AA /* EyeTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EyeTexture.h; sourceTree = "<group>"; };
+		AC3E0F7D1A49374600AFE6AA /* EyeTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EyeTexture.m; sourceTree = "<group>"; };
+		AC3E0F7E1A49374600AFE6AA /* HmdDeviceConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HmdDeviceConfiguration.h; sourceTree = "<group>"; };
+		AC3E0F7F1A49374600AFE6AA /* HmdDeviceConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HmdDeviceConfiguration.m; sourceTree = "<group>"; };
+		AC3E0F801A49374600AFE6AA /* HmdDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HmdDeviceManager.h; sourceTree = "<group>"; };
+		AC3E0F811A49374600AFE6AA /* HmdDeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HmdDeviceManager.m; sourceTree = "<group>"; };
+		AC3E0F821A49374600AFE6AA /* HmdMobileDevicePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HmdMobileDevicePair.h; sourceTree = "<group>"; };
+		AC3E0F831A49374600AFE6AA /* HmdMobileDevicePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HmdMobileDevicePair.m; sourceTree = "<group>"; };
+		AC3E0F841A49374600AFE6AA /* MobileDeviceConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileDeviceConfiguration.h; sourceTree = "<group>"; };
+		AC3E0F851A49374600AFE6AA /* MobileDeviceConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileDeviceConfiguration.m; sourceTree = "<group>"; };
+		AC3E0F861A49374600AFE6AA /* MobileDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileDeviceManager.h; sourceTree = "<group>"; };
+		AC3E0F871A49374600AFE6AA /* MobileDeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileDeviceManager.m; sourceTree = "<group>"; };
+		AC3E0F881A49374600AFE6AA /* MonoRenderInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonoRenderInstance.h; sourceTree = "<group>"; };
+		AC3E0F891A49374600AFE6AA /* MonoRenderInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonoRenderInstance.m; sourceTree = "<group>"; };
+		AC3E0F8A1A49374600AFE6AA /* RenderBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderBase.h; sourceTree = "<group>"; };
+		AC3E0F8B1A49374600AFE6AA /* RenderBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderBase.m; sourceTree = "<group>"; };
+		AC3E0F8C1A49374600AFE6AA /* RenderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderManager.h; sourceTree = "<group>"; };
+		AC3E0F8D1A49374600AFE6AA /* RenderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderManager.m; sourceTree = "<group>"; };
+		AC3E0F8E1A49374600AFE6AA /* RenderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderProtocol.h; sourceTree = "<group>"; };
+		AC3E0F8F1A49374600AFE6AA /* RenderTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderTexture.h; sourceTree = "<group>"; };
+		AC3E0F901A49374600AFE6AA /* RenderTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderTexture.m; sourceTree = "<group>"; };
+		AC3E0F911A49374600AFE6AA /* SBSRenderInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSRenderInstance.h; sourceTree = "<group>"; };
+		AC3E0F921A49374600AFE6AA /* SBSRenderInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBSRenderInstance.m; sourceTree = "<group>"; };
+		AC3E0F931A49374600AFE6AA /* SCNEye.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNEye.h; sourceTree = "<group>"; };
+		AC3E0F941A49374600AFE6AA /* SCNEye.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCNEye.m; sourceTree = "<group>"; };
+		AC3E0F951A49374600AFE6AA /* SCNViewpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNViewpoint.h; sourceTree = "<group>"; };
+		AC3E0F961A49374600AFE6AA /* SCNViewpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCNViewpoint.m; sourceTree = "<group>"; };
+		AC3E0F971A49374600AFE6AA /* SCNVirtualRealityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNVirtualRealityViewController.h; sourceTree = "<group>"; };
+		AC3E0F981A49374600AFE6AA /* SCNVirtualRealityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCNVirtualRealityViewController.m; sourceTree = "<group>"; };
+		AC3E0F9A1A49374600AFE6AA /* TrackerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackerBase.h; sourceTree = "<group>"; };
+		AC3E0F9B1A49374600AFE6AA /* TrackerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackerBase.m; sourceTree = "<group>"; };
+		AC3E0F9C1A49374600AFE6AA /* TrackingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackingManager.h; sourceTree = "<group>"; };
+		AC3E0F9D1A49374600AFE6AA /* TrackingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackingManager.m; sourceTree = "<group>"; };
+		AC3E0F9E1A49374600AFE6AA /* VBOWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBOWrap.h; sourceTree = "<group>"; };
+		AC3E0F9F1A49374600AFE6AA /* VBOWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBOWrap.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +140,48 @@
 		AC3E0F5D1A4934FA00AFE6AA /* scn-vr */ = {
 			isa = PBXGroup;
 			children = (
-				AC3E0F5E1A4934FA00AFE6AA /* scn_vr.h */,
-				AC3E0F601A4934FA00AFE6AA /* scn_vr.m */,
+				AC3E0F751A49374600AFE6AA /* ColorCorrection.h */,
+				AC3E0F761A49374600AFE6AA /* ColorCorrection.m */,
+				AC3E0F771A49374600AFE6AA /* Constants.h */,
+				AC3E0F781A49374600AFE6AA /* CoreMotionTracker.h */,
+				AC3E0F791A49374600AFE6AA /* CoreMotionTracker.m */,
+				AC3E0F7A1A49374600AFE6AA /* DistortionMeshGenerator.h */,
+				AC3E0F7B1A49374600AFE6AA /* DistortionMeshGenerator.m */,
+				AC3E0F7C1A49374600AFE6AA /* EyeTexture.h */,
+				AC3E0F7D1A49374600AFE6AA /* EyeTexture.m */,
+				AC3E0F7E1A49374600AFE6AA /* HmdDeviceConfiguration.h */,
+				AC3E0F7F1A49374600AFE6AA /* HmdDeviceConfiguration.m */,
+				AC3E0F801A49374600AFE6AA /* HmdDeviceManager.h */,
+				AC3E0F811A49374600AFE6AA /* HmdDeviceManager.m */,
+				AC3E0F821A49374600AFE6AA /* HmdMobileDevicePair.h */,
+				AC3E0F831A49374600AFE6AA /* HmdMobileDevicePair.m */,
+				AC3E0F841A49374600AFE6AA /* MobileDeviceConfiguration.h */,
+				AC3E0F851A49374600AFE6AA /* MobileDeviceConfiguration.m */,
+				AC3E0F861A49374600AFE6AA /* MobileDeviceManager.h */,
+				AC3E0F871A49374600AFE6AA /* MobileDeviceManager.m */,
+				AC3E0F881A49374600AFE6AA /* MonoRenderInstance.h */,
+				AC3E0F891A49374600AFE6AA /* MonoRenderInstance.m */,
+				AC3E0F8A1A49374600AFE6AA /* RenderBase.h */,
+				AC3E0F8B1A49374600AFE6AA /* RenderBase.m */,
+				AC3E0F8C1A49374600AFE6AA /* RenderManager.h */,
+				AC3E0F8D1A49374600AFE6AA /* RenderManager.m */,
+				AC3E0F8E1A49374600AFE6AA /* RenderProtocol.h */,
+				AC3E0F8F1A49374600AFE6AA /* RenderTexture.h */,
+				AC3E0F901A49374600AFE6AA /* RenderTexture.m */,
+				AC3E0F911A49374600AFE6AA /* SBSRenderInstance.h */,
+				AC3E0F921A49374600AFE6AA /* SBSRenderInstance.m */,
+				AC3E0F931A49374600AFE6AA /* SCNEye.h */,
+				AC3E0F941A49374600AFE6AA /* SCNEye.m */,
+				AC3E0F951A49374600AFE6AA /* SCNViewpoint.h */,
+				AC3E0F961A49374600AFE6AA /* SCNViewpoint.m */,
+				AC3E0F971A49374600AFE6AA /* SCNVirtualRealityViewController.h */,
+				AC3E0F981A49374600AFE6AA /* SCNVirtualRealityViewController.m */,
+				AC3E0F9A1A49374600AFE6AA /* TrackerBase.h */,
+				AC3E0F9B1A49374600AFE6AA /* TrackerBase.m */,
+				AC3E0F9C1A49374600AFE6AA /* TrackingManager.h */,
+				AC3E0F9D1A49374600AFE6AA /* TrackingManager.m */,
+				AC3E0F9E1A49374600AFE6AA /* VBOWrap.h */,
+				AC3E0F9F1A49374600AFE6AA /* VBOWrap.m */,
 			);
 			path = "scn-vr";
 			sourceTree = "<group>";
@@ -193,7 +290,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC3E0F611A4934FA00AFE6AA /* scn_vr.m in Sources */,
+				AC3E0FA01A49374600AFE6AA /* ColorCorrection.m in Sources */,
+				AC3E0FA51A49374600AFE6AA /* HmdDeviceManager.m in Sources */,
+				AC3E0FAF1A49374600AFE6AA /* SCNViewpoint.m in Sources */,
+				AC3E0FAA1A49374600AFE6AA /* RenderBase.m in Sources */,
+				AC3E0FA61A49374600AFE6AA /* HmdMobileDevicePair.m in Sources */,
+				AC3E0FA21A49374600AFE6AA /* DistortionMeshGenerator.m in Sources */,
+				AC3E0FAB1A49374600AFE6AA /* RenderManager.m in Sources */,
+				AC3E0FB21A49374600AFE6AA /* TrackingManager.m in Sources */,
+				AC3E0FA81A49374600AFE6AA /* MobileDeviceManager.m in Sources */,
+				AC3E0FA11A49374600AFE6AA /* CoreMotionTracker.m in Sources */,
+				AC3E0FA31A49374600AFE6AA /* EyeTexture.m in Sources */,
+				AC3E0FAD1A49374600AFE6AA /* SBSRenderInstance.m in Sources */,
+				AC3E0FAE1A49374600AFE6AA /* SCNEye.m in Sources */,
+				AC3E0FB31A49374600AFE6AA /* VBOWrap.m in Sources */,
+				AC3E0FAC1A49374600AFE6AA /* RenderTexture.m in Sources */,
+				AC3E0FB01A49374600AFE6AA /* SCNVirtualRealityViewController.m in Sources */,
+				AC3E0FA71A49374600AFE6AA /* MobileDeviceConfiguration.m in Sources */,
+				AC3E0FB11A49374600AFE6AA /* TrackerBase.m in Sources */,
+				AC3E0FA41A49374600AFE6AA /* HmdDeviceConfiguration.m in Sources */,
+				AC3E0FA91A49374600AFE6AA /* MonoRenderInstance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +472,7 @@
 				AC3E0F711A4934FB00AFE6AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AC3E0F721A4934FB00AFE6AA /* Build configuration list for PBXNativeTarget "scn-vrTests" */ = {
 			isa = XCConfigurationList;
@@ -364,6 +481,7 @@
 				AC3E0F741A4934FB00AFE6AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
