@@ -1,0 +1,371 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AC3E0F5F1A4934FA00AFE6AA /* scn_vr.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F5E1A4934FA00AFE6AA /* scn_vr.h */; };
+		AC3E0F611A4934FA00AFE6AA /* scn_vr.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F601A4934FA00AFE6AA /* scn_vr.m */; };
+		AC3E0F671A4934FB00AFE6AA /* libscn-vr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3E0F5B1A4934FA00AFE6AA /* libscn-vr.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AC3E0F681A4934FB00AFE6AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC3E0F531A4934FA00AFE6AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AC3E0F5A1A4934FA00AFE6AA;
+			remoteInfo = "scn-vr";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AC3E0F591A4934FA00AFE6AA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				AC3E0F5F1A4934FA00AFE6AA /* scn_vr.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		AC3E0F5B1A4934FA00AFE6AA /* libscn-vr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libscn-vr.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC3E0F5E1A4934FA00AFE6AA /* scn_vr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scn_vr.h; sourceTree = "<group>"; };
+		AC3E0F601A4934FA00AFE6AA /* scn_vr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = scn_vr.m; sourceTree = "<group>"; };
+		AC3E0F661A4934FB00AFE6AA /* scn-vrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "scn-vrTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC3E0F6C1A4934FB00AFE6AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AC3E0F581A4934FA00AFE6AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC3E0F631A4934FB00AFE6AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC3E0F671A4934FB00AFE6AA /* libscn-vr.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AC3E0F521A4934FA00AFE6AA = {
+			isa = PBXGroup;
+			children = (
+				AC3E0F5D1A4934FA00AFE6AA /* scn-vr */,
+				AC3E0F6A1A4934FB00AFE6AA /* scn-vrTests */,
+				AC3E0F5C1A4934FA00AFE6AA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AC3E0F5C1A4934FA00AFE6AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0F5B1A4934FA00AFE6AA /* libscn-vr.a */,
+				AC3E0F661A4934FB00AFE6AA /* scn-vrTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AC3E0F5D1A4934FA00AFE6AA /* scn-vr */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0F5E1A4934FA00AFE6AA /* scn_vr.h */,
+				AC3E0F601A4934FA00AFE6AA /* scn_vr.m */,
+			);
+			path = "scn-vr";
+			sourceTree = "<group>";
+		};
+		AC3E0F6A1A4934FB00AFE6AA /* scn-vrTests */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0F6B1A4934FB00AFE6AA /* Supporting Files */,
+			);
+			path = "scn-vrTests";
+			sourceTree = "<group>";
+		};
+		AC3E0F6B1A4934FB00AFE6AA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0F6C1A4934FB00AFE6AA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AC3E0F5A1A4934FA00AFE6AA /* scn-vr */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC3E0F6F1A4934FB00AFE6AA /* Build configuration list for PBXNativeTarget "scn-vr" */;
+			buildPhases = (
+				AC3E0F571A4934FA00AFE6AA /* Sources */,
+				AC3E0F581A4934FA00AFE6AA /* Frameworks */,
+				AC3E0F591A4934FA00AFE6AA /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "scn-vr";
+			productName = "scn-vr";
+			productReference = AC3E0F5B1A4934FA00AFE6AA /* libscn-vr.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		AC3E0F651A4934FB00AFE6AA /* scn-vrTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC3E0F721A4934FB00AFE6AA /* Build configuration list for PBXNativeTarget "scn-vrTests" */;
+			buildPhases = (
+				AC3E0F621A4934FB00AFE6AA /* Sources */,
+				AC3E0F631A4934FB00AFE6AA /* Frameworks */,
+				AC3E0F641A4934FB00AFE6AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AC3E0F691A4934FB00AFE6AA /* PBXTargetDependency */,
+			);
+			name = "scn-vrTests";
+			productName = "scn-vrTests";
+			productReference = AC3E0F661A4934FB00AFE6AA /* scn-vrTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AC3E0F531A4934FA00AFE6AA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "M-Gate Labs";
+				TargetAttributes = {
+					AC3E0F5A1A4934FA00AFE6AA = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					AC3E0F651A4934FB00AFE6AA = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = AC3E0F561A4934FA00AFE6AA /* Build configuration list for PBXProject "scn-vr" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AC3E0F521A4934FA00AFE6AA;
+			productRefGroup = AC3E0F5C1A4934FA00AFE6AA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AC3E0F5A1A4934FA00AFE6AA /* scn-vr */,
+				AC3E0F651A4934FB00AFE6AA /* scn-vrTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AC3E0F641A4934FB00AFE6AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AC3E0F571A4934FA00AFE6AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC3E0F611A4934FA00AFE6AA /* scn_vr.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC3E0F621A4934FB00AFE6AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AC3E0F691A4934FB00AFE6AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AC3E0F5A1A4934FA00AFE6AA /* scn-vr */;
+			targetProxy = AC3E0F681A4934FB00AFE6AA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AC3E0F6D1A4934FB00AFE6AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		AC3E0F6E1A4934FB00AFE6AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AC3E0F701A4934FB00AFE6AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		AC3E0F711A4934FB00AFE6AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		AC3E0F731A4934FB00AFE6AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "scn-vrTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AC3E0F741A4934FB00AFE6AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "scn-vrTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AC3E0F561A4934FA00AFE6AA /* Build configuration list for PBXProject "scn-vr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC3E0F6D1A4934FB00AFE6AA /* Debug */,
+				AC3E0F6E1A4934FB00AFE6AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AC3E0F6F1A4934FB00AFE6AA /* Build configuration list for PBXNativeTarget "scn-vr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC3E0F701A4934FB00AFE6AA /* Debug */,
+				AC3E0F711A4934FB00AFE6AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		AC3E0F721A4934FB00AFE6AA /* Build configuration list for PBXNativeTarget "scn-vrTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC3E0F731A4934FB00AFE6AA /* Debug */,
+				AC3E0F741A4934FB00AFE6AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AC3E0F531A4934FA00AFE6AA /* Project object */;
+}
