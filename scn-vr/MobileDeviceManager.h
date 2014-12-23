@@ -23,4 +23,8 @@
 
 -(BOOL) removeDeviceWithIndex:(int) index;
 
+-(void) cycle;
+
+-(int) getIndexFor:(MobileDeviceConfiguration *) mobileConfiguration;
+
 @end

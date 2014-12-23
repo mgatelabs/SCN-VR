@@ -21,4 +21,8 @@
 
 -(BOOL) removeHmdWithIndex:(int) index;
 
+-(void) cycle;
+
+-(int) getIndexFor:(HmdDeviceConfiguration *) hmdConfiguration;
+
 @end

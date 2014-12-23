@@ -28,6 +28,29 @@
 		AC3E0FB11A49374600AFE6AA /* TrackerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F9B1A49374600AFE6AA /* TrackerBase.m */; };
 		AC3E0FB21A49374600AFE6AA /* TrackingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F9D1A49374600AFE6AA /* TrackingManager.m */; };
 		AC3E0FB31A49374600AFE6AA /* VBOWrap.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F9F1A49374600AFE6AA /* VBOWrap.m */; };
+		AC3E0FB51A4937B900AFE6AA /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3E0FB41A4937B900AFE6AA /* SceneKit.framework */; };
+		AC3E0FB71A4937BF00AFE6AA /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3E0FB61A4937BF00AFE6AA /* GLKit.framework */; };
+		AC3E0FB81A4937E100AFE6AA /* ColorCorrection.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F751A49374600AFE6AA /* ColorCorrection.h */; };
+		AC3E0FB91A4937E100AFE6AA /* CoreMotionTracker.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F781A49374600AFE6AA /* CoreMotionTracker.h */; };
+		AC3E0FBA1A4937E100AFE6AA /* DistortionMeshGenerator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F7A1A49374600AFE6AA /* DistortionMeshGenerator.h */; };
+		AC3E0FBB1A4937E100AFE6AA /* EyeTexture.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F7C1A49374600AFE6AA /* EyeTexture.h */; };
+		AC3E0FBC1A4937E100AFE6AA /* HmdDeviceConfiguration.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F7E1A49374600AFE6AA /* HmdDeviceConfiguration.h */; };
+		AC3E0FBD1A4937E100AFE6AA /* HmdDeviceManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F801A49374600AFE6AA /* HmdDeviceManager.h */; };
+		AC3E0FBE1A4937E100AFE6AA /* HmdMobileDevicePair.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F821A49374600AFE6AA /* HmdMobileDevicePair.h */; };
+		AC3E0FBF1A4937E100AFE6AA /* MobileDeviceConfiguration.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F841A49374600AFE6AA /* MobileDeviceConfiguration.h */; };
+		AC3E0FC01A4937E100AFE6AA /* MobileDeviceManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F861A49374600AFE6AA /* MobileDeviceManager.h */; };
+		AC3E0FC11A4937E100AFE6AA /* MonoRenderInstance.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F881A49374600AFE6AA /* MonoRenderInstance.h */; };
+		AC3E0FC21A4937E100AFE6AA /* RenderBase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F8A1A49374600AFE6AA /* RenderBase.h */; };
+		AC3E0FC31A4937E100AFE6AA /* RenderManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F8C1A49374600AFE6AA /* RenderManager.h */; };
+		AC3E0FC41A4937E100AFE6AA /* RenderProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F8E1A49374600AFE6AA /* RenderProtocol.h */; };
+		AC3E0FC51A4937E100AFE6AA /* RenderTexture.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F8F1A49374600AFE6AA /* RenderTexture.h */; };
+		AC3E0FC61A4937E100AFE6AA /* SBSRenderInstance.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F911A49374600AFE6AA /* SBSRenderInstance.h */; };
+		AC3E0FC71A4937E100AFE6AA /* SCNEye.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F931A49374600AFE6AA /* SCNEye.h */; };
+		AC3E0FC81A4937E100AFE6AA /* SCNViewpoint.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F951A49374600AFE6AA /* SCNViewpoint.h */; };
+		AC3E0FC91A4937E100AFE6AA /* SCNVirtualRealityViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F971A49374600AFE6AA /* SCNVirtualRealityViewController.h */; };
+		AC3E0FCA1A4937E100AFE6AA /* TrackerBase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F9A1A49374600AFE6AA /* TrackerBase.h */; };
+		AC3E0FCB1A4937E100AFE6AA /* TrackingManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F9C1A49374600AFE6AA /* TrackingManager.h */; };
+		AC3E0FCC1A4937E100AFE6AA /* VBOWrap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F9E1A49374600AFE6AA /* VBOWrap.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +70,27 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				AC3E0FB81A4937E100AFE6AA /* ColorCorrection.h in CopyFiles */,
+				AC3E0FB91A4937E100AFE6AA /* CoreMotionTracker.h in CopyFiles */,
+				AC3E0FBA1A4937E100AFE6AA /* DistortionMeshGenerator.h in CopyFiles */,
+				AC3E0FBB1A4937E100AFE6AA /* EyeTexture.h in CopyFiles */,
+				AC3E0FBC1A4937E100AFE6AA /* HmdDeviceConfiguration.h in CopyFiles */,
+				AC3E0FBD1A4937E100AFE6AA /* HmdDeviceManager.h in CopyFiles */,
+				AC3E0FBE1A4937E100AFE6AA /* HmdMobileDevicePair.h in CopyFiles */,
+				AC3E0FBF1A4937E100AFE6AA /* MobileDeviceConfiguration.h in CopyFiles */,
+				AC3E0FC01A4937E100AFE6AA /* MobileDeviceManager.h in CopyFiles */,
+				AC3E0FC11A4937E100AFE6AA /* MonoRenderInstance.h in CopyFiles */,
+				AC3E0FC21A4937E100AFE6AA /* RenderBase.h in CopyFiles */,
+				AC3E0FC31A4937E100AFE6AA /* RenderManager.h in CopyFiles */,
+				AC3E0FC41A4937E100AFE6AA /* RenderProtocol.h in CopyFiles */,
+				AC3E0FC51A4937E100AFE6AA /* RenderTexture.h in CopyFiles */,
+				AC3E0FC61A4937E100AFE6AA /* SBSRenderInstance.h in CopyFiles */,
+				AC3E0FC71A4937E100AFE6AA /* SCNEye.h in CopyFiles */,
+				AC3E0FC81A4937E100AFE6AA /* SCNViewpoint.h in CopyFiles */,
+				AC3E0FC91A4937E100AFE6AA /* SCNVirtualRealityViewController.h in CopyFiles */,
+				AC3E0FCA1A4937E100AFE6AA /* TrackerBase.h in CopyFiles */,
+				AC3E0FCB1A4937E100AFE6AA /* TrackingManager.h in CopyFiles */,
+				AC3E0FCC1A4937E100AFE6AA /* VBOWrap.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +142,8 @@
 		AC3E0F9D1A49374600AFE6AA /* TrackingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackingManager.m; sourceTree = "<group>"; };
 		AC3E0F9E1A49374600AFE6AA /* VBOWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBOWrap.h; sourceTree = "<group>"; };
 		AC3E0F9F1A49374600AFE6AA /* VBOWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBOWrap.m; sourceTree = "<group>"; };
+		AC3E0FB41A4937B900AFE6AA /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
+		AC3E0FB61A4937BF00AFE6AA /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +151,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC3E0FB71A4937BF00AFE6AA /* GLKit.framework in Frameworks */,
+				AC3E0FB51A4937B900AFE6AA /* SceneKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +170,8 @@
 		AC3E0F521A4934FA00AFE6AA = {
 			isa = PBXGroup;
 			children = (
+				AC3E0FB61A4937BF00AFE6AA /* GLKit.framework */,
+				AC3E0FB41A4937B900AFE6AA /* SceneKit.framework */,
 				AC3E0F5D1A4934FA00AFE6AA /* scn-vr */,
 				AC3E0F6A1A4934FB00AFE6AA /* scn-vrTests */,
 				AC3E0F5C1A4934FA00AFE6AA /* Products */,
@@ -140,48 +190,8 @@
 		AC3E0F5D1A4934FA00AFE6AA /* scn-vr */ = {
 			isa = PBXGroup;
 			children = (
-				AC3E0F751A49374600AFE6AA /* ColorCorrection.h */,
-				AC3E0F761A49374600AFE6AA /* ColorCorrection.m */,
-				AC3E0F771A49374600AFE6AA /* Constants.h */,
-				AC3E0F781A49374600AFE6AA /* CoreMotionTracker.h */,
-				AC3E0F791A49374600AFE6AA /* CoreMotionTracker.m */,
-				AC3E0F7A1A49374600AFE6AA /* DistortionMeshGenerator.h */,
-				AC3E0F7B1A49374600AFE6AA /* DistortionMeshGenerator.m */,
-				AC3E0F7C1A49374600AFE6AA /* EyeTexture.h */,
-				AC3E0F7D1A49374600AFE6AA /* EyeTexture.m */,
-				AC3E0F7E1A49374600AFE6AA /* HmdDeviceConfiguration.h */,
-				AC3E0F7F1A49374600AFE6AA /* HmdDeviceConfiguration.m */,
-				AC3E0F801A49374600AFE6AA /* HmdDeviceManager.h */,
-				AC3E0F811A49374600AFE6AA /* HmdDeviceManager.m */,
-				AC3E0F821A49374600AFE6AA /* HmdMobileDevicePair.h */,
-				AC3E0F831A49374600AFE6AA /* HmdMobileDevicePair.m */,
-				AC3E0F841A49374600AFE6AA /* MobileDeviceConfiguration.h */,
-				AC3E0F851A49374600AFE6AA /* MobileDeviceConfiguration.m */,
-				AC3E0F861A49374600AFE6AA /* MobileDeviceManager.h */,
-				AC3E0F871A49374600AFE6AA /* MobileDeviceManager.m */,
-				AC3E0F881A49374600AFE6AA /* MonoRenderInstance.h */,
-				AC3E0F891A49374600AFE6AA /* MonoRenderInstance.m */,
-				AC3E0F8A1A49374600AFE6AA /* RenderBase.h */,
-				AC3E0F8B1A49374600AFE6AA /* RenderBase.m */,
-				AC3E0F8C1A49374600AFE6AA /* RenderManager.h */,
-				AC3E0F8D1A49374600AFE6AA /* RenderManager.m */,
-				AC3E0F8E1A49374600AFE6AA /* RenderProtocol.h */,
-				AC3E0F8F1A49374600AFE6AA /* RenderTexture.h */,
-				AC3E0F901A49374600AFE6AA /* RenderTexture.m */,
-				AC3E0F911A49374600AFE6AA /* SBSRenderInstance.h */,
-				AC3E0F921A49374600AFE6AA /* SBSRenderInstance.m */,
-				AC3E0F931A49374600AFE6AA /* SCNEye.h */,
-				AC3E0F941A49374600AFE6AA /* SCNEye.m */,
-				AC3E0F951A49374600AFE6AA /* SCNViewpoint.h */,
-				AC3E0F961A49374600AFE6AA /* SCNViewpoint.m */,
-				AC3E0F971A49374600AFE6AA /* SCNVirtualRealityViewController.h */,
-				AC3E0F981A49374600AFE6AA /* SCNVirtualRealityViewController.m */,
-				AC3E0F9A1A49374600AFE6AA /* TrackerBase.h */,
-				AC3E0F9B1A49374600AFE6AA /* TrackerBase.m */,
-				AC3E0F9C1A49374600AFE6AA /* TrackingManager.h */,
-				AC3E0F9D1A49374600AFE6AA /* TrackingManager.m */,
-				AC3E0F9E1A49374600AFE6AA /* VBOWrap.h */,
-				AC3E0F9F1A49374600AFE6AA /* VBOWrap.m */,
+				AC3E0FCE1A4937F800AFE6AA /* Core */,
+				AC3E0FCD1A4937F000AFE6AA /* SceneKit */,
 			);
 			path = "scn-vr";
 			sourceTree = "<group>";
@@ -200,6 +210,134 @@
 				AC3E0F6C1A4934FB00AFE6AA /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AC3E0FCD1A4937F000AFE6AA /* SceneKit */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0FD71A49387F00AFE6AA /* Eyes */,
+				AC3E0FD61A49387300AFE6AA /* Viewpoints */,
+				AC3E0F971A49374600AFE6AA /* SCNVirtualRealityViewController.h */,
+				AC3E0F981A49374600AFE6AA /* SCNVirtualRealityViewController.m */,
+			);
+			name = SceneKit;
+			sourceTree = "<group>";
+		};
+		AC3E0FCE1A4937F800AFE6AA /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0FD51A49385F00AFE6AA /* Utils */,
+				AC3E0FD41A49384600AFE6AA /* Rendering */,
+				AC3E0FD31A49381600AFE6AA /* HMDs */,
+				AC3E0FD21A49380E00AFE6AA /* Devices */,
+				AC3E0FD11A49380900AFE6AA /* Tracking */,
+				AC3E0FD01A49380500AFE6AA /* Correction */,
+				AC3E0FCF1A4937FE00AFE6AA /* Distortion */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		AC3E0FCF1A4937FE00AFE6AA /* Distortion */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0F7A1A49374600AFE6AA /* DistortionMeshGenerator.h */,
+				AC3E0F7B1A49374600AFE6AA /* DistortionMeshGenerator.m */,
+			);
+			name = Distortion;
+			sourceTree = "<group>";
+		};
+		AC3E0FD01A49380500AFE6AA /* Correction */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0F751A49374600AFE6AA /* ColorCorrection.h */,
+				AC3E0F761A49374600AFE6AA /* ColorCorrection.m */,
+			);
+			name = Correction;
+			sourceTree = "<group>";
+		};
+		AC3E0FD11A49380900AFE6AA /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0F9A1A49374600AFE6AA /* TrackerBase.h */,
+				AC3E0F9B1A49374600AFE6AA /* TrackerBase.m */,
+				AC3E0F781A49374600AFE6AA /* CoreMotionTracker.h */,
+				AC3E0F791A49374600AFE6AA /* CoreMotionTracker.m */,
+				AC3E0F9C1A49374600AFE6AA /* TrackingManager.h */,
+				AC3E0F9D1A49374600AFE6AA /* TrackingManager.m */,
+			);
+			name = Tracking;
+			sourceTree = "<group>";
+		};
+		AC3E0FD21A49380E00AFE6AA /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0F841A49374600AFE6AA /* MobileDeviceConfiguration.h */,
+				AC3E0F851A49374600AFE6AA /* MobileDeviceConfiguration.m */,
+				AC3E0F861A49374600AFE6AA /* MobileDeviceManager.h */,
+				AC3E0F871A49374600AFE6AA /* MobileDeviceManager.m */,
+			);
+			name = Devices;
+			sourceTree = "<group>";
+		};
+		AC3E0FD31A49381600AFE6AA /* HMDs */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0F7E1A49374600AFE6AA /* HmdDeviceConfiguration.h */,
+				AC3E0F7F1A49374600AFE6AA /* HmdDeviceConfiguration.m */,
+				AC3E0F801A49374600AFE6AA /* HmdDeviceManager.h */,
+				AC3E0F811A49374600AFE6AA /* HmdDeviceManager.m */,
+				AC3E0F821A49374600AFE6AA /* HmdMobileDevicePair.h */,
+				AC3E0F831A49374600AFE6AA /* HmdMobileDevicePair.m */,
+			);
+			name = HMDs;
+			sourceTree = "<group>";
+		};
+		AC3E0FD41A49384600AFE6AA /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0F8E1A49374600AFE6AA /* RenderProtocol.h */,
+				AC3E0F8A1A49374600AFE6AA /* RenderBase.h */,
+				AC3E0F8B1A49374600AFE6AA /* RenderBase.m */,
+				AC3E0F911A49374600AFE6AA /* SBSRenderInstance.h */,
+				AC3E0F921A49374600AFE6AA /* SBSRenderInstance.m */,
+				AC3E0F881A49374600AFE6AA /* MonoRenderInstance.h */,
+				AC3E0F891A49374600AFE6AA /* MonoRenderInstance.m */,
+				AC3E0F8C1A49374600AFE6AA /* RenderManager.h */,
+				AC3E0F8D1A49374600AFE6AA /* RenderManager.m */,
+			);
+			name = Rendering;
+			sourceTree = "<group>";
+		};
+		AC3E0FD51A49385F00AFE6AA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0F771A49374600AFE6AA /* Constants.h */,
+				AC3E0F8F1A49374600AFE6AA /* RenderTexture.h */,
+				AC3E0F901A49374600AFE6AA /* RenderTexture.m */,
+				AC3E0F7C1A49374600AFE6AA /* EyeTexture.h */,
+				AC3E0F7D1A49374600AFE6AA /* EyeTexture.m */,
+				AC3E0F9E1A49374600AFE6AA /* VBOWrap.h */,
+				AC3E0F9F1A49374600AFE6AA /* VBOWrap.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		AC3E0FD61A49387300AFE6AA /* Viewpoints */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0F951A49374600AFE6AA /* SCNViewpoint.h */,
+				AC3E0F961A49374600AFE6AA /* SCNViewpoint.m */,
+			);
+			name = Viewpoints;
+			sourceTree = "<group>";
+		};
+		AC3E0FD71A49387F00AFE6AA /* Eyes */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0F931A49374600AFE6AA /* SCNEye.h */,
+				AC3E0F941A49374600AFE6AA /* SCNEye.m */,
+			);
+			name = Eyes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

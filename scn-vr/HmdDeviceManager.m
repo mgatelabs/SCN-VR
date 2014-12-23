@@ -60,4 +60,21 @@
     return NO;
 }
 
+
+-(void) cycle {
+    int nextIndex = [self getIndexFor:_hmd];
+    nextIndex = (nextIndex + 1) % self.hmds.count;
+    _hmd = [self.hmds objectAtIndex:nextIndex];
+}
+
+-(int) getIndexFor:(HmdDeviceConfiguration *) hmdConfiguration {
+    for (int i = 0; i < self.hmds.count; i++) {
+        HmdDeviceConfiguration * temp = [self.hmds objectAtIndex:i];
+        if (temp == hmdConfiguration) {
+            return i;
+        }
+    }
+    return 0;
+}
+
 @end

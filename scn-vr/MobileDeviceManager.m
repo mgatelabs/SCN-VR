@@ -92,4 +92,20 @@
     return NO;
 }
 
+-(void) cycle {
+    int nextIndex = [self getIndexFor:_device];
+    nextIndex = (nextIndex + 1) % self.devices.count;
+    _device = [self.devices objectAtIndex:nextIndex];
+}
+
+-(int) getIndexFor:(MobileDeviceConfiguration *) mobileConfiguration {
+    for (int i = 0; i < self.devices.count; i++) {
+        MobileDeviceConfiguration * temp = [self.devices objectAtIndex:i];
+        if (temp == mobileConfiguration) {
+            return i;
+        }
+    }
+    return 0;
+}
+
 @end
