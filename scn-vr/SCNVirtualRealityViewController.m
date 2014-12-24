@@ -162,6 +162,13 @@
                                   [filePrefix stringByAppendingString:@"_ft.jpg"]];
 }
 
+-(NSArray *) viewpointSees {
+    if (_viewpoint != nil) {
+        return [_viewpoint.leftEye.renderer hitTest:CGPointMake(_leftEyeSource.w / 2, _leftEyeSource.h / 2) options:nil];
+    }
+    return nil;
+}
+
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update {

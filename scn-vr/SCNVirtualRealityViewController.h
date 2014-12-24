@@ -61,4 +61,6 @@
 
 - (void) updateViewpointOrientation;
 
+-(NSArray *) viewpointSees;
+
 @end
