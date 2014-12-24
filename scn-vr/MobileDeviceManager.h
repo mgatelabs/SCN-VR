@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "MobileDeviceConfiguration.h"
+#import "ListableArray.h"
 
-@interface MobileDeviceManager : NSObject
+@interface MobileDeviceManager : ListableArray
 
 @property (weak, readonly, nonatomic) MobileDeviceConfiguration * device;
 
@@ -26,5 +27,7 @@
 -(void) cycle;
 
 -(int) getIndexFor:(MobileDeviceConfiguration *) mobileConfiguration;
+
+-(void) ready;
 
 @end

@@ -61,11 +61,12 @@
 }
 
 -(void) renderForTime:(CFTimeInterval) interval {
+    [_dest bind];
     [_renderer renderAtTime:interval];
 }
 
 - (void)renderer:(id <SCNSceneRenderer>)aRenderer willRenderScene:(SCNScene *)scene atTime:(NSTimeInterval)time {
-    [_dest bind];
+    //[_dest bind];
 }
 
 - (void)renderer:(id <SCNSceneRenderer>)aRenderer didRenderScene:(SCNScene *)scene atTime:(NSTimeInterval)time {

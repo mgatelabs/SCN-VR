@@ -108,4 +108,53 @@
     return 0;
 }
 
+-(ListableManagerType) getListType {
+    return ListableManagerTypeSimple;
+}
+
+-(NSString *) getListName {
+    return @"Device";
+}
+
+-(NSString *) getListItemNameFor:(int) index {
+    MobileDeviceConfiguration * d = [_devices objectAtIndex:index];
+    return d.name;
+}
+
+-(int) getListItemCount {
+    return (int)_devices.count;
+}
+
+-(int) getSelectedItemIndex {
+    
+    if (_device == nil) {
+        return - 1;
+    }
+    
+    for (int i = 0; i < _devices.count; i++) {
+        MobileDeviceConfiguration * d = [_devices objectAtIndex:i];
+        if (d == _device) {
+            return i;
+        }
+    }
+    
+    NSLog(@"Logic problem, selected item is not in array");
+    
+    return -1;
+}
+
+-(void) selectListItemAt:(int) index {
+    _device = [_devices objectAtIndex:index];
+}
+
+
+-(void) ready {
+    for (int i = 0; i < _devices.count; i++) {
+        MobileDeviceConfiguration * m = [_devices objectAtIndex:i];
+        [m ready];
+    }
+    
+    
+}
+
 @end

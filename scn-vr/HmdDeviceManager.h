@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "HmdDeviceConfiguration.h"
+#import "ListableArray.h"
 
-@interface HmdDeviceManager : NSObject
+@interface HmdDeviceManager : ListableArray
 
 @property (weak, readonly, nonatomic) HmdDeviceConfiguration * hmd;
 

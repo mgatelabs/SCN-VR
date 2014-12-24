@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "CoreMotionTracker.h"
+#import "ListableArray.h"
 
-@interface TrackingManager : NSObject
+@interface TrackingManager : ListableArray
 
 @property (readonly, strong, nonatomic) NSMutableArray * trackers;
 

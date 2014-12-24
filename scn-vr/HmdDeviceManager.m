@@ -35,7 +35,7 @@
         
         [self addHmd:@"Cardboard" identifier:@"cardboard" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:85.0f correctionCoefficient:-1.5f distortionFactorA:0.5f distortionFactorB:0.2f].internal = YES;
         
-        _hmd = [_hmds objectAtIndex:3];
+        _hmd = [_hmds objectAtIndex:1];
     }
     return self;
 }
@@ -75,6 +75,45 @@
         }
     }
     return 0;
+}
+
+-(ListableManagerType) getListType {
+    return ListableManagerTypeSimple;
+}
+
+-(NSString *) getListName {
+    return @"HMD";
+}
+
+-(NSString *) getListItemNameFor:(int) index {
+    HmdDeviceConfiguration * d = [_hmds objectAtIndex:index];
+    return d.name;
+}
+
+-(int) getListItemCount {
+    return (int)_hmds.count;
+}
+
+-(int) getSelectedItemIndex {
+    
+    if (_hmd == nil) {
+        return - 1;
+    }
+    
+    for (int i = 0; i < _hmds.count; i++) {
+        HmdDeviceConfiguration * d = [_hmds objectAtIndex:i];
+        if (d == _hmd) {
+            return i;
+        }
+    }
+    
+    NSLog(@"Logic problem, selected item is not in array");
+    
+    return -1;
+}
+
+-(void) selectListItemAt:(int) index {
+    _hmd = [_hmds objectAtIndex:index];
 }
 
 @end

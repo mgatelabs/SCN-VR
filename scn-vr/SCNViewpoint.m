@@ -54,7 +54,7 @@
     // Render both eyes
     [_leftEye renderForTime:interval];
     
-    [_leftEye renderForTime:interval];
+    //[_leftEye renderForTime:interval];
     
     if (_rightEye != nil) {
         [_rightEye renderForTime:interval];

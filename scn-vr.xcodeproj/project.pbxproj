@@ -51,6 +51,8 @@
 		AC3E0FCA1A4937E100AFE6AA /* TrackerBase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F9A1A49374600AFE6AA /* TrackerBase.h */; };
 		AC3E0FCB1A4937E100AFE6AA /* TrackingManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F9C1A49374600AFE6AA /* TrackingManager.h */; };
 		AC3E0FCC1A4937E100AFE6AA /* VBOWrap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F9E1A49374600AFE6AA /* VBOWrap.h */; };
+		AC449CBB1A49CF3200EC14BB /* ListableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = AC449CBA1A49CF3200EC14BB /* ListableArray.m */; };
+		AC449CC61A49FD2500EC14BB /* ListableArray.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC449CB91A49CF3200EC14BB /* ListableArray.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				AC449CC61A49FD2500EC14BB /* ListableArray.h in CopyFiles */,
 				AC3E0FB81A4937E100AFE6AA /* ColorCorrection.h in CopyFiles */,
 				AC3E0FB91A4937E100AFE6AA /* CoreMotionTracker.h in CopyFiles */,
 				AC3E0FBA1A4937E100AFE6AA /* DistortionMeshGenerator.h in CopyFiles */,
@@ -144,6 +147,8 @@
 		AC3E0F9F1A49374600AFE6AA /* VBOWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBOWrap.m; sourceTree = "<group>"; };
 		AC3E0FB41A4937B900AFE6AA /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		AC3E0FB61A4937BF00AFE6AA /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		AC449CB91A49CF3200EC14BB /* ListableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListableArray.h; sourceTree = "<group>"; };
+		AC449CBA1A49CF3200EC14BB /* ListableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListableArray.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +323,8 @@
 				AC3E0F7D1A49374600AFE6AA /* EyeTexture.m */,
 				AC3E0F9E1A49374600AFE6AA /* VBOWrap.h */,
 				AC3E0F9F1A49374600AFE6AA /* VBOWrap.m */,
+				AC449CB91A49CF3200EC14BB /* ListableArray.h */,
+				AC449CBA1A49CF3200EC14BB /* ListableArray.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -428,6 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC449CBB1A49CF3200EC14BB /* ListableArray.m in Sources */,
 				AC3E0FA01A49374600AFE6AA /* ColorCorrection.m in Sources */,
 				AC3E0FA51A49374600AFE6AA /* HmdDeviceManager.m in Sources */,
 				AC3E0FAF1A49374600AFE6AA /* SCNViewpoint.m in Sources */,
@@ -548,6 +556,7 @@
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "\"include/$(TARGET_NAME)\"";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -557,6 +566,7 @@
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "\"include/$(TARGET_NAME)\"";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

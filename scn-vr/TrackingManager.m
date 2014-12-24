@@ -32,4 +32,39 @@
     return self;
 }
 
+-(NSString *) getListName {
+    return @"Head Tracking";
+}
+
+-(NSString *) getListItemNameFor:(int) index {
+    TrackerBase * d = [_trackers objectAtIndex:index];
+    return d.name;
+}
+
+-(int) getListItemCount {
+    return (int)_trackers.count;
+}
+
+-(int) getSelectedItemIndex {
+    
+    if (_tracker == nil) {
+        return - 1;
+    }
+    
+    for (int i = 0; i < _trackers.count; i++) {
+        TrackerBase * d = [_trackers objectAtIndex:i];
+        if (d == _tracker) {
+            return i;
+        }
+    }
+    
+    NSLog(@"Logic problem, selected item is not in array");
+    
+    return -1;
+}
+
+-(void) selectListItemAt:(int) index {
+    _tracker = [_trackers objectAtIndex:index];
+}
+
 @end
