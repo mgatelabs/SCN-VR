@@ -16,7 +16,7 @@
 #import "DistortionMeshGenerator.h"
 #import "TrackerBase.h"
 
-@interface SCNVirtualRealityViewController : GLKViewController
+@interface SCNVirtualRealityViewController : GLKViewController  <SCNSceneRendererDelegate>
 
 // This needs to be set in the segue to this screen
 @property (strong, nonatomic) HmdMobileDevicePair * pair;
@@ -28,6 +28,9 @@
 @property (strong, nonatomic) RenderTexture * rightSourceTexture;
 @property (strong, nonatomic) EyeTexture * leftEyeSource;
 @property (strong, nonatomic) EyeTexture * rightEyeSource;
+
+@property (strong, nonatomic, readonly) SCNRenderer * leftRenderer;
+@property (strong, nonatomic, readonly) SCNRenderer * rightRenderer;
 
 @property (strong, nonatomic) EyeTexture * leftEyeDest;
 @property (strong, nonatomic) EyeTexture * rightEyeDest;

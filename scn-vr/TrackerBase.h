@@ -22,6 +22,8 @@
 
 -(void) stop;
 
+-(void) calibrate;
+
 -(void) capture;
 
 @end

@@ -10,14 +10,12 @@
 #import "EyeTexture.h"
 #import "HmdMobileDevicePair.h"
 
-@interface SCNEye : SCNNode <SCNSceneRendererDelegate>
+@interface SCNEye : SCNNode
 
 @property (weak, nonatomic, readonly) EyeTexture * dest;
 
-@property (strong, nonatomic, readonly) SCNRenderer * renderer;
+//@property (strong, nonatomic, readonly) SCNRenderer * renderer;
 
 - (instancetype)initAs:(EyeTexture *) dest pair:(HmdMobileDevicePair *) pair scene:(SCNScene *) scene context:(EAGLContext *) context;
-
--(void) renderForTime:(CFTimeInterval) interval;
 
 @end

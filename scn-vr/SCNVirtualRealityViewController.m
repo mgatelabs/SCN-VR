@@ -15,7 +15,6 @@
 @property (strong, nonatomic) EAGLContext *context;
 
 - (void) setupGL;
-- (void) tearDownGL;
 - (void) checkGlErrorStatus;
 
 @end
@@ -23,7 +22,7 @@
 @implementation SCNVirtualRealityViewController
 
 -(void) viewDidLoad {
-    
+    [super viewDidLoad];
     [self setPaused:YES];
     
     [_pair.mobile ready];
@@ -115,20 +114,93 @@
     
     _scene = [self generateScene];
     
+    _leftRenderer = [SCNRenderer rendererWithContext:(__bridge void *)(_context) options:nil];
+    _leftRenderer.showsStatistics = NO;
+    _leftRenderer.scene = _scene;
+    //_leftRenderer.pointOfView = self;
+    _leftRenderer.playing = YES;
+    
+    _rightRenderer = [SCNRenderer rendererWithContext:(__bridge void *)(_context) options:nil];
+    _rightRenderer.showsStatistics = NO;
+    _rightRenderer.scene = _scene;
+    //_leftRenderer.pointOfView = self;
+    _rightRenderer.playing = YES;
+    
     [self afterGenerateScene];
     
     [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
 -(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self setPaused:NO];
     [_tracker start];
 }
 
 -(void) viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
     [self setPaused:YES];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     [_tracker stop];
+}
+
+- (void)dealloc
+{
+    [self setPaused:YES];
+    
+    NSLog(@"Tearing down");
+    
+    
+    
+    for (int i = (int)_scene.rootNode.childNodes.count - 1; i >= 0; i--) {
+        SCNNode * child = [_scene.rootNode.childNodes objectAtIndex:i];
+        [child removeFromParentNode];
+    }
+    
+    NSLog(@"Tearing down A");
+    
+    _leftRenderer.delegate = nil;
+    _leftRenderer.pointOfView = nil;
+    _leftRenderer.scene = nil;
+    _leftRenderer = nil;
+    
+    _rightRenderer.delegate = nil;
+    _rightRenderer.pointOfView = nil;
+    _rightRenderer.scene = nil;
+    _rightRenderer = nil;
+    
+    //_scene.background.contents = nil;
+    
+    _scene = nil;
+    
+    _pair = nil;
+    
+    NSLog(@"Tearing down B");
+    
+    // Source are defined render textures
+    _leftSourceTexture = nil;
+    _rightSourceTexture = nil;
+    _leftEyeSource = nil;
+    _rightEyeSource = nil;
+    
+    _leftEyeDest = nil;
+    _rightEyeDest = nil;
+    
+    _eyeColorCorrection = nil;
+    
+    _leftEyeMesh = nil;
+    _rightEyeMesh = nil;
+
+    NSLog(@"Tearing down C");
+    
+    // THis is the infered render texture
+    _destTexture = nil;
+    
+    if ([EAGLContext currentContext] == self.context) {
+        [EAGLContext setCurrentContext:nil];
+    }
+    
+    NSLog(@"Tearing down D");
 }
 
 #pragma mark - Scene Helpers
@@ -150,6 +222,12 @@
 
 -(void) setViewpointTo:(SCNViewpoint *) viewpoint {
     _viewpoint = viewpoint;
+    
+    _leftRenderer.pointOfView = _viewpoint.leftEye;
+    if (_viewpoint.rightEye != nil) {
+        _rightRenderer.pointOfView = _viewpoint.rightEye;
+    }
+    
     [self updateViewpointOrientation];
 }
 
@@ -164,7 +242,7 @@
 
 -(NSArray *) viewpointSees {
     if (_viewpoint != nil) {
-        return [_viewpoint.leftEye.renderer hitTest:CGPointMake(_leftEyeSource.w / 2, _leftEyeSource.h / 2) options:nil];
+        return [_leftRenderer hitTest:CGPointMake(_leftEyeSource.w / 2, _leftEyeSource.h / 2) options:nil];
     }
     return nil;
 }
@@ -182,21 +260,6 @@
     
     GLKQuaternion gyroValues = _tracker.orientation;
     GLKQuaternion altered;
-    
-    /*
-    if (isCameraBaseSet == false && cameraBase.x == 0 && cameraBase.y == 0 && cameraBase.z == 0 && cameraBase.w == 0) {
-        cameraBase = gyroValues;
-        if (cameraBase.x != 0 || cameraBase.y != 0 || cameraBase.z != 0 || cameraBase.w != 0) {
-            // Testing
-            //cameraBase = GLKQuaternionMakeWithAngleAndAxis(-1.57079633f, cameraBase.x, 0, 0);
-            isCameraBaseSet = true;
-        }
-        NSLog(@"Getting reference point");
-    } else {
-        // Modify values to take into account reference fixes
-        //gyroValues = GLKQuaternionMultiply(GLKQuaternionInvert(cameraBase), gyroValues);
-    }
-    */
     
     // May be slow, but this is prototype code
     GLKQuaternion cameraOrientation = GLKQuaternionIdentity; // GLKQuaternionMake(self.cameraInitialOrientation.x, self.cameraInitialOrientation.y, self.cameraInitialOrientation.z, self.cameraInitialOrientation.w);
@@ -219,7 +282,17 @@
     [self checkGlErrorStatus];
     
     if (_viewpoint != nil) {
-        [_viewpoint renderForTime:CACurrentMediaTime()];
+        
+        CFTimeInterval interval = CACurrentMediaTime();
+        
+        // Render both eyes
+        [_leftEyeSource bind];
+        [_leftRenderer renderAtTime:interval];
+        
+        if (_viewpoint.rightEye != nil) {
+            [_rightEyeSource bind];
+            [_rightRenderer renderAtTime:interval];
+        }
         
         [self checkGlErrorStatus];
         
@@ -280,10 +353,6 @@
 
 - (void)setupGL {
     glEnable(GL_DEPTH_TEST);
-}
-
-- (void)tearDownGL {
-    
 }
 
 -(void) checkGlErrorStatus {

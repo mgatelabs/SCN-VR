@@ -29,6 +29,11 @@
     NSLog(@"This is not a valid tracker, please override");
 }
 
+-(void) calibrate {
+    [self stop];
+    [self start];
+}
+
 -(void) capture {
     NSLog(@"This is not a valid tracker, please override");
 }

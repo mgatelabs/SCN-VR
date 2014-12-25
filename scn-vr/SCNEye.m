@@ -48,6 +48,7 @@
 
         self.camera = camera;
         
+        /*
         SCNRenderer * renderer = [SCNRenderer rendererWithContext:(__bridge void *)(context) options:nil];
         
         _renderer = renderer;
@@ -55,27 +56,9 @@
         renderer.delegate = self;
         renderer.scene = scene;
         renderer.pointOfView = self;
-        renderer.playing = YES;
+        renderer.playing = YES;*/
     }
     return self;
-}
-
--(void) renderForTime:(CFTimeInterval) interval {
-    [_dest bind];
-    [_renderer renderAtTime:interval];
-}
-
-- (void)renderer:(id <SCNSceneRenderer>)aRenderer willRenderScene:(SCNScene *)scene atTime:(NSTimeInterval)time {
-    //[_dest bind];
-}
-
-- (void)renderer:(id <SCNSceneRenderer>)aRenderer didRenderScene:(SCNScene *)scene atTime:(NSTimeInterval)time {
-    
-}
-
-- (void)dealloc
-{
-    _renderer = nil;
 }
 
 @end

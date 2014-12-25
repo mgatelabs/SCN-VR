@@ -27,6 +27,4 @@
 
 - (instancetype)initAsGhost:(EyeTexture *) left right:(EyeTexture *) right pair:(HmdMobileDevicePair *) pair scene:(SCNScene *) scene context:(EAGLContext *) context;
 
--(void) renderForTime:(CFTimeInterval) interval;
-
 @end
