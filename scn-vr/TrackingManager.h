@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CoreMotionTracker.h"
+#import "IMUTracker.h"
 #import "ListableArray.h"
 
 @interface TrackingManager : ListableArray
@@ -15,6 +16,10 @@
 @property (readonly, strong, nonatomic) NSMutableArray * trackers;
 
 @property (readonly, weak, nonatomic) TrackerBase * tracker;
+
+-(void) persist;
+
+-(void) load;
 
 + (id)sharedManager;
 

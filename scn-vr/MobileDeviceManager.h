@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "MobileDeviceConfiguration.h"
 #import "ListableArray.h"
 
@@ -19,6 +20,10 @@
 + (id)sharedManager;
 
 -(void) trimDevicesForCurrentDeviceWidth:(int) widthPx heightPx:(int) heightPx tablet:(BOOL) tablet;
+
+-(void) persist;
+
+-(void) load;
 
 -(MobileDeviceConfiguration *) addDevice:(NSString *) name identifier:(NSString *) identifier widthPx:(int) widthPx heightPx:(int) heightPx dpi:(float) dpi tablet:(BOOL) tablet;
 

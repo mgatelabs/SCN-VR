@@ -54,6 +54,16 @@
         //iPad mini (retina)    2048x1536 326 ppi
         [self addDevice:@"iPad (Mini Retina)" identifier:@"ipadmini2" widthPx:2048 heightPx:1536 dpi:326 tablet:YES].internal = YES;
         
+        UIScreen * screen = [UIScreen mainScreen];
+        
+        // Use this to trim bad devices
+        int width = screen.bounds.size.width * screen.scale;
+        int height = screen.bounds.size.height * screen.scale;
+        
+        // Get ride of devices that don't match our current screen setup
+        [self trimDevicesForCurrentDeviceWidth:width heightPx:height tablet:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)];
+        
+        [self load];
     }
     return self;
 }
@@ -69,6 +79,31 @@
     }
     
     _device = [_devices objectAtIndex:0];
+}
+
+-(void) persist {
+    NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
+    [defs setValue:_device.identifier forKey:@"scn-vr.devices.selected"];
+    [defs synchronize];
+}
+
+-(void) load {
+    NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
+    
+    NSString * selectedIndentity = [defs valueForKey:@"scn-vr.devices.selected"];
+    
+    _device = [_devices objectAtIndex:0];
+    
+    if (selectedIndentity != nil) {
+        
+        for (int i = 0; i < _devices.count; i++) {
+            MobileDeviceConfiguration * d = [_devices objectAtIndex:i];
+            if ([d.identifier isEqualToString:selectedIndentity]) {
+                _device = d;
+                return;
+            }
+        }
+    }
 }
 
 -(MobileDeviceConfiguration *) addDevice:(NSString *) name identifier:(NSString *) identifier widthPx:(int) widthPx heightPx:(int) heightPx dpi:(float) dpi  tablet:(BOOL) tablet{
@@ -145,6 +180,7 @@
 
 -(void) selectListItemAt:(int) index {
     _device = [_devices objectAtIndex:index];
+    [self persist];
 }
 
 
@@ -153,8 +189,6 @@
         MobileDeviceConfiguration * m = [_devices objectAtIndex:i];
         [m ready];
     }
-    
-    
 }
 
 @end

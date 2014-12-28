@@ -18,7 +18,7 @@
     if (self) {
         
         rotationFix = GLKQuaternionMakeWithAngleAndAxis(-1.57079633f, 0, 0, 1);
-        
+
         self.motionManager = [[CMMotionManager alloc] init];
         self.motionManager.deviceMotionUpdateInterval = 1.0f / 60;
         self.motionManager.magnetometerUpdateInterval = 1.0f / 60;

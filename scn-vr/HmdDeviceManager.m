@@ -35,9 +35,35 @@
         
         [self addHmd:@"Cardboard" identifier:@"cardboard" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:85.0f correctionCoefficient:-1.5f distortionFactorA:0.5f distortionFactorB:0.2f].internal = YES;
         
-        _hmd = [_hmds objectAtIndex:1];
+        
+        [self load];
     }
     return self;
+}
+
+-(void) persist {
+    NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
+    [defs setValue:_hmd.identity forKey:@"scn-vr.hmds.selected"];
+    [defs synchronize];
+}
+
+-(void) load {
+    NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
+    
+    NSString * selectedIndentity = [defs valueForKey:@"scn-vr.hmds.selected"];
+    
+    _hmd = [_hmds objectAtIndex:1];
+    
+    if (selectedIndentity != nil) {
+     
+        for (int i = 0; i < _hmds.count; i++) {
+            HmdDeviceConfiguration * d = [_hmds objectAtIndex:i];
+            if ([d.identity isEqualToString:selectedIndentity]) {
+                _hmd = d;
+                return;
+            }
+        }
+    }
 }
 
 -(HmdDeviceConfiguration *) addHmd:(NSString *) name identifier:(NSString *) identifier distortion:(HmdDeviceConfigurationDistortion) distortion correction:(HmdDeviceConfigurationCorrection) correction viewpoints:(HmdDeviceConfigurationViewpoints) viewpoints ipd:(float) ipd ild:(float) ild fov:(float) fov correctionCoefficient:(float) correctionCoefficient distortionFactorA:(float) distortionFactorA distortionFactorB:(float) distortionFactorB {
@@ -114,6 +140,7 @@
 
 -(void) selectListItemAt:(int) index {
     _hmd = [_hmds objectAtIndex:index];
+    [self persist];
 }
 
 @end

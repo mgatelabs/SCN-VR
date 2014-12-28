@@ -26,4 +26,8 @@
 
 -(int) getIndexFor:(HmdDeviceConfiguration *) hmdConfiguration;
 
+-(void) persist;
+
+-(void) load;
+
 @end

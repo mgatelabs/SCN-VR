@@ -51,8 +51,11 @@
 		AC3E0FCA1A4937E100AFE6AA /* TrackerBase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F9A1A49374600AFE6AA /* TrackerBase.h */; };
 		AC3E0FCB1A4937E100AFE6AA /* TrackingManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F9C1A49374600AFE6AA /* TrackingManager.h */; };
 		AC3E0FCC1A4937E100AFE6AA /* VBOWrap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F9E1A49374600AFE6AA /* VBOWrap.h */; };
+		AC3F55CC1A4DF93C00955ECC /* IMUTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3F55CB1A4DF93C00955ECC /* IMUTracker.m */; };
+		AC3F55CD1A4E038800955ECC /* IMUTracker.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3F55CA1A4DF93C00955ECC /* IMUTracker.h */; };
 		AC449CBB1A49CF3200EC14BB /* ListableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = AC449CBA1A49CF3200EC14BB /* ListableArray.m */; };
 		AC449CC61A49FD2500EC14BB /* ListableArray.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC449CB91A49CF3200EC14BB /* ListableArray.h */; };
+		AC5669B01A4FCB9E000FDC31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5669AF1A4FCB9E000FDC31 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				AC3F55CD1A4E038800955ECC /* IMUTracker.h in CopyFiles */,
 				AC449CC61A49FD2500EC14BB /* ListableArray.h in CopyFiles */,
 				AC3E0FB81A4937E100AFE6AA /* ColorCorrection.h in CopyFiles */,
 				AC3E0FB91A4937E100AFE6AA /* CoreMotionTracker.h in CopyFiles */,
@@ -147,8 +151,11 @@
 		AC3E0F9F1A49374600AFE6AA /* VBOWrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBOWrap.m; sourceTree = "<group>"; };
 		AC3E0FB41A4937B900AFE6AA /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		AC3E0FB61A4937BF00AFE6AA /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		AC3F55CA1A4DF93C00955ECC /* IMUTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMUTracker.h; sourceTree = "<group>"; };
+		AC3F55CB1A4DF93C00955ECC /* IMUTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMUTracker.m; sourceTree = "<group>"; };
 		AC449CB91A49CF3200EC14BB /* ListableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListableArray.h; sourceTree = "<group>"; };
 		AC449CBA1A49CF3200EC14BB /* ListableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListableArray.m; sourceTree = "<group>"; };
+		AC5669AF1A4FCB9E000FDC31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC5669B01A4FCB9E000FDC31 /* UIKit.framework in Frameworks */,
 				AC3E0FB71A4937BF00AFE6AA /* GLKit.framework in Frameworks */,
 				AC3E0FB51A4937B900AFE6AA /* SceneKit.framework in Frameworks */,
 			);
@@ -175,6 +183,7 @@
 		AC3E0F521A4934FA00AFE6AA = {
 			isa = PBXGroup;
 			children = (
+				AC5669AF1A4FCB9E000FDC31 /* UIKit.framework */,
 				AC3E0FB61A4937BF00AFE6AA /* GLKit.framework */,
 				AC3E0FB41A4937B900AFE6AA /* SceneKit.framework */,
 				AC3E0F5D1A4934FA00AFE6AA /* scn-vr */,
@@ -269,6 +278,8 @@
 				AC3E0F791A49374600AFE6AA /* CoreMotionTracker.m */,
 				AC3E0F9C1A49374600AFE6AA /* TrackingManager.h */,
 				AC3E0F9D1A49374600AFE6AA /* TrackingManager.m */,
+				AC3F55CA1A4DF93C00955ECC /* IMUTracker.h */,
+				AC3F55CB1A4DF93C00955ECC /* IMUTracker.m */,
 			);
 			name = Tracking;
 			sourceTree = "<group>";
@@ -443,6 +454,7 @@
 				AC3E0FA61A49374600AFE6AA /* HmdMobileDevicePair.m in Sources */,
 				AC3E0FA21A49374600AFE6AA /* DistortionMeshGenerator.m in Sources */,
 				AC3E0FAB1A49374600AFE6AA /* RenderManager.m in Sources */,
+				AC3F55CC1A4DF93C00955ECC /* IMUTracker.m in Sources */,
 				AC3E0FB21A49374600AFE6AA /* TrackingManager.m in Sources */,
 				AC3E0FA81A49374600AFE6AA /* MobileDeviceManager.m in Sources */,
 				AC3E0FA11A49374600AFE6AA /* CoreMotionTracker.m in Sources */,

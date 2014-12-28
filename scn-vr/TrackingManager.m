@@ -26,10 +26,36 @@
         _trackers = [[NSMutableArray alloc] initWithCapacity:2];
         
         [_trackers addObject:[[CoreMotionTracker alloc] init]];
+        [_trackers addObject:[[IMUTracker alloc] init]];
         
-        _tracker = [_trackers objectAtIndex:0];
+        [self load];
     }
     return self;
+}
+
+-(void) persist {
+    NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
+    [defs setValue:_tracker.identity forKey:@"scn-vr.trackers.selected"];
+    [defs synchronize];
+}
+
+-(void) load {
+    NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
+    
+    NSString * selectedIndentity = [defs valueForKey:@"scn-vr.trackers.selected"];
+    
+    _tracker = [_trackers objectAtIndex:0];
+    
+    if (selectedIndentity != nil) {
+        
+        for (int i = 0; i < _trackers.count; i++) {
+            TrackerBase * d = [_trackers objectAtIndex:i];
+            if ([d.identity isEqualToString:selectedIndentity]) {
+                _tracker = d;
+                return;
+            }
+        }
+    }
 }
 
 -(NSString *) getListName {
@@ -65,6 +91,7 @@
 
 -(void) selectListItemAt:(int) index {
     _tracker = [_trackers objectAtIndex:index];
+    [self persist];
 }
 
 @end
