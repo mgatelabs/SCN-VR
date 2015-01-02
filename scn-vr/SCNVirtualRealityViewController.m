@@ -148,7 +148,7 @@
 {
     [self setPaused:YES];
     
-    NSLog(@"Tearing down");
+    //NSLog(@"Tearing down");
     
     
     
@@ -156,8 +156,6 @@
         SCNNode * child = [_scene.rootNode.childNodes objectAtIndex:i];
         [child removeFromParentNode];
     }
-    
-    NSLog(@"Tearing down A");
     
     _leftRenderer.delegate = nil;
     _leftRenderer.pointOfView = nil;
@@ -175,8 +173,6 @@
     
     _pair = nil;
     
-    NSLog(@"Tearing down B");
-    
     // Source are defined render textures
     _leftSourceTexture = nil;
     _rightSourceTexture = nil;
@@ -190,8 +186,6 @@
     
     _leftEyeMesh = nil;
     _rightEyeMesh = nil;
-
-    NSLog(@"Tearing down C");
     
     // THis is the infered render texture
     _destTexture = nil;
@@ -199,8 +193,6 @@
     if ([EAGLContext currentContext] == self.context) {
         [EAGLContext setCurrentContext:nil];
     }
-    
-    NSLog(@"Tearing down D");
 }
 
 #pragma mark - Scene Helpers

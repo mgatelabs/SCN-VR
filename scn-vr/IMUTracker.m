@@ -9,7 +9,7 @@
 #import "IMUTracker.h"
 
 #define ASENSOR_TYPE_ROTATION_VECTOR 11
-#define sampleFreq	128.0f			// sample frequency in Hz
+#define sampleFreq	60.0f			// sample frequency in Hz
 #define twoKpDef	(2.0f * 0.5f)	// 2 * proportional gain
 #define twoKiDef	(2.0f * 0.0f)	// 2 * integral gain
 #define betaDef		0.1f	    	// 2 * proportional gain
@@ -22,8 +22,8 @@ struct Quaternion {
 };
 
 static float gyr_x,gyr_y,gyr_z;
-static long long time_stamp;
-static long long gyro_time_stamp;
+static NSTimeInterval time_stamp;
+static NSTimeInterval gyro_time_stamp;
 static float acc_x,acc_y,acc_z;
 static float N2S;
 static float EPSILON;
@@ -37,13 +37,27 @@ static struct Quaternion q;
     float twoKi;											// 2 * integral gain (Ki)
     float q0, q1, q2, q3;					// quaternion of sensor frame relative to auxiliary frame
     float integralFBx,  integralFBy, integralFBz;	// integral error terms scaled by Ki
+    
+    // Attempt 2
+    float Quaternion [4];
+    float eInt [3];
+    float Kp;
+    float Ki;
+    float SamplePeriod;
+    BOOL hasGyroUpdate;
+    BOOL hasAccelUpdate;
 }
 
--(void) MahonyAHRSupdateIMU:(float) gx gy:(float) gy gz:(float) gz ax:(float) ax ay:(float) ay az:(float) az ev_timestamp:(long long) ev_timestamp;
+-(void) getQuaternionFromGyro:(float) ev_x ev_y:(float) ev_y ev_z:(float) ev_z ev_timestamp:(NSTimeInterval) ev_timestamp;
+-(void) MahonyAHRSupdateIMU:(float) gx gy:(float) gy gz:(float) gz ax:(float) ax ay:(float) ay az:(float) az ev_timestamp:(NSTimeInterval) ev_timestamp;
 -(void) MadgwickAHRSupdateIMU:(float) gx gy:(float) gy gz:(float) gz ax:(float) ax ay:(float) ay az:(float) az;
 -(float) invSqrt:(float) x;
 -(void) multiplyQuat:(struct Quaternion *) qOne q2:(struct Quaternion*) qTwo;
 -(GLKQuaternion) get_q;
+
+
+// Attempt 2
+-(void) UpdateForIMUWith:(float) gx gy:(float) gy gz:(float) gz ax:(float) ax ay:(float) ay az:(float) az;
 
 @end
 
@@ -113,9 +127,9 @@ static struct Quaternion q;
     return GLKQuaternionMake(q.x, q.y, q.z, q.w);
 }
 
--(void) getQuaternionFromGyro:(float) ev_x ev_y:(float) ev_y ev_z:(float) ev_z ev_timestamp:(long long) ev_timestamp {
+-(void) getQuaternionFromGyro:(float) ev_x ev_y:(float) ev_y ev_z:(float) ev_z ev_timestamp:(NSTimeInterval) ev_timestamp {
     if(gyro_time_stamp != -1){
-        float dT = (ev_timestamp - gyro_time_stamp) * N2S;
+        float dT = (ev_timestamp - gyro_time_stamp);
         //Calculate the angular speed of the sample
         float omegaMagnitude = sqrt(ev_x*ev_x + ev_y*ev_y + ev_z*ev_z);
         
@@ -131,27 +145,28 @@ static struct Quaternion q;
         float thetaOverTwo = omegaMagnitude * dT / 2.0f;
         float sinThetaOverTwo = sin(thetaOverTwo);
         float cosThetaOverTwo = cos(thetaOverTwo);
-        NSLog(@"sinThetaOverTwo: %2.6f", sinThetaOverTwo);
+        //NSLog(@"sinThetaOverTwo: %2.6f", sinThetaOverTwo);
         deltaGyroQuaternion.x = sinThetaOverTwo * ev_x;
         deltaGyroQuaternion.y = sinThetaOverTwo * ev_y;
         deltaGyroQuaternion.z = sinThetaOverTwo * ev_z;
         deltaGyroQuaternion.w = cosThetaOverTwo;
         
-        NSLog(@"%2.4f %2.4f %2.4f", deltaGyroQuaternion.x, deltaGyroQuaternion.y, deltaGyroQuaternion.z);
+        //NSLog(@"%2.4f %2.4f %2.4f", deltaGyroQuaternion.x, deltaGyroQuaternion.y, deltaGyroQuaternion.z);
         
         [self multiplyQuat:&deltaGyroQuaternion q2:&deltaGyroQuaternion];
         [self multiplyQuat:&deltaGyroQuaternion q2:&deltaGyroQuaternion];
         [self multiplyQuat:&deltaGyroQuaternion q2:&deltaGyroQuaternion];
         
-        NSLog(@"%2.4f %2.4f %2.4f", deltaGyroQuaternion.x, deltaGyroQuaternion.y, deltaGyroQuaternion.z);
+        //NSLog(@"%2.4f %2.4f %2.4f", deltaGyroQuaternion.x, deltaGyroQuaternion.y, deltaGyroQuaternion.z);
     }
     gyro_time_stamp = ev_timestamp;
     
 }
 
--(void) MahonyAHRSupdateIMU:(float) gx gy:(float) gy gz:(float) gz ax:(float) ax ay:(float) ay az:(float) az ev_timestamp:(long long) ev_timestamp {
+-(void) MahonyAHRSupdateIMU:(float) gx gy:(float) gy gz:(float) gz ax:(float) ax ay:(float) ay az:(float) az ev_timestamp:(NSTimeInterval) ev_timestamp {
     if(time_stamp != -1){
-        float dT = (ev_timestamp - time_stamp) * N2S;
+        float dT = (ev_timestamp - time_stamp);
+        //NSLog(@"%2.6f", dT);
         float recipNorm;
         float halfvx, halfvy, halfvz;
         float halfex, halfey, halfez;
@@ -315,22 +330,136 @@ static struct Quaternion q;
     qOne->w = nw;
 }
 
+
+/// <summary>
+/// Algorithm IMU update method. Requires only gyroscope and accelerometer data.
+/// </summary>
+/// <param name="gx">
+/// Gyroscope x axis measurement in radians/s.
+/// </param>
+/// <param name="gy">
+/// Gyroscope y axis measurement in radians/s.
+/// </param>
+/// <param name="gz">
+/// Gyroscope z axis measurement in radians/s.
+/// </param>
+/// <param name="ax">
+/// Accelerometer x axis measurement in any calibrated units.
+/// </param>
+/// <param name="ay">
+/// Accelerometer y axis measurement in any calibrated units.
+/// </param>
+/// <param name="az">
+/// Accelerometer z axis measurement in any calibrated units.
+/// </param>
+-(void) UpdateForIMUWith:(float) gx gy:(float) gy gz:(float) gz ax:(float) ax ay:(float) ay az:(float) az
+{
+    float Q1 = Quaternion[0];
+    float Q2 = Quaternion[1];
+    float Q3 = Quaternion[2];
+    float Q4 = Quaternion[3];   // short name local variable for readability
+    float norm;
+    float vx, vy, vz;
+    float ex, ey, ez;
+    float pa, pb, pc;
+    
+    // Normalise accelerometer measurement
+    norm = sqrtf(ax * ax + ay * ay + az * az);
+    if (norm == 0.0f) return; // handle NaN
+    norm = 1 / norm;        // use reciprocal for division
+    ax *= norm;
+    ay *= norm;
+    az *= norm;
+    
+    // Estimated direction of gravity
+    vx = 2.0f * (Q2 * Q4 - Q1 * Q3);
+    vy = 2.0f * (Q1 * Q2 + Q3 * Q4);
+    vz = Q1 * Q1 - Q2 * Q2 - Q3 * Q3 + Q4 * Q4;
+    
+    // Error is cross product between estimated direction and measured direction of gravity
+    ex = (ay * vz - az * vy);
+    ey = (az * vx - ax * vz);
+    ez = (ax * vy - ay * vx);
+    if (Ki > 0.0f)
+    {
+        eInt[0] += ex;      // accumulate integral error
+        eInt[1] += ey;
+        eInt[2] += ez;
+    }
+    else
+    {
+        eInt[0] = 0.0f;     // prevent integral wind up
+        eInt[1] = 0.0f;
+        eInt[2] = 0.0f;
+    }
+    
+    // Apply feedback terms
+    gx = gx + Kp * ex + Ki * eInt[0];
+    gy = gy + Kp * ey + Ki * eInt[1];
+    gz = gz + Kp * ez + Ki * eInt[2];
+    
+    // Integrate rate of change of quaternion
+    pa = Q2;
+    pb = Q3;
+    pc = Q4;
+    Q1 = Q1 + (-Q2 * gx - Q3 * gy - Q4 * gz) * (0.5f * SamplePeriod);
+    Q2 = pa + (Q1 * gx + pb * gz - pc * gy) * (0.5f * SamplePeriod);
+    Q3 = pb + (Q1 * gy - pa * gz + pc * gx) * (0.5f * SamplePeriod);
+    Q4 = pc + (Q1 * gz + pa * gy - pb * gx) * (0.5f * SamplePeriod);
+    
+    // Normalise quaternion
+    norm = sqrtf(Q1 * Q1 + Q2 * Q2 + Q3 * Q3 + Q4 * Q4);
+    norm = 1.0f / norm;
+    Quaternion[0] = Q1 * norm;
+    Quaternion[1] = Q2 * norm;
+    Quaternion[2] = Q3 * norm;
+    Quaternion[3] = Q4 * norm;
+}
+
 -(void) start {
+    
+    Kp = 1;
+    Ki = 0.0f;
+    
+    Quaternion[0] = 1;
+    Quaternion[1] = 0;
+    Quaternion[2] = 0;
+    Quaternion[3] = 0;
+    
+    eInt[0] = 0;
+    eInt[1] = 0;
+    eInt[2] = 0;
+    
+    SamplePeriod = 1.0f/60.0f;
+    
+    hasGyroUpdate = NO;
+    hasAccelUpdate = NO;
     
     [self.motionManager startAccelerometerUpdatesToQueue:[[NSOperationQueue alloc] init] withHandler:
      ^(CMAccelerometerData *accelerometerData, NSError *error) {
          acc_x = accelerometerData.acceleration.x;
          acc_y = accelerometerData.acceleration.y;
-         acc_z = accelerometerData.acceleration.z;
-         [self MahonyAHRSupdateIMU:gyr_x gy:gyr_y gz:gyr_z ax:acc_x ay:acc_y az:acc_z ev_timestamp:accelerometerData.timestamp * 1000000000.0];
+         acc_z = -accelerometerData.acceleration.z;
+         if (hasGyroUpdate) {
+             [self MahonyAHRSupdateIMU:gyr_x gy:gyr_y gz:gyr_z ax:acc_x ay:acc_y az:acc_z ev_timestamp:accelerometerData.timestamp];
+             //[self UpdateForIMUWith:gyr_x gy:gyr_y gz:gyr_z ax:acc_x ay:acc_y az:acc_z];
+             hasAccelUpdate = YES;
+         }
+         //
      }];
     
     [self.motionManager startGyroUpdatesToQueue:[[NSOperationQueue alloc] init] withHandler:^(CMGyroData *gyroData, NSError *error) {
         gyr_x = gyroData.rotationRate.x;
         gyr_y = gyroData.rotationRate.y;
-        gyr_z = gyroData.rotationRate.z;
-        [self getQuaternionFromGyro:gyr_x ev_y:gyr_y ev_z:gyr_z ev_timestamp:gyroData.timestamp * 1000000000.0];
+        gyr_z = -gyroData.rotationRate.z;
+        
+        hasGyroUpdate = YES;
+        
+        [self getQuaternionFromGyro:gyr_x ev_y:gyr_y ev_z:gyr_z ev_timestamp:gyroData.timestamp];
     }];
+    
+    self.motionManager.deviceMotionUpdateInterval = 1.0f / 60.0f;
+    [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXArbitraryZVertical];
 }
 
 -(void) stop {
@@ -345,10 +474,42 @@ static struct Quaternion q;
     
     //CMQuaternion currentAttitude_noQ = self.motionManager.deviceMotion.attitude.quaternion;
     
-    GLKQuaternion baseRotation = [self get_q];// GLKQuaternionMake(currentAttitude_noQ.x, currentAttitude_noQ.y, currentAttitude_noQ.z, currentAttitude_noQ.w);
+    if (hasAccelUpdate) {
+        
+        GLKQuaternion baseRotation =   [self get_q];
+        
+        
+        NSLog(@"I %2.2f %2.2f %2.2f %2.2f", baseRotation.x, baseRotation.y, baseRotation.z, baseRotation.w);
+        //NSLog(@"I %2.2f %2.2f %2.2f %2.2f", Quaternion[1], Quaternion[2], Quaternion[3], Quaternion[0]);
+        NSLog(@"C %2.2f %2.2f %2.2f %2.2f", self.motionManager.deviceMotion.attitude.quaternion.x, self.motionManager.deviceMotion.attitude.quaternion.y, self.motionManager.deviceMotion.attitude.quaternion.z, self.motionManager.deviceMotion.attitude.quaternion.w);
+        
+        
+        //GLKQuaternion baseRotation =  GLKQuaternionMake(Quaternion[0], Quaternion[2], Quaternion[3], Quaternion[1]);
+        
+        //GLKQuaternion baseRotation =  GLKQuaternionMake(Quaternion[1], Quaternion[2], Quaternion[3], Quaternion[0]);
+        
+        self.orientation = baseRotation;
+        
+        //self.orientation =  GLKQuaternionMultiply(baseRotation, rotationFix);
+        
+        //self.orientation = GLKQuaternionMultiply(GLKQuaternionMultiply(baseRotation, rotationFix), rotationFix2);
+        
+        //self.orientation =  GLKQuaternionMake(Quaternion[0], Quaternion[1], Quaternion[2], Quaternion[3]);
+        
+    } else {
+        self.orientation = GLKQuaternionMultiply(rotationFix, GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
+    }
     
+    //GLKQuaternion baseRotation = [self get_q];// GLKQuaternionMake(currentAttitude_noQ.x, currentAttitude_noQ.y, currentAttitude_noQ.z, currentAttitude_noQ.w);
     
-    self.orientation = baseRotation;// GLKQuaternionMultiply(GLKQuaternionMultiply(baseRotation, rotationFix), rotationFix2);
+    //orientation.x = q1;
+    //orientation.y = -q0;
+    //orientation.z = q2;
+    //orientation.w = q3;
+    
+    //self.orientation = GLKQuaternionMake(baseRotation.q[1], -baseRotation.q[0], baseRotation.q[2], baseRotation.q[3]);
+    
+    //self.orientation = baseRotation;// GLKQuaternionMultiply(GLKQuaternionMultiply(baseRotation, rotationFix), rotationFix2);
     
 #else
     self.orientation = GLKQuaternionMultiply(rotationFix, GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));

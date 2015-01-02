@@ -26,7 +26,8 @@
         _trackers = [[NSMutableArray alloc] initWithCapacity:2];
         
         [_trackers addObject:[[CoreMotionTracker alloc] init]];
-        [_trackers addObject:[[IMUTracker alloc] init]];
+        // Does not work, please fix
+        //[_trackers addObject:[[IMUTracker alloc] init]];
         
         [self load];
     }
