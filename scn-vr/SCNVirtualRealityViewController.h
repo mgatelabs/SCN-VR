@@ -48,6 +48,10 @@
 // Where to render from
 @property (weak, nonatomic) SCNViewpoint * viewpoint;
 
+@property (assign) BOOL useHeadTracking;
+
+@property (assign, readonly) GLKQuaternion nullViewpoint;
+
 -(SCNScene *) generateScene;
 
 -(void) afterGenerateScene;

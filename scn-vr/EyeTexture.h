@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger, EyeTextureSide) {
 - (instancetype)initAs:(EyeTextureSide) side dest:(RenderTexture *) dest;
 
 -(void) bind;
+-(void) bindAndClear;
 
 -(void) view;
 

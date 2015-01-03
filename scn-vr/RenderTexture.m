@@ -146,6 +146,28 @@
     }
 }
 
+-(void) bindAndClearRect:(int) x y:(int) y width:(int) width height:(int) height {
+    if (_state != RenderTextureStateReady) {
+        [self build];
+    }
+    
+    // Make sure we don't overflow any boundaries
+    if (_state == RenderTextureStateReady && width > 0 && height > 0 && width <= _width && height <= _height && x >= 0 && y >= 0 && x + width <= _width && y + height <= _height) {
+        if (_type == RenderTextureTypeDefined) {
+            glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
+            glBindRenderbuffer(GL_RENDERBUFFER, _depthBuffer);
+        } else {
+            glBindFramebuffer(GL_FRAMEBUFFER, _inferedFrameBuffer);
+            glBindRenderbuffer(GL_RENDERBUFFER, _inferedDepthBuffer);
+        }
+        
+        glViewport(x, y, width, height);
+        
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    }
+}
+
 // Reduce memory consumption
 -(void) minimize {
     if (_state == RenderTextureStateReady) {

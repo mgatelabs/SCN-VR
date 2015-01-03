@@ -25,6 +25,10 @@
     [super viewDidLoad];
     [self setPaused:YES];
     
+    _nullViewpoint = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(-1.57079633f, 0, 0, 1), GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
+    
+    _useHeadTracking = YES;
+    
     [_pair.mobile ready];
     
     _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
@@ -239,6 +243,14 @@
     return nil;
 }
 
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationLandscapeRight;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscapeRight;
+}
+
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update {
@@ -249,8 +261,8 @@
 }
 
 -(void) updateViewpointOrientation {
-    
-    GLKQuaternion gyroValues = _tracker.orientation;
+        
+    GLKQuaternion gyroValues = _useHeadTracking ? _tracker.orientation : _nullViewpoint;
     GLKQuaternion altered;
     
     // May be slow, but this is prototype code
@@ -278,7 +290,7 @@
         CFTimeInterval interval = CACurrentMediaTime();
         
         // Render both eyes
-        [_leftEyeSource bind];
+        [_leftEyeSource bindAndClear];
         [_leftRenderer renderAtTime:interval];
         
         if (_viewpoint.rightEye != nil) {

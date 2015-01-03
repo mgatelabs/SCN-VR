@@ -45,6 +45,7 @@ typedef NS_ENUM(NSInteger, RenderTextureType)
 -(void) bind;
 
 -(void) bindWithRect:(int) x y:(int) y width:(int) width height:(int) height;
+-(void) bindAndClearRect:(int) x y:(int) y width:(int) width height:(int) height;
 
 -(void) minimize;
 

@@ -54,6 +54,10 @@
     [_dest bindWithRect:_x y:_y width:_w height:_h];
 }
 
+-(void) bindAndClear {
+    [_dest bindAndClearRect:_x y:_y width:_w height:_h];
+}
+
 -(void) view {
     glViewport(_x, _y, _w, _h);
 }
