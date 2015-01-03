@@ -251,6 +251,10 @@
     return UIInterfaceOrientationMaskLandscapeRight;
 }
 
+- (BOOL) prefersStatusBarHidden {
+    return YES;
+}
+
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update {
