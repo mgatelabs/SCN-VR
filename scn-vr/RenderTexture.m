@@ -22,6 +22,28 @@
         _frameBuffer = 0;
         _inferedDepthBuffer = 0;
         _inferedFrameBuffer = 0;
+        _left = 0;
+        _bottom = 0;
+        _dontClearColorBuffer = NO;
+    }
+    return self;
+}
+
+- (instancetype)initAsInfered:(int) width height:(int) height left:(int) left bottom:(int) bottom
+{
+    self = [super init];
+    if (self) {
+        _width = width;
+        _height = height;
+        _state = RenderTextureStateUnknown;
+        _type = RenderTextureTypeInfered;
+        _textureId = 0;
+        _depthBuffer = 0;
+        _frameBuffer = 0;
+        _inferedDepthBuffer = 0;
+        _inferedFrameBuffer = 0;
+        _left = left;
+        _bottom = bottom;
         _dontClearColorBuffer = NO;
     }
     return self;
@@ -41,6 +63,34 @@
         _frameBuffer = 0;
         _inferedDepthBuffer = 0;
         _inferedFrameBuffer = 0;
+        
+        _left = 0;
+        _bottom = 0;
+        
+        _dontClearColorBuffer = NO;
+        
+        [self build];
+    }
+    return self;
+}
+
+- (instancetype)initAsDefined:(int) width height:(int) height left:(int) left bottom:(int) bottom
+{
+    self = [super init];
+    if (self) {
+        _width = width;
+        _height = height;
+        _state = RenderTextureStateUnknown;
+        _type = RenderTextureTypeDefined;
+        
+        _textureId = 0;
+        _depthBuffer = 0;
+        _frameBuffer = 0;
+        _inferedDepthBuffer = 0;
+        _inferedFrameBuffer = 0;
+        
+        _left = left;
+        _bottom = bottom;
         
         _dontClearColorBuffer = NO;
         
@@ -117,7 +167,7 @@
             glBindRenderbuffer(GL_RENDERBUFFER, _inferedDepthBuffer);
         }
         
-        glViewport(0, 0, _width, _height);
+        glViewport(_left, _bottom, _width, _height);
     
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear( (_dontClearColorBuffer ? 0 : GL_COLOR_BUFFER_BIT) | GL_DEPTH_BUFFER_BIT);
@@ -139,7 +189,7 @@
             glBindRenderbuffer(GL_RENDERBUFFER, _inferedDepthBuffer);
         }
         
-        glViewport(x, y, width, height);
+        glViewport(_left + x, _bottom + y, width, height);
         
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear((_dontClearColorBuffer ? 0 : GL_COLOR_BUFFER_BIT) | GL_DEPTH_BUFFER_BIT);
@@ -161,7 +211,7 @@
             glBindRenderbuffer(GL_RENDERBUFFER, _inferedDepthBuffer);
         }
         
-        glViewport(x, y, width, height);
+        glViewport(_left + x, _bottom + y, width, height);
         
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

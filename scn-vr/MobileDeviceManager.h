@@ -17,6 +17,8 @@
 
 @property (strong, readonly, nonatomic) NSMutableArray * devices;
 
+- (instancetype)init;
+
 + (id)sharedManager;
 
 -(void) trimDevicesForCurrentDeviceWidth:(int) widthPx heightPx:(int) heightPx tablet:(BOOL) tablet;
@@ -25,7 +27,7 @@
 
 -(void) load;
 
--(MobileDeviceConfiguration *) addDevice:(NSString *) name identifier:(NSString *) identifier widthPx:(int) widthPx heightPx:(int) heightPx dpi:(float) dpi tablet:(BOOL) tablet;
++(MobileDeviceConfiguration *) createDevice:(NSString *) name identifier:(NSString *) identifier widthPx:(int) widthPx heightPx:(int) heightPx dpi:(float) dpi tablet:(BOOL) tablet;
 
 -(BOOL) removeDeviceWithIndex:(int) index;
 
@@ -34,5 +36,7 @@
 -(int) getIndexFor:(MobileDeviceConfiguration *) mobileConfiguration;
 
 -(void) ready;
+
++(NSMutableArray *) getDevices;
 
 @end

@@ -55,6 +55,10 @@
 		AC3F55CD1A4E038800955ECC /* IMUTracker.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3F55CA1A4DF93C00955ECC /* IMUTracker.h */; };
 		AC449CBB1A49CF3200EC14BB /* ListableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = AC449CBA1A49CF3200EC14BB /* ListableArray.m */; };
 		AC449CC61A49FD2500EC14BB /* ListableArray.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC449CB91A49CF3200EC14BB /* ListableArray.h */; };
+		AC4FF9781A5B8EC0006B7B04 /* VirtualDeviceConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4FF9771A5B8EC0006B7B04 /* VirtualDeviceConfiguration.m */; };
+		AC4FF97B1A5B903F006B7B04 /* VirtualDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4FF97A1A5B903F006B7B04 /* VirtualDeviceManager.m */; };
+		AC4FF97C1A5B904C006B7B04 /* VirtualDeviceConfiguration.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC4FF9761A5B8EC0006B7B04 /* VirtualDeviceConfiguration.h */; };
+		AC4FF97D1A5B904C006B7B04 /* VirtualDeviceManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC4FF9791A5B903F006B7B04 /* VirtualDeviceManager.h */; };
 		AC5669B01A4FCB9E000FDC31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5669AF1A4FCB9E000FDC31 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +79,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				AC4FF97C1A5B904C006B7B04 /* VirtualDeviceConfiguration.h in CopyFiles */,
+				AC4FF97D1A5B904C006B7B04 /* VirtualDeviceManager.h in CopyFiles */,
 				AC3F55CD1A4E038800955ECC /* IMUTracker.h in CopyFiles */,
 				AC449CC61A49FD2500EC14BB /* ListableArray.h in CopyFiles */,
 				AC3E0FB81A4937E100AFE6AA /* ColorCorrection.h in CopyFiles */,
@@ -155,6 +161,10 @@
 		AC3F55CB1A4DF93C00955ECC /* IMUTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMUTracker.m; sourceTree = "<group>"; };
 		AC449CB91A49CF3200EC14BB /* ListableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListableArray.h; sourceTree = "<group>"; };
 		AC449CBA1A49CF3200EC14BB /* ListableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListableArray.m; sourceTree = "<group>"; };
+		AC4FF9761A5B8EC0006B7B04 /* VirtualDeviceConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualDeviceConfiguration.h; sourceTree = "<group>"; };
+		AC4FF9771A5B8EC0006B7B04 /* VirtualDeviceConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualDeviceConfiguration.m; sourceTree = "<group>"; };
+		AC4FF9791A5B903F006B7B04 /* VirtualDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualDeviceManager.h; sourceTree = "<group>"; };
+		AC4FF97A1A5B903F006B7B04 /* VirtualDeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualDeviceManager.m; sourceTree = "<group>"; };
 		AC5669AF1A4FCB9E000FDC31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -240,6 +250,8 @@
 		AC3E0FCE1A4937F800AFE6AA /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				AC4FF97E1A5B94F7006B7B04 /* Pair */,
+				AC4FF9751A5B8E52006B7B04 /* Virtual */,
 				AC3E0FD51A49385F00AFE6AA /* Utils */,
 				AC3E0FD41A49384600AFE6AA /* Rendering */,
 				AC3E0FD31A49381600AFE6AA /* HMDs */,
@@ -302,8 +314,6 @@
 				AC3E0F7F1A49374600AFE6AA /* HmdDeviceConfiguration.m */,
 				AC3E0F801A49374600AFE6AA /* HmdDeviceManager.h */,
 				AC3E0F811A49374600AFE6AA /* HmdDeviceManager.m */,
-				AC3E0F821A49374600AFE6AA /* HmdMobileDevicePair.h */,
-				AC3E0F831A49374600AFE6AA /* HmdMobileDevicePair.m */,
 			);
 			name = HMDs;
 			sourceTree = "<group>";
@@ -356,6 +366,26 @@
 				AC3E0F941A49374600AFE6AA /* SCNEye.m */,
 			);
 			name = Eyes;
+			sourceTree = "<group>";
+		};
+		AC4FF9751A5B8E52006B7B04 /* Virtual */ = {
+			isa = PBXGroup;
+			children = (
+				AC4FF9761A5B8EC0006B7B04 /* VirtualDeviceConfiguration.h */,
+				AC4FF9771A5B8EC0006B7B04 /* VirtualDeviceConfiguration.m */,
+				AC4FF9791A5B903F006B7B04 /* VirtualDeviceManager.h */,
+				AC4FF97A1A5B903F006B7B04 /* VirtualDeviceManager.m */,
+			);
+			name = Virtual;
+			sourceTree = "<group>";
+		};
+		AC4FF97E1A5B94F7006B7B04 /* Pair */ = {
+			isa = PBXGroup;
+			children = (
+				AC3E0F821A49374600AFE6AA /* HmdMobileDevicePair.h */,
+				AC3E0F831A49374600AFE6AA /* HmdMobileDevicePair.m */,
+			);
+			name = Pair;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,6 +478,7 @@
 			files = (
 				AC449CBB1A49CF3200EC14BB /* ListableArray.m in Sources */,
 				AC3E0FA01A49374600AFE6AA /* ColorCorrection.m in Sources */,
+				AC4FF9781A5B8EC0006B7B04 /* VirtualDeviceConfiguration.m in Sources */,
 				AC3E0FA51A49374600AFE6AA /* HmdDeviceManager.m in Sources */,
 				AC3E0FAF1A49374600AFE6AA /* SCNViewpoint.m in Sources */,
 				AC3E0FAA1A49374600AFE6AA /* RenderBase.m in Sources */,
@@ -464,6 +495,7 @@
 				AC3E0FB31A49374600AFE6AA /* VBOWrap.m in Sources */,
 				AC3E0FAC1A49374600AFE6AA /* RenderTexture.m in Sources */,
 				AC3E0FB01A49374600AFE6AA /* SCNVirtualRealityViewController.m in Sources */,
+				AC4FF97B1A5B903F006B7B04 /* VirtualDeviceManager.m in Sources */,
 				AC3E0FA71A49374600AFE6AA /* MobileDeviceConfiguration.m in Sources */,
 				AC3E0FB11A49374600AFE6AA /* TrackerBase.m in Sources */,
 				AC3E0FA41A49374600AFE6AA /* HmdDeviceConfiguration.m in Sources */,

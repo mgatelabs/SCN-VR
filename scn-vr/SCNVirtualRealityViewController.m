@@ -24,7 +24,7 @@
 -(void) viewDidLoad {
     [super viewDidLoad];
     [self setPaused:YES];
-    
+        
     _nullViewpoint = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(-1.57079633f, 0, 0, 1), GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
     
     _useHeadTracking = YES;
@@ -47,7 +47,7 @@
     _viewpoint = nil;
     
     // Where the final product goes
-    _destTexture = [[RenderTexture alloc] initAsInfered:_pair.mobile.widthPx height:_pair.mobile.heightPx];
+    _destTexture = [[RenderTexture alloc] initAsInfered:_pair.widthPx height:_pair.heightPx left:_pair.offsetPx bottom:_pair.offsetPy];
     
     _eyeColorCorrection = nil;
     
@@ -244,11 +244,11 @@
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    return UIInterfaceOrientationLandscapeRight;
+    return self.pair.landscape ? UIInterfaceOrientationLandscapeRight : UIInterfaceOrientationPortrait;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskLandscapeRight;
+    return self.pair.landscape ? UIInterfaceOrientationMaskLandscapeRight : UIInterfaceOrientationMaskPortrait;
 }
 
 - (BOOL) prefersStatusBarHidden {

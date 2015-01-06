@@ -33,7 +33,7 @@
         camera.xFov = pair.hmd.hFov;
         camera.yFov = pair.hmd.vFov;
         camera.zNear = 0.01f;
-        camera.zFar = 1024.0f;
+        camera.zFar = 2048.0f;
         switch (dest.side) {
             case EyeTextureSideLeft: {
                 camera.categoryBitMask = 1;

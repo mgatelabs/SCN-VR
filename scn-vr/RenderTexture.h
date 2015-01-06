@@ -23,6 +23,8 @@ typedef NS_ENUM(NSInteger, RenderTextureType)
 
 @interface RenderTexture : NSObject
 
+@property (readonly, assign) int left;
+@property (readonly, assign) int bottom;
 @property (readonly, assign) int width;
 @property (readonly, assign) int height;
 
@@ -39,8 +41,10 @@ typedef NS_ENUM(NSInteger, RenderTextureType)
 @property (assign, nonatomic) BOOL dontClearColorBuffer;
 
 - (instancetype)initAsInfered:(int) width height:(int) height;
-
 - (instancetype)initAsDefined:(int) width height:(int) height;
+
+- (instancetype)initAsInfered:(int) width height:(int) height left:(int) left bottom:(int) bottom;
+- (instancetype)initAsDefined:(int) width height:(int) height left:(int) left bottom:(int) bottom;
 
 -(void) bind;
 
