@@ -16,6 +16,8 @@
 
 @property (assign, nonatomic) GLKQuaternion orientation;
 
+@property (assign, nonatomic) BOOL landscape;
+
 - (instancetype)initWith:(NSString *) name identity:(NSString *) identity;
 
 -(void) start;

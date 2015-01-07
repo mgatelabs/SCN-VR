@@ -29,6 +29,8 @@
     
     _useHeadTracking = YES;
     
+    _tracker.landscape = _pair.landscape;
+    
     [_pair.mobile ready];
     
     _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];

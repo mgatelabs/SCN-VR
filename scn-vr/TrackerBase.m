@@ -17,6 +17,7 @@
         _name = name;
         _identity = identity;
         _orientation = GLKQuaternionIdentity;
+        _landscape = YES;
     }
     return self;
 }
