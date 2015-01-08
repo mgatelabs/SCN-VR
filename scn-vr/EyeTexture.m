@@ -20,16 +20,16 @@
         switch (side) {
             case EyeTextureSideLeft:
             case EyeTextureSideMono:
-                _x = 0;
+                _x = dest.left;
                 break;
             case EyeTextureSideRight:
-                _x = dest.width / 2;
+                _x = dest.left + (dest.width / 2);
                 break;
             default: {
-                _x = 0;
+                _x = dest.left;
             } break;
         }
-        _y = 0;
+        _y = dest.bottom;
         _h = dest.height;
         
         switch (side) {
