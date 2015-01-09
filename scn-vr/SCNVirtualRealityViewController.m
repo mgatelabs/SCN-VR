@@ -24,7 +24,7 @@
 -(void) viewDidLoad {
     [super viewDidLoad];
     [self setPaused:YES];
-        
+    
     _nullViewpoint = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(-1.57079633f, 0, 0, 1), GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
     
     _useHeadTracking = YES;
@@ -40,6 +40,8 @@
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
+    // Use the native resolution 
+    view.contentScaleFactor = [UIScreen mainScreen].nativeScale;
     
     [self setPreferredFramesPerSecond:60];
     

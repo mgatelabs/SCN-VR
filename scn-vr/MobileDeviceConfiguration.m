@@ -19,7 +19,13 @@
         _identifier = identifier;
         self.widthPx = widthPx;
         self.heightPx = heightPx;
+        
+        self.physicalWidthPx = widthPx;
+        self.physicalHeightPx = heightPx;
+        
         self.dpi = dpi;
+        self.physicalDpi = dpi;
+        
         self.tablet = tablet;
         self.internal = NO;
     }
@@ -28,8 +34,8 @@
 
 -(void) ready {
     // Calculate inches
-    _widthIN = self.widthPx / self.dpi;
-    _heightIN = self.heightPx / self.dpi;
+    _widthIN = self.physicalWidthPx / self.dpi;
+    _heightIN = self.physicalHeightPx / self.dpi;
     
     // Calculate milimeters
     _widthMM = _widthIN * IN_2_MM;

@@ -18,7 +18,12 @@
 
 @property (assign) int widthPx;
 @property (assign) int heightPx;
+
+@property (assign) int physicalWidthPx;
+@property (assign) int physicalHeightPx;
+
 @property (assign) float dpi;
+@property (assign) float physicalDpi;
 
 @property (readonly, assign) float widthIN;
 @property (readonly, assign) float heightIN;

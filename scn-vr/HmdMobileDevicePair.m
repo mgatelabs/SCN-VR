@@ -23,8 +23,8 @@
             case VirtualDeviceConfigurationTypeLandscape:
                 _landscape = YES;
                 
-                _widthPx = _mobile.widthPx;
-                _heightPx = _mobile.heightPx;
+                _widthPx = _mobile.physicalWidthPx;
+                _heightPx = _mobile.physicalHeightPx;
                 
                 _widthIN = _mobile.widthIN;
                 _heightIN = _mobile.heightIN;
@@ -39,11 +39,11 @@
             case VirtualDeviceConfigurationTypeLandscape169:
                 _landscape = YES;
                 
-                _widthPx = _mobile.widthPx;
+                _widthPx = _mobile.physicalWidthPx;
                 _heightPx = (_widthPx * 9) / 16;
                 
                 _offsetPx = 0;
-                _offsetPy = (mobile.heightPx - _heightPx) / 2;
+                _offsetPy = (mobile.physicalHeightPx - _heightPx) / 2;
                 
                 _widthIN = _widthPx / _mobile.dpi;
                 _heightIN = _heightPx / _mobile.dpi;
@@ -56,8 +56,8 @@
             case VirtualDeviceConfigurationTypePortrait:
                 _landscape = NO;
                 
-                _widthPx = _mobile.heightPx;
-                _heightPx = _mobile.widthPx;
+                _widthPx = _mobile.physicalHeightPx;
+                _heightPx = _mobile.physicalWidthPx;
                 
                 _widthIN = _mobile.heightIN;
                 _heightIN = _mobile.widthIN;
@@ -72,11 +72,11 @@
             case VirtualDeviceConfigurationTypePortrait169:
                 _landscape = NO;
                 
-                _widthPx = _mobile.heightPx;
+                _widthPx = _mobile.physicalHeightPx;
                 _heightPx = (_widthPx * 9) / 16;
                 
                 _offsetPx = 0;
-                _offsetPy = (mobile.widthPx - _heightPx) / 2;
+                _offsetPy = (mobile.physicalWidthPx - _heightPx) / 2;
                 
                 _widthIN = _widthPx / _mobile.dpi;
                 _heightIN = _heightPx / _mobile.dpi;
