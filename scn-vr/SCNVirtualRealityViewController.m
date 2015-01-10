@@ -40,8 +40,11 @@
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-    // Use the native resolution 
-    view.contentScaleFactor = [UIScreen mainScreen].nativeScale;
+    // Use the native resolution
+    [view setContentScaleFactor:[UIScreen mainScreen].nativeScale];
+    self.view.layer.contentsScale = view.contentScaleFactor;
+    
+    //NSLog(@"%2.2f", view.contentScaleFactor);
     
     [self setPreferredFramesPerSecond:60];
     
@@ -52,6 +55,8 @@
     
     // Where the final product goes
     _destTexture = [[RenderTexture alloc] initAsInfered:_pair.widthPx height:_pair.heightPx left:_pair.offsetPx bottom:_pair.offsetPy];
+    
+    //NSLog(@"%d %d %d %d", _pair.widthPx, _pair.heightPx, _pair.offsetPx, _pair.offsetPy);
     
     _eyeColorCorrection = nil;
     
@@ -74,7 +79,7 @@
         } break;
         case HmdDeviceConfigurationViewpointsSBS: {
             
-            if (_pair.hmd.distortion == HmdDeviceConfigurationCorrectionNone) {
+            if (_pair.hmd.distortion == HmdDeviceConfigurationDistortionNone) {
                 
                 // Skip this, render to final output
                 _leftSourceTexture = nil;
@@ -314,7 +319,7 @@
             } break;
             case HmdDeviceConfigurationViewpointsSBS: {
                 
-                if (_eyeColorCorrection != nil && _leftEyeMesh != nil && _rightEyeMesh != nil) {
+                if (_pair.hmd.correction != HmdDeviceConfigurationDistortionNone) {
                     
                     [_destTexture bind];
                     

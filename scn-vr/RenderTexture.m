@@ -180,7 +180,7 @@
     }
     
     // Make sure we don't overflow any boundaries
-    if (_state == RenderTextureStateReady && width > 0 && height > 0 && width <= _width && height <= _height && x >= 0 && y >= 0 && x + width <= _width && y + height <= _height) {
+    if (_state == RenderTextureStateReady) {
         if (_type == RenderTextureTypeDefined) {
             glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
             glBindRenderbuffer(GL_RENDERBUFFER, _depthBuffer);
@@ -202,7 +202,7 @@
     }
     
     // Make sure we don't overflow any boundaries
-    if (_state == RenderTextureStateReady && width > 0 && height > 0 && width <= _width && height <= _height && x >= 0 && y >= 0 && x + width <= _width && y + height <= _height) {
+    if (_state == RenderTextureStateReady) {
         if (_type == RenderTextureTypeDefined) {
             glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
             glBindRenderbuffer(GL_RENDERBUFFER, _depthBuffer);

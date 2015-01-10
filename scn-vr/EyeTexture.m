@@ -20,16 +20,16 @@
         switch (side) {
             case EyeTextureSideLeft:
             case EyeTextureSideMono:
-                _x = dest.left;
+                _x = 0;
                 break;
             case EyeTextureSideRight:
-                _x = dest.left + (dest.width / 2);
+                _x = 0 + (dest.width / 2);
                 break;
             default: {
-                _x = dest.left;
+                _x = 0;
             } break;
         }
-        _y = dest.bottom;
+        _y = 0;
         _h = dest.height;
         
         switch (side) {
@@ -59,7 +59,8 @@
 }
 
 -(void) view {
-    glViewport(_x, _y, _w, _h);
+    
+    glViewport(_dest.left + _x, _dest.bottom + _y, _w, _h);
 }
 
 @end

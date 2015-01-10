@@ -133,8 +133,8 @@
                 _widthMM = _widthIN * IN_2_MM;
                 _heightMM = _heightIN * IN_2_MM;
                 
-                _offsetPx = (_mobile.heightPx - _widthPx) / 2;
-                _offsetPy = (_mobile.widthPx - _heightPx) / 2;
+                _offsetPx = (_mobile.heightPx / 2) - (_widthPx / 2);
+                _offsetPy = (_mobile.widthPx/ 2) - (_heightPx / 2);
                 
             } break;
         }
