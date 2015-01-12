@@ -291,6 +291,8 @@
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     
+    //[[UIScreen mainScreen] setBrightness: 0.7];
+    
     [EAGLContext setCurrentContext:_context];
     
     // Make sure we have access to the screen's render & depth buffers
@@ -364,6 +366,8 @@
     }
     
     glFlush();
+    
+    //[[UIScreen mainScreen] setBrightness: 0.8f];
 }
 
 #pragma mark - GL Specific
