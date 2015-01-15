@@ -58,7 +58,14 @@
         renderer.pointOfView = self;
         renderer.playing = YES;*/
     }
+ 
     return self;
+}
+
+- (void)dealloc
+{
+    //self.camera = nil;
+    _dest = nil;
 }
 
 @end

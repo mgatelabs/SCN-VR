@@ -49,4 +49,22 @@
     return self;
 }
 
+- (void)dealloc
+{
+    _leftEyeSource = nil;
+    _rightEyeSource = nil;
+    _sourceTexture = nil;
+    
+    [_leftEye removeFromParentNode];
+    _leftEye = nil;
+    
+    if (_rightEye != nil) {
+        [_rightEye removeFromParentNode];
+        _rightEye = nil;
+    }
+    
+    [_neck removeFromParentNode];
+    _neck = nil;
+}
+
 @end

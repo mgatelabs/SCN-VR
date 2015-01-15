@@ -163,8 +163,6 @@
     
     //NSLog(@"Tearing down");
     
-    
-    
     for (int i = (int)_scene.rootNode.childNodes.count - 1; i >= 0; i--) {
         SCNNode * child = [_scene.rootNode.childNodes objectAtIndex:i];
         [child removeFromParentNode];
@@ -180,8 +178,6 @@
     _rightRenderer.scene = nil;
     _rightRenderer = nil;
     
-    //_scene.background.contents = nil;
-    
     _scene = nil;
     
     _pair = nil;
@@ -189,6 +185,7 @@
     // Source are defined render textures
     _leftSourceTexture = nil;
     _rightSourceTexture = nil;
+    
     _leftEyeSource = nil;
     _rightEyeSource = nil;
     
@@ -206,6 +203,8 @@
     if ([EAGLContext currentContext] == self.context) {
         [EAGLContext setCurrentContext:nil];
     }
+    
+    _context = nil;
 }
 
 #pragma mark - Scene Helpers
