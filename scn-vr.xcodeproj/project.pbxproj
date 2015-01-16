@@ -60,6 +60,16 @@
 		AC4FF97C1A5B904C006B7B04 /* VirtualDeviceConfiguration.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC4FF9761A5B8EC0006B7B04 /* VirtualDeviceConfiguration.h */; };
 		AC4FF97D1A5B904C006B7B04 /* VirtualDeviceManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC4FF9791A5B903F006B7B04 /* VirtualDeviceManager.h */; };
 		AC5669B01A4FCB9E000FDC31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5669AF1A4FCB9E000FDC31 /* UIKit.framework */; };
+		AC83FBBA1A68C6FD00B1727F /* WizardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC83FBB91A68C6FD00B1727F /* WizardManager.m */; };
+		AC83FBBB1A68C70F00B1727F /* WizardManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC83FBB81A68C6FD00B1727F /* WizardManager.h */; };
+		AC83FBBE1A68C80200B1727F /* WizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC83FBBD1A68C80200B1727F /* WizardItem.m */; };
+		AC83FBC11A68CB7800B1727F /* TrackerWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC83FBC01A68CB7800B1727F /* TrackerWizardItem.m */; };
+		AC83FBC21A68CB8200B1727F /* WizardItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC83FBBC1A68C80200B1727F /* WizardItem.h */; };
+		AC83FBC31A68CB8200B1727F /* TrackerWizardItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC83FBBF1A68CB7800B1727F /* TrackerWizardItem.h */; };
+		AC83FBC61A68CDCE00B1727F /* DeviceWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC83FBC51A68CDCE00B1727F /* DeviceWizardItem.m */; };
+		AC83FBC71A68D00E00B1727F /* DeviceWizardItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC83FBC41A68CDCE00B1727F /* DeviceWizardItem.h */; };
+		AC83FBCA1A68D03B00B1727F /* VirtualDeviceWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC83FBC91A68D03B00B1727F /* VirtualDeviceWizardItem.m */; };
+		AC83FBCB1A68D79C00B1727F /* VirtualDeviceWizardItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC83FBC81A68D03B00B1727F /* VirtualDeviceWizardItem.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +89,11 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				AC83FBCB1A68D79C00B1727F /* VirtualDeviceWizardItem.h in CopyFiles */,
+				AC83FBC71A68D00E00B1727F /* DeviceWizardItem.h in CopyFiles */,
+				AC83FBC21A68CB8200B1727F /* WizardItem.h in CopyFiles */,
+				AC83FBC31A68CB8200B1727F /* TrackerWizardItem.h in CopyFiles */,
+				AC83FBBB1A68C70F00B1727F /* WizardManager.h in CopyFiles */,
 				AC4FF97C1A5B904C006B7B04 /* VirtualDeviceConfiguration.h in CopyFiles */,
 				AC4FF97D1A5B904C006B7B04 /* VirtualDeviceManager.h in CopyFiles */,
 				AC3F55CD1A4E038800955ECC /* IMUTracker.h in CopyFiles */,
@@ -166,6 +181,16 @@
 		AC4FF9791A5B903F006B7B04 /* VirtualDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualDeviceManager.h; sourceTree = "<group>"; };
 		AC4FF97A1A5B903F006B7B04 /* VirtualDeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualDeviceManager.m; sourceTree = "<group>"; };
 		AC5669AF1A4FCB9E000FDC31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		AC83FBB81A68C6FD00B1727F /* WizardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardManager.h; sourceTree = "<group>"; };
+		AC83FBB91A68C6FD00B1727F /* WizardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardManager.m; sourceTree = "<group>"; };
+		AC83FBBC1A68C80200B1727F /* WizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardItem.h; sourceTree = "<group>"; };
+		AC83FBBD1A68C80200B1727F /* WizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardItem.m; sourceTree = "<group>"; };
+		AC83FBBF1A68CB7800B1727F /* TrackerWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackerWizardItem.h; sourceTree = "<group>"; };
+		AC83FBC01A68CB7800B1727F /* TrackerWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackerWizardItem.m; sourceTree = "<group>"; };
+		AC83FBC41A68CDCE00B1727F /* DeviceWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceWizardItem.h; sourceTree = "<group>"; };
+		AC83FBC51A68CDCE00B1727F /* DeviceWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceWizardItem.m; sourceTree = "<group>"; };
+		AC83FBC81A68D03B00B1727F /* VirtualDeviceWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualDeviceWizardItem.h; sourceTree = "<group>"; };
+		AC83FBC91A68D03B00B1727F /* VirtualDeviceWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualDeviceWizardItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +275,7 @@
 		AC3E0FCE1A4937F800AFE6AA /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				AC83FBB71A68C6E400B1727F /* Wizard */,
 				AC4FF97E1A5B94F7006B7B04 /* Pair */,
 				AC4FF9751A5B8E52006B7B04 /* Virtual */,
 				AC3E0FD51A49385F00AFE6AA /* Utils */,
@@ -388,6 +414,23 @@
 			name = Pair;
 			sourceTree = "<group>";
 		};
+		AC83FBB71A68C6E400B1727F /* Wizard */ = {
+			isa = PBXGroup;
+			children = (
+				AC83FBB81A68C6FD00B1727F /* WizardManager.h */,
+				AC83FBB91A68C6FD00B1727F /* WizardManager.m */,
+				AC83FBBC1A68C80200B1727F /* WizardItem.h */,
+				AC83FBBD1A68C80200B1727F /* WizardItem.m */,
+				AC83FBBF1A68CB7800B1727F /* TrackerWizardItem.h */,
+				AC83FBC01A68CB7800B1727F /* TrackerWizardItem.m */,
+				AC83FBC41A68CDCE00B1727F /* DeviceWizardItem.h */,
+				AC83FBC51A68CDCE00B1727F /* DeviceWizardItem.m */,
+				AC83FBC81A68D03B00B1727F /* VirtualDeviceWizardItem.h */,
+				AC83FBC91A68D03B00B1727F /* VirtualDeviceWizardItem.m */,
+			);
+			name = Wizard;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -477,15 +520,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC449CBB1A49CF3200EC14BB /* ListableArray.m in Sources */,
+				AC83FBC11A68CB7800B1727F /* TrackerWizardItem.m in Sources */,
+				AC83FBBE1A68C80200B1727F /* WizardItem.m in Sources */,
 				AC3E0FA01A49374600AFE6AA /* ColorCorrection.m in Sources */,
 				AC4FF9781A5B8EC0006B7B04 /* VirtualDeviceConfiguration.m in Sources */,
 				AC3E0FA51A49374600AFE6AA /* HmdDeviceManager.m in Sources */,
 				AC3E0FAF1A49374600AFE6AA /* SCNViewpoint.m in Sources */,
+				AC83FBBA1A68C6FD00B1727F /* WizardManager.m in Sources */,
 				AC3E0FAA1A49374600AFE6AA /* RenderBase.m in Sources */,
 				AC3E0FA61A49374600AFE6AA /* HmdMobileDevicePair.m in Sources */,
 				AC3E0FA21A49374600AFE6AA /* DistortionMeshGenerator.m in Sources */,
 				AC3E0FAB1A49374600AFE6AA /* RenderManager.m in Sources */,
 				AC3F55CC1A4DF93C00955ECC /* IMUTracker.m in Sources */,
+				AC83FBC61A68CDCE00B1727F /* DeviceWizardItem.m in Sources */,
 				AC3E0FB21A49374600AFE6AA /* TrackingManager.m in Sources */,
 				AC3E0FA81A49374600AFE6AA /* MobileDeviceManager.m in Sources */,
 				AC3E0FA11A49374600AFE6AA /* CoreMotionTracker.m in Sources */,
@@ -497,6 +544,7 @@
 				AC3E0FB01A49374600AFE6AA /* SCNVirtualRealityViewController.m in Sources */,
 				AC4FF97B1A5B903F006B7B04 /* VirtualDeviceManager.m in Sources */,
 				AC3E0FA71A49374600AFE6AA /* MobileDeviceConfiguration.m in Sources */,
+				AC83FBCA1A68D03B00B1727F /* VirtualDeviceWizardItem.m in Sources */,
 				AC3E0FB11A49374600AFE6AA /* TrackerBase.m in Sources */,
 				AC3E0FA41A49374600AFE6AA /* HmdDeviceConfiguration.m in Sources */,
 				AC3E0FA91A49374600AFE6AA /* MonoRenderInstance.m in Sources */,

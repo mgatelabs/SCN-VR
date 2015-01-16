@@ -20,6 +20,35 @@
     return sharedMyManager;
 }
 
++(NSMutableArray *) getVirtualDevices {
+    
+    NSMutableArray * devices = [[NSMutableArray alloc] initWithCapacity:10];
+    
+    [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscape name:@"Landscape" key:@"land"]];
+    
+    // iPad Users get more options
+    if ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)) {
+        
+        [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscape169 name:@"Landscape 16:9" key:@"land169"]];
+        
+        [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypePortrait name:@"Portrait" key:@"port"]];
+        
+        [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypePortrait169 name:@"Portrait 16:9" key:@"port169"]];
+        
+        NSMutableArray * tempDevices = [MobileDeviceManager getDevices];
+        
+        for (int i = 0; i < tempDevices.count; i++) {
+            MobileDeviceConfiguration * c = [tempDevices objectAtIndex:i];
+            if (!c.tablet) {
+                [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscapeVirtual name:[@"Virtual (Landscape): " stringByAppendingString:c.name] key:[@"vl_" stringByAppendingString:c.identifier] device:c]];
+                
+                [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypePortraitVirtual name:[@"Virtual (Portrait): " stringByAppendingString:c.name] key:[@"vp_" stringByAppendingString:c.identifier] device:c]];
+            }
+        }
+    }
+    return devices;
+}
+
 - (instancetype)init
 {
     self = [super init];

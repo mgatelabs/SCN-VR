@@ -17,6 +17,7 @@
 @property (weak, nonatomic, readonly) VirtualDeviceConfiguration * device;
 
 + (id)sharedManager;
++(NSMutableArray *) getVirtualDevices;
 
 -(void) persist;
 -(void) load;
