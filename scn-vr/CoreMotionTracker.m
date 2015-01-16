@@ -10,6 +10,7 @@
 
 @implementation CoreMotionTracker {
     GLKQuaternion landscapeRotationFix;
+    BOOL useMagnet;
 }
 
 - (instancetype)init
@@ -20,16 +21,20 @@
         landscapeRotationFix = GLKQuaternionMakeWithAngleAndAxis(-1.57079633f, 0, 0, 1);
         
         self.motionManager = [[CMMotionManager alloc] init];
-        self.motionManager.deviceMotionUpdateInterval = 1.0f / 60;
-        self.motionManager.magnetometerUpdateInterval = 1.0f / 60;
-        self.motionManager.showsDeviceMovementDisplay = YES;
         
+        useMagnet = self.motionManager.magnetometerAvailable;
+        
+        self.motionManager.deviceMotionUpdateInterval = 1.0f / 60;
+        if (useMagnet) {
+            self.motionManager.magnetometerUpdateInterval = 1.0f / 60;
+            self.motionManager.showsDeviceMovementDisplay = YES;
+        }
     }
     return self;
 }
 
 -(void) start {
-    [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXArbitraryCorrectedZVertical];
+    [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame: useMagnet ? CMAttitudeReferenceFrameXArbitraryCorrectedZVertical : CMAttitudeReferenceFrameXArbitraryZVertical];
 }
 
 -(void) stop {
