@@ -10,14 +10,14 @@
 
 @implementation SCNEye
 
-- (instancetype)initAs:(EyeTexture *) dest pair:(HmdMobileDevicePair *) pair scene:(SCNScene *) scene context:(EAGLContext *) context
+- (instancetype)initAs:(EyeTexture *) dest pair:(ProfileInstance *) pair scene:(SCNScene *) scene context:(EAGLContext *) context
 {
     self = [super init];
     if (self) {
         _dest = dest;
         
         if (_dest.side != EyeTextureSideMono) {
-            float eyeDistance = ((pair.hmd.ipd / 1000.0f) / 2.0f);
+            float eyeDistance = ((pair.cameraIPD / 1000.0f) / 2.0f);
             if (_dest.side == EyeTextureSideLeft) {
                 eyeDistance *= -1;
             }
@@ -30,8 +30,8 @@
         
         // Make a new camera
         SCNCamera * camera = [SCNCamera camera];
-        camera.xFov = pair.hmd.hFov;
-        camera.yFov = pair.hmd.vFov;
+        camera.xFov = pair.hFov;
+        camera.yFov = pair.vFov;
         camera.zNear = 0.01f;
         camera.zFar = 2048.0f;
         switch (dest.side) {

@@ -7,8 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RenderProtocol.h"
+#import "ProfileInstance.h"
+#import "RenderTexture.h"
+#import "EyeTexture.h"
 
-@interface RenderBase : NSObject <RenderProtocol>
+@class ProfileInstance;
+
+@interface RenderBase : NSObject
+
+@property (assign, nonatomic) int viewportCount;
+
+-(RenderTexture *) generateRenderTexture:(ProfileInstance *) pair;
+
+-(EyeTexture *) generateEyeTexture:(ProfileInstance *) pair eye:(EyeTextureSide) eye sourceTexture:(RenderTexture *) sourceTexture;
 
 @end

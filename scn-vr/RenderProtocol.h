@@ -11,13 +11,16 @@
 #import "HmdMobileDevicePair.h"
 #import "RenderTexture.h"
 #import "EyeTexture.h"
+#import "ProfileInstance.h"
+
+@class ProfileInstance;
 
 @protocol RenderProtocol <NSObject>
 
 -(BOOL) worksWith:(HmdMobileDevicePair *) pair;
 
--(RenderTexture *) generateRenderTexture:(HmdMobileDevicePair *) pair;
+-(RenderTexture *) generateRenderTexture:(ProfileInstance *) pair;
 
--(EyeTexture *) generateEyeTexture:(HmdMobileDevicePair *) pair eye:(EyeTextureSide) eye sourceTexture:(RenderTexture *) sourceTexture;
+-(EyeTexture *) generateEyeTexture:(ProfileInstance *) pair eye:(EyeTextureSide) eye sourceTexture:(RenderTexture *) sourceTexture;
 
 @end

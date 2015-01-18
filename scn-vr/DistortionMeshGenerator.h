@@ -11,9 +11,10 @@
 #import "HmdMobileDevicePair.h"
 #import "VBOWrap.h"
 #import "EyeTexture.h"
+#import "ProfileInstance.h"
 
 @interface DistortionMeshGenerator : NSObject
 
-+(VBOWrap *) generateMeshFor:(HmdMobileDevicePair *) pair eye:(EyeTextureSide) eye;
++(VBOWrap *) generateMeshFor:(ProfileInstance *) pair eye:(EyeTextureSide) eye;
 
 @end

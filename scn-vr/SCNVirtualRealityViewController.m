@@ -25,13 +25,16 @@
     [super viewDidLoad];
     [self setPaused:YES];
     
+    ProfileManager * profiles = [ProfileManager sharedManager];
+    self.profile = [profiles getCurrentProfileInstance];
+    
     _nullViewpoint = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(-1.57079633f, 0, 0, 1), GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
     
     _useHeadTracking = YES;
     
-    _tracker.landscape = _pair.landscape;
+    self.profile.tracker.landscape = self.profile.landscapeView;
     
-    [_pair.mobile ready];
+    //[_pair.mobile ready];
     
     _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
@@ -54,14 +57,14 @@
     _viewpoint = nil;
     
     // Where the final product goes
-    _destTexture = [[RenderTexture alloc] initAsInfered:_pair.widthPx height:_pair.heightPx left:_pair.offsetPx bottom:_pair.offsetPy];
+    _destTexture = [[RenderTexture alloc] initAsInfered:self.profile.virtualWidthPX height:self.profile.virtualHeightPX left:self.profile.virtualOffsetLeft bottom:self.profile.virtualOffsetBottom];
     
     //NSLog(@"%d %d %d %d", _pair.widthPx, _pair.heightPx, _pair.offsetPx, _pair.offsetPy);
     
     _eyeColorCorrection = nil;
     
-    switch (_pair.hmd.viewpoints) {
-        case HmdDeviceConfigurationViewpointsMono: {
+    switch (self.profile.viewPorts) {
+        case 1: {
             // Skip this, render to final output
             _leftSourceTexture = nil;
             _rightSourceTexture = nil;
@@ -77,9 +80,9 @@
             _rightEyeDest = nil;
             
         } break;
-        case HmdDeviceConfigurationViewpointsSBS: {
+        case 2: {
             
-            if (_pair.hmd.distortion == HmdDeviceConfigurationDistortionNone) {
+            if (self.profile.basicView) {
                 
                 // Skip this, render to final output
                 _leftSourceTexture = nil;
@@ -99,7 +102,7 @@
                 
             } else {
                 // Where inbetween work is done
-                _leftSourceTexture = [_renderer generateRenderTexture:_pair];
+                _leftSourceTexture = [_profile.renderer generateRenderTexture:self.profile];
                 _rightSourceTexture = _leftSourceTexture;
                 
                 _leftSourceTexture.dontClearColorBuffer = YES;
@@ -109,12 +112,12 @@
                 
                 _leftEyeDest = [[EyeTexture alloc] initAs:EyeTextureSideLeft dest:_destTexture];
                 
-                _leftEyeMesh = [DistortionMeshGenerator generateMeshFor:_pair eye:EyeTextureSideLeft];
+                _leftEyeMesh = [DistortionMeshGenerator generateMeshFor:_profile eye:EyeTextureSideLeft];
                 
                 // The right eye's output
                 _rightEyeSource = [[EyeTexture alloc] initAs:EyeTextureSideRight dest:_rightSourceTexture];
                 
-                _rightEyeMesh = [DistortionMeshGenerator generateMeshFor:_pair eye:EyeTextureSideRight];
+                _rightEyeMesh = [DistortionMeshGenerator generateMeshFor:_profile eye:EyeTextureSideRight];
                 
                 _rightEyeDest = [[EyeTexture alloc] initAs:EyeTextureSideRight dest:_destTexture];
                 
@@ -147,14 +150,14 @@
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setPaused:NO];
-    [_tracker start];
+    [_profile.tracker start];
 }
 
 -(void) viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self setPaused:YES];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
-    [_tracker stop];
+    [_profile.tracker stop];
 }
 
 - (void)dealloc
@@ -180,7 +183,7 @@
     
     _scene = nil;
     
-    _pair = nil;
+    _profile = nil;
     
     // Source are defined render textures
     _leftSourceTexture = nil;
@@ -221,7 +224,7 @@
 #pragma mark - Viewport Helpers
 
 -(SCNViewpoint *) generateGhostViewpoint {
-    return [[SCNViewpoint alloc] initAsGhost:_leftEyeSource right:_rightEyeSource pair:_pair scene:_scene context:_context];
+    return [[SCNViewpoint alloc] initAsGhost:_leftEyeSource right:_rightEyeSource pair:_profile scene:_scene context:_context];
 }
 
 -(void) setViewpointTo:(SCNViewpoint *) viewpoint {
@@ -252,11 +255,11 @@
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    return self.pair.landscape ? UIInterfaceOrientationLandscapeRight : UIInterfaceOrientationPortrait;
+    return self.profile.landscapeView ? UIInterfaceOrientationLandscapeRight : UIInterfaceOrientationPortrait;
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
-    return self.pair.landscape ? UIInterfaceOrientationMaskLandscapeRight : UIInterfaceOrientationMaskPortrait;
+    return self.profile.landscapeView ? UIInterfaceOrientationMaskLandscapeRight : UIInterfaceOrientationMaskPortrait;
 }
 
 - (BOOL) prefersStatusBarHidden {
@@ -267,14 +270,14 @@
 
 - (void)update {
     // Get the latest position
-    [_tracker capture];
+    [self.profile.tracker capture];
     
     [self updateViewpointOrientation];
 }
 
 -(void) updateViewpointOrientation {
         
-    GLKQuaternion gyroValues = _useHeadTracking ? _tracker.orientation : _nullViewpoint;
+    GLKQuaternion gyroValues = _useHeadTracking ? _profile.tracker.orientation : _nullViewpoint;
     GLKQuaternion altered;
     
     // May be slow, but this is prototype code
@@ -314,13 +317,13 @@
         
         [self checkGlErrorStatus];
         
-        switch (_pair.hmd.viewpoints) {
-            case HmdDeviceConfigurationViewpointsMono: {
+        switch (_profile.viewPorts) {
+            case 1: {
                 
             } break;
-            case HmdDeviceConfigurationViewpointsSBS: {
+            case 2: {
                 
-                if (_pair.hmd.correction != HmdDeviceConfigurationDistortionNone) {
+                if (_profile.basicView == NO) {
                     
                     [_destTexture bind];
                     
@@ -328,7 +331,7 @@
                     
                     [self checkGlErrorStatus];
                     
-                    [_eyeColorCorrection activateShaderFor:_pair leftEye:NO texture:_rightEyeSource.dest.textureId];
+                    [_eyeColorCorrection activateShaderFor:_profile leftEye:NO texture:_rightEyeSource.dest.textureId];
                     
                     [self checkGlErrorStatus];
                     
@@ -340,7 +343,7 @@
                     
                     [self checkGlErrorStatus];
                     
-                    [_eyeColorCorrection activateShaderFor:_pair leftEye:YES texture:_leftEyeSource.dest.textureId];
+                    [_eyeColorCorrection activateShaderFor:_profile leftEye:YES texture:_leftEyeSource.dest.textureId];
         
                     [self checkGlErrorStatus];
                     

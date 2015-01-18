@@ -10,11 +10,16 @@
 
 @implementation SBSRenderInstance
 
--(BOOL) worksWith:(HmdMobileDevicePair *) pair {
-    return pair.hmd.viewpoints == HmdDeviceConfigurationViewpointsSBS;
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.viewportCount = 2;
+    }
+    return self;
 }
 
--(RenderTexture *) generateRenderTexture:(HmdMobileDevicePair *) pair {
+-(RenderTexture *) generateRenderTexture:(ProfileInstance *) pair {
     
     //return [[RenderTexture alloc] initAsDefined:pair.mobile.widthPx / 2 height:pair.mobile.heightPx];
     

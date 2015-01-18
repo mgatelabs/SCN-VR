@@ -7,13 +7,13 @@
 //
 
 #import "WizardItem.h"
-#import "DeviceWizardItem.h"
+#import "PhysicalDeviceWizardItem.h"
 
 @interface VirtualDeviceWizardItem : WizardItem
 
 @property (strong, nonatomic, readonly) NSMutableArray * items;
 
-- (instancetype)initWith:(DeviceWizardItem *) deviceWizardItem;
+- (instancetype)initWith:(PhysicalDeviceWizardItem *) deviceWizardItem;
 
 -(void) filterDevices;
 

@@ -108,17 +108,17 @@ GLint uniforms[5];
     return self;
 }
 
--(void) activateShaderFor:(HmdMobileDevicePair *) pair leftEye:(BOOL) leftEye texture:(GLuint) texture {
+-(void) activateShaderFor:(ProfileInstance *) pair leftEye:(BOOL) leftEye texture:(GLuint) texture {
     
     glUseProgram(_program);
     
     glUniform2f(uniforms[UNIFORM_SHIFT], leftEye ? 0.0f : 0.5f, 0);
     
-    glUniform1f(uniforms[UNIFORM_ABERRATIONOFFSET], pair.hmd.correction == HmdDeviceConfigurationCorrectionChromatic ? pair.hmd.correctionCoefficient: 0.0f);
+    glUniform1f(uniforms[UNIFORM_ABERRATIONOFFSET], pair.colorCorrection ? pair.colorCorrectionValue : 0.0f);
     
     //glUniform1f(uniforms[UNIFORM_ABERRATIONOFFSET], 0.0f);
     
-    float ratio = (pair.hmd.ipd * 0.5f) / pair.mobile.widthMM;
+    float ratio = (pair.viewerIPD * 0.5f) / pair.virtualWidthMM;
     
     glUniform2f(uniforms[UNIFORM_CENTER], .5f+(leftEye ? -ratio:ratio),0.5f);
     

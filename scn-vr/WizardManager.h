@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "WizardItem.h"
+#import "ProfileInstance.h"
 
 @interface WizardManager : NSObject
 
@@ -15,8 +16,15 @@
 @property (strong, nonatomic) NSMutableArray * filteredItems;
 @property (strong, nonatomic) NSMutableArray * visibleItems;
 
--(void) item:(int) item changedTo:(int) index;
+@property (assign, nonatomic, readonly) BOOL dirty;
 
+-(void) item:(int) item changedTo:(int) index;
+-(void) reset;
 -(void) filter;
+
+-(NSMutableDictionary *) extractItem;
+-(void) insertItem:(NSDictionary *) payload;
+
+-(ProfileInstance *) buildProfileInstance;
 
 @end

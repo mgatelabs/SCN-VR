@@ -10,15 +10,11 @@
 
 @implementation RenderBase
 
--(BOOL) worksWith:(HmdMobileDevicePair *) pair {
-    return false;
-}
-
--(RenderTexture *) generateRenderTexture:(HmdMobileDevicePair *) pair {
+-(RenderTexture *) generateRenderTexture:(ProfileInstance *) pair {
     return nil;
 }
 
--(EyeTexture *) generateEyeTexture:(HmdMobileDevicePair *) pair eye:(EyeTextureSide) eye sourceTexture:(RenderTexture *) sourceTexture {
+-(EyeTexture *) generateEyeTexture:(ProfileInstance *) pair eye:(EyeTextureSide) eye sourceTexture:(RenderTexture *) sourceTexture {
     return [[EyeTexture alloc] initAs:eye dest:sourceTexture];
 }
 

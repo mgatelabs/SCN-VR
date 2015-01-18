@@ -16,17 +16,17 @@
 
 @implementation DistortionMeshGenerator
 
-+(VBOWrap *) generateMeshFor:(HmdMobileDevicePair *) pair eye:(EyeTextureSide) eye {
++(VBOWrap *) generateMeshFor:(ProfileInstance *) pair eye:(EyeTextureSide) eye {
     int _lines = 20;
     int _columns = 20;
     BOOL leftEye = eye == EyeTextureSideLeft || eye == EyeTextureSideMono;
     
     float k1, k2;
-    if (pair.hmd.distortion == HmdDeviceConfigurationDistortionNone) {
+    if (pair.distortionCorrection == NO) {
         k1 = k2 = 0;
     } else {
-        k1 = pair.hmd.distortionFactorA;
-        k2 = pair.hmd.distortionFactorB;
+        k1 = pair.distortionCorrectionValue1;
+        k2 = pair.distortionCorrectionValue2;
     }
     int numVertices = (_lines + 1) * (_columns + 1);
     int numFaces = _lines * _columns;
@@ -43,7 +43,7 @@
     //int[] tri = new int[numFaces*6];
     //If IPD is smaller than half of the width, we take width/2 for IPD
     //Otherwise meshes are outward-oriented
-    float widthIPDRatio = (pair.hmd.ipd <= pair.mobile.widthMM * 0.5f)?(pair.hmd.ipd / pair.mobile.widthMM) : 0.5f;
+    float widthIPDRatio = (pair.viewerIPD <= pair.virtualWidthMM * 0.5f)?(pair.viewerIPD / pair.virtualWidthMM) : 0.5f;
     CGPoint center = CGPointMake(leftEye ? 1 - widthIPDRatio: widthIPDRatio, 0.5f);
     int x, y;
     

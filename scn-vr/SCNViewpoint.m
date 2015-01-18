@@ -10,7 +10,7 @@
 
 @implementation SCNViewpoint
 
-- (instancetype)initAsGhost:(EyeTexture *) left right:(EyeTexture *) right pair:(HmdMobileDevicePair *) pair scene:(SCNScene *) scene context:(EAGLContext *) context
+- (instancetype)initAsGhost:(EyeTexture *) left right:(EyeTexture *) right pair:(ProfileInstance *) pair scene:(SCNScene *) scene context:(EAGLContext *) context
 {
     self = [super init];
     if (self) {
@@ -22,8 +22,8 @@
         _neck = neck;
         [self addChildNode:neck];
         
-        switch (pair.hmd.viewpoints) {
-            case HmdDeviceConfigurationViewpointsMono: {
+        switch (pair.viewPorts) {
+            case 1: {
                 
                 SCNEye * leftEye = [[SCNEye alloc] initAs:_leftEyeSource pair:pair scene:scene context:context];
                 _leftEye = leftEye;
@@ -33,7 +33,7 @@
                 _rightEye = nil;
                 
             } break;
-            case HmdDeviceConfigurationViewpointsSBS: {
+            case 2: {
             
                 SCNEye * leftEye = [[SCNEye alloc] initAs:_leftEyeSource pair:pair scene:scene context:context];
                 _leftEye = leftEye;

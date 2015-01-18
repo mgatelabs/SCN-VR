@@ -10,16 +10,21 @@
 
 @implementation MonoRenderInstance
 
--(BOOL) worksWith:(HmdMobileDevicePair *) pair {
-    return pair.hmd.viewpoints == HmdDeviceConfigurationViewpointsMono;
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.viewportCount = 1;
+    }
+    return self;
 }
 
--(RenderTexture *) generateRenderTexture:(HmdMobileDevicePair *) pair {
+-(RenderTexture *) generateRenderTexture:(ProfileInstance *) pair {
     // Mono texture's will render right to dest, skip the middle man
     return nil;
 }
 
--(EyeTexture *) generateEyeTexture:(HmdMobileDevicePair *) pair eye:(EyeTextureSide) eye sourceTexture:(RenderTexture *) sourceTexture {
+-(EyeTexture *) generateEyeTexture:(ProfileInstance *) pair eye:(EyeTextureSide) eye sourceTexture:(RenderTexture *) sourceTexture {
     return [[EyeTexture alloc] initAs:eye dest:sourceTexture];
 }
 

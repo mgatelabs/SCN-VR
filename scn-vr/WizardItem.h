@@ -7,10 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ProfileInstance.h"
 
 #define WIZARD_ITEM_HEADTRACKER 0
 #define WIZARD_ITEM_DEVICE 1
 #define WIZARD_ITEM_VIRTUAL_DEVICE 2
+#define WIZARD_ITEM_HMD 3
+#define WIZARD_ITEM_IPD 4
+#define WIZARD_ITEM_IPD_VALUE1 5
+#define WIZARD_ITEM_IPD_VALUE2 6
+#define WIZARD_ITEM_COLOR 7
+#define WIZARD_ITEM_COLOR_VALUE 8
+#define WIZARD_ITEM_DISTORTION 9
+#define WIZARD_ITEM_DISTORTION_VALUE1 10
+#define WIZARD_ITEM_DISTORTION_VALUE2 11
 
 typedef NS_ENUM(NSInteger, WizardItemChangeAction)
 {
@@ -46,5 +56,7 @@ typedef NS_ENUM(NSInteger, WizardItemNotReadyAction)
 -(void) loadForIdentity:(NSString *) identity;
 -(NSString *) stringForIndex:(int) index;
 -(void) selectedIndex:(int) index;
+
+-(void) updateProfileInstance:(ProfileInstance *) instance;
 
 @end

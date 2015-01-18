@@ -9,7 +9,7 @@
 #import "WizardItem.h"
 #import "MobileDeviceConfiguration.h"
 
-@interface DeviceWizardItem : WizardItem
+@interface PhysicalDeviceWizardItem : WizardItem
 
 @property (strong, nonatomic) MobileDeviceConfiguration * selected;
 

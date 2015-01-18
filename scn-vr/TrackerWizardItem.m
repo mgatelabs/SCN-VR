@@ -46,4 +46,8 @@
     return tracker.name;
 }
 
+-(void) updateProfileInstance:(ProfileInstance *) instance {
+    instance.tracker = tracker;
+}
+
 @end

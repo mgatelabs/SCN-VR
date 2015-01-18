@@ -15,13 +15,15 @@
 #import "ColorCorrection.h"
 #import "DistortionMeshGenerator.h"
 #import "TrackerBase.h"
+#import "ProfileManager.h"
 
 @interface SCNVirtualRealityViewController : GLKViewController  <SCNSceneRendererDelegate>
 
 // This needs to be set in the segue to this screen
-@property (strong, nonatomic) HmdMobileDevicePair * pair;
-@property (weak, nonatomic) RenderBase * renderer;
-@property (weak, nonatomic) TrackerBase * tracker;
+@property (strong, nonatomic) ProfileInstance * profile;
+//@property (strong, nonatomic) HmdMobileDevicePair * pair;
+//@property (weak, nonatomic) RenderBase * renderer;
+//@property (weak, nonatomic) TrackerBase * tracker;
 
 // Source are defined render textures
 @property (strong, nonatomic) RenderTexture * leftSourceTexture;

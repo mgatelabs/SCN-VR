@@ -17,6 +17,6 @@
 
 + (id)sharedManager;
 
--(RenderBase *) findRendererFor:(HmdMobileDevicePair *) pair;
+-(RenderBase *) findRendererForViewports:(int) viewportCount;
 
 @end

@@ -62,4 +62,8 @@
     
 }
 
+-(void) updateProfileInstance:(ProfileInstance *) instance {
+    
+}
+
 @end

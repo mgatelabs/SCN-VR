@@ -31,10 +31,10 @@
     return self;
 }
 
--(RenderBase *) findRendererFor:(HmdMobileDevicePair *) pair {
+-(RenderBase *) findRendererForViewports:(int) viewportCount {
     for (int i = 0; i < _renders.count; i++) {
         RenderBase * rb = [_renders objectAtIndex:i];
-        if ([rb worksWith:pair]) {
+        if (rb.viewportCount == viewportCount) {
             return rb;
         }
     }

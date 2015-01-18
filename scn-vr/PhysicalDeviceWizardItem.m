@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 M-Gate Labs. All rights reserved.
 //
 
-#import "DeviceWizardItem.h"
+#import "PhysicalDeviceWizardItem.h"
 #import "MobileDeviceManager.h"
 
-@implementation DeviceWizardItem {
+@implementation PhysicalDeviceWizardItem {
     MobileDeviceManager * mdm;
     MobileDeviceConfiguration * device;
 }
@@ -51,6 +51,21 @@
     device = d;
     _selected = device;
     self.valueId = d.identifier;
+}
+
+-(void) updateProfileInstance:(ProfileInstance *) instance {
+    
+    [device ready];
+    
+    instance.physicalWidthPX = device.widthPx;
+    instance.physicalWidthIN = device.widthIN;
+    instance.physicalWidthMM = device.widthMM;
+    
+    instance.physicalHeightPX = device.heightPx;
+    instance.physicalHeightIN = device.heightIN;
+    instance.physicalHeightMM = device.heightMM;
+
+    instance.physicalDPI = device.physicalDpi;
 }
 
 @end

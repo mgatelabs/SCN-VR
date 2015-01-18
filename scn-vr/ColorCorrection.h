@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
 #import "HmdMobileDevicePair.h"
+#import "ProfileInstance.h"
 
 @interface ColorCorrection : NSObject
 
--(void) activateShaderFor:(HmdMobileDevicePair *) pair leftEye:(BOOL) leftEye texture:(GLuint) texture;
+-(void) activateShaderFor:(ProfileInstance *) pair leftEye:(BOOL) leftEye texture:(GLuint) texture;
 
 @end

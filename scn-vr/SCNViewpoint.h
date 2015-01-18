@@ -12,6 +12,7 @@
 #import "RenderTexture.h"
 #import "EyeTexture.h"
 #import "RenderBase.h"
+#import "ProfileInstance.h"
 
 @interface SCNViewpoint : SCNNode
 
@@ -25,6 +26,6 @@
 @property (weak, readonly, nonatomic) EyeTexture * leftEyeSource;
 @property (weak, readonly, nonatomic) EyeTexture * rightEyeSource;
 
-- (instancetype)initAsGhost:(EyeTexture *) left right:(EyeTexture *) right pair:(HmdMobileDevicePair *) pair scene:(SCNScene *) scene context:(EAGLContext *) context;
+- (instancetype)initAsGhost:(EyeTexture *) left right:(EyeTexture *) right pair:(ProfileInstance *) pair scene:(SCNScene *) scene context:(EAGLContext *) context;
 
 @end
