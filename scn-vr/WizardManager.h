@@ -19,6 +19,7 @@
 @property (assign, nonatomic, readonly) BOOL dirty;
 
 -(void) item:(int) item changedTo:(int) index;
+-(int) item:(int) item;
 -(void) reset;
 -(void) filter;
 

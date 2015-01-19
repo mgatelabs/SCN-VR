@@ -58,9 +58,9 @@
     _items = [VirtualDeviceManager getVirtualDevices];
     if (selectedMobile != nil) {
         
-        BOOL isTablet = selectedMobile.tablet;
+        //BOOL isTablet = selectedMobile.tablet;
         
-        if (isTablet) {
+        if (true) {
             for (int i = (int)_items.count - 1; i >= 0; i--) {
                 VirtualDeviceConfiguration * vdc = [_items objectAtIndex:i];
                 switch (vdc.type) {

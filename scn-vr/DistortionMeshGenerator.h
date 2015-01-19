@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
-#import "HmdMobileDevicePair.h"
 #import "VBOWrap.h"
 #import "EyeTexture.h"
 #import "ProfileInstance.h"

@@ -7,19 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ListableArray.h"
 #import "VirtualDeviceConfiguration.h"
 
 @interface VirtualDeviceManager : NSObject
 
-@property (strong, readonly, nonatomic) NSMutableArray * devices;
-
-@property (weak, nonatomic, readonly) VirtualDeviceConfiguration * device;
-
-+ (id)sharedManager;
 +(NSMutableArray *) getVirtualDevices;
-
--(void) persist;
--(void) load;
 
 @end

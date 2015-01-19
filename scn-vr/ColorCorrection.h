@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <GLKit/GLKit.h>
-#import "HmdMobileDevicePair.h"
 #import "ProfileInstance.h"
 
 @interface ColorCorrection : NSObject

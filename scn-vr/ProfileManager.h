@@ -26,6 +26,8 @@
 
 -(void) deleteIndex:(int) index;
 
+-(void) moveIndex:(int) index to:(int) toIndex;
+
 -(int) newProfile;
 
 -(void) load;

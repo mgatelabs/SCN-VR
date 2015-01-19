@@ -46,7 +46,7 @@
 @property (assign, nonatomic) BOOL landscapeView;
 @property (assign, nonatomic) BOOL basicView;
 
-@property (assign, nonatomic) int viewPorts;
+@property (assign, nonatomic) int viewportCount;
 
 @property (assign, nonatomic) int hFov;
 @property (assign, nonatomic) int vFov;

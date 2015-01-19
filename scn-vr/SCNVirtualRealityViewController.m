@@ -44,7 +44,8 @@
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     // Use the native resolution
-    [view setContentScaleFactor:[UIScreen mainScreen].nativeScale];
+    _nativeScale = [UIScreen mainScreen].nativeScale;
+    [view setContentScaleFactor: _nativeScale];
     self.view.layer.contentsScale = view.contentScaleFactor;
     
     //NSLog(@"%2.2f", view.contentScaleFactor);
@@ -63,7 +64,7 @@
     
     _eyeColorCorrection = nil;
     
-    switch (self.profile.viewPorts) {
+    switch (self.profile.viewportCount) {
         case 1: {
             // Skip this, render to final output
             _leftSourceTexture = nil;
@@ -181,8 +182,6 @@
     _rightRenderer.scene = nil;
     _rightRenderer = nil;
     
-    _scene = nil;
-    
     _profile = nil;
     
     // Source are defined render textures
@@ -200,8 +199,12 @@
     _leftEyeMesh = nil;
     _rightEyeMesh = nil;
     
+    _viewpoint = nil;
+    
     // THis is the infered render texture
     _destTexture = nil;
+    
+    _scene = nil;
     
     if ([EAGLContext currentContext] == self.context) {
         [EAGLContext setCurrentContext:nil];
@@ -250,6 +253,13 @@
 -(NSArray *) viewpointSees {
     if (_viewpoint != nil) {
         return [_leftRenderer hitTest:CGPointMake(_leftEyeSource.w / 2, _leftEyeSource.h / 2) options:nil];
+    }
+    return nil;
+}
+
+-(NSArray *) viewpointSeesAt:(float) x y:(float) y {
+    if (_viewpoint != nil) {
+        return [_leftRenderer hitTest:CGPointMake(x, y) options:nil];
     }
     return nil;
 }
@@ -317,7 +327,7 @@
         
         [self checkGlErrorStatus];
         
-        switch (_profile.viewPorts) {
+        switch (_profile.viewportCount) {
             case 1: {
                 
             } break;

@@ -7,7 +7,6 @@
 //
 
 #import <GLKit/GLKit.h>
-#import "HmdMobileDevicePair.h"
 #import "SCNViewpoint.h"
 #import "RenderTexture.h"
 #import "EyeTexture.h"
@@ -21,15 +20,14 @@
 
 // This needs to be set in the segue to this screen
 @property (strong, nonatomic) ProfileInstance * profile;
-//@property (strong, nonatomic) HmdMobileDevicePair * pair;
-//@property (weak, nonatomic) RenderBase * renderer;
-//@property (weak, nonatomic) TrackerBase * tracker;
 
 // Source are defined render textures
 @property (strong, nonatomic) RenderTexture * leftSourceTexture;
 @property (strong, nonatomic) RenderTexture * rightSourceTexture;
 @property (strong, nonatomic) EyeTexture * leftEyeSource;
 @property (strong, nonatomic) EyeTexture * rightEyeSource;
+
+@property (assign, nonatomic, readonly) float nativeScale;
 
 @property (strong, nonatomic, readonly) SCNRenderer * leftRenderer;
 @property (strong, nonatomic, readonly) SCNRenderer * rightRenderer;
@@ -71,5 +69,7 @@
 - (void) updateViewpointOrientation;
 
 -(NSArray *) viewpointSees;
+
+-(NSArray *) viewpointSeesAt:(float) x y:(float) y;
 
 @end

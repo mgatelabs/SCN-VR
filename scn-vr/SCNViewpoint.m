@@ -19,10 +19,10 @@
         self.hidden = NO;
         
         SCNNode * neck = [SCNNode node];
-        _neck = neck;
         [self addChildNode:neck];
+        _neck = neck;
         
-        switch (pair.viewPorts) {
+        switch (pair.viewportCount) {
             case 1: {
                 
                 SCNEye * leftEye = [[SCNEye alloc] initAs:_leftEyeSource pair:pair scene:scene context:context];
@@ -55,16 +55,20 @@
     _rightEyeSource = nil;
     _sourceTexture = nil;
     
-    [_leftEye removeFromParentNode];
-    _leftEye = nil;
+    if (_leftEye != nil) {
+        [_leftEye removeFromParentNode];
+        _leftEye = nil;
+    }
     
     if (_rightEye != nil) {
         [_rightEye removeFromParentNode];
         _rightEye = nil;
     }
     
-    [_neck removeFromParentNode];
-    _neck = nil;
+    if (_neck != nil) {
+        //[_neck removeFromParentNode];
+        _neck = nil;
+    }
 }
 
 @end

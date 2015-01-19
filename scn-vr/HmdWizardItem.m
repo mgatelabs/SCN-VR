@@ -60,7 +60,7 @@
     switch (self.valueIndex) {
         case 0:
             // Cyclops
-            instance.viewPorts = 1;
+            instance.viewportCount = 1;
             instance.cameraIPD = 0;
             instance.viewerIPD = 0;
             instance.basicView = YES;
@@ -70,7 +70,7 @@
             break;
         case 1:
             // SBS
-            instance.viewPorts = 2;
+            instance.viewportCount = 2;
             instance.basicView = YES;
             
             instance.cameraIPD = 62;
@@ -80,7 +80,7 @@
             instance.distortionCorrection = NO;
             break;
         default:
-            instance.viewPorts = 2;
+            instance.viewportCount = 2;
             instance.basicView = NO;
             
             instance.cameraIPD = d.ipd;
@@ -95,7 +95,7 @@
     }
     
     RenderManager * renderManager = [RenderManager sharedManager];
-    instance.renderer = [renderManager findRendererForViewports:instance.viewPorts];
+    instance.renderer = [renderManager findRendererForViewports:instance.viewportCount];
     
 }
 

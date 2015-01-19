@@ -43,7 +43,6 @@
 		AC3E0FC11A4937E100AFE6AA /* MonoRenderInstance.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F881A49374600AFE6AA /* MonoRenderInstance.h */; };
 		AC3E0FC21A4937E100AFE6AA /* RenderBase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F8A1A49374600AFE6AA /* RenderBase.h */; };
 		AC3E0FC31A4937E100AFE6AA /* RenderManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F8C1A49374600AFE6AA /* RenderManager.h */; };
-		AC3E0FC41A4937E100AFE6AA /* RenderProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F8E1A49374600AFE6AA /* RenderProtocol.h */; };
 		AC3E0FC51A4937E100AFE6AA /* RenderTexture.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F8F1A49374600AFE6AA /* RenderTexture.h */; };
 		AC3E0FC61A4937E100AFE6AA /* SBSRenderInstance.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F911A49374600AFE6AA /* SBSRenderInstance.h */; };
 		AC3E0FC71A4937E100AFE6AA /* SCNEye.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F931A49374600AFE6AA /* SCNEye.h */; };
@@ -126,7 +125,6 @@
 				AC3E0FC11A4937E100AFE6AA /* MonoRenderInstance.h in CopyFiles */,
 				AC3E0FC21A4937E100AFE6AA /* RenderBase.h in CopyFiles */,
 				AC3E0FC31A4937E100AFE6AA /* RenderManager.h in CopyFiles */,
-				AC3E0FC41A4937E100AFE6AA /* RenderProtocol.h in CopyFiles */,
 				AC3E0FC51A4937E100AFE6AA /* RenderTexture.h in CopyFiles */,
 				AC3E0FC61A4937E100AFE6AA /* SBSRenderInstance.h in CopyFiles */,
 				AC3E0FC71A4937E100AFE6AA /* SCNEye.h in CopyFiles */,
@@ -169,7 +167,6 @@
 		AC3E0F8B1A49374600AFE6AA /* RenderBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderBase.m; sourceTree = "<group>"; };
 		AC3E0F8C1A49374600AFE6AA /* RenderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderManager.h; sourceTree = "<group>"; };
 		AC3E0F8D1A49374600AFE6AA /* RenderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderManager.m; sourceTree = "<group>"; };
-		AC3E0F8E1A49374600AFE6AA /* RenderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderProtocol.h; sourceTree = "<group>"; };
 		AC3E0F8F1A49374600AFE6AA /* RenderTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderTexture.h; sourceTree = "<group>"; };
 		AC3E0F901A49374600AFE6AA /* RenderTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderTexture.m; sourceTree = "<group>"; };
 		AC3E0F911A49374600AFE6AA /* SBSRenderInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSRenderInstance.h; sourceTree = "<group>"; };
@@ -314,11 +311,11 @@
 				AC3EA56F1A6A30EA00E3D31A /* Profile */,
 				AC83FBB71A68C6E400B1727F /* Wizard */,
 				AC4FF97E1A5B94F7006B7B04 /* Pair */,
-				AC4FF9751A5B8E52006B7B04 /* Virtual */,
+				AC4FF9751A5B8E52006B7B04 /* Virtual Devices */,
 				AC3E0FD51A49385F00AFE6AA /* Utils */,
 				AC3E0FD41A49384600AFE6AA /* Rendering */,
 				AC3E0FD31A49381600AFE6AA /* HMDs */,
-				AC3E0FD21A49380E00AFE6AA /* Devices */,
+				AC3E0FD21A49380E00AFE6AA /* Physical Devices */,
 				AC3E0FD11A49380900AFE6AA /* Tracking */,
 				AC3E0FD01A49380500AFE6AA /* Correction */,
 				AC3E0FCF1A4937FE00AFE6AA /* Distortion */,
@@ -359,7 +356,7 @@
 			name = Tracking;
 			sourceTree = "<group>";
 		};
-		AC3E0FD21A49380E00AFE6AA /* Devices */ = {
+		AC3E0FD21A49380E00AFE6AA /* Physical Devices */ = {
 			isa = PBXGroup;
 			children = (
 				AC3E0F841A49374600AFE6AA /* MobileDeviceConfiguration.h */,
@@ -367,7 +364,7 @@
 				AC3E0F861A49374600AFE6AA /* MobileDeviceManager.h */,
 				AC3E0F871A49374600AFE6AA /* MobileDeviceManager.m */,
 			);
-			name = Devices;
+			name = "Physical Devices";
 			sourceTree = "<group>";
 		};
 		AC3E0FD31A49381600AFE6AA /* HMDs */ = {
@@ -384,7 +381,6 @@
 		AC3E0FD41A49384600AFE6AA /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
-				AC3E0F8E1A49374600AFE6AA /* RenderProtocol.h */,
 				AC3E0F8A1A49374600AFE6AA /* RenderBase.h */,
 				AC3E0F8B1A49374600AFE6AA /* RenderBase.m */,
 				AC3E0F911A49374600AFE6AA /* SBSRenderInstance.h */,
@@ -444,7 +440,7 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
-		AC4FF9751A5B8E52006B7B04 /* Virtual */ = {
+		AC4FF9751A5B8E52006B7B04 /* Virtual Devices */ = {
 			isa = PBXGroup;
 			children = (
 				AC4FF9761A5B8EC0006B7B04 /* VirtualDeviceConfiguration.h */,
@@ -452,7 +448,7 @@
 				AC4FF9791A5B903F006B7B04 /* VirtualDeviceManager.h */,
 				AC4FF97A1A5B903F006B7B04 /* VirtualDeviceManager.m */,
 			);
-			name = Virtual;
+			name = "Virtual Devices";
 			sourceTree = "<group>";
 		};
 		AC4FF97E1A5B94F7006B7B04 /* Pair */ = {

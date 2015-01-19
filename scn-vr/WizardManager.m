@@ -97,6 +97,11 @@
     [self filter];
 }
 
+-(int) item:(int) item {
+    WizardItem * wizardItem = [_visibleItems objectAtIndex:item];
+    return wizardItem.valueIndex;
+}
+
 // Filter items based upon how well they did
 -(void) filter {
     // Clean the filter

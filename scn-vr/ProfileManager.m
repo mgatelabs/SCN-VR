@@ -68,6 +68,32 @@
 -(void) deleteIndex:(int) index {
     [_profiles removeObjectAtIndex:index];
     _count = (int)_profiles.count;
+    if (index == _index) {
+        _index = 0;
+    } else if (index < _index) {
+        _index--;
+    }
+}
+
+-(void) moveIndex:(int) index to:(int) toIndex {
+    
+    ProfileConfiguration * pc = [_profiles objectAtIndex:index];
+    [_profiles removeObjectAtIndex:index];
+    [_profiles insertObject:pc atIndex:toIndex];
+    
+    if (index == _index) {
+        _index = toIndex;
+    } else if (index > _index && toIndex > _index) {
+        // No Operation, Moved On Top Index
+    } else if (index < _index && toIndex < _index) {
+        // No Operation, Moved Under Index
+    } else if (index < _index && toIndex >= _index) {
+        // Moved item from under index to above index
+        _index--;
+    } else if (index > _index && toIndex <= _index) {
+        // Moved item from above to under index
+        _index++;
+    }
 }
 
 -(void) load {
