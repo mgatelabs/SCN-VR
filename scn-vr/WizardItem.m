@@ -10,7 +10,7 @@
 
 @implementation WizardItem
 
-- (instancetype)initWith:(NSString *) title info:(NSString *) info itemId:(int) itemId
+- (instancetype)initWith:(NSString *) title info:(NSString *) info itemId:(int) itemId type:(WizardItemDataType)type
 {
     self = [super init];
     if (self) {
@@ -18,6 +18,7 @@
         _info = info;
         _count = 0;
         _itemId = itemId;
+        _type = type;
     }
     return self;
 }
@@ -48,6 +49,10 @@
 
 -(BOOL) available {
     return false;
+}
+
+-(void) loadForInt:(int) value {
+    
 }
 
 -(void) loadForIdentity:(NSString *) identity {

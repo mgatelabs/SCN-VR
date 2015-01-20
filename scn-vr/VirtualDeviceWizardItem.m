@@ -13,17 +13,19 @@
 @implementation VirtualDeviceWizardItem {
     PhysicalDeviceWizardItem * devices;
     MobileDeviceConfiguration * selectedMobile;
-    VirtualDeviceConfiguration * virtualDevice;
 }
 
 - (instancetype)initWith:(PhysicalDeviceWizardItem *) deviceWizardItem
 {
-    self = [super initWith:@"Virtual Device" info:@"Select the screen layout" itemId:WIZARD_ITEM_VIRTUAL_DEVICE];
+    self = [super initWith:@"Virtual Device" info:@"Select the screen layout" itemId:WIZARD_ITEM_VIRTUAL_DEVICE type:WizardItemDataTypeString];
     if (self) {
         devices = deviceWizardItem;
+        _items = [[NSMutableArray alloc] initWithCapacity:10];
+        _sourceItems = [VirtualDeviceManager getVirtualDevices];
+        
         selectedMobile = devices.selected;
         [self filterDevices];
-        virtualDevice = [_items objectAtIndex:0];
+        _virtualDevice = [_items objectAtIndex:0];
     }
     return self;
 }
@@ -37,68 +39,85 @@
 }
 
 -(BOOL) ready {
-    return [devices ready] && self.count > 0 && virtualDevice != nil;
+    return [devices ready] && self.count > 0 && _virtualDevice != nil;
+}
+
+-(void) loadForIdentity:(NSString *) identity {
+    _virtualDevice = [_items objectAtIndex:0];
+    self.valueId = _virtualDevice.key;
+    self.valueIndex = 0;
+    
+    for (int i = 0; i < _items.count; i++) {
+        VirtualDeviceConfiguration * temp = [_items objectAtIndex:i];
+        if ([temp.key isEqualToString:identity]) {
+            _virtualDevice = temp;
+            self.valueId = temp.key;
+            self.valueIndex = i;
+            break;
+        }
+    }
+    
 }
 
 -(void) chainUpdated {
     if ([devices ready]) {
         if (devices.selected != selectedMobile) {
-            virtualDevice = nil;
+            _virtualDevice = nil;
             selectedMobile = devices.selected;
             if (selectedMobile != nil) {
                 [self filterDevices];
             }
         }
     } else {
-        virtualDevice = nil;
+        _virtualDevice = nil;
     }
 }
 
 -(void) filterDevices {
-    _items = [VirtualDeviceManager getVirtualDevices];
+    
+    [_items removeAllObjects];
+    
+    //_items = [VirtualDeviceManager getVirtualDevices];
     if (selectedMobile != nil) {
         
-        //BOOL isTablet = selectedMobile.tablet;
-        
-        if (true) {
-            for (int i = (int)_items.count - 1; i >= 0; i--) {
-                VirtualDeviceConfiguration * vdc = [_items objectAtIndex:i];
-                switch (vdc.type) {
-                    case VirtualDeviceConfigurationTypeLandscape:
-                    case VirtualDeviceConfigurationTypeLandscape169:
-                    case VirtualDeviceConfigurationTypePortrait:
-                    case VirtualDeviceConfigurationTypePortrait169:
-                        break;
-                    case VirtualDeviceConfigurationTypeLandscapeVirtual: {
-                        int deviceHeight = selectedMobile.heightMM;
-                        int deviceWidth = selectedMobile.widthMM;
+        for (int i = 0; i < _sourceItems.count; i++) {
+            VirtualDeviceConfiguration * vdc = [_sourceItems objectAtIndex:i];
+            BOOL skip = NO;
+            switch (vdc.type) {
+                case VirtualDeviceConfigurationTypeLandscape:
+                case VirtualDeviceConfigurationTypeLandscape169:
+                case VirtualDeviceConfigurationTypePortrait:
+                case VirtualDeviceConfigurationTypePortrait169:
+                    break;
+                case VirtualDeviceConfigurationTypeLandscapeVirtual: {
+                    int deviceHeight = selectedMobile.heightMM;
+                    int deviceWidth = selectedMobile.widthMM;
+                    
+                    if (vdc.virtualDevice.widthMM > deviceWidth || vdc.virtualDevice.heightMM > deviceHeight) {
+                        skip = YES;
+                    } else {
                         
-                        if (vdc.virtualDevice.widthMM > deviceWidth || vdc.virtualDevice.heightMM > deviceHeight) {
-                            [_items removeObjectAtIndex:i];
-                        }
-                        
-                    } break;
-                    case VirtualDeviceConfigurationTypePortraitVirtual: {
-                        int deviceWidth = selectedMobile.heightMM;
-                        int deviceHeight = selectedMobile.widthMM;
-                        
-                        if (vdc.virtualDevice.widthMM > deviceWidth || vdc.virtualDevice.heightMM > deviceHeight) {
-                            [_items removeObjectAtIndex:i];
-                        }
-                    } break;
-                }
+                    }
+                    
+                } break;
+                case VirtualDeviceConfigurationTypePortraitVirtual: {
+                    int deviceWidth = selectedMobile.heightMM;
+                    int deviceHeight = selectedMobile.widthMM;
+                    
+                    if (vdc.virtualDevice.widthMM > deviceWidth || vdc.virtualDevice.heightMM > deviceHeight) {
+                        skip = YES;
+                    }
+                } break;
+                default: {
+                    
+                } break;
             }
-        } else {
-            for (int i = (int)_items.count - 1; i >= 0; i--) {
-                VirtualDeviceConfiguration * vdc = [_items objectAtIndex:i];
-                switch (vdc.type) {
-                    case VirtualDeviceConfigurationTypeLandscape:
-                        break;
-                    default:
-                        [_items removeObjectAtIndex:i];
-                }
+            
+            if (!skip) {
+                [_items addObject:vdc];
             }
         }
+        
     }
     [self selectedIndex:0];
     self.count = (int)_items.count;
@@ -112,13 +131,13 @@
 -(void) selectedIndex:(int) index {
     self.valueIndex = index;
     VirtualDeviceConfiguration * d = [_items objectAtIndex:index];
-    virtualDevice = d;
+    _virtualDevice = d;
     self.valueId = d.key;
 }
 
 -(void) updateProfileInstance:(ProfileInstance *) instance {
     
-    switch (virtualDevice.type) {
+    switch (_virtualDevice.type) {
         case VirtualDeviceConfigurationTypeLandscape:
             instance.landscapeView = YES;
             
@@ -185,8 +204,8 @@
             
             // Need to go from MM to MM
             
-            float targetWidthMM = virtualDevice.virtualDevice.widthMM;
-            float targetHeightMM = virtualDevice.virtualDevice.heightMM;
+            float targetWidthMM = _virtualDevice.virtualDevice.widthMM;
+            float targetHeightMM = _virtualDevice.virtualDevice.heightMM;
             
             // GO from MM to Inches
             float targetWidthIN = targetWidthMM / IN_2_MM;
@@ -209,8 +228,8 @@
         case VirtualDeviceConfigurationTypePortraitVirtual: {
             instance.landscapeView = NO;
             
-            float targetWidthMM = virtualDevice.virtualDevice.widthMM;
-            float targetHeightMM = virtualDevice.virtualDevice.heightMM;
+            float targetWidthMM = _virtualDevice.virtualDevice.widthMM;
+            float targetHeightMM = _virtualDevice.virtualDevice.heightMM;
             
             // GO from MM to Inches
             float targetWidthIN = targetWidthMM / IN_2_MM;
@@ -227,6 +246,9 @@
             
             instance.virtualOffsetLeft = (instance.physicalHeightPX / 2) - (instance.virtualWidthPX /2);
             instance.virtualOffsetBottom = (instance.physicalWidthPX / 2) - (instance.virtualHeightPX / 2);
+            
+        } break;
+        default: {
             
         } break;
     }

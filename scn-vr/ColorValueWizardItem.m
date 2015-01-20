@@ -14,7 +14,7 @@
 
 - (instancetype)initWith:(ColorWizardItem *) colorWizardItem
 {
-    self = [super initWith:@"Color Value" info:@"Complex math nonsense" itemId: WIZARD_ITEM_COLOR_VALUE];
+    self = [super initWith:@"Color Value" info:@"Complex math nonsense" itemId: WIZARD_ITEM_COLOR_VALUE type:WizardItemDataTypeInt];
     if (self) {
         color = colorWizardItem;
         self.count = 81;
@@ -30,6 +30,11 @@
 
 -(BOOL) ready {
     return color.valueIndex == 2;
+}
+
+-(void) loadForInt:(int) value {
+    self.valueIndex = value;
+    self.valueId = [self stringForIndex:value];
 }
 
 -(NSString *) stringForIndex:(int) index {

@@ -15,7 +15,7 @@
 
 - (instancetype)initWith:(DistortionWizardItem *) distortionWizardItem second:(BOOL) second
 {
-    self = [super initWith: second ? @"Distortion Value 2" : @"Distortion Value 1" info:@"Complex math nonsense" itemId: second ? WIZARD_ITEM_DISTORTION_VALUE2 : WIZARD_ITEM_DISTORTION_VALUE1];
+    self = [super initWith: second ? @"Distortion Value 2" : @"Distortion Value 1" info:@"Complex math nonsense" itemId: second ? WIZARD_ITEM_DISTORTION_VALUE2 : WIZARD_ITEM_DISTORTION_VALUE1 type:WizardItemDataTypeInt];
     if (self) {
         isSecond = second;
         distortion = distortionWizardItem;
@@ -36,6 +36,11 @@
 
 -(NSString *) stringForIndex:(int) index {
     return [NSString stringWithFormat:@"%1.2f", (index - 40) / 20.0f];
+}
+
+-(void) loadForInt:(int) value {
+    self.valueIndex = value;
+    self.valueId = [self stringForIndex:value];
 }
 
 -(void) selectedIndex:(int) index {

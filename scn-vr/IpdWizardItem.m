@@ -15,7 +15,7 @@
 
 - (instancetype)initWith:(HmdWizardItem *) hmdWizardItem
 {
-    self = [super initWith:@"IPD" info:@"How far apart are your eyes?" itemId:WIZARD_ITEM_IPD];
+    self = [super initWith:@"IPD" info:@"How far apart are your eyes?" itemId:WIZARD_ITEM_IPD type:WizardItemDataTypeString];
     if (self) {
         hmds = hmdWizardItem;
         selectedHmdValueId = hmds.valueId;
@@ -72,6 +72,26 @@
     }
 }
 
+-(void) loadForIdentity:(NSString *) identity {
+    
+    if (self.count == 1) {
+        self.valueIndex = 0;
+        self.valueId = [self stringForIndex:0];
+    } else {
+        for (int i = 0; i < self.count; i++) {
+            NSString * temp = [self stringForIndex:i];
+            if ([temp isEqualToString:identity]) {
+                self.valueIndex = i;
+                self.valueId = temp;
+                return;
+            }
+        }
+        
+        self.valueIndex = 0;
+        self.valueId = [self stringForIndex:0];
+    }
+}
+
 -(void) selectedIndex:(int) index {
     self.valueIndex = index;
     switch (index) {
@@ -93,7 +113,6 @@
 }
 
 -(void) updateProfileInstance:(ProfileInstance *) instance {
-    
     switch (self.valueIndex) {
         case 0:
             
@@ -112,7 +131,6 @@
         default:
             break;
     }
-    
 }
 
 @end

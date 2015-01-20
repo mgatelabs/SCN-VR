@@ -36,8 +36,6 @@
         
         // Get ride of devices that don't match our current screen setup
         [self trimDevicesForCurrentDeviceWidth:width heightPx:height tablet:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)];
-        
-        [self load];
     }
     return self;
 }
@@ -91,6 +89,12 @@
 
 -(void) trimDevicesForCurrentDeviceWidth:(int) widthPx heightPx:(int) heightPx tablet:(BOOL) tablet {
     
+    if (widthPx < heightPx) {
+        int temp =widthPx;
+        widthPx = heightPx;
+        heightPx = temp;
+    }
+    
     for (int i = (int)_devices.count - 1; i >= 0; i--) {
         MobileDeviceConfiguration * test = [_devices objectAtIndex:i];
         // Different screen sizes or types will lead to it being discarded
@@ -105,32 +109,15 @@
         }
     }
     
-    _device = [_devices objectAtIndex:0];
-}
-
--(void) persist {
-    NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
-    [defs setValue:_device.identifier forKey:@"scn-vr.devices.selected"];
-    [defs synchronize];
-}
-
--(void) load {
-    NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
-    
-    NSString * selectedIndentity = [defs valueForKey:@"scn-vr.devices.selected"];
-    
-    _device = [_devices objectAtIndex:0];
-    
-    if (selectedIndentity != nil) {
+    // If we can't find a device, make up a custom device, ow man
+    if (_devices.count == 0) {
         
-        for (int i = 0; i < _devices.count; i++) {
-            MobileDeviceConfiguration * d = [_devices objectAtIndex:i];
-            if ([d.identifier isEqualToString:selectedIndentity]) {
-                _device = d;
-                return;
-            }
-        }
+        MobileDeviceConfiguration * tempDevice = [[MobileDeviceConfiguration alloc] initAsCustom:@"Custom" identifier:@"custom" widthPx:widthPx heightPx:heightPx tablet:tablet];
+        
+        [_devices addObject:tempDevice];
     }
+    
+    _device = [_devices objectAtIndex:0];
 }
 
 +(MobileDeviceConfiguration *) createDevice:(NSString *) name identifier:(NSString *) identifier widthPx:(int) widthPx heightPx:(int) heightPx dpi:(float) dpi  tablet:(BOOL) tablet {
@@ -205,7 +192,6 @@
 
 -(void) selectListItemAt:(int) index {
     _device = [_devices objectAtIndex:index];
-    [self persist];
 }
 
 

@@ -15,7 +15,7 @@
 
 - (instancetype)initWith:(HmdWizardItem *) hmdWizardItem
 {
-    self = [super initWith:@"Color" info:@"Fix color issues cause by lenses." itemId:WIZARD_ITEM_COLOR];
+    self = [super initWith:@"Color" info:@"Fix color issues cause by lenses." itemId:WIZARD_ITEM_COLOR type:WizardItemDataTypeString];
     if (self) {
         hmds = hmdWizardItem;
         selectedHmdValueId = hmds.valueId;
@@ -55,6 +55,25 @@
 
 -(BOOL) ready {
     return self.count > 0;
+}
+
+-(void) loadForIdentity:(NSString *) identity {
+    if (self.count == 1) {
+        self.valueIndex = 0;
+        self.valueId = [self stringForIndex:0];
+    } else {
+        for (int i = 0; i < self.count; i++) {
+            NSString * temp = [self stringForIndex:i];
+            if ([temp isEqualToString:identity]) {
+                self.valueIndex = i;
+                self.valueId = temp;
+                return;
+            }
+        }
+       
+        self.valueIndex = 0;
+        self.valueId = [self stringForIndex:0];
+    }
 }
 
 -(NSString *) stringForIndex:(int) index {

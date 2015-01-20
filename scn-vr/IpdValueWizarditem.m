@@ -14,7 +14,7 @@
 
 - (instancetype)initWith:(IpdWizardItem *) ipdWizardItem second:(BOOL) secondItem
 {
-    self = [super initWith:secondItem ? @"Camera IPD" : @"Your IPD" info:@"Distance in MM" itemId: secondItem ? WIZARD_ITEM_IPD_VALUE2 : WIZARD_ITEM_IPD_VALUE1];
+    self = [super initWith:secondItem ? @"Camera IPD" : @"Your IPD" info:@"Distance in MM" itemId: secondItem ? WIZARD_ITEM_IPD_VALUE2 : WIZARD_ITEM_IPD_VALUE1 type:WizardItemDataTypeInt];
     if (self) {
         ipds = ipdWizardItem;
         self.count = 75 * 2;
@@ -30,6 +30,11 @@
 
 -(BOOL) ready {
     return ipds.valueIndex == 3;
+}
+
+-(void) loadForInt:(int) value {
+    self.valueIndex = value;
+    self.valueId = [self stringForIndex:value];
 }
 
 -(NSString *) stringForIndex:(int) index {

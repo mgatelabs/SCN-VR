@@ -10,6 +10,7 @@
 #import "TrackerWizardItem.h"
 #import "PhysicalDeviceWizardItem.h"
 #import "VirtualDeviceWizardItem.h"
+#import "VirtualCustomWizardItem.h"
 #import "HmdWizardItem.h"
 #import "IpdWizardItem.h"
 #import "IpdValueWizarditem.h"
@@ -17,6 +18,7 @@
 #import "ColorValueWizardItem.h"
 #import "DistortionWizardItem.h"
 #import "DistortionValueWizardItem.h"
+#import "PhysicalDpiWizardItem.h"
 
 @implementation WizardManager
 
@@ -38,8 +40,16 @@
         PhysicalDeviceWizardItem * device = [[PhysicalDeviceWizardItem alloc] init];
         [_baseItems addObject: device];
         
+        // If you have a non supported device
+        [_baseItems addObject:[[PhysicalDpiWizardItem alloc] initWith:device]];
+        
         // Virtual Devices
-        [_baseItems addObject: [[VirtualDeviceWizardItem alloc] initWith:device]];
+        VirtualDeviceWizardItem * virtualWizard = [[VirtualDeviceWizardItem alloc] initWith:device];
+        [_baseItems addObject: virtualWizard];
+        
+        [_baseItems addObject:[[VirtualCustomWizardItem alloc] initWithVirtual:virtualWizard physical:device mode:0]];
+        
+        [_baseItems addObject:[[VirtualCustomWizardItem alloc] initWithVirtual:virtualWizard physical:device mode:1]];
         
         // HMD Selection
         HmdWizardItem * hmds = [[HmdWizardItem alloc] init];
@@ -151,7 +161,20 @@
     
     for (int i = 0; i < _filteredItems.count; i++) {
         WizardItem * item = [_filteredItems objectAtIndex:i];
-        [values setValue:[NSNumber numberWithInt:item.valueIndex] forKey:[NSString stringWithFormat:@"%d", item.itemId]];
+        
+        switch (item.type) {
+            case WizardItemDataTypeInt:
+                [values setValue:[NSNumber numberWithInt:item.valueIndex] forKey:[NSString stringWithFormat:@"%d", item.itemId]];
+                break;
+            case WizardItemDataTypeString:
+                [values setValue:item.valueId forKey:[NSString stringWithFormat:@"%d", item.itemId]];
+                break;
+            default:
+                NSLog(@"Unknown Wizard Item Type");
+                break;
+        }
+        
+        
     }
     
     return values;
@@ -163,12 +186,24 @@
     
     for (int i = 0; i < _baseItems.count; i++) {
         WizardItem * item = [_baseItems objectAtIndex:i];
-        NSNumber * numb = [payload valueForKey:[NSString stringWithFormat:@"%d", item.itemId]];
-        if (numb != nil) {
-            [item selectedIndex:[numb intValue]];
-        }
-        [item chainUpdated];
         
+        switch (item.type) {
+            case WizardItemDataTypeInt: {
+                NSNumber * numb = [payload valueForKey:[NSString stringWithFormat:@"%d", item.itemId]];
+                if (numb != nil) {
+                    [item loadForInt:[numb intValue]];
+                }
+            } break;
+            case WizardItemDataTypeString: {
+                NSString * string = [payload valueForKey:[NSString stringWithFormat:@"%d", item.itemId]];
+                if (string != nil) {
+                    [item loadForIdentity:string];
+                }
+            } break;
+        }
+        
+        [item chainUpdated];
+    
         for (int j = i + 1; j < _baseItems.count; j++) {
             WizardItem * temp = [_baseItems objectAtIndex:j];
             [temp chainUpdated];

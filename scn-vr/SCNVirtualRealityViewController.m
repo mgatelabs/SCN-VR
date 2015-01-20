@@ -46,9 +46,7 @@
     // Use the native resolution
     _nativeScale = [UIScreen mainScreen].nativeScale;
     [view setContentScaleFactor: _nativeScale];
-    self.view.layer.contentsScale = view.contentScaleFactor;
-    
-    //NSLog(@"%2.2f", view.contentScaleFactor);
+    self.view.layer.contentsScale = _nativeScale;
     
     [self setPreferredFramesPerSecond:60];
     
@@ -59,8 +57,6 @@
     
     // Where the final product goes
     _destTexture = [[RenderTexture alloc] initAsInfered:self.profile.virtualWidthPX height:self.profile.virtualHeightPX left:self.profile.virtualOffsetLeft bottom:self.profile.virtualOffsetBottom];
-    
-    //NSLog(@"%d %d %d %d", _pair.widthPx, _pair.heightPx, _pair.offsetPx, _pair.offsetPy);
     
     _eyeColorCorrection = nil;
     

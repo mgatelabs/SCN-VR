@@ -16,7 +16,7 @@
 
 - (instancetype)init
 {
-    self = [super initWith:@"Head Tracker" info:@"Select how your head motion will be tracked" itemId:WIZARD_ITEM_HEADTRACKER];
+    self = [super initWith:@"Head Tracker" info:@"Select how your head motion will be tracked" itemId:WIZARD_ITEM_HEADTRACKER type:WizardItemDataTypeString];
     if (self) {
         tm = [TrackingManager sharedManager];
         // Just one tracker for now, don't care
@@ -32,6 +32,23 @@
 
 -(WizardItemChangeAction) changeAction {
     return WizardItemChangeActionNone;
+}
+
+-(void) loadForIdentity:(NSString *) identity {
+    tracker = [tm.trackers objectAtIndex:0];
+    self.valueId = tracker.identity;
+    self.valueIndex = 0;
+    
+    for (int i = 0; i < tm.trackers.count; i++) {
+        TrackerBase * temp = [tm.trackers objectAtIndex:i];
+        if ([temp.identity isEqualToString:identity]) {
+            tracker = temp;
+            self.valueId = temp.identity;
+            self.valueIndex = i;
+            break;
+        }
+    }
+    
 }
 
 -(BOOL) ready {

@@ -21,11 +21,20 @@
 #define WIZARD_ITEM_DISTORTION 9
 #define WIZARD_ITEM_DISTORTION_VALUE1 10
 #define WIZARD_ITEM_DISTORTION_VALUE2 11
+#define WIZARD_ITEM_VIRTUAL_DEVICE_WIDTH 12
+#define WIZARD_ITEM_VIRTUAL_DEVICE_HEIGHT 13
+#define WIZARD_ITEM_DEVICE_DPI 14
 
 typedef NS_ENUM(NSInteger, WizardItemChangeAction)
 {
     WizardItemChangeActionNone = 0,
     WizardItemChangeActionCascade = 1
+};
+
+typedef NS_ENUM(NSInteger, WizardItemDataType)
+{
+    WizardItemDataTypeInt = 0,
+    WizardItemDataTypeString = 1
 };
 
 typedef NS_ENUM(NSInteger, WizardItemNotReadyAction)
@@ -38,12 +47,13 @@ typedef NS_ENUM(NSInteger, WizardItemNotReadyAction)
 
 @property (strong, nonatomic, readonly) NSString * title;
 @property (strong, nonatomic, readonly) NSString * info;
+@property (assign, nonatomic, readonly) WizardItemDataType type;
 @property (assign, nonatomic) int count;
 @property (assign, nonatomic, readonly) int itemId;
 @property (strong, nonatomic) NSString * valueId;
 @property (assign, nonatomic) int valueIndex;
 
-- (instancetype)initWith:(NSString *) title info:(NSString *) info itemId:(int) itemId;
+- (instancetype)initWith:(NSString *) title info:(NSString *) info itemId:(int) itemId type:(WizardItemDataType) type;
 
 -(WizardItemChangeAction) changeAction;
 -(WizardItemNotReadyAction) notReadyAction;
@@ -53,6 +63,7 @@ typedef NS_ENUM(NSInteger, WizardItemNotReadyAction)
 -(BOOL) ready;
 -(BOOL) endpoint;
 -(BOOL) available;
+-(void) loadForInt:(int) value;
 -(void) loadForIdentity:(NSString *) identity;
 -(NSString *) stringForIndex:(int) index;
 -(void) selectedIndex:(int) index;

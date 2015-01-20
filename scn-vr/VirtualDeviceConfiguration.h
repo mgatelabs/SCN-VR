@@ -15,7 +15,9 @@ typedef NS_ENUM(NSInteger, VirtualDeviceConfigurationType) {
     VirtualDeviceConfigurationTypePortrait = 2,
     VirtualDeviceConfigurationTypePortrait169 = 3,
     VirtualDeviceConfigurationTypeLandscapeVirtual = 4,
-    VirtualDeviceConfigurationTypePortraitVirtual = 5
+    VirtualDeviceConfigurationTypePortraitVirtual = 5,
+    VirtualDeviceConfigurationTypeLandscapeCustom = 6,
+    VirtualDeviceConfigurationTypePortraitCustom = 7
 };
 
 @interface VirtualDeviceConfiguration : NSObject

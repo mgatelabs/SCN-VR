@@ -22,23 +22,23 @@
 
 // Physical Info
 @property (assign, nonatomic) int physicalWidthPX;
-@property (assign, nonatomic) int physicalWidthIN;
-@property (assign, nonatomic) int physicalWidthMM;
+@property (assign, nonatomic) float physicalWidthIN;
+@property (assign, nonatomic) float physicalWidthMM;
 
 @property (assign, nonatomic) int physicalHeightPX;
-@property (assign, nonatomic) int physicalHeightIN;
-@property (assign, nonatomic) int physicalHeightMM;
+@property (assign, nonatomic) float physicalHeightIN;
+@property (assign, nonatomic) float physicalHeightMM;
 
 @property (assign, nonatomic) int physicalDPI;
 
 // Virtual Info
 @property (assign, nonatomic) int virtualWidthPX;
-@property (assign, nonatomic) int virtualWidthIN;
-@property (assign, nonatomic) int virtualWidthMM;
+@property (assign, nonatomic) float virtualWidthIN;
+@property (assign, nonatomic) float virtualWidthMM;
 
 @property (assign, nonatomic) int virtualHeightPX;
-@property (assign, nonatomic) int virtualHeightIN;
-@property (assign, nonatomic) int virtualHeightMM;
+@property (assign, nonatomic) float virtualHeightIN;
+@property (assign, nonatomic) float virtualHeightMM;
 
 @property (assign, nonatomic) int virtualOffsetLeft;
 @property (assign, nonatomic) int virtualOffsetBottom;

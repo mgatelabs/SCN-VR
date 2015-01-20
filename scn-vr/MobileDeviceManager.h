@@ -23,10 +23,6 @@
 
 -(void) trimDevicesForCurrentDeviceWidth:(int) widthPx heightPx:(int) heightPx tablet:(BOOL) tablet;
 
--(void) persist;
-
--(void) load;
-
 +(MobileDeviceConfiguration *) createDevice:(NSString *) name identifier:(NSString *) identifier widthPx:(int) widthPx heightPx:(int) heightPx dpi:(float) dpi tablet:(BOOL) tablet;
 
 -(BOOL) removeDeviceWithIndex:(int) index;

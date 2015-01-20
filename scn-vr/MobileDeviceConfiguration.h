@@ -15,6 +15,7 @@
 
 @property (assign, nonatomic) BOOL tablet;
 @property (assign, nonatomic) BOOL internal;
+@property (assign, nonatomic) BOOL custom;
 
 @property (assign) int widthPx;
 @property (assign) int heightPx;
@@ -32,6 +33,8 @@
 @property (readonly, assign) float heightMM;
 
 - (instancetype)initAs:(NSString *) name identifier:(NSString *) identifier widthPx:(int) widthPx heightPx:(int) heightPx dpi:(float) dpi tablet:(BOOL) tablet;
+
+- (instancetype)initAsCustom:(NSString *) name identifier:(NSString *) identifier widthPx:(int) widthPx heightPx:(int) heightPx tablet:(BOOL) tablet;
 
 -(void) ready;
 

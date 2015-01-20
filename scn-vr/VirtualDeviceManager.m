@@ -42,6 +42,13 @@
         }
     }
     
+    
+    [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscapeCustom name:@"Custom Landscape" key:@"cl"]];
+    
+    if (iPad) {
+        [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypePortraitCustom name:@"Custom Portrait" key:@"cp"]];
+    }
+    
     return devices;
 }
 

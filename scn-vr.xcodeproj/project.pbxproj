@@ -15,7 +15,6 @@
 		AC3E0FA31A49374600AFE6AA /* EyeTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F7D1A49374600AFE6AA /* EyeTexture.m */; };
 		AC3E0FA41A49374600AFE6AA /* HmdDeviceConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F7F1A49374600AFE6AA /* HmdDeviceConfiguration.m */; };
 		AC3E0FA51A49374600AFE6AA /* HmdDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F811A49374600AFE6AA /* HmdDeviceManager.m */; };
-		AC3E0FA61A49374600AFE6AA /* HmdMobileDevicePair.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F831A49374600AFE6AA /* HmdMobileDevicePair.m */; };
 		AC3E0FA71A49374600AFE6AA /* MobileDeviceConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F851A49374600AFE6AA /* MobileDeviceConfiguration.m */; };
 		AC3E0FA81A49374600AFE6AA /* MobileDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F871A49374600AFE6AA /* MobileDeviceManager.m */; };
 		AC3E0FA91A49374600AFE6AA /* MonoRenderInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3E0F891A49374600AFE6AA /* MonoRenderInstance.m */; };
@@ -37,7 +36,6 @@
 		AC3E0FBB1A4937E100AFE6AA /* EyeTexture.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F7C1A49374600AFE6AA /* EyeTexture.h */; };
 		AC3E0FBC1A4937E100AFE6AA /* HmdDeviceConfiguration.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F7E1A49374600AFE6AA /* HmdDeviceConfiguration.h */; };
 		AC3E0FBD1A4937E100AFE6AA /* HmdDeviceManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F801A49374600AFE6AA /* HmdDeviceManager.h */; };
-		AC3E0FBE1A4937E100AFE6AA /* HmdMobileDevicePair.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F821A49374600AFE6AA /* HmdMobileDevicePair.h */; };
 		AC3E0FBF1A4937E100AFE6AA /* MobileDeviceConfiguration.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F841A49374600AFE6AA /* MobileDeviceConfiguration.h */; };
 		AC3E0FC01A4937E100AFE6AA /* MobileDeviceManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F861A49374600AFE6AA /* MobileDeviceManager.h */; };
 		AC3E0FC11A4937E100AFE6AA /* MonoRenderInstance.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC3E0F881A49374600AFE6AA /* MonoRenderInstance.h */; };
@@ -82,6 +80,8 @@
 		AC83FBC71A68D00E00B1727F /* PhysicalDeviceWizardItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC83FBC41A68CDCE00B1727F /* PhysicalDeviceWizardItem.h */; };
 		AC83FBCA1A68D03B00B1727F /* VirtualDeviceWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC83FBC91A68D03B00B1727F /* VirtualDeviceWizardItem.m */; };
 		AC83FBCB1A68D79C00B1727F /* VirtualDeviceWizardItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC83FBC81A68D03B00B1727F /* VirtualDeviceWizardItem.h */; };
+		ACD2E83F1A6E15C60069C361 /* VirtualCustomWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD2E83E1A6E15C60069C361 /* VirtualCustomWizardItem.m */; };
+		ACD2E8421A6E21270069C361 /* PhysicalDpiWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD2E8411A6E21270069C361 /* PhysicalDpiWizardItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,7 +119,6 @@
 				AC3E0FBB1A4937E100AFE6AA /* EyeTexture.h in CopyFiles */,
 				AC3E0FBC1A4937E100AFE6AA /* HmdDeviceConfiguration.h in CopyFiles */,
 				AC3E0FBD1A4937E100AFE6AA /* HmdDeviceManager.h in CopyFiles */,
-				AC3E0FBE1A4937E100AFE6AA /* HmdMobileDevicePair.h in CopyFiles */,
 				AC3E0FBF1A4937E100AFE6AA /* MobileDeviceConfiguration.h in CopyFiles */,
 				AC3E0FC01A4937E100AFE6AA /* MobileDeviceManager.h in CopyFiles */,
 				AC3E0FC11A4937E100AFE6AA /* MonoRenderInstance.h in CopyFiles */,
@@ -155,8 +154,6 @@
 		AC3E0F7F1A49374600AFE6AA /* HmdDeviceConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HmdDeviceConfiguration.m; sourceTree = "<group>"; };
 		AC3E0F801A49374600AFE6AA /* HmdDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HmdDeviceManager.h; sourceTree = "<group>"; };
 		AC3E0F811A49374600AFE6AA /* HmdDeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HmdDeviceManager.m; sourceTree = "<group>"; };
-		AC3E0F821A49374600AFE6AA /* HmdMobileDevicePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HmdMobileDevicePair.h; sourceTree = "<group>"; };
-		AC3E0F831A49374600AFE6AA /* HmdMobileDevicePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HmdMobileDevicePair.m; sourceTree = "<group>"; };
 		AC3E0F841A49374600AFE6AA /* MobileDeviceConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileDeviceConfiguration.h; sourceTree = "<group>"; };
 		AC3E0F851A49374600AFE6AA /* MobileDeviceConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileDeviceConfiguration.m; sourceTree = "<group>"; };
 		AC3E0F861A49374600AFE6AA /* MobileDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileDeviceManager.h; sourceTree = "<group>"; };
@@ -224,6 +221,10 @@
 		AC83FBC51A68CDCE00B1727F /* PhysicalDeviceWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicalDeviceWizardItem.m; sourceTree = "<group>"; };
 		AC83FBC81A68D03B00B1727F /* VirtualDeviceWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualDeviceWizardItem.h; sourceTree = "<group>"; };
 		AC83FBC91A68D03B00B1727F /* VirtualDeviceWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualDeviceWizardItem.m; sourceTree = "<group>"; };
+		ACD2E83D1A6E15C60069C361 /* VirtualCustomWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualCustomWizardItem.h; sourceTree = "<group>"; };
+		ACD2E83E1A6E15C60069C361 /* VirtualCustomWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualCustomWizardItem.m; sourceTree = "<group>"; };
+		ACD2E8401A6E21270069C361 /* PhysicalDpiWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalDpiWizardItem.h; sourceTree = "<group>"; };
+		ACD2E8411A6E21270069C361 /* PhysicalDpiWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicalDpiWizardItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,12 +311,11 @@
 			children = (
 				AC3EA56F1A6A30EA00E3D31A /* Profile */,
 				AC83FBB71A68C6E400B1727F /* Wizard */,
-				AC4FF97E1A5B94F7006B7B04 /* Pair */,
+				AC3E0FD21A49380E00AFE6AA /* Physical Devices */,
 				AC4FF9751A5B8E52006B7B04 /* Virtual Devices */,
 				AC3E0FD51A49385F00AFE6AA /* Utils */,
 				AC3E0FD41A49384600AFE6AA /* Rendering */,
 				AC3E0FD31A49381600AFE6AA /* HMDs */,
-				AC3E0FD21A49380E00AFE6AA /* Physical Devices */,
 				AC3E0FD11A49380900AFE6AA /* Tracking */,
 				AC3E0FD01A49380500AFE6AA /* Correction */,
 				AC3E0FCF1A4937FE00AFE6AA /* Distortion */,
@@ -451,15 +451,6 @@
 			name = "Virtual Devices";
 			sourceTree = "<group>";
 		};
-		AC4FF97E1A5B94F7006B7B04 /* Pair */ = {
-			isa = PBXGroup;
-			children = (
-				AC3E0F821A49374600AFE6AA /* HmdMobileDevicePair.h */,
-				AC3E0F831A49374600AFE6AA /* HmdMobileDevicePair.m */,
-			);
-			name = Pair;
-			sourceTree = "<group>";
-		};
 		AC83FBB71A68C6E400B1727F /* Wizard */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,8 +462,12 @@
 				AC83FBC01A68CB7800B1727F /* TrackerWizardItem.m */,
 				AC83FBC41A68CDCE00B1727F /* PhysicalDeviceWizardItem.h */,
 				AC83FBC51A68CDCE00B1727F /* PhysicalDeviceWizardItem.m */,
+				ACD2E8401A6E21270069C361 /* PhysicalDpiWizardItem.h */,
+				ACD2E8411A6E21270069C361 /* PhysicalDpiWizardItem.m */,
 				AC83FBC81A68D03B00B1727F /* VirtualDeviceWizardItem.h */,
 				AC83FBC91A68D03B00B1727F /* VirtualDeviceWizardItem.m */,
+				ACD2E83D1A6E15C60069C361 /* VirtualCustomWizardItem.h */,
+				ACD2E83E1A6E15C60069C361 /* VirtualCustomWizardItem.m */,
 				AC3EA55A1A6A108B00E3D31A /* HmdWizardItem.h */,
 				AC3EA55B1A6A108B00E3D31A /* HmdWizardItem.m */,
 				AC3EA55D1A6A190800E3D31A /* IpdWizardItem.h */,
@@ -592,7 +587,6 @@
 				AC83FBBA1A68C6FD00B1727F /* WizardManager.m in Sources */,
 				AC3EA5621A6A1ECF00E3D31A /* IpdValueWizarditem.m in Sources */,
 				AC3E0FAA1A49374600AFE6AA /* RenderBase.m in Sources */,
-				AC3E0FA61A49374600AFE6AA /* HmdMobileDevicePair.m in Sources */,
 				AC3E0FA21A49374600AFE6AA /* DistortionMeshGenerator.m in Sources */,
 				AC3EA55C1A6A108B00E3D31A /* HmdWizardItem.m in Sources */,
 				AC3E0FAB1A49374600AFE6AA /* RenderManager.m in Sources */,
@@ -600,10 +594,12 @@
 				AC83FBC61A68CDCE00B1727F /* PhysicalDeviceWizardItem.m in Sources */,
 				AC3E0FB21A49374600AFE6AA /* TrackingManager.m in Sources */,
 				AC3EA5651A6A252900E3D31A /* ColorWizardItem.m in Sources */,
+				ACD2E8421A6E21270069C361 /* PhysicalDpiWizardItem.m in Sources */,
 				AC3E0FA81A49374600AFE6AA /* MobileDeviceManager.m in Sources */,
 				AC3E0FA11A49374600AFE6AA /* CoreMotionTracker.m in Sources */,
 				AC4B1D6E1A6B78150072B916 /* ProfileInstance.m in Sources */,
 				AC3EA56B1A6A2A0500E3D31A /* DistortionWizardItem.m in Sources */,
+				ACD2E83F1A6E15C60069C361 /* VirtualCustomWizardItem.m in Sources */,
 				AC3E0FA31A49374600AFE6AA /* EyeTexture.m in Sources */,
 				AC3E0FAD1A49374600AFE6AA /* SBSRenderInstance.m in Sources */,
 				AC3EA5761A6A321500E3D31A /* ProfileConfiguration.m in Sources */,

@@ -16,7 +16,7 @@
 
 - (instancetype)init
 {
-    self = [super initWith:@"HMD" info:@"What Head Mounted Device are you using?" itemId:WIZARD_ITEM_HMD];
+    self = [super initWith:@"HMD" info:@"What Head Mounted Device are you using?" itemId:WIZARD_ITEM_HMD type:WizardItemDataTypeString];
     if (self) {
         
         hmds = [HmdDeviceManager getHMDs];
@@ -48,6 +48,22 @@
     HmdDeviceConfiguration * d = [hmds objectAtIndex:index];
     _selected = d;
     self.valueId = d.identity;
+}
+
+-(void) loadForIdentity:(NSString *) identity {
+    _selected = [hmds objectAtIndex:1];
+    self.valueId = _selected.identity;
+    self.valueIndex = 1;
+    
+    for (int i = 0; i < hmds.count; i++) {
+        HmdDeviceConfiguration * temp = [hmds objectAtIndex:i];
+        if ([temp.identity isEqualToString:identity]) {
+            _selected = temp;
+            self.valueId = temp.identity;
+            self.valueIndex = i;
+            break;
+        }
+    }
 }
 
 -(void) updateProfileInstance:(ProfileInstance *) instance {

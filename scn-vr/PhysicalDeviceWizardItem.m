@@ -16,7 +16,7 @@
 
 - (instancetype)init
 {
-    self = [super initWith:@"Device" info:@"Select the device you are currnely on" itemId:WIZARD_ITEM_DEVICE];
+    self = [super initWith:@"Device" info:@"Select the device you are currnely on" itemId:WIZARD_ITEM_DEVICE type:WizardItemDataTypeString];
     if (self) {
         mdm = [MobileDeviceManager sharedManager];
         self.count = (int)mdm.devices.count;
@@ -40,6 +40,23 @@
     return self.count > 0;
 }
 
+-(void) loadForIdentity:(NSString *) identity {
+    device = [mdm.devices objectAtIndex:0];
+    self.valueId = device.identifier;
+    self.valueIndex = 0;
+    
+    for (int i = 0; i < mdm.devices.count; i++) {
+        MobileDeviceConfiguration * temp = [mdm.devices objectAtIndex:i];
+        if ([temp.identifier isEqualToString:identity]) {
+            device = temp;
+            self.valueId = temp.identifier;
+            self.valueIndex = i;
+            break;
+        }
+    }
+    
+}
+
 -(NSString *) stringForIndex:(int) index {
     MobileDeviceConfiguration * d = [mdm.devices objectAtIndex:index];
     return d.name;
@@ -58,14 +75,17 @@
     [device ready];
     
     instance.physicalWidthPX = device.widthPx;
-    instance.physicalWidthIN = device.widthIN;
-    instance.physicalWidthMM = device.widthMM;
-    
     instance.physicalHeightPX = device.heightPx;
-    instance.physicalHeightIN = device.heightIN;
-    instance.physicalHeightMM = device.heightMM;
-
-    instance.physicalDPI = device.physicalDpi;
+    
+    if (!device.custom) {
+        instance.physicalWidthIN = device.widthIN;
+        instance.physicalWidthMM = device.widthMM;
+        
+        instance.physicalHeightIN = device.heightIN;
+        instance.physicalHeightMM = device.heightMM;
+        
+        instance.physicalDPI = device.physicalDpi;
+    }
 }
 
 @end

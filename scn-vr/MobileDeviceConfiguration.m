@@ -17,6 +17,7 @@
     if (self) {
         self.name = name;
         _identifier = identifier;
+        _custom = NO;
         self.widthPx = widthPx;
         self.heightPx = heightPx;
         
@@ -32,10 +33,33 @@
     return self;
 }
 
+- (instancetype)initAsCustom:(NSString *) name identifier:(NSString *) identifier widthPx:(int) widthPx heightPx:(int) heightPx tablet:(BOOL) tablet
+{
+    self = [super init];
+    if (self) {
+        self.name = name;
+        _identifier = identifier;
+        _custom = YES;
+        self.widthPx = widthPx;
+        self.heightPx = heightPx;
+        
+        self.physicalWidthPx = widthPx;
+        self.physicalHeightPx = heightPx;
+        
+        self.dpi = 1;
+        self.physicalDpi = 1;
+        
+        self.tablet = tablet;
+        self.internal = YES;
+    }
+    return self;
+}
+
 -(void) ready {
+    
     // Calculate inches
-    _widthIN = self.physicalWidthPx / self.dpi;
-    _heightIN = self.physicalHeightPx / self.dpi;
+    _widthIN = self.physicalWidthPx / (float)self.dpi;
+    _heightIN = self.physicalHeightPx / (float)self.dpi;
     
     // Calculate milimeters
     _widthMM = _widthIN * IN_2_MM;
