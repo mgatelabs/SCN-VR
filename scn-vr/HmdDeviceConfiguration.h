@@ -43,6 +43,11 @@ typedef NS_ENUM(NSInteger, HmdDeviceConfigurationViewpoints) {
 //Inter pupillary distance in millimeters.
 @property (assign) float ipd;
 
+@property (assign, nonatomic) BOOL extraIpdAvailable;
+
+@property (assign) float ipdChild;
+@property (assign) float ipdAdult;
+
 //Inter lens distance in millimeters.
 @property (assign) float ild;
 

@@ -12,6 +12,8 @@
 #import "VirtualDeviceWizardItem.h"
 #import "VirtualCustomWizardItem.h"
 #import "HmdWizardItem.h"
+#import "FovWizardItem.h"
+#import "FovItemWizardItem.h"
 #import "IpdWizardItem.h"
 #import "IpdValueWizarditem.h"
 #import "ColorWizardItem.h"
@@ -55,6 +57,16 @@
         HmdWizardItem * hmds = [[HmdWizardItem alloc] init];
         [_baseItems addObject: hmds];
         
+        // Fov Alteration
+        FovWizardItem * fovWizard = [[FovWizardItem alloc] initWith:hmds];
+        [_baseItems addObject:fovWizard];
+    
+         FovItemWizardItem * fovItemWizard = [[FovItemWizardItem alloc] initWith:fovWizard second:NO];
+         [_baseItems addObject:fovItemWizard];
+         
+         fovItemWizard = [[FovItemWizardItem alloc] initWith:fovWizard second:YES];
+         [_baseItems addObject:fovItemWizard];
+         
         // IPD
         IpdWizardItem * ipd = [[IpdWizardItem alloc] initWith:hmds];
         [_baseItems addObject: ipd];

@@ -15,7 +15,7 @@
 
 - (instancetype)initWith:(HmdWizardItem *) hmdWizardItem
 {
-    self = [super initWith:@"Color" info:@"Fix color issues cause by lenses." itemId:WIZARD_ITEM_COLOR type:WizardItemDataTypeString];
+    self = [super initWith:@"Color" info:@"HMD lenses often cause color distortion, this option will attempt to fix that." itemId:WIZARD_ITEM_COLOR type:WizardItemDataTypeString];
     if (self) {
         hmds = hmdWizardItem;
         selectedHmdValueId = hmds.valueId;

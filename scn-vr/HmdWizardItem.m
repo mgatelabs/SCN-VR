@@ -16,7 +16,7 @@
 
 - (instancetype)init
 {
-    self = [super initWith:@"HMD" info:@"What Head Mounted Device are you using?" itemId:WIZARD_ITEM_HMD type:WizardItemDataTypeString];
+    self = [super initWith:@"HMD" info:@"Please let us know what Head Mounted Device you are using.  If you don't have a HMD, select one of the 'NONE' options.  'None (MONO)' is for children under 7." itemId:WIZARD_ITEM_HMD type:WizardItemDataTypeString];
     if (self) {
         
         hmds = [HmdDeviceManager getHMDs];
@@ -69,9 +69,6 @@
 -(void) updateProfileInstance:(ProfileInstance *) instance {
     
     HmdDeviceConfiguration * d = [hmds objectAtIndex:self.valueIndex];
-    
-    instance.hFov = d.hFov;
-    instance.vFov = d.vFov;
     
     switch (self.valueIndex) {
         case 0:

@@ -58,10 +58,12 @@
     
     HmdDeviceConfiguration * altergaze = [HmdDeviceManager addHmdTo: hmds name:@"Altergaze" identifier:@"altergaze" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:85.0f correctionCoefficient:-1.0f distortionFactorA:0.4f distortionFactorB:0.2f];
     altergaze.internal = YES;
+    altergaze.extraIpdAvailable = YES;
+    altergaze.ipdAdult = 50;
+    altergaze.ipdChild = 47.5f;
     
     HmdDeviceConfiguration * cardboard = [HmdDeviceManager addHmdTo: hmds name:@"Cardboard" identifier:@"cardboard" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:85.0f correctionCoefficient:-1.5f distortionFactorA:0.5f distortionFactorB:0.2f];
     cardboard.internal = YES;
-
     
     return hmds;
 }

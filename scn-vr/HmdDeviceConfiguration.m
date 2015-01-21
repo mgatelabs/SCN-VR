@@ -28,6 +28,8 @@
         self.distortionFactorA = distortionFactorA;
         self.distortionFactorB = distortionFactorB;
         self.internal = NO;
+        
+        _extraIpdAvailable = NO;
     }
     return self;
 }

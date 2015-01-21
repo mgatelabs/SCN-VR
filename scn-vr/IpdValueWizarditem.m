@@ -10,12 +10,14 @@
 
 @implementation IpdValueWizarditem {
     IpdWizardItem * ipds;
+    bool second;
 }
 
 - (instancetype)initWith:(IpdWizardItem *) ipdWizardItem second:(BOOL) secondItem
 {
     self = [super initWith:secondItem ? @"Camera IPD" : @"Your IPD" info:@"Distance in MM" itemId: secondItem ? WIZARD_ITEM_IPD_VALUE2 : WIZARD_ITEM_IPD_VALUE1 type:WizardItemDataTypeInt];
     if (self) {
+        second = secondItem;
         ipds = ipdWizardItem;
         self.count = 75 * 2;
         self.valueIndex = 62 * 2;
@@ -25,11 +27,11 @@
 }
 
 -(BOOL) available {
-    return ipds.valueIndex == 3;
+    return ipds.valueIndex == 1;
 }
 
 -(BOOL) ready {
-    return ipds.valueIndex == 3;
+    return ipds.valueIndex == 1;
 }
 
 -(void) loadForInt:(int) value {
@@ -48,6 +50,14 @@
 
 -(WizardItemNotReadyAction) notReadyAction {
     return WizardItemNotReadyActionContinue;
+}
+
+-(void) updateProfileInstance:(ProfileInstance *) instance {
+    if (second) {
+        instance.viewerIPD = self.valueIndex / 2.0f;
+    } else {
+        instance.cameraIPD = self.valueIndex / 2.0f;
+    }
 }
 
 @end

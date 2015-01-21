@@ -11,8 +11,6 @@
 
 @interface IpdValueWizarditem : WizardItem
 
-@property (assign, nonatomic) BOOL secondItem;
-
 - (instancetype)initWith:(IpdWizardItem *) ipdWizardItem second:(BOOL) secondItem;
 
 @end

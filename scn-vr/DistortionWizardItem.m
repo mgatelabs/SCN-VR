@@ -15,7 +15,7 @@
 
 - (instancetype)initWith:(HmdWizardItem *) hmdWizardItem
 {
-    self = [super initWith:@"Distortion" info:@"Fix artifacts cause by lenses distortion" itemId:WIZARD_ITEM_DISTORTION type:WizardItemDataTypeString];
+    self = [super initWith:@"Distortion" info:@"HMD lenses cause content to stretch outwards.  Use this setting to cancel the distortion." itemId:WIZARD_ITEM_DISTORTION type:WizardItemDataTypeString];
     if (self) {
         hmds = hmdWizardItem;
         selectedHmdValueId = hmds.valueId;

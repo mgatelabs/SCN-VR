@@ -15,14 +15,18 @@
 
 - (instancetype)initWith:(HmdWizardItem *) hmdWizardItem
 {
-    self = [super initWith:@"IPD" info:@"How far apart are your eyes?" itemId:WIZARD_ITEM_IPD type:WizardItemDataTypeString];
+    self = [super initWith:@"IPD" info:@"IPD refers to the distance between your eyes." itemId:WIZARD_ITEM_IPD type:WizardItemDataTypeString];
     if (self) {
         hmds = hmdWizardItem;
         selectedHmdValueId = hmds.valueId;
         if ([selectedHmdValueId isEqualToString:@"mono"] || [selectedHmdValueId isEqualToString:@"none"]) {
             self.count = 1;
         } else {
-            self.count = 4;
+            if (hmds.selected.extraIpdAvailable) {
+                self.count = 4;
+            } else {
+                self.count = 2;
+            }
         }
         self.valueIndex = 0;
         self.valueId = @"default";
@@ -40,10 +44,21 @@
                 self.valueIndex = 0;
                 self.valueId = @"default";
             } else {
-                self.count = 4;
+                if (hmds.selected.extraIpdAvailable) {
+                    self.count = 4;
+                } else {
+                    self.count = 2;
+                }
             }
+            
+            if (self.valueIndex >= self.count) {
+                self.valueIndex = 0;
+                self.valueId = @"default";
+            }
+            
         }
     } else {
+        self.count = 1;
         self.valueIndex = 0;
         self.valueId = @"default";
     }
@@ -61,11 +76,11 @@
     switch (index) {
         case 0:
             return @"Default";
-        case 1:
-            return @"Adult";
         case 2:
-            return @"Child";
+            return @"Adult";
         case 3:
+            return @"Child";
+        case 1:
             return @"Custom";
         default:
             return @"Unknown";
@@ -98,13 +113,13 @@
         case 0:
             self.valueId = @"Default";
             break;
-        case 1:
+        case 2:
             self.valueId = @"Adult";
             break;
-        case 2:
+        case 3:
             self.valueId =  @"Child";
             break;
-        case 3:
+        case 1:
             self.valueId =  @"Custom";
             break;
         default:
@@ -117,15 +132,15 @@
         case 0:
             
             break;
-        case 1:
-            instance.cameraIPD = 50;
-            instance.viewerIPD = instance.cameraIPD;
-            break;
         case 2:
-            instance.cameraIPD = 47;
+            instance.cameraIPD = hmds.selected.ipdAdult;
             instance.viewerIPD = instance.cameraIPD;
             break;
         case 3:
+            instance.cameraIPD = hmds.selected.ipdChild;
+            instance.viewerIPD = instance.cameraIPD;
+            break;
+        case 1:
             // Will defer
             break;
         default:

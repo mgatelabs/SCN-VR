@@ -13,7 +13,7 @@
 
 - (instancetype)initWithVirtual:(VirtualDeviceWizardItem *) virtualWizard physical:(PhysicalDeviceWizardItem *) physicalWizard mode:(int) mode
 {
-    self = [super initWith: (mode == 0 ? @"Width (MM)" : @"Height (MM)")  info:(mode == 0 ? @"Device Width in MM" : @"Device Height in MM") itemId:(mode == 0 ? WIZARD_ITEM_VIRTUAL_DEVICE_WIDTH : WIZARD_ITEM_VIRTUAL_DEVICE_HEIGHT) type:WizardItemDataTypeInt];
+    self = [super initWith: (mode == 0 ? @"Width (MM)" : @"Height (MM)")  info:(mode == 0 ? @"Virtual device width in MM" : @"Virtual device height in MM") itemId:(mode == 0 ? WIZARD_ITEM_VIRTUAL_DEVICE_WIDTH : WIZARD_ITEM_VIRTUAL_DEVICE_HEIGHT) type:WizardItemDataTypeInt];
     if (self) {
         _physicalWizard = physicalWizard;
         _virtualWizard = virtualWizard;
@@ -32,12 +32,12 @@
             int maxIndex;
             
             if (_mode == 0) {
-                maxIndex = _virtualWizard.virtualDevice.type == VirtualDeviceConfigurationTypeLandscapeCustom ? _physicalWizard.selected.widthMM : _physicalWizard.selected.heightMM;
+                maxIndex = 1 + (_virtualWizard.virtualDevice.type == VirtualDeviceConfigurationTypeLandscapeCustom ? _physicalWizard.selected.widthMM : _physicalWizard.selected.heightMM);
             } else if (_mode == 1) {
-                maxIndex = _virtualWizard.virtualDevice.type == VirtualDeviceConfigurationTypeLandscapeCustom ? _physicalWizard.selected.heightMM : _physicalWizard.selected.widthMM;
+                maxIndex = 1 + (_virtualWizard.virtualDevice.type == VirtualDeviceConfigurationTypeLandscapeCustom ? _physicalWizard.selected.heightMM : _physicalWizard.selected.widthMM);
             }
             
-            self.count = maxIndex - 1;
+            self.count = (maxIndex * 4) - 1;
             if (self.valueIndex >= self.count) {
                 self.valueIndex = self.count - 1;
                 self.valueId = [self stringForIndex:self.valueIndex];
@@ -73,15 +73,16 @@
 }
 
 -(NSString *) stringForIndex:(int) index {
-    return [NSString stringWithFormat:@"%d MM", index + 1];
+    float mm = (index / 4.0f) + 1;
+    return [NSString stringWithFormat:@"%2.2f MM, %2.2f IN", mm, mm / IN_2_MM];
 }
 
 -(void) updateProfileInstance:(ProfileInstance *) instance {
     
     if (_mode == 0) {
-        instance.virtualWidthMM = self.valueIndex + 1;
+        instance.virtualWidthMM = (self.valueIndex / 4.0f) + 1;
     } else {
-        instance.virtualHeightMM = self.valueIndex + 1;
+        instance.virtualHeightMM = (self.valueIndex / 4.0f) + 1;
     
     
         switch (_virtualWizard.virtualDevice.type) {

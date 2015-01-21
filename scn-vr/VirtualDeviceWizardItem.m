@@ -17,7 +17,7 @@
 
 - (instancetype)initWith:(PhysicalDeviceWizardItem *) deviceWizardItem
 {
-    self = [super initWith:@"Virtual Device" info:@"Select the screen layout" itemId:WIZARD_ITEM_VIRTUAL_DEVICE type:WizardItemDataTypeString];
+    self = [super initWith:@"Virtual Device" info:@"With a virtual device you can change how content is displayed on the screen.  On tablet devices you can switch between landscape and portrait output with various options." itemId:WIZARD_ITEM_VIRTUAL_DEVICE type:WizardItemDataTypeString];
     if (self) {
         devices = deviceWizardItem;
         _items = [[NSMutableArray alloc] initWithCapacity:10];
@@ -90,8 +90,12 @@
                 case VirtualDeviceConfigurationTypePortrait169:
                     break;
                 case VirtualDeviceConfigurationTypeLandscapeVirtual: {
-                    int deviceHeight = selectedMobile.heightMM;
-                    int deviceWidth = selectedMobile.widthMM;
+                    float deviceHeight = selectedMobile.heightMM * 1.1f;
+                    float deviceWidth = selectedMobile.widthMM * 1.1f;
+                    
+                    if ([vdc.virtualDevice.identifier isEqualToString:selectedMobile.identifier]) {
+                        skip = YES;
+                    }
                     
                     if (vdc.virtualDevice.widthMM > deviceWidth || vdc.virtualDevice.heightMM > deviceHeight) {
                         skip = YES;
@@ -101,8 +105,12 @@
                     
                 } break;
                 case VirtualDeviceConfigurationTypePortraitVirtual: {
-                    int deviceWidth = selectedMobile.heightMM;
-                    int deviceHeight = selectedMobile.widthMM;
+                    float deviceWidth = selectedMobile.heightMM * 1.1f;
+                    float deviceHeight = selectedMobile.widthMM * 1.1f;
+                    
+                    if ([vdc.virtualDevice.identifier isEqualToString:selectedMobile.identifier]) {
+                        skip = YES;
+                    }
                     
                     if (vdc.virtualDevice.widthMM > deviceWidth || vdc.virtualDevice.heightMM > deviceHeight) {
                         skip = YES;

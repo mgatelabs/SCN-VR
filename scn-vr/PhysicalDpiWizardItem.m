@@ -13,7 +13,7 @@
 
 - (instancetype)initWith:(PhysicalDeviceWizardItem*) physicalWizard
 {
-    self = [super initWith:@"Physical DPI" info:@"The Dots Per Inch of your display" itemId:WIZARD_ITEM_DEVICE_DPI type:WizardItemDataTypeInt];
+    self = [super initWith:@"Physical DPI" info:@"We can't figureout your current device, please input the physical DPI and we will figure out the rest." itemId:WIZARD_ITEM_DEVICE_DPI type:WizardItemDataTypeInt];
     if (self) {
         _physicalWizard = physicalWizard;
         self.count = 0;

@@ -25,6 +25,10 @@
 #define WIZARD_ITEM_VIRTUAL_DEVICE_HEIGHT 13
 #define WIZARD_ITEM_DEVICE_DPI 14
 
+#define WIZARD_ITEM_FOV 15
+#define WIZARD_ITEM_FOV_H 16
+#define WIZARD_ITEM_FOV_V 17
+
 typedef NS_ENUM(NSInteger, WizardItemChangeAction)
 {
     WizardItemChangeActionNone = 0,
