@@ -44,19 +44,28 @@
     
     NSMutableArray * tempList = [[NSMutableArray alloc] initWithCapacity:10];
     
+    MobileDeviceConfiguration * tempConfig;
+    
     // iPhone4S              640×960   326 ppi
-    [tempList addObject:[MobileDeviceManager createDevice:@"iPhone 4S" identifier:@"iphone4s" widthPx:960 heightPx:640 dpi:326 tablet:NO]];
+    tempConfig = [MobileDeviceManager createDevice:@"iPhone 4S" identifier:@"iphone4s" widthPx:960 heightPx:640 dpi:326 tablet:NO];
+    tempConfig.virtualName = @"3.5\"";
+    [tempList addObject:tempConfig];
     
     // iPhone5               640×1136  326 ppi
     // iPhone5C              640×1136  326 ppi
     // iPhone5S              640×1136  326 ppi
-    [tempList addObject:[MobileDeviceManager createDevice:@"iPhone 5" identifier:@"iphone5" widthPx:1136 heightPx:640 dpi:326 tablet:NO]];
+    tempConfig = [MobileDeviceManager createDevice:@"iPhone 5" identifier:@"iphone5" widthPx:1136 heightPx:640 dpi:326 tablet:NO];
+    tempConfig.virtualName = @"4\"";
+    [tempList addObject:tempConfig];
     
     // iPhone6               750×1334  326 ppi
-    [tempList addObject:[MobileDeviceManager createDevice:@"iPhone 6" identifier:@"iphone6" widthPx:1334 heightPx:750 dpi:326 tablet:NO]];
+    tempConfig = [MobileDeviceManager createDevice:@"iPhone 6" identifier:@"iphone6" widthPx:1334 heightPx:750 dpi:326 tablet:NO];
+    tempConfig.virtualName = @"4.7\"";
+    [tempList addObject:tempConfig];
     
     // iPhone6Plus           1080×1920 401 ppi
     MobileDeviceConfiguration * iphone6p = [MobileDeviceManager createDevice:@"iPhone 6+" identifier:@"iphone6plus" widthPx:2208 heightPx:1242 dpi:401 tablet:NO];
+    iphone6p.virtualName = @"5.5\"";
     [tempList addObject: iphone6p];
     #if !(TARGET_IPHONE_SIMULATOR)
     iphone6p.physicalWidthPx = 1920;
@@ -65,18 +74,18 @@
     #endif
     
     //iPad2                 1024x768  132 ppi
-    [tempList addObject:[MobileDeviceManager createDevice:@"iPad 2" identifier:@"ipad2" widthPx:1024 heightPx:768 dpi:132 tablet:YES]];
+    [tempList addObject:[MobileDeviceManager createDevice:@"iPad 9.7\"" identifier:@"ipad2" widthPx:1024 heightPx:768 dpi:132 tablet:YES]];
     
     //iPad (3gen)           2048x1536 264 ppi
     //iPad (4gen)           2048x1536 264 ppi
     //iPad Air              2048x1536 264 ppi
-    [tempList addObject:[MobileDeviceManager createDevice:@"iPad" identifier:@"ipad" widthPx:2048 heightPx:1536 dpi:264 tablet:YES]];
+    [tempList addObject:[MobileDeviceManager createDevice:@"iPad 9.7\" (Retina)" identifier:@"ipad" widthPx:2048 heightPx:1536 dpi:264 tablet:YES]];
     
     //iPad mini             1024x768  163 ppi
-    [tempList addObject:[MobileDeviceManager createDevice:@"iPad (Mini)" identifier:@"ipadmini" widthPx:1024 heightPx:768 dpi:163 tablet:YES]];
+    [tempList addObject:[MobileDeviceManager createDevice:@"iPad 7.9\"" identifier:@"ipadmini" widthPx:1024 heightPx:768 dpi:163 tablet:YES]];
     
     //iPad mini (retina)    2048x1536 326 ppi
-    [tempList addObject:[MobileDeviceManager createDevice:@"iPad (Mini Retina)" identifier:@"ipadmini2" widthPx:2048 heightPx:1536 dpi:326 tablet:YES]];
+    [tempList addObject:[MobileDeviceManager createDevice:@"iPad 7.9\" (Retina)" identifier:@"ipadmini2" widthPx:2048 heightPx:1536 dpi:326 tablet:YES]];
     
     for (int i = 0; i < tempList.count; i++) {
         MobileDeviceConfiguration * c = [tempList objectAtIndex:i];

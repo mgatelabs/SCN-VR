@@ -54,6 +54,7 @@
 // IPD
 @property (assign, nonatomic) float cameraIPD;
 @property (assign, nonatomic) float viewerIPD;
+@property (assign, nonatomic) BOOL centerIPD;
 
 // Color Correction
 @property (assign, nonatomic) BOOL colorCorrection;

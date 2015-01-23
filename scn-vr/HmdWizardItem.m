@@ -78,6 +78,7 @@
             instance.viewerIPD = 0;
             instance.basicView = YES;
             
+            instance.centerIPD = YES;
             instance.colorCorrection = NO;
             instance.distortionCorrection = NO;
             break;
@@ -86,6 +87,7 @@
             instance.viewportCount = 2;
             instance.basicView = YES;
             
+            instance.centerIPD = YES;
             instance.cameraIPD = 62;
             instance.viewerIPD = 62;
             
@@ -96,6 +98,7 @@
             instance.viewportCount = 2;
             instance.basicView = NO;
             
+            instance.centerIPD = NO;
             instance.cameraIPD = d.ipd;
             instance.viewerIPD = d.ipd;
             

@@ -34,10 +34,10 @@
     for (int i = 0; i < tempDevices.count; i++) {
         MobileDeviceConfiguration * c = [tempDevices objectAtIndex:i];
         if (!c.tablet) {
-            [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscapeVirtual name:[@"Virtual (Landscape): " stringByAppendingString:c.name] key:[@"vl_" stringByAppendingString:c.identifier] device:c]];
+            [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscapeVirtual name:[@"Landscape " stringByAppendingString:c.virtualName] key:[@"vl_" stringByAppendingString:c.identifier] device:c]];
             
             if (iPad) {
-                [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypePortraitVirtual name:[@"Virtual (Portrait): " stringByAppendingString:c.name] key:[@"vp_" stringByAppendingString:c.identifier] device:c]];
+                [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypePortraitVirtual name:[@"Portrait " stringByAppendingString:c.virtualName] key:[@"vp_" stringByAppendingString:c.identifier] device:c]];
             }
         }
     }

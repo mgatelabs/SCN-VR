@@ -23,13 +23,13 @@
             self.count = 1;
         } else {
             if (hmds.selected.extraIpdAvailable) {
-                self.count = 4;
+                self.count = 5;
             } else {
-                self.count = 2;
+                self.count = 3;
             }
         }
         self.valueIndex = 0;
-        self.valueId = @"default";
+        self.valueId = [self stringForIndex:0];
     }
     return self;
 }
@@ -42,25 +42,25 @@
             if ([selectedHmdValueId isEqualToString:@"mono"] || [selectedHmdValueId isEqualToString:@"none"]) {
                 self.count = 1;
                 self.valueIndex = 0;
-                self.valueId = @"default";
+                self.valueId = [self stringForIndex:0];
             } else {
                 if (hmds.selected.extraIpdAvailable) {
-                    self.count = 4;
+                    self.count = 5;
                 } else {
-                    self.count = 2;
+                    self.count = 3;
                 }
             }
             
             if (self.valueIndex >= self.count) {
                 self.valueIndex = 0;
-                self.valueId = @"default";
+                self.valueId = [self stringForIndex:0];
             }
             
         }
     } else {
         self.count = 1;
         self.valueIndex = 0;
-        self.valueId = @"default";
+        self.valueId = [self stringForIndex:0];
     }
 }
 
@@ -75,13 +75,16 @@
 -(NSString *) stringForIndex:(int) index {
     switch (index) {
         case 0:
+            return @"Center";
+        case 1:
             return @"Default";
         case 2:
-            return @"Adult";
-        case 3:
-            return @"Child";
-        case 1:
             return @"Custom";
+        case 3:
+            return @"Adult";
+        case 4:
+            return @"Child";
+        
         default:
             return @"Unknown";
     }
@@ -111,16 +114,19 @@
     self.valueIndex = index;
     switch (index) {
         case 0:
+            self.valueId =  @"Center";
+            break;
+        case 1:
             self.valueId = @"Default";
             break;
         case 2:
-            self.valueId = @"Adult";
+            self.valueId =  @"Custom";
             break;
         case 3:
-            self.valueId =  @"Child";
+            self.valueId = @"Adult";
             break;
-        case 1:
-            self.valueId =  @"Custom";
+        case 4:
+            self.valueId =  @"Child";
             break;
         default:
             self.valueId =  @"Unknown";
@@ -129,20 +135,27 @@
 
 -(void) updateProfileInstance:(ProfileInstance *) instance {
     switch (self.valueIndex) {
+        case 1:
+            instance.centerIPD = NO;
+            break;
         case 0:
-            
+            instance.centerIPD = YES;
             break;
         case 2:
+            // Will defer
+            instance.centerIPD = NO;
+            break;
+        case 3:
+            instance.centerIPD = NO;
             instance.cameraIPD = hmds.selected.ipdAdult;
             instance.viewerIPD = instance.cameraIPD;
             break;
-        case 3:
+        case 4:
+            instance.centerIPD = NO;
             instance.cameraIPD = hmds.selected.ipdChild;
             instance.viewerIPD = instance.cameraIPD;
             break;
-        case 1:
-            // Will defer
-            break;
+        
         default:
             break;
     }

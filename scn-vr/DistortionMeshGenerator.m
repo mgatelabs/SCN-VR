@@ -17,8 +17,8 @@
 @implementation DistortionMeshGenerator
 
 +(VBOWrap *) generateMeshFor:(ProfileInstance *) pair eye:(EyeTextureSide) eye {
-    int _lines = 20;
-    int _columns = 20;
+    int _lines = 4;
+    int _columns = 4;
     BOOL leftEye = eye == EyeTextureSideLeft || eye == EyeTextureSideMono;
     
     float k1, k2;
@@ -43,7 +43,28 @@
     //int[] tri = new int[numFaces*6];
     //If IPD is smaller than half of the width, we take width/2 for IPD
     //Otherwise meshes are outward-oriented
-    float widthIPDRatio = (pair.viewerIPD <= pair.virtualWidthMM * 0.5f)?(pair.viewerIPD / pair.virtualWidthMM) : 0.5f;
+    
+    float halfDeviceWidth = pair.virtualWidthMM / 2.0f;
+    float halfIPDWidth = pair.viewerIPD / 2.0f;
+    float calculatedOffsetX = (halfIPDWidth / halfDeviceWidth) - 0.5f;
+    if (leftEye) {
+        calculatedOffsetX *= -1;
+    }
+    
+    if (pair.centerIPD) {
+        calculatedOffsetX = 0;
+    }
+    
+    float widthIPDRatio;
+    
+    //widthIPDRatio = pair.viewerIPD / pair.virtualWidthMM;
+    
+    //float widthIPDRatio = (pair.viewerIPD <= pair.virtualWidthMM * 0.5f)?(pair.viewerIPD / pair.virtualWidthMM) : 0.5f;
+    
+    widthIPDRatio = 0.5f;
+    
+    
+    
     CGPoint center = CGPointMake(leftEye ? 1 - widthIPDRatio: widthIPDRatio, 0.5f);
     int x, y;
     
@@ -97,6 +118,7 @@
     
     for(int i=0; i< numVertices; i++) {
         points[i].x *=scaleFactor;
+        points[i].x += calculatedOffsetX;
         points[i].y *=scaleFactor;
         //points[i].z *=scaleFactor;
     }

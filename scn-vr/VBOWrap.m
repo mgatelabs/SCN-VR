@@ -56,7 +56,7 @@
         //glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
         //glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 3, BUFFER_OFFSET(3));
         
-        [self checkGlErrorStatus];
+        //[self checkGlErrorStatus];
         
         
         [self checkGlErrorStatus];

@@ -27,11 +27,11 @@
 }
 
 -(BOOL) available {
-    return ipds.valueIndex == 1;
+    return ipds.valueIndex == 2;
 }
 
 -(BOOL) ready {
-    return ipds.valueIndex == 1;
+    return ipds.valueIndex == 2;
 }
 
 -(void) loadForInt:(int) value {
@@ -54,9 +54,9 @@
 
 -(void) updateProfileInstance:(ProfileInstance *) instance {
     if (second) {
-        instance.viewerIPD = self.valueIndex / 2.0f;
-    } else {
         instance.cameraIPD = self.valueIndex / 2.0f;
+    } else {
+        instance.viewerIPD = self.valueIndex / 2.0f;
     }
 }
 

@@ -11,6 +11,7 @@
 @interface MobileDeviceConfiguration : NSObject
 
 @property (strong, nonatomic) NSString * name;
+@property (strong, nonatomic) NSString * virtualName;
 @property (readonly, strong, nonatomic) NSString * identifier;
 
 @property (assign, nonatomic) BOOL tablet;
