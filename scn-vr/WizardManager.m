@@ -32,6 +32,7 @@
         _dirty = NO;
         
         _baseItems = [[NSMutableArray alloc] initWithCapacity:10];
+        _extendedItems = [[NSMutableArray alloc] initWithCapacity:10];
         _filteredItems = [[NSMutableArray alloc] initWithCapacity:10];
         _visibleItems = [[NSMutableArray alloc] initWithCapacity:10];
         
@@ -130,6 +131,9 @@
     [_filteredItems removeAllObjects];
     [_visibleItems removeAllObjects];
     
+    _profileItemCount = 0;
+    _extenedItemCount = 0;
+    
     for (int i = 0; i < _baseItems.count; i++) {
         WizardItem * item = [_baseItems objectAtIndex:i];
         
@@ -146,12 +150,41 @@
         }
     }
     
+    int incomingFilteredItemCount = (int)_filteredItems.count;
+    
     for (int i = 0; i < _filteredItems.count; i++) {
         WizardItem * item = [_filteredItems objectAtIndex:i];
         if (item.count > 1) {
             [_visibleItems addObject:item];
         }
     }
+    
+    _profileItemCount = (int)_visibleItems.count;
+    
+    for (int i = 0; i < _extendedItems.count; i++) {
+        WizardItem * item = [_extendedItems objectAtIndex:i];
+        
+        if ([item ready]) {
+            [_filteredItems addObject:item];
+        } else {
+            if ([item available]) {
+                [_filteredItems addObject:item];
+            }
+            WizardItemNotReadyAction notReadyAct = [item notReadyAction];
+            if (notReadyAct == WizardItemNotReadyActionBreak) {
+                break;
+            }
+        }
+    }
+    
+    for (int i = incomingFilteredItemCount; i < _filteredItems.count; i++) {
+        WizardItem * item = [_filteredItems objectAtIndex:i];
+        if (item.count > 1) {
+            [_visibleItems addObject:item];
+        }
+    }
+    
+    _extenedItemCount = (int)_visibleItems.count - _profileItemCount;
 }
 
 -(void) reset {
@@ -185,8 +218,6 @@
                 NSLog(@"Unknown Wizard Item Type");
                 break;
         }
-        
-        
     }
     
     return values;
@@ -222,6 +253,32 @@
         }
     }
     
+    for (int i = 0; i < _extendedItems.count; i++) {
+        WizardItem * item = [_extendedItems objectAtIndex:i];
+        
+        switch (item.type) {
+            case WizardItemDataTypeInt: {
+                NSNumber * numb = [payload valueForKey:[NSString stringWithFormat:@"%d", item.itemId]];
+                if (numb != nil) {
+                    [item loadForInt:[numb intValue]];
+                }
+            } break;
+            case WizardItemDataTypeString: {
+                NSString * string = [payload valueForKey:[NSString stringWithFormat:@"%d", item.itemId]];
+                if (string != nil) {
+                    [item loadForIdentity:string];
+                }
+            } break;
+        }
+        
+        [item chainUpdated];
+        
+        for (int j = i + 1; j < _extendedItems.count; j++) {
+            WizardItem * temp = [_extendedItems objectAtIndex:j];
+            [temp chainUpdated];
+        }
+    }
+    
     [self filter];
 }
 
@@ -234,6 +291,10 @@
     }
     
     return instance;
+}
+
+-(void) addExtendedItem:(WizardItem *) item {
+    [_extendedItems addObject:item];
 }
 
 @end

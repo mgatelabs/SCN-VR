@@ -65,4 +65,9 @@
 @property (assign, nonatomic) float distortionCorrectionValue1;
 @property (assign, nonatomic) float distortionCorrectionValue2;
 
+// Extended
+@property (strong, nonatomic) NSMutableDictionary * extended;
+
+-(int) getExtendedValueFor:(NSString *) key withDefaultInt:(int) value;
+
 @end
