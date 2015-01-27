@@ -19,9 +19,14 @@
         hmds = hmdWizardItem;
         self.count = 2;
         self.valueIndex = 0;
-        self.valueId = @"default";
+        self.valueId = [self stringForIndex:self.valueIndex];
     }
     return self;
+}
+
+-(void) reset {
+    self.valueIndex = 0;
+    self.valueId = [self stringForIndex:self.valueIndex];
 }
 
 -(void) chainUpdated {

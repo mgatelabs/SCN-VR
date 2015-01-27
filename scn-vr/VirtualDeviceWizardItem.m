@@ -30,6 +30,12 @@
     return self;
 }
 
+-(void) reset {
+    _virtualDevice = [_items objectAtIndex:0];
+    self.valueId = _virtualDevice.key;
+    self.valueIndex = 0;
+}
+
 -(WizardItemChangeAction) changeAction {
     return WizardItemChangeActionNone;
 }

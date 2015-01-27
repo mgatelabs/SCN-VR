@@ -29,6 +29,8 @@
 #define WIZARD_ITEM_FOV_H 16
 #define WIZARD_ITEM_FOV_V 17
 
+#define WIZARD_ITEM_DISTORTION_QUALITY 18
+
 typedef NS_ENUM(NSInteger, WizardItemChangeAction)
 {
     WizardItemChangeActionNone = 0,

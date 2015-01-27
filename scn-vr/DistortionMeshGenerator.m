@@ -17,8 +17,8 @@
 @implementation DistortionMeshGenerator
 
 +(VBOWrap *) generateMeshFor:(ProfileInstance *) pair eye:(EyeTextureSide) eye {
-    int _lines = 4;
-    int _columns = 4;
+    int _lines = [pair getExtendedValueFor:@"vr.distortion.quality" withDefaultInt:16];
+    int _columns = _lines;
     BOOL leftEye = eye == EyeTextureSideLeft || eye == EyeTextureSideMono;
     
     float k1, k2;

@@ -20,6 +20,7 @@
 #import "ColorValueWizardItem.h"
 #import "DistortionWizardItem.h"
 #import "DistortionValueWizardItem.h"
+#import "DistortionQualityWizardItem.h"
 #import "PhysicalDpiWizardItem.h"
 
 @implementation WizardManager
@@ -99,6 +100,9 @@
         // Distortion Value 2
         DistortionValueWizardItem * distortionValue2 = [[DistortionValueWizardItem alloc] initWith:distortion second:YES];
         [_baseItems addObject: distortionValue2];
+        
+        DistortionQualityWizardItem * distortionQuality = [[DistortionQualityWizardItem alloc] initWith:distortion];
+        [_baseItems addObject:distortionQuality];
         
         [self filter];
     }
@@ -193,8 +197,18 @@
         [item reset];
     }
     
+    for (int i = 0; i < _extendedItems.count; i++) {
+        WizardItem * item = [_extendedItems objectAtIndex:i];
+        [item reset];
+    }
+    
     for (int i = 0; i < _baseItems.count; i++) {
         WizardItem * item = [_baseItems objectAtIndex:i];
+        [item chainUpdated];
+    }
+    
+    for (int i = 0; i < _extendedItems.count; i++) {
+        WizardItem * item = [_extendedItems objectAtIndex:i];
         [item chainUpdated];
     }
     
@@ -224,6 +238,8 @@
 }
 
 -(void) insertItem:(NSDictionary *) payload {
+    
+    [self reset];
     
     _dirty = NO;
     

@@ -50,11 +50,11 @@
 }
 
 -(BOOL) available {
-    return self.count > 0;
+    return self.count > 1;
 }
 
 -(BOOL) ready {
-    return self.count > 0;
+    return self.count > 1;
 }
 
 -(void) loadForIdentity:(NSString *) identity {
@@ -113,6 +113,7 @@
             break;
         case 1:
             instance.distortionCorrection = NO;
+            [instance.extended setValue:[NSNumber numberWithInt:4] forKey:@"vr.distortion.quality"];
             break;
         case 2:
             // Defer

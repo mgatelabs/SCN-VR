@@ -30,6 +30,12 @@
     return self;
 }
 
+-(void) reset {
+    _selected = [hmds objectAtIndex:1];
+    self.valueIndex = 1;
+    self.valueId = _selected.identity;
+}
+
 -(BOOL) available {
     return self.count > 0;
 }

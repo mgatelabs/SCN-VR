@@ -14,7 +14,7 @@
 
 - (instancetype)initWith:(ColorWizardItem *) colorWizardItem
 {
-    self = [super initWith:@"Color Value" info:@"Complex math nonsense" itemId: WIZARD_ITEM_COLOR_VALUE type:WizardItemDataTypeInt];
+    self = [super initWith:@"... Value" info:@"Complex math nonsense" itemId: WIZARD_ITEM_COLOR_VALUE type:WizardItemDataTypeInt];
     if (self) {
         color = colorWizardItem;
         self.count = 81;
