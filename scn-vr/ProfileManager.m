@@ -167,7 +167,7 @@
     }
         
     ProfileConfiguration * pc = [[ProfileConfiguration alloc] init];
-    pc.name = @"New Preset";
+    pc.name = @"New Profile";
     
     pc.identity = minProfileIdentity;
     // The defaults should be SBS Landscape
