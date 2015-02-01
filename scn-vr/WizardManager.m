@@ -223,7 +223,7 @@
         
         switch (item.type) {
             case WizardItemDataTypeInt:
-                [values setValue:[NSNumber numberWithInt:item.valueIndex] forKey:[NSString stringWithFormat:@"%d", item.itemId]];
+                [values setValue:[NSNumber numberWithInt:[item prepValueToSave]] forKey:[NSString stringWithFormat:@"%d", item.itemId]];
                 break;
             case WizardItemDataTypeString:
                 [values setValue:item.valueId forKey:[NSString stringWithFormat:@"%d", item.itemId]];

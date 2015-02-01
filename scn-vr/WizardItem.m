@@ -59,6 +59,10 @@
     
 }
 
+-(int) prepValueToSave {
+    return self.valueIndex;
+}
+
 -(NSString *) stringForIndex:(int) index {
     return @"";
 }

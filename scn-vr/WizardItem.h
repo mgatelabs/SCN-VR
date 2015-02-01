@@ -74,6 +74,8 @@ typedef NS_ENUM(NSInteger, WizardItemNotReadyAction)
 -(NSString *) stringForIndex:(int) index;
 -(void) selectedIndex:(int) index;
 
+-(int) prepValueToSave;
+
 -(void) updateProfileInstance:(ProfileInstance *) instance;
 
 @end
