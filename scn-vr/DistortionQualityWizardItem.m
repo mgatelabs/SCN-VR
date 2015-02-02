@@ -12,7 +12,7 @@
 
 - (instancetype)initWith:(DistortionWizardItem *) distortion
 {
-    self = [super initWith:@"... Quality" info:@"Our distortion effect is handled through a mesh render, not a shader, so a high quality mesh will provide more accurate results, but impact system portformance." itemId:WIZARD_ITEM_DISTORTION_QUALITY type:WizardItemDataTypeInt];
+    self = [super initWith:@"... Quality" info:@"Our distortion effect is handled through a mesh render, not a shader, so a high quality mesh will provide more accurate results, but impact system performance." itemId:WIZARD_ITEM_DISTORTION_QUALITY type:WizardItemDataTypeInt];
     if (self) {
         self.distortion = distortion;
 
