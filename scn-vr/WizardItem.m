@@ -19,6 +19,7 @@
         _count = 0;
         _itemId = itemId;
         _type = type;
+        _sectionIndex = 0;
     }
     return self;
 }

@@ -159,6 +159,7 @@
     for (int i = 0; i < _filteredItems.count; i++) {
         WizardItem * item = [_filteredItems objectAtIndex:i];
         if (item.count > 1) {
+            item.visibleIndex = (int)_visibleItems.count;
             [_visibleItems addObject:item];
         }
     }
@@ -184,6 +185,7 @@
     for (int i = incomingFilteredItemCount; i < _filteredItems.count; i++) {
         WizardItem * item = [_filteredItems objectAtIndex:i];
         if (item.count > 1) {
+            item.visibleIndex = (int)_visibleItems.count;
             [_visibleItems addObject:item];
         }
     }

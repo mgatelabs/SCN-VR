@@ -59,6 +59,9 @@ typedef NS_ENUM(NSInteger, WizardItemNotReadyAction)
 @property (strong, nonatomic) NSString * valueId;
 @property (assign, nonatomic) int valueIndex;
 
+@property (assign, nonatomic) int sectionIndex;
+@property (assign, nonatomic) int visibleIndex;
+
 - (instancetype)initWith:(NSString *) title info:(NSString *) info itemId:(int) itemId type:(WizardItemDataType) type;
 
 -(WizardItemChangeAction) changeAction;
