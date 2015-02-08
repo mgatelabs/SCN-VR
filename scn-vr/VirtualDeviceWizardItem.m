@@ -17,7 +17,7 @@
 
 - (instancetype)initWith:(PhysicalDeviceWizardItem *) deviceWizardItem
 {
-    self = [super initWith:@"Virtual Device" info:@"With a virtual device you can change how content is displayed on the screen.  On tablet devices you can switch between landscape and portrait output with various options." itemId:WIZARD_ITEM_VIRTUAL_DEVICE type:WizardItemDataTypeString];
+    self = [super initWith:@"Window" info:@"With this setting you can change how content is displayed on your device." itemId:WIZARD_ITEM_VIRTUAL_DEVICE type:WizardItemDataTypeString];
     if (self) {
         devices = deviceWizardItem;
         _items = [[NSMutableArray alloc] initWithCapacity:10];

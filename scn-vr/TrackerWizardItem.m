@@ -16,7 +16,7 @@
 
 - (instancetype)init
 {
-    self = [super initWith:@"Head Tracker" info:@"Select how your head motion will be tracked" itemId:WIZARD_ITEM_HEADTRACKER type:WizardItemDataTypeString];
+    self = [super initWith:@"Head Tracker" info:@"Select your preferred head tracker" itemId:WIZARD_ITEM_HEADTRACKER type:WizardItemDataTypeString];
     if (self) {
         tm = [TrackingManager sharedManager];
         // Just one tracker for now, don't care

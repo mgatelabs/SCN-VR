@@ -16,7 +16,7 @@
 
 - (instancetype)init
 {
-    self = [super initWith:@"Device" info:@"The device you are currently using." itemId:WIZARD_ITEM_DEVICE type:WizardItemDataTypeString];
+    self = [super initWith:@"Device" info:@"Please select the device you are currently using. Selecting a incorrect device will distort your perspective." itemId:WIZARD_ITEM_DEVICE type:WizardItemDataTypeString];
     if (self) {
         mdm = [MobileDeviceManager sharedManager];
         self.count = (int)mdm.devices.count;

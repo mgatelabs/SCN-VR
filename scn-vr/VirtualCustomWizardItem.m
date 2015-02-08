@@ -13,7 +13,7 @@
 
 - (instancetype)initWithVirtual:(VirtualDeviceWizardItem *) virtualWizard physical:(PhysicalDeviceWizardItem *) physicalWizard mode:(int) mode
 {
-    self = [super initWith: (mode == 0 ? @"Width (MM)" : @"Height (MM)")  info:(mode == 0 ? @"Virtual device width in MM" : @"Virtual device height in MM") itemId:(mode == 0 ? WIZARD_ITEM_VIRTUAL_DEVICE_WIDTH : WIZARD_ITEM_VIRTUAL_DEVICE_HEIGHT) type:WizardItemDataTypeInt];
+    self = [super initWith: (mode == 0 ? @"Width (MM)" : @"Height (MM)")  info:(mode == 0 ? @"Window width in MM" : @"Window height in MM") itemId:(mode == 0 ? WIZARD_ITEM_VIRTUAL_DEVICE_WIDTH : WIZARD_ITEM_VIRTUAL_DEVICE_HEIGHT) type:WizardItemDataTypeInt];
     if (self) {
         _physicalWizard = physicalWizard;
         _virtualWizard = virtualWizard;

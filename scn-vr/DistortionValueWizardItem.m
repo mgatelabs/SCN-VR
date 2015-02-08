@@ -15,7 +15,7 @@
 
 - (instancetype)initWith:(DistortionWizardItem *) distortionWizardItem second:(BOOL) second
 {
-    self = [super initWith: second ? @"... Value 2" : @"... Value 1" info:@"Complex math nonsense" itemId: second ? WIZARD_ITEM_DISTORTION_VALUE2 : WIZARD_ITEM_DISTORTION_VALUE1 type:WizardItemDataTypeInt];
+    self = [super initWith: second ? @"... Value 2" : @"... Value 1" info:@"Complex math nonsense, just play with each option until you get something positive." itemId: second ? WIZARD_ITEM_DISTORTION_VALUE2 : WIZARD_ITEM_DISTORTION_VALUE1 type:WizardItemDataTypeInt];
     if (self) {
         isSecond = second;
         distortion = distortionWizardItem;
