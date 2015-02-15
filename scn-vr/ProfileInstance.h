@@ -69,5 +69,6 @@
 @property (strong, nonatomic) NSMutableDictionary * extended;
 
 -(int) getExtendedValueFor:(NSString *) key withDefaultInt:(int) value;
+-(NSString *) getExtendedValueFor:(NSString *) key withDefaultNSString:(NSString *) value;
 
 @end

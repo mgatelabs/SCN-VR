@@ -64,13 +64,12 @@
     [tempList addObject:tempConfig];
     
     // iPhone6Plus           1080×1920 401 ppi
-    MobileDeviceConfiguration * iphone6p = [MobileDeviceManager createDevice:@"iPhone 6+" identifier:@"iphone6plus" widthPx:2208 heightPx:1242 dpi:401 tablet:NO];
+    MobileDeviceConfiguration * iphone6p = [MobileDeviceManager createDevice:@"iPhone 6+" identifier:@"iphone6plus" widthPx:1920 heightPx:1080 dpi:401 tablet:NO];
     iphone6p.virtualName = @"5.5\"";
     [tempList addObject: iphone6p];
-    #if !(TARGET_IPHONE_SIMULATOR)
-    iphone6p.physicalWidthPx = 1920;
-    iphone6p.physicalHeightPx = 1080;
-    iphone6p.dpi = 326;
+    #if (TARGET_IPHONE_SIMULATOR)
+    iphone6p.physicalWidthPx = 2208;
+    iphone6p.physicalHeightPx = 1242;
     #endif
     
     //iPad2                 1024x768  132 ppi

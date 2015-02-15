@@ -27,6 +27,14 @@
     return [current intValue];
 }
 
+-(NSString *) getExtendedValueFor:(NSString *) key withDefaultNSString:(NSString *) value {
+    NSString * current = [_extended valueForKey:key];
+    if (current == nil) {
+        return value;
+    }
+    return current;
+}
+
 - (void)dealloc
 {
     _extended = nil;

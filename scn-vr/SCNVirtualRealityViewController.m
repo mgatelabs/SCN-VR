@@ -34,8 +34,6 @@
     
     self.profile.tracker.landscape = self.profile.landscapeView;
     
-    //[_pair.mobile ready];
-    
     _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
     [EAGLContext setCurrentContext:_context];
@@ -45,8 +43,11 @@
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     // Use the native resolution
     _nativeScale = [UIScreen mainScreen].nativeScale;
-    [view setContentScaleFactor: _nativeScale];
+    view.contentScaleFactor = _nativeScale;
     self.view.layer.contentsScale = _nativeScale;
+    
+    
+    //NSLog(@"%2.2f %2.2f %2.2f %2.2f", view.bounds.size.width * _nativeScale, view.bounds.size.height * _nativeScale, view.bounds.origin.x, view.bounds.origin.y);
     
     [self setPreferredFramesPerSecond:60];
     
