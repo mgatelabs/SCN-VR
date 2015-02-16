@@ -76,6 +76,7 @@
     
     instance.physicalWidthPX = device.widthPx;
     instance.physicalHeightPX = device.heightPx;
+    instance.forcedScale = device.forcedScale;
     
     if (!device.custom) {
         instance.physicalWidthIN = device.widthIN;

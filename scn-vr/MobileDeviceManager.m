@@ -31,11 +31,11 @@
         UIScreen * screen = [UIScreen mainScreen];
         
         // Use this to trim bad devices
-        int width = screen.bounds.size.width * screen.scale;
-        int height = screen.bounds.size.height * screen.scale;
+        int width = screen.bounds.size.width * screen.nativeScale;
+        int height = screen.bounds.size.height * screen.nativeScale;
         
         // Get ride of devices that don't match our current screen setup
-        [self trimDevicesForCurrentDeviceWidth:width heightPx:height tablet:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)];
+        [self trimDevicesForCurrentDeviceWidth:width heightPx:height widthPoint:screen.bounds.size.width heightPoint:screen.bounds.size.height nativeScale:screen.nativeScale tablet:(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)];
     }
     return self;
 }
@@ -48,6 +48,10 @@
     
     // iPhone4S              640×960   326 ppi
     tempConfig = [MobileDeviceManager createDevice:@"iPhone 4S" identifier:@"iphone4s" widthPx:960 heightPx:640 dpi:326 tablet:NO];
+    tempConfig.widthPoint = 480;
+    tempConfig.heightPoint = 320;
+    tempConfig.minNativeScale = 1.99;
+    tempConfig.maxNativeScale = 2.01;
     tempConfig.virtualName = @"3.5\"";
     [tempList addObject:tempConfig];
     
@@ -55,36 +59,78 @@
     // iPhone5C              640×1136  326 ppi
     // iPhone5S              640×1136  326 ppi
     tempConfig = [MobileDeviceManager createDevice:@"iPhone 5" identifier:@"iphone5" widthPx:1136 heightPx:640 dpi:326 tablet:NO];
+    tempConfig.widthPoint = 568;
+    tempConfig.heightPoint = 320;
+    tempConfig.minNativeScale = 1.99;
+    tempConfig.maxNativeScale = 2.01;
     tempConfig.virtualName = @"4\"";
+    [tempList addObject:tempConfig];
+    
+    // iPhone6               750×1334  326 ppi
+    tempConfig = [MobileDeviceManager createDevice:@"iPhone 6 (Zoomed)" identifier:@"iphone6zoomed" widthPx:1334 heightPx:750 dpi:326 tablet:NO];
+    tempConfig.virtualName = @"4.7\"";
+    tempConfig.widthPoint = 568;
+    tempConfig.heightPoint = 320;
+    tempConfig.minNativeScale = 2.01; // It will be bigger then 2
+    tempConfig.maxNativeScale = 3.01;
+    tempConfig.forcedScale = 2.0f;
+    tempConfig.zoomed = YES;
     [tempList addObject:tempConfig];
     
     // iPhone6               750×1334  326 ppi
     tempConfig = [MobileDeviceManager createDevice:@"iPhone 6" identifier:@"iphone6" widthPx:1334 heightPx:750 dpi:326 tablet:NO];
     tempConfig.virtualName = @"4.7\"";
+    tempConfig.widthPoint = 667;
+    tempConfig.heightPoint = 375;
+    tempConfig.minNativeScale = 1.99;
+    tempConfig.maxNativeScale = 2.01;
     [tempList addObject:tempConfig];
     
     // iPhone6Plus           1080×1920 401 ppi
-    MobileDeviceConfiguration * iphone6p = [MobileDeviceManager createDevice:@"iPhone 6+" identifier:@"iphone6plus" widthPx:1920 heightPx:1080 dpi:401 tablet:NO];
-    iphone6p.virtualName = @"5.5\"";
-    [tempList addObject: iphone6p];
+    tempConfig = [MobileDeviceManager createDevice:@"iPhone 6+ (Zoomed)" identifier:@"iphone6pluszoomed" widthPx:1920 heightPx:1080 dpi:401 tablet:NO];
+    tempConfig.virtualName = @"5.5\"";
+    tempConfig.widthPoint = 667;
+    tempConfig.heightPoint = 375;
+    tempConfig.minNativeScale = 2.8f; // 2.88
+    tempConfig.maxNativeScale = 2.9f;
+    tempConfig.forcedScale = 2.608696f;
+    tempConfig.zoomed = YES;
+    [tempList addObject: tempConfig];
+    
+    
+    // iPhone6Plus           1080×1920 401 ppi
+    tempConfig = [MobileDeviceManager createDevice:@"iPhone 6+" identifier:@"iphone6plus" widthPx:1920 heightPx:1080 dpi:401 tablet:NO];
+    tempConfig.virtualName = @"5.5\"";
+    [tempList addObject: tempConfig];
+    tempConfig.widthPoint = 736;
+    tempConfig.heightPoint = 414;
+    tempConfig.minNativeScale = 2.5; // 2.608
+    tempConfig.maxNativeScale = 2.7;
     #if (TARGET_IPHONE_SIMULATOR)
-    iphone6p.physicalWidthPx = 2208;
-    iphone6p.physicalHeightPx = 1242;
+    tempConfig.physicalWidthPx = 2208;
+    tempConfig.physicalHeightPx = 1242;
+    tempConfig.minNativeScale = 2.9;
+    tempConfig.maxNativeScale = 3.1;
+    tempConfig.forcedScale = 3.0f;
     #endif
     
     //iPad2                 1024x768  132 ppi
-    [tempList addObject:[MobileDeviceManager createDevice:@"iPad 9.7\"" identifier:@"ipad2" widthPx:1024 heightPx:768 dpi:132 tablet:YES]];
+    tempConfig = [MobileDeviceManager createDevice:@"iPad 9.7\"" identifier:@"ipad2" widthPx:1024 heightPx:768 dpi:132 tablet:YES];
+    [tempList addObject:tempConfig];
     
     //iPad (3gen)           2048x1536 264 ppi
     //iPad (4gen)           2048x1536 264 ppi
     //iPad Air              2048x1536 264 ppi
-    [tempList addObject:[MobileDeviceManager createDevice:@"iPad 9.7\" (Retina)" identifier:@"ipad" widthPx:2048 heightPx:1536 dpi:264 tablet:YES]];
+    tempConfig = [MobileDeviceManager createDevice:@"iPad 9.7\" (Retina)" identifier:@"ipad" widthPx:2048 heightPx:1536 dpi:264 tablet:YES];
+    [tempList addObject:tempConfig];
     
     //iPad mini             1024x768  163 ppi
-    [tempList addObject:[MobileDeviceManager createDevice:@"iPad 7.9\"" identifier:@"ipadmini" widthPx:1024 heightPx:768 dpi:163 tablet:YES]];
+    tempConfig = [MobileDeviceManager createDevice:@"iPad 7.9\"" identifier:@"ipadmini" widthPx:1024 heightPx:768 dpi:163 tablet:YES];
+    [tempList addObject: tempConfig];
     
     //iPad mini (retina)    2048x1536 326 ppi
-    [tempList addObject:[MobileDeviceManager createDevice:@"iPad 7.9\" (Retina)" identifier:@"ipadmini2" widthPx:2048 heightPx:1536 dpi:326 tablet:YES]];
+    tempConfig = [MobileDeviceManager createDevice:@"iPad 7.9\" (Retina)" identifier:@"ipadmini2" widthPx:2048 heightPx:1536 dpi:326 tablet:YES];
+    [tempList addObject: tempConfig];
     
     for (int i = 0; i < tempList.count; i++) {
         MobileDeviceConfiguration * c = [tempList objectAtIndex:i];
@@ -95,24 +141,52 @@
     return tempList;
 }
 
--(void) trimDevicesForCurrentDeviceWidth:(int) widthPx heightPx:(int) heightPx tablet:(BOOL) tablet {
+-(void) trimDevicesForCurrentDeviceWidth:(int) widthPx heightPx:(int) heightPx widthPoint:(int) widthPoint heightPoint:(int) heightPoint nativeScale:(float) nativeScale tablet:(BOOL) tablet {
     
     if (widthPx < heightPx) {
         int temp =widthPx;
         widthPx = heightPx;
         heightPx = temp;
+        temp = widthPoint;
+        widthPoint = heightPoint;
+        heightPoint = temp;
     }
     
     for (int i = (int)_devices.count - 1; i >= 0; i--) {
+        
+        BOOL removeDevice = NO;
+        
         MobileDeviceConfiguration * test = [_devices objectAtIndex:i];
         // Different screen sizes or types will lead to it being discarded
         if (test.tablet != tablet) {
-            [_devices removeObjectAtIndex:i];
-        } else if (test.widthPx == widthPx && test.heightPx == heightPx) {
-            
-        } else if (test.widthPx == heightPx && test.heightPx == widthPx) {
-            
+            removeDevice = YES;
         } else {
+            
+            if (test.tablet) {
+                if (test.widthPx == widthPx && test.heightPx == heightPx) {
+                    continue;
+                } else if (test.widthPx == heightPx && test.heightPx == widthPx) {
+                    continue;
+                } else {
+                    removeDevice = YES;
+                }
+            } else {
+                if (nativeScale >= test.minNativeScale && nativeScale <= test.maxNativeScale) {
+                    
+                    if (test.widthPoint == widthPoint && test.heightPoint == heightPoint) {
+                        continue;
+                    } else if (test.widthPoint == heightPoint && test.heightPoint == widthPoint) {
+                        continue;
+                    } else {
+                        removeDevice = YES;
+                    }
+                    
+                } else {
+                    removeDevice = YES;
+                }
+            }
+        }
+        if (removeDevice) {
             [_devices removeObjectAtIndex:i];
         }
     }
@@ -121,6 +195,7 @@
     if (_devices.count == 0) {
         
         MobileDeviceConfiguration * tempDevice = [[MobileDeviceConfiguration alloc] initAsCustom:@"Custom" identifier:@"custom" widthPx:widthPx heightPx:heightPx tablet:tablet];
+        tempDevice.forcedScale = nativeScale;
         
         [_devices addObject:tempDevice];
     }

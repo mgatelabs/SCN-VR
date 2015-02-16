@@ -33,6 +33,11 @@
     
     for (int i = 0; i < tempDevices.count; i++) {
         MobileDeviceConfiguration * c = [tempDevices objectAtIndex:i];
+        
+        if (c.zoomed) {
+            continue;
+        }
+        
         if (!c.tablet) {
             [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscapeVirtual name:[@"Landscape " stringByAppendingString:c.virtualName] key:[@"vl_" stringByAppendingString:c.identifier] device:c]];
             

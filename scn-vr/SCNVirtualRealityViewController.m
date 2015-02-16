@@ -41,8 +41,12 @@
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-    // Use the native resolution
-    _nativeScale = [UIScreen mainScreen].nativeScale;
+    // Use the native resolution, which can be forced in certain situations
+    if (self.profile.forcedScale <= 0) {
+        _nativeScale = [UIScreen mainScreen].nativeScale;
+    } else {
+        _nativeScale = self.profile.forcedScale;
+    }
     view.contentScaleFactor = _nativeScale;
     self.view.layer.contentsScale = _nativeScale;
     

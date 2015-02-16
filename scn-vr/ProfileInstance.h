@@ -31,6 +31,8 @@
 
 @property (assign, nonatomic) int physicalDPI;
 
+@property (assign, nonatomic) float forcedScale;
+
 // Virtual Info
 @property (assign, nonatomic) int virtualWidthPX;
 @property (assign, nonatomic) float virtualWidthIN;

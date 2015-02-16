@@ -23,6 +23,8 @@
         
         self.physicalWidthPx = widthPx;
         self.physicalHeightPx = heightPx;
+        self.zoomed = NO;
+        self.forcedScale = -1;
         
         self.dpi = dpi;
         self.physicalDpi = dpi;

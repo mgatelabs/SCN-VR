@@ -18,6 +18,13 @@
 @property (assign, nonatomic) BOOL internal;
 @property (assign, nonatomic) BOOL custom;
 
+@property (assign) int widthPoint;
+@property (assign) int heightPoint;
+@property (assign) float minNativeScale;
+@property (assign) float maxNativeScale;
+@property (assign) float forcedScale;
+@property (assign) BOOL zoomed;
+
 @property (assign) int widthPx;
 @property (assign) int heightPx;
 
