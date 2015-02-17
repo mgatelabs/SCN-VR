@@ -46,6 +46,15 @@
     
     CMQuaternion currentAttitude_noQ = self.motionManager.deviceMotion.attitude.quaternion;
     
+    if (useMagnet) {
+        // Just grab the value
+        float x = self.motionManager.deviceMotion.magneticField.field.x;
+        x += self.motionManager.deviceMotion.magneticField.field.y;
+        x += self.motionManager.deviceMotion.magneticField.field.z;
+        x += self.motionManager.deviceMotion.magneticField.accuracy;
+        x = x + 0;
+    }
+    
     GLKQuaternion baseRotation = GLKQuaternionMake(currentAttitude_noQ.x, currentAttitude_noQ.y, currentAttitude_noQ.z, currentAttitude_noQ.w);
     if (self.landscape) {
         self.orientation = GLKQuaternionMultiply(baseRotation, landscapeRotationFix);
