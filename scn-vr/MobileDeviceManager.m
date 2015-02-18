@@ -107,8 +107,10 @@
     tempConfig.minNativeScale = 2.5; // 2.608
     tempConfig.maxNativeScale = 2.7;
     #if (TARGET_IPHONE_SIMULATOR)
-    tempConfig.physicalWidthPx = 2208;
-    tempConfig.physicalHeightPx = 1242;
+    tempConfig.widthPx = 2208;
+    tempConfig.heightPx = 1242;
+    //tempConfig.physicalWidthPx = 2208;
+    //tempConfig.physicalHeightPx = 1242;
     tempConfig.minNativeScale = 2.9;
     tempConfig.maxNativeScale = 3.1;
     tempConfig.forcedScale = 3.0f;
