@@ -13,7 +13,7 @@
 
 - (instancetype)initWith:(PhysicalDeviceWizardItem*) physicalWizard
 {
-    self = [super initWith:@"Physical DPI" info:@"You have a device which is completly unknown to the SCN-VR.  Please select your device's physical DPI value and we can guess everything else." itemId:WIZARD_ITEM_DEVICE_DPI type:WizardItemDataTypeInt];
+    self = [super initWith:@"Physical DPI" info:@"You have a device which is completely unknown to the SCN-VR.  Please select your device's physical DPI value and we can attempt to guess everything else." itemId:WIZARD_ITEM_DEVICE_DPI type:WizardItemDataTypeInt];
     if (self) {
         _physicalWizard = physicalWizard;
         self.count = 0;

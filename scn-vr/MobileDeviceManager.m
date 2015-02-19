@@ -66,14 +66,15 @@
     tempConfig.virtualName = @"4\"";
     [tempList addObject:tempConfig];
     
-    // iPhone6               750×1334  326 ppi
-    tempConfig = [MobileDeviceManager createDevice:@"iPhone 6 (Zoomed)" identifier:@"iphone6zoomed" widthPx:1334 heightPx:750 dpi:326 tablet:NO];
+    ////////////////////////
+    
+    // iPhone6 (Zoomed)       750×1334  326 ppi
+    tempConfig = [MobileDeviceManager createDevice:@"iPhone 6 (Zoomed)" identifier:@"iphone6zoomed" widthPx:1331 heightPx:750 dpi:326 tablet:NO];
     tempConfig.virtualName = @"4.7\"";
     tempConfig.widthPoint = 568;
     tempConfig.heightPoint = 320;
-    tempConfig.minNativeScale = 2.01; // It will be bigger then 2
-    tempConfig.maxNativeScale = 3.01;
-    tempConfig.forcedScale = 2.0f;
+    tempConfig.minNativeScale = 2.21; // It will be bigger then 2
+    tempConfig.maxNativeScale = 2.41;
     tempConfig.zoomed = YES;
     [tempList addObject:tempConfig];
     
@@ -86,14 +87,15 @@
     tempConfig.maxNativeScale = 2.01;
     [tempList addObject:tempConfig];
     
+    ////////////////////////
+    
     // iPhone6Plus           1080×1920 401 ppi
     tempConfig = [MobileDeviceManager createDevice:@"iPhone 6+ (Zoomed)" identifier:@"iphone6pluszoomed" widthPx:1920 heightPx:1080 dpi:401 tablet:NO];
     tempConfig.virtualName = @"5.5\"";
     tempConfig.widthPoint = 667;
     tempConfig.heightPoint = 375;
-    tempConfig.minNativeScale = 2.8f; // 2.88
-    tempConfig.maxNativeScale = 2.9f;
-    tempConfig.forcedScale = 2.608696f;
+    tempConfig.minNativeScale = 2.75f; // 2.88
+    tempConfig.maxNativeScale = 2.91f;
     tempConfig.zoomed = YES;
     [tempList addObject: tempConfig];
     

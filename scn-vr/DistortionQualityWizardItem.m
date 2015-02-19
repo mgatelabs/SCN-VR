@@ -59,7 +59,7 @@
         case 4:
             return @"High 18x18";
         case 5:
-            return @"Higest 20x20";
+            return @"Highest 20x20";
         default:
             return @"Unknown";
     }

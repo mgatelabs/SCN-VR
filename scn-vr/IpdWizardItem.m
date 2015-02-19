@@ -15,7 +15,7 @@
 
 - (instancetype)initWith:(HmdWizardItem *) hmdWizardItem
 {
-    self = [super initWith:@"IPD" info:@"IPD refers to the distance between your eyes." itemId:WIZARD_ITEM_IPD type:WizardItemDataTypeString];
+    self = [super initWith:@"IPD" info:@"IPD refers to the distance between your eyes.  Center will keep each eye centered.  Default will move the eyes to match the default setting, parts of the eye may go off screen.  Custom allows you to specify your own IPD value." itemId:WIZARD_ITEM_IPD type:WizardItemDataTypeString];
     if (self) {
         hmds = hmdWizardItem;
         selectedHmdValueId = hmds.valueId;
