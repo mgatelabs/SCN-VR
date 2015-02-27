@@ -8,11 +8,12 @@ I would not use this quite yet, the demos have not been uploaded yet.
 Setting Up
 ======
 
-1. Create Workspace
+1. Create a new Workspace
 2. Create a new project
 3. Add GLKit & SceneKit libraries to your project
 4. Add SCN-VR library to your workspace
 5. Link your project to SCN-VR
+6. Setup user header search paths
 
 Useful Classes
 ======
