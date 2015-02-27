@@ -3,6 +3,8 @@ SCN-VR
 
 This is a iOS 8.x static library for rendering VR content with SceneKit.
 
+I would not use this quite yet, the demos have not been uploaded yet.
+
 Setting Up
 ======
 
