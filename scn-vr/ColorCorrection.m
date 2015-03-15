@@ -132,7 +132,7 @@ GLint uniforms[5];
     
     float ratio = (pair.viewerIPD * 0.5f) / pair.virtualWidthMM;
     
-    glUniform2f(uniforms[UNIFORM_CENTER], .5f+(leftEye ? -ratio:ratio),0.5f);
+    glUniform2f(uniforms[UNIFORM_CENTER], 0.5f+(leftEye ? -ratio:ratio),0.5f);
     
     //if (leftEye) {
         glActiveTexture(GL_TEXTURE0);
