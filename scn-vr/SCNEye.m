@@ -33,9 +33,9 @@
             if (_dest.side == EyeTextureSideLeft) {
                 eyeDistance *= -1;
             }
-        
+            _eyeDistance = eyeDistance;
             // Move eye into place
-            self.transform = SCNMatrix4MakeTranslation(eyeDistance, 0.0, 0.0);
+            self.transform = SCNMatrix4MakeTranslation(_eyeDistance, 0.0, 0.0);
         }
         
         self.hidden = NO;
@@ -72,6 +72,15 @@
     }
  
     return self;
+}
+
+-(void) zeroIPD {
+    self.transform = SCNMatrix4Identity;
+}
+
+-(void) resetIPD {
+    // Move eye into place
+    self.transform = SCNMatrix4MakeTranslation(_eyeDistance, 0.0, 0.0);
 }
 
 - (void)dealloc

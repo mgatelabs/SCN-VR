@@ -25,7 +25,11 @@
 @interface SCNEye : SCNNode
 
 @property (weak, nonatomic, readonly) EyeTexture * dest;
+@property (assign, nonatomic, readonly) float eyeDistance;
 
 - (instancetype)initAs:(EyeTexture *) dest pair:(ProfileInstance *) pair scene:(SCNScene *) scene context:(EAGLContext *) context;
+
+-(void) zeroIPD;
+-(void) resetIPD;
 
 @end

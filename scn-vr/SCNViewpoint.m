@@ -61,6 +61,26 @@
     return self;
 }
 
+-(void) zeroIPD {
+    if (_leftEye != nil) {
+        [_leftEye zeroIPD];
+    }
+    
+    if (_rightEye != nil) {
+        [_rightEye zeroIPD];
+    }
+}
+
+-(void) resetIPD {
+    if (_leftEye != nil) {
+        [_leftEye resetIPD];
+    }
+    
+    if (_rightEye != nil) {
+        [_rightEye resetIPD];
+    }
+}
+
 - (void)dealloc
 {
     _leftEyeSource = nil;
