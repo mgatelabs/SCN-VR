@@ -28,7 +28,7 @@
 
 - (instancetype)init
 {
-    self = [super initWith:@"HMD" info:@"Please let us know what Head Mounted Device, HMD, you are currently using.  If you don't have a HMD, select one of the 'NONE' options.  'None (MONO)' is designed for children under 7." itemId:WIZARD_ITEM_HMD type:WizardItemDataTypeString];
+    self = [super initWith:@"Head Mounted Display (HMD)" info:@"Please let us know what Head Mounted Device, HMD, you are currently using.  If you don't have a HMD, select one of the 'NONE' options.  'None (MONO)' is designed for children under 7." itemId:WIZARD_ITEM_HMD type:WizardItemDataTypeString];
     if (self) {
         
         hmds = [HmdDeviceManager getHMDs];

@@ -26,7 +26,7 @@
 
 - (instancetype)initWith:(HmdWizardItem *) hmdWizardItem
 {
-    self = [super initWith:@"FOV" info:@"The field of view is how wide and high you can see." itemId:WIZARD_ITEM_FOV type:WizardItemDataTypeString];
+    self = [super initWith:@"Field Of View (FOV)" info:@"The field of view is how wide and high you can see." itemId:WIZARD_ITEM_FOV type:WizardItemDataTypeString];
     if (self) {
         hmds = hmdWizardItem;
         self.count = 2;

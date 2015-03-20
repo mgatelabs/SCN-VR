@@ -27,7 +27,7 @@
 
 - (instancetype)initWith:(FovWizardItem *) fovWizardItem second:(BOOL) secondItem
 {
-    self = [super initWith:secondItem ? @"H FOV" : @"V FOV" info:@"Custom field of view setting." itemId: secondItem ? WIZARD_ITEM_FOV_V : WIZARD_ITEM_FOV_H type:WizardItemDataTypeInt];
+    self = [super initWith:secondItem ? @"Horizontal FOV" : @"Vertical FOV" info:@"Custom field of view setting." itemId: secondItem ? WIZARD_ITEM_FOV_V : WIZARD_ITEM_FOV_H type:WizardItemDataTypeInt];
     if (self) {
         second = secondItem;
         fovs = fovWizardItem;
