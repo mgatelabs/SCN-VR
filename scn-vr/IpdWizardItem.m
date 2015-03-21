@@ -105,20 +105,10 @@
 -(void) loadForIdentity:(NSString *) identity {
     
     if (self.count == 1) {
-        self.valueIndex = 0;
-        self.valueId = [self stringForIndex:0];
+        [self selectedIndex: 0];
     } else {
-        for (int i = 0; i < self.count; i++) {
-            NSString * temp = [self stringForIndex:i];
-            if ([temp isEqualToString:identity]) {
-                self.valueIndex = i;
-                self.valueId = temp;
-                return;
-            }
-        }
-        
-        self.valueIndex = 0;
-        self.valueId = [self stringForIndex:0];
+        self.valueIndex = [self indexForString:identity];
+        self.valueId = identity;
     }
 }
 
@@ -142,6 +132,20 @@
             break;
         default:
             self.valueId =  @"Unknown";
+    }
+}
+
+-(int) indexForString:(NSString *) source {
+    if ([source isEqualToString:@"Default"]) {
+        return 1;
+    } else if ([source isEqualToString:@"Custom"]) {
+        return 2;
+    } else if ([source isEqualToString:@"Adult"]) {
+        return 3;
+    } else if ([source isEqualToString:@"Child"]) {
+        return 4;
+    } else {
+        return 0;
     }
 }
 
