@@ -34,6 +34,7 @@
 #import "DistortionValueWizardItem.h"
 #import "DistortionQualityWizardItem.h"
 #import "PhysicalDpiWizardItem.h"
+#import "SamplingWizardItem.h"
 
 @implementation WizardManager
 
@@ -115,6 +116,10 @@
         
         DistortionQualityWizardItem * distortionQuality = [[DistortionQualityWizardItem alloc] initWith:distortion];
         [_baseItems addObject:distortionQuality];
+        
+        // Super Sampling
+        SamplingWizardItem * samples = [[SamplingWizardItem alloc] initWith:hmds];
+        [_baseItems addObject:samples];
         
         [self filter];
     }

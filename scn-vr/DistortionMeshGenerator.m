@@ -90,7 +90,6 @@
     for (y=0; y<=_lines; y++) {
         for(x=0; x<=_columns; x++){
             int index = y*(_lines+1)+x;
-            //Vector2 vertex = new Vector2();
             
             float rSqr = powf (center.x-((float)x/(float)_columns),2) + powf (center.y-((float)y/(float)_lines),2);
             float rMod = 1+k1*rSqr+k2*rSqr*rSqr;
@@ -132,7 +131,6 @@
         points[i].x *=scaleFactor;
         points[i].x += calculatedOffsetX;
         points[i].y *=scaleFactor;
-        //points[i].z *=scaleFactor;
     }
     
     

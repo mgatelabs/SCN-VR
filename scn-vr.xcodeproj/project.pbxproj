@@ -85,6 +85,7 @@
 		AC83FBCB1A68D79C00B1727F /* VirtualDeviceWizardItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC83FBC81A68D03B00B1727F /* VirtualDeviceWizardItem.h */; };
 		ACD2E83F1A6E15C60069C361 /* VirtualCustomWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD2E83E1A6E15C60069C361 /* VirtualCustomWizardItem.m */; };
 		ACD2E8421A6E21270069C361 /* PhysicalDpiWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD2E8411A6E21270069C361 /* PhysicalDpiWizardItem.m */; };
+		ACE4C32D1AD0FD2A00AB4042 /* SamplingWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE4C32C1AD0FD2A00AB4042 /* SamplingWizardItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -234,6 +235,8 @@
 		ACD2E83E1A6E15C60069C361 /* VirtualCustomWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualCustomWizardItem.m; sourceTree = "<group>"; };
 		ACD2E8401A6E21270069C361 /* PhysicalDpiWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalDpiWizardItem.h; sourceTree = "<group>"; };
 		ACD2E8411A6E21270069C361 /* PhysicalDpiWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicalDpiWizardItem.m; sourceTree = "<group>"; };
+		ACE4C32B1AD0FD2A00AB4042 /* SamplingWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SamplingWizardItem.h; sourceTree = "<group>"; };
+		ACE4C32C1AD0FD2A00AB4042 /* SamplingWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplingWizardItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -467,6 +470,14 @@
 				AC83FBB91A68C6FD00B1727F /* WizardManager.m */,
 				AC83FBBC1A68C80200B1727F /* WizardItem.h */,
 				AC83FBBD1A68C80200B1727F /* WizardItem.m */,
+				ACE4C32A1AD0FCFE00AB4042 /* Items */,
+			);
+			name = Wizard;
+			sourceTree = "<group>";
+		};
+		ACE4C32A1AD0FCFE00AB4042 /* Items */ = {
+			isa = PBXGroup;
+			children = (
 				AC83FBBF1A68CB7800B1727F /* TrackerWizardItem.h */,
 				AC83FBC01A68CB7800B1727F /* TrackerWizardItem.m */,
 				AC83FBC41A68CDCE00B1727F /* PhysicalDeviceWizardItem.h */,
@@ -497,8 +508,10 @@
 				AC3EA56D1A6A2BA800E3D31A /* DistortionValueWizardItem.m */,
 				AC40FAC81A77541200FD6151 /* DistortionQualityWizardItem.h */,
 				AC40FAC91A77541200FD6151 /* DistortionQualityWizardItem.m */,
+				ACE4C32B1AD0FD2A00AB4042 /* SamplingWizardItem.h */,
+				ACE4C32C1AD0FD2A00AB4042 /* SamplingWizardItem.m */,
 			);
-			name = Wizard;
+			name = Items;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -623,6 +636,7 @@
 				AC3E0FB31A49374600AFE6AA /* VBOWrap.m in Sources */,
 				AC3E0FAC1A49374600AFE6AA /* RenderTexture.m in Sources */,
 				AC3E0FB01A49374600AFE6AA /* SCNVirtualRealityViewController.m in Sources */,
+				ACE4C32D1AD0FD2A00AB4042 /* SamplingWizardItem.m in Sources */,
 				AC4FF97B1A5B903F006B7B04 /* VirtualDeviceManager.m in Sources */,
 				AC27437D1A6F616800CEC7AD /* FovItemWizardItem.m in Sources */,
 				AC3E0FA71A49374600AFE6AA /* MobileDeviceConfiguration.m in Sources */,

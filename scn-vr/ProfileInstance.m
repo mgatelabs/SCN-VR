@@ -27,6 +27,7 @@
     self = [super init];
     if (self) {
         _extended = [[NSMutableDictionary alloc] initWithCapacity:10];
+        _ssMode = ProfileInstanceSS1X;
     }
     return self;
 }

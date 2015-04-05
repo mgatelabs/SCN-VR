@@ -22,6 +22,14 @@
 #import "TrackerBase.h"
 #import "RenderBase.h"
 
+typedef NS_ENUM(NSInteger, ProfileInstanceSS)
+{
+    ProfileInstanceSS1X = 0,
+    ProfileInstanceSS125X = 1,
+    ProfileInstanceSS15X = 2,
+    ProfileInstanceSS2X = 3
+};
+
 @class RenderBase;
 
 @interface ProfileInstance : NSObject
@@ -64,6 +72,9 @@
 
 @property (assign, nonatomic) int hFov;
 @property (assign, nonatomic) int vFov;
+
+// Super Sampling
+@property (assign, nonatomic) ProfileInstanceSS ssMode;
 
 // IPD
 @property (assign, nonatomic) float cameraIPD;

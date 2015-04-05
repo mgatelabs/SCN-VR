@@ -124,7 +124,7 @@ GLint uniforms[5];
     
     glUseProgram(_program);
     
-    glUniform2f(uniforms[UNIFORM_SHIFT], leftEye ? 0.0f : 0.5f, 0);
+    glUniform2f(uniforms[UNIFORM_SHIFT], leftEye ? 0.0f : 0.5f, 0.0f);
     
     glUniform1f(uniforms[UNIFORM_ABERRATIONOFFSET], pair.colorCorrection ? pair.colorCorrectionValue : 0.0f);
     

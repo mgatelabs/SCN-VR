@@ -19,6 +19,7 @@
  ************************************************************************/
 
 #import "SBSRenderInstance.h"
+#import <GLKit/GLKit.h>
 
 @implementation SBSRenderInstance
 
@@ -32,10 +33,17 @@
 }
 
 -(RenderTexture *) generateRenderTexture:(ProfileInstance *) pair {
-    
-    //return [[RenderTexture alloc] initAsDefined:pair.mobile.widthPx / 2 height:pair.mobile.heightPx];
-    
-    return [[RenderTexture alloc] initAsDefined:2048 height:1024];
+    switch (pair.ssMode) {
+        case ProfileInstanceSS2X:
+            return [[RenderTexture alloc] initAsDefined:4096 height:2048];
+        case ProfileInstanceSS125X:
+            return [[RenderTexture alloc] initAsDefined:2048 + 512 height:1024 + 256];
+        case ProfileInstanceSS15X:
+            return [[RenderTexture alloc] initAsDefined:2048 + 1024 height:1024 + 512];
+        case ProfileInstanceSS1X:
+        default:
+            return [[RenderTexture alloc] initAsDefined:2048 height:1024];
+    }
 }
 
 @end

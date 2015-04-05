@@ -53,12 +53,7 @@
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
-    // Use the native resolution, which can be forced in certain situations
-    //if (self.profile.forcedScale <= 0) {
-        _nativeScale = [UIScreen mainScreen].nativeScale;
-    //} else {
-    //    _nativeScale = self.profile.forcedScale;
-    //}
+    _nativeScale = [UIScreen mainScreen].nativeScale;
     view.contentScaleFactor = _nativeScale;
     self.view.layer.contentsScale = _nativeScale;
     
@@ -116,6 +111,18 @@
                 
             } else {
                 // Where inbetween work is done
+                
+                GLint maxTextureSize;
+                glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxTextureSize);
+                
+                if (self.profile.ssMode == ProfileInstanceSS2X && maxTextureSize < 4096) {
+                    self.profile.ssMode = ProfileInstanceSS1X;
+                } else if (self.profile.ssMode == ProfileInstanceSS15X && maxTextureSize < 2048 + 1024) {
+                    self.profile.ssMode = ProfileInstanceSS1X;
+                } else if (self.profile.ssMode == ProfileInstanceSS125X && maxTextureSize < 2048 + 512) {
+                    self.profile.ssMode = ProfileInstanceSS1X;
+                }
+                
                 _leftSourceTexture = [_profile.renderer generateRenderTexture:self.profile];
                 _rightSourceTexture = _leftSourceTexture;
                 
@@ -147,13 +154,11 @@
     _leftRenderer = [SCNRenderer rendererWithContext:(__bridge void *)(_context) options:nil];
     _leftRenderer.showsStatistics = NO;
     _leftRenderer.scene = _scene;
-    //_leftRenderer.pointOfView = self;
     _leftRenderer.playing = YES;
     
     _rightRenderer = [SCNRenderer rendererWithContext:(__bridge void *)(_context) options:nil];
     _rightRenderer.showsStatistics = NO;
     _rightRenderer.scene = _scene;
-    //_leftRenderer.pointOfView = self;
     _rightRenderer.playing = YES;
     
     [self afterGenerateScene];
@@ -376,8 +381,6 @@
                     [_leftEyeMesh draw];
         
                     [self checkGlErrorStatus];
-                    
-                    
                     
                     glDisableVertexAttribArray(GLKVertexAttribPosition);
                     glDisableVertexAttribArray(GLKVertexAttribTexCoord0);

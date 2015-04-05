@@ -32,4 +32,6 @@
 -(void) zeroIPD;
 -(void) resetIPD;
 
+-(void) ortho:(BOOL) value;
+
 @end

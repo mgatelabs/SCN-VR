@@ -43,6 +43,8 @@
 
 #define WIZARD_ITEM_DISTORTION_QUALITY 18
 
+#define WIZARD_ITEM_SUPER_SAMPLING 19
+
 typedef NS_ENUM(NSInteger, WizardItemChangeAction)
 {
     WizardItemChangeActionNone = 0,

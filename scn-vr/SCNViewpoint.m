@@ -81,6 +81,16 @@
     }
 }
 
+-(void) ortho:(BOOL) value {
+    if (_leftEye != nil) {
+        [_leftEye ortho:value];
+    }
+    
+    if (_rightEye != nil) {
+        [_rightEye ortho:value];
+    }
+}
+
 - (void)dealloc
 {
     _leftEyeSource = nil;

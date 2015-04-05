@@ -46,6 +46,9 @@
         camera.yFov = pair.vFov;
         camera.zNear = 0.01f;
         camera.zFar = 2048.0f;
+        
+        camera.orthographicScale = 2;
+        
         switch (dest.side) {
             case EyeTextureSideLeft: {
                 camera.categoryBitMask = 1;
@@ -81,6 +84,10 @@
 -(void) resetIPD {
     // Move eye into place
     self.transform = SCNMatrix4MakeTranslation(_eyeDistance, 0.0, 0.0);
+}
+
+-(void) ortho:(BOOL) value {
+    self.camera.usesOrthographicProjection = value;
 }
 
 - (void)dealloc
