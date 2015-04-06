@@ -52,9 +52,7 @@
             [self load];
         } else {
             // Create a default profile
-            
             [self reset];
-            
             [self persist];
         }
         

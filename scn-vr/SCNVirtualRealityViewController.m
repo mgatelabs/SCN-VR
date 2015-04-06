@@ -328,7 +328,7 @@
     // Make sure we have access to the screen's render & depth buffers
     [_destTexture restore];
     
-    [self checkGlErrorStatus];
+    //[self checkGlErrorStatus];
     
     if (_viewpoint != nil) {
         
@@ -357,33 +357,33 @@
                     
                     [_rightEyeDest view];
                     
-                    [self checkGlErrorStatus];
+                    //[self checkGlErrorStatus];
                     
                     [_eyeColorCorrection activateShaderFor:_profile leftEye:NO texture:_rightEyeSource.dest.textureId];
                     
-                    [self checkGlErrorStatus];
+                    //[self checkGlErrorStatus];
                     
                     [_rightEyeMesh draw];
                     
-                    [self checkGlErrorStatus];
+                    //[self checkGlErrorStatus];
                     
                     [_leftEyeDest view];
                     
-                    [self checkGlErrorStatus];
+                    //[self checkGlErrorStatus];
                     
                     [_eyeColorCorrection activateShaderFor:_profile leftEye:YES texture:_leftEyeSource.dest.textureId];
         
-                    [self checkGlErrorStatus];
+                    //[self checkGlErrorStatus];
                     
-                    glEnableVertexAttribArray(GLKVertexAttribPosition);
-                    glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
+                    //glEnableVertexAttribArray(GLKVertexAttribPosition);
+                    //glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
                     
                     [_leftEyeMesh draw];
         
-                    [self checkGlErrorStatus];
+                    //[self checkGlErrorStatus];
                     
-                    glDisableVertexAttribArray(GLKVertexAttribPosition);
-                    glDisableVertexAttribArray(GLKVertexAttribTexCoord0);
+                    //glDisableVertexAttribArray(GLKVertexAttribPosition);
+                    //glDisableVertexAttribArray(GLKVertexAttribTexCoord0);
                     
                 }
                 
