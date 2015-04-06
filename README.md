@@ -1,9 +1,9 @@
 SCN-VR
 ======
 
-This is a iOS 8.x static library for rendering VR content with SceneKit.
+This is a iOS 8.1+ static library for rendering VR content with SceneKit.
 
-I would not use this quite yet, the demos have not been uploaded yet.
+A Hello World demo has also been provided that has profile support.
 
 Setting Up
 ======
@@ -24,7 +24,7 @@ Workflow
 Supported Devices
 ======
 
-*iOS 8.x is Required*
+*iOS 8.1+ is Required*
 
 - iPhone 4S
 - iPhone 5/S/C
