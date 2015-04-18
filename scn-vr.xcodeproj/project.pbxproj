@@ -146,6 +146,7 @@
 		AC2743791A6F5FC100CEC7AD /* FovWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FovWizardItem.m; sourceTree = "<group>"; };
 		AC27437B1A6F616800CEC7AD /* FovItemWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FovItemWizardItem.h; sourceTree = "<group>"; };
 		AC27437C1A6F616800CEC7AD /* FovItemWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FovItemWizardItem.m; sourceTree = "<group>"; };
+		AC31F30A1AE2D35100E0B161 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/SVN-VRStrings.strings"; sourceTree = "<group>"; };
 		AC3E0F5B1A4934FA00AFE6AA /* libscn-vr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libscn-vr.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3E0F661A4934FB00AFE6AA /* scn-vrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "scn-vrTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3E0F6C1A4934FB00AFE6AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -261,6 +262,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC31F3071AE2D30300E0B161 /* Languages */ = {
+			isa = PBXGroup;
+			children = (
+				AC31F3081AE2D31D00E0B161 /* base */,
+			);
+			name = Languages;
+			sourceTree = "<group>";
+		};
+		AC31F3081AE2D31D00E0B161 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				AC31F30B1AE2D35100E0B161 /* SVN-VRStrings.strings */,
+			);
+			name = base;
+			sourceTree = "<group>";
+		};
 		AC3E0F521A4934FA00AFE6AA = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +302,7 @@
 		AC3E0F5D1A4934FA00AFE6AA /* scn-vr */ = {
 			isa = PBXGroup;
 			children = (
+				AC31F3071AE2D30300E0B161 /* Languages */,
 				AC3E0FCE1A4937F800AFE6AA /* Core */,
 				AC3E0FCD1A4937F000AFE6AA /* SceneKit */,
 			);
@@ -666,6 +684,17 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		AC31F30B1AE2D35100E0B161 /* SVN-VRStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC31F30A1AE2D35100E0B161 /* en */,
+			);
+			name = "SVN-VRStrings.strings";
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		AC3E0F6D1A4934FB00AFE6AA /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -748,6 +777,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "\"include/$(TARGET_NAME)\"";
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -759,6 +789,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "\"include/$(TARGET_NAME)\"";
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

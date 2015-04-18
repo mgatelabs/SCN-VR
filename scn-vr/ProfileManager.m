@@ -177,7 +177,7 @@
     }
         
     ProfileConfiguration * pc = [[ProfileConfiguration alloc] init];
-    pc.name = @"New Profile";
+    pc.name = NSLocalizedStringFromTableInBundle(@"New Profile", @"SCN-VRStrings", [NSBundle mainBundle], @"New Profile title");
     
     pc.identity = minProfileIdentity;
     // The defaults should be SBS Landscape
@@ -200,7 +200,7 @@
     [wizard reset];
     
     ProfileConfiguration * pc = [[ProfileConfiguration alloc] init];
-    pc.name = @"Default";
+    pc.name = NSLocalizedStringFromTableInBundle(@"Default", @"SCN-VRStrings", [NSBundle mainBundle], @"Default title");
     pc.identity = 0;
     // The defaults should be SBS Landscape
     pc.values = [wizard extractItem];

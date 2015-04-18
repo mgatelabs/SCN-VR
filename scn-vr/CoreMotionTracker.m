@@ -58,6 +58,8 @@
     
     CMQuaternion currentAttitude_noQ = self.motionManager.deviceMotion.attitude.quaternion;
     
+    //NSLog(@"%2.4f %2.4f %2.4f %2.4f", currentAttitude_noQ.w, currentAttitude_noQ.x, currentAttitude_noQ.y, currentAttitude_noQ.z);
+    
     if (useMagnet) {
         // Just grab the value
         float x = self.motionManager.deviceMotion.magneticField.field.x;

@@ -37,6 +37,8 @@
     [super viewDidLoad];
     [self setPaused:YES];
     
+    _restrictToAxis = NO;
+    
     ProfileManager * profiles = [ProfileManager sharedManager];
     self.profile = [profiles getCurrentProfileInstance];
     
@@ -56,9 +58,6 @@
     _nativeScale = [UIScreen mainScreen].nativeScale;
     view.contentScaleFactor = _nativeScale;
     self.view.layer.contentsScale = _nativeScale;
-    
-    
-    //NSLog(@"%2.2f %2.2f %2.2f %2.2f", view.bounds.size.width * _nativeScale, view.bounds.size.height * _nativeScale, view.bounds.origin.x, view.bounds.origin.y);
     
     [self setPreferredFramesPerSecond:60];
     
@@ -309,13 +308,29 @@
     GLKQuaternion altered;
     
     // May be slow, but this is prototype code
-    GLKQuaternion cameraOrientation = GLKQuaternionIdentity; // GLKQuaternionMake(self.cameraInitialOrientation.x, self.cameraInitialOrientation.y, self.cameraInitialOrientation.z, self.cameraInitialOrientation.w);
+    GLKQuaternion cameraOrientation = GLKQuaternionIdentity;
     
     cameraOrientation = GLKQuaternionMultiply(cameraOrientation, GLKQuaternionMakeWithAngleAndAxis(1.57079633f, 0, 0, 1));
     
     altered =GLKQuaternionMultiply(cameraOrientation, gyroValues);
     
-    _viewpoint.neck.orientation = SCNVector4Make(altered.x, altered.y, altered.z, altered.w) ;
+    if (_restrictToAxis) {
+        GLKQuaternion q = altered;
+        
+        float yaw = !_restrictYaw ? atan2(2.0*(q.x*q.y + q.w*q.z), q.w*q.w + q.x*q.x - q.y*q.y - q.z*q.z) : 0;
+        float pitch = !_restrictPitch ? -M_PI_2 + atan2(2.0*(q.y*q.z + q.w*q.x), q.w*q.w - q.x*q.x - q.y*q.y + q.z*q.z) : 0;
+        float roll = !_restrictRoll ? -asin(-2.0*(q.x*q.z - q.w*q.y)) : 0;
+        
+        GLKQuaternion qY = GLKQuaternionMakeWithAngleAndAxis(yaw, 0, 1, 0);
+        GLKQuaternion qP = GLKQuaternionMakeWithAngleAndAxis(pitch, 1, 0, 0);
+        GLKQuaternion qR = GLKQuaternionMakeWithAngleAndAxis(roll, 0, 0, 1);
+        
+        GLKQuaternion A = GLKQuaternionMultiply(qR, qY);
+        
+        altered = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 1, 0, 0),  GLKQuaternionMultiply(A, qP));
+    }
+    
+    _viewpoint.neck.orientation = SCNVector4Make(altered.x, altered.y, altered.z, altered.w);
     
 }
 
@@ -409,6 +424,13 @@
     if (errorState != GL_NO_ERROR) {
         NSLog(@"GL Error Detected: %d", errorState);
     }
+}
+
+-(void) restrictYaw:(BOOL) yaw pitch:(BOOL) pitch roll:(BOOL) roll {
+    _restrictYaw = yaw;
+    _restrictPitch = pitch;
+    _restrictRoll = roll;
+    _restrictToAxis = _restrictYaw || _restrictPitch || _restrictRoll;
 }
 
 @end

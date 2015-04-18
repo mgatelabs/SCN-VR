@@ -60,6 +60,11 @@
 // Where to render from
 @property (weak, nonatomic) SCNViewpoint * viewpoint;
 
+@property (assign, readonly) BOOL restrictToAxis;
+@property (assign, readonly) BOOL restrictRoll;
+@property (assign, readonly) BOOL restrictYaw;
+@property (assign, readonly) BOOL restrictPitch;
+
 @property (assign) BOOL useHeadTracking;
 
 @property (assign, readonly) GLKQuaternion nullViewpoint;
@@ -83,5 +88,7 @@
 -(NSArray *) viewpointSees;
 
 -(NSArray *) viewpointSeesAt:(float) x y:(float) y;
+
+-(void) restrictYaw:(BOOL) yaw pitch:(BOOL) pitch roll:(BOOL) roll;
 
 @end
