@@ -82,6 +82,11 @@
     self.valueId = d.identifier;
 }
 
+-(NSString *) valueForIndex:(int) index {
+    MobileDeviceConfiguration * d = [mdm.devices objectAtIndex:index];
+    return d.identifier;
+}
+
 -(void) updateProfileInstance:(ProfileInstance *) instance {
     
     [device ready];

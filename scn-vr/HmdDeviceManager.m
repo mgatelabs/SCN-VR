@@ -35,6 +35,8 @@
 {
     self = [super init];
     if (self) {
+        
+        /*
         _hmds = [[NSMutableArray alloc] initWithCapacity:4];
         
         HmdDeviceConfiguration * mono = [self addHmd:@"None (Mono)" identifier:@"mono" distortion:HmdDeviceConfigurationDistortionNone correction:HmdDeviceConfigurationCorrectionNone viewpoints:HmdDeviceConfigurationViewpointsMono ipd:0.0f ild:0.0f fov:85.0f correctionCoefficient:0.0f distortionFactorA:0.0f distortionFactorB:0.0f];
@@ -52,7 +54,13 @@
         
         [self addHmd:@"Cardboard W/O Color" identifier:@"cardboardwoc" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionNone viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:85.0f correctionCoefficient:0 distortionFactorA:0.5f distortionFactorB:0.2f].internal = YES;
         
+        //ALPSConfig(Device _DeviceName, bool _EnableBarrelDistortion, bool _EnableChromaticCorrection, bool _FixedSize, float _IPD, float _ILD, float _FieldOfView, float _ChromaticCorrection, float _k1, float _k2, int _Width, int _Height){
+
+        [self addHmd:@"Firefly" identifier:@"firefly" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:85.0f correctionCoefficient:-2.0f distortionFactorA:0.7f distortionFactorB:0.2f].internal = YES;
+        
         [self load];
+         */
+        
     }
     return self;
 }
@@ -73,13 +81,20 @@
     altergaze.extraIpdAvailable = YES;
     altergaze.ipdAdult = 50;
     altergaze.ipdChild = 47.5f;
+    altergaze.deviceUsed = YES;
     
     HmdDeviceConfiguration * cardboard = [HmdDeviceManager addHmdTo: hmds name:@"Cardboard" identifier:@"cardboard" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:85.0f correctionCoefficient:-1.5f distortionFactorA:0.5f distortionFactorB:0.2f];
     cardboard.internal = YES;
+    cardboard.deviceUsed = YES;
+    
+    HmdDeviceConfiguration * firefly = [HmdDeviceManager addHmdTo: hmds name:@"Firefly" identifier:@"firefly" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:85.0f correctionCoefficient:-2.0f distortionFactorA:0.7f distortionFactorB:0.2f];
+    firefly.internal = YES;
+    firefly.deviceUsed = YES;
     
     return hmds;
 }
 
+/*
 -(void) persist {
     NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
     [defs setValue:_hmd.identity forKey:@"scn-vr.hmds.selected"];
@@ -104,6 +119,8 @@
         }
     }
 }
+*/
+
 
 +(HmdDeviceConfiguration *) addHmdTo:(NSMutableArray *) dest name:(NSString *) name identifier:(NSString *) identifier distortion:(HmdDeviceConfigurationDistortion) distortion correction:(HmdDeviceConfigurationCorrection) correction viewpoints:(HmdDeviceConfigurationViewpoints) viewpoints ipd:(float) ipd ild:(float) ild fov:(float) fov correctionCoefficient:(float) correctionCoefficient distortionFactorA:(float) distortionFactorA distortionFactorB:(float) distortionFactorB {
     HmdDeviceConfiguration * hmd = [[HmdDeviceConfiguration alloc] initAs:name identifier:identifier distortion:distortion correction:correction viewpoints:viewpoints ipd:ipd ild:ild fov:fov correctionCoefficient:correctionCoefficient distortionFactorA:distortionFactorA distortionFactorB:distortionFactorB];
@@ -112,6 +129,7 @@
     return hmd;
 }
 
+/*
 -(HmdDeviceConfiguration *) addHmd:(NSString *) name identifier:(NSString *) identifier distortion:(HmdDeviceConfigurationDistortion) distortion correction:(HmdDeviceConfigurationCorrection) correction viewpoints:(HmdDeviceConfigurationViewpoints) viewpoints ipd:(float) ipd ild:(float) ild fov:(float) fov correctionCoefficient:(float) correctionCoefficient distortionFactorA:(float) distortionFactorA distortionFactorB:(float) distortionFactorB {
     HmdDeviceConfiguration * hmd = [[HmdDeviceConfiguration alloc] initAs:name identifier:identifier distortion:distortion correction:correction viewpoints:viewpoints ipd:ipd ild:ild fov:fov correctionCoefficient:correctionCoefficient distortionFactorA:distortionFactorA distortionFactorB:distortionFactorB];
     
@@ -119,7 +137,8 @@
     
     return hmd;
 }
-
+*/
+/*
 -(BOOL) removeHmdWithIndex:(int) index {
     if (index >= 0 && index < _hmds.count) {
         HmdDeviceConfiguration * device = [_hmds objectAtIndex:index];
@@ -188,5 +207,6 @@
     _hmd = [_hmds objectAtIndex:index];
     [self persist];
 }
+*/
 
 @end

@@ -22,18 +22,19 @@
 #import "HmdDeviceConfiguration.h"
 #import "ListableArray.h"
 
-@interface HmdDeviceManager : ListableArray
+@interface HmdDeviceManager: NSObject
 
-@property (weak, readonly, nonatomic) HmdDeviceConfiguration * hmd;
+//@property (weak, readonly, nonatomic) HmdDeviceConfiguration * hmd;
 
-@property (strong, readonly, nonatomic) NSMutableArray * hmds;
+//@property (strong, readonly, nonatomic) NSMutableArray * hmds;
 
 + (id)sharedManager;
 
--(HmdDeviceConfiguration *) addHmd:(NSString *) name identifier:(NSString *) identifier distortion:(HmdDeviceConfigurationDistortion) distortion correction:(HmdDeviceConfigurationCorrection) correction viewpoints:(HmdDeviceConfigurationViewpoints) viewpoints ipd:(float) ipd ild:(float) ild fov:(float) fov correctionCoefficient:(float) correctionCoefficient distortionFactorA:(float) distortionFactorA distortionFactorB:(float) distortionFactorB;
+//-(HmdDeviceConfiguration *) addHmd:(NSString *) name identifier:(NSString *) identifier distortion:(HmdDeviceConfigurationDistortion) distortion correction:(HmdDeviceConfigurationCorrection) correction viewpoints:(HmdDeviceConfigurationViewpoints) viewpoints ipd:(float) ipd ild:(float) ild fov:(float) fov correctionCoefficient:(float) correctionCoefficient distortionFactorA:(float) distortionFactorA distortionFactorB:(float) distortionFactorB;
 
 +(HmdDeviceConfiguration *) addHmdTo:(NSMutableArray *) dest name:(NSString *) name identifier:(NSString *) identifier distortion:(HmdDeviceConfigurationDistortion) distortion correction:(HmdDeviceConfigurationCorrection) correction viewpoints:(HmdDeviceConfigurationViewpoints) viewpoints ipd:(float) ipd ild:(float) ild fov:(float) fov correctionCoefficient:(float) correctionCoefficient distortionFactorA:(float) distortionFactorA distortionFactorB:(float) distortionFactorB;
 
+/*
 -(BOOL) removeHmdWithIndex:(int) index;
 
 -(void) cycle;
@@ -43,6 +44,7 @@
 -(void) persist;
 
 -(void) load;
+*/
 
 +(NSMutableArray *) getHMDs;
 

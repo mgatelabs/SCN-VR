@@ -484,11 +484,11 @@
 		AC83FBB71A68C6E400B1727F /* Wizard */ = {
 			isa = PBXGroup;
 			children = (
+				ACE4C32A1AD0FCFE00AB4042 /* Items */,
 				AC83FBB81A68C6FD00B1727F /* WizardManager.h */,
 				AC83FBB91A68C6FD00B1727F /* WizardManager.m */,
 				AC83FBBC1A68C80200B1727F /* WizardItem.h */,
 				AC83FBBD1A68C80200B1727F /* WizardItem.m */,
-				ACE4C32A1AD0FCFE00AB4042 /* Items */,
 			);
 			name = Wizard;
 			sourceTree = "<group>";

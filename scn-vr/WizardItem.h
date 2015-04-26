@@ -89,6 +89,7 @@ typedef NS_ENUM(NSInteger, WizardItemNotReadyAction)
 -(void) loadForInt:(int) value;
 -(void) loadForIdentity:(NSString *) identity;
 -(NSString *) stringForIndex:(int) index;
+-(NSString *) valueForIndex:(int) index;
 -(void) selectedIndex:(int) index;
 
 -(int) prepValueToSave;

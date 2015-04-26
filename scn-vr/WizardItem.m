@@ -80,8 +80,13 @@
     return @"";
 }
 
+-(NSString *) valueForIndex:(int) index {
+    return [self stringForIndex:index];
+}
+
 -(void) selectedIndex:(int) index {
-    
+    self.valueIndex = index;
+    self.valueId = [self valueForIndex:index];
 }
 
 -(void) updateProfileInstance:(ProfileInstance *) instance {

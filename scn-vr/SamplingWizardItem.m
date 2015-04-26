@@ -19,7 +19,7 @@
     if (self) {
         hmds = hmdWizardItem;
         selectedHmdValueId = hmds.valueId;
-        if ([selectedHmdValueId isEqualToString:@"mono"] || [selectedHmdValueId isEqualToString:@"none"]) {
+        if (hmds.selected.deviceUsed == NO) {
             self.count = 1;
         } else {
             self.count = 4;
@@ -38,7 +38,7 @@
     if ([hmds ready]) {
         if (![hmds.valueId isEqualToString:selectedHmdValueId]) {
             selectedHmdValueId = hmds.valueId;
-            if ([selectedHmdValueId isEqualToString:@"mono"] || [selectedHmdValueId isEqualToString:@"none"]) {
+            if (hmds.selected.deviceUsed == NO) {
                 self.count = 1;
                 self.valueIndex = 0;
                 self.valueId = @"default";

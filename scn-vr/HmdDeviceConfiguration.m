@@ -40,7 +40,7 @@
         self.distortionFactorA = distortionFactorA;
         self.distortionFactorB = distortionFactorB;
         self.internal = NO;
-        
+        self.deviceUsed = NO;
         _extraIpdAvailable = NO;
     }
     return self;

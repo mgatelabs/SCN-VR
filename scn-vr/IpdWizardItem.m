@@ -31,7 +31,7 @@
     if (self) {
         hmds = hmdWizardItem;
         selectedHmdValueId = hmds.valueId;
-        if ([selectedHmdValueId isEqualToString:@"mono"] || [selectedHmdValueId isEqualToString:@"none"]) {
+        if (hmds.selected.deviceUsed == NO) {
             self.count = 1;
         } else {
             if (hmds.selected.extraIpdAvailable) {
@@ -41,7 +41,7 @@
             }
         }
         self.valueIndex = 0;
-        self.valueId = [self stringForIndex:0];
+        self.valueId = [self valueForIndex:0];
     }
     return self;
 }
@@ -51,10 +51,10 @@
         if (![hmds.valueId isEqualToString:selectedHmdValueId]) {
             selectedHmdValueId = hmds.valueId;
             
-            if ([selectedHmdValueId isEqualToString:@"mono"] || [selectedHmdValueId isEqualToString:@"none"]) {
+            if (hmds.selected.deviceUsed == NO) {
                 self.count = 1;
                 self.valueIndex = 0;
-                self.valueId = [self stringForIndex:0];
+                self.valueId = [self valueForIndex:0];
             } else {
                 if (hmds.selected.extraIpdAvailable) {
                     self.count = 5;
@@ -65,14 +65,14 @@
             
             if (self.valueIndex >= self.count) {
                 self.valueIndex = 0;
-                self.valueId = [self stringForIndex:0];
+                self.valueId = [self valueForIndex:0];
             }
             
         }
     } else {
         self.count = 1;
         self.valueIndex = 0;
-        self.valueId = [self stringForIndex:0];
+        self.valueId = [self valueForIndex:0];
     }
 }
 
@@ -89,14 +89,31 @@
         case 0:
             return @"Center (Eye Strain)";
         case 1:
-            return @"Default (Good Choice)";
+            return [NSString stringWithFormat: @"Default (%2.1f MM) :)", hmds.selected.ipd];
+        case 2:
+            return @"Custom";
+        case 3:
+            return [NSString stringWithFormat: @"Adult (%2.1f MM)", hmds.selected.ipdAdult];
+        case 4:
+            return [NSString stringWithFormat: @"Child (%2.1f MM)", hmds.selected.ipdChild];
+        
+        default:
+            return @"Unknown";
+    }
+}
+
+-(NSString *) valueForIndex:(int) index {
+    switch (index) {
+        case 0:
+            return @"Center";
+        case 1:
+            return @"Default";
         case 2:
             return @"Custom";
         case 3:
             return @"Adult";
         case 4:
             return @"Child";
-        
         default:
             return @"Unknown";
     }
@@ -114,25 +131,7 @@
 
 -(void) selectedIndex:(int) index {
     self.valueIndex = index;
-    switch (index) {
-        case 0:
-            self.valueId =  @"Center";
-            break;
-        case 1:
-            self.valueId = @"Default";
-            break;
-        case 2:
-            self.valueId =  @"Custom";
-            break;
-        case 3:
-            self.valueId = @"Adult";
-            break;
-        case 4:
-            self.valueId =  @"Child";
-            break;
-        default:
-            self.valueId =  @"Unknown";
-    }
+    self.valueId = [self valueForIndex:index];
 }
 
 -(int) indexForString:(NSString *) source {

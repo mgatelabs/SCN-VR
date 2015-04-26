@@ -55,11 +55,6 @@
     return [NSString stringWithFormat:@"%1.1f MM", index / 2.0f];
 }
 
--(void) selectedIndex:(int) index {
-    self.valueIndex = index;
-    self.valueId = [self stringForIndex:index];
-}
-
 -(WizardItemNotReadyAction) notReadyAction {
     return WizardItemNotReadyActionContinue;
 }

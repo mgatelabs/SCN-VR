@@ -44,6 +44,8 @@ typedef NS_ENUM(NSInteger, HmdDeviceConfigurationViewpoints) {
 
 @property (assign) BOOL internal;
 
+@property (assign, nonatomic) BOOL deviceUsed;
+
 //Is barrel distortion enabled or not
 @property (assign, readonly) HmdDeviceConfigurationDistortion distortion;
 

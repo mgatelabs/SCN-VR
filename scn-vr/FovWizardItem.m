@@ -31,14 +31,14 @@
         hmds = hmdWizardItem;
         self.count = 2;
         self.valueIndex = 0;
-        self.valueId = [self stringForIndex:self.valueIndex];
+        self.valueId = [self valueForIndex:self.valueIndex];
     }
     return self;
 }
 
 -(void) reset {
     self.valueIndex = 0;
-    self.valueId = [self stringForIndex:self.valueIndex];
+    self.valueId = [self valueForIndex:self.valueIndex];
 }
 
 -(void) chainUpdated {
@@ -56,6 +56,17 @@
 -(NSString *) stringForIndex:(int) index {
     switch (index) {
         case 0:
+            return [NSString stringWithFormat:@"Default (%2.1f)", hmds.selected.fov];
+        case 1:
+            return @"Custom";
+        default:
+            return @"Unknown";
+    }
+}
+
+-(NSString *) valueForIndex:(int) index {
+    switch (index) {
+        case 0:
             return @"Default";
         case 1:
             return @"Custom";
@@ -68,10 +79,10 @@
     
     if (self.count == 1) {
         self.valueIndex = 0;
-        self.valueId = [self stringForIndex:0];
+        self.valueId = [self valueForIndex:0];
     } else {
         for (int i = 0; i < self.count; i++) {
-            NSString * temp = [self stringForIndex:i];
+            NSString * temp = [self valueForIndex:i];
             if ([temp isEqualToString:identity]) {
                 self.valueIndex = i;
                 self.valueId = temp;
@@ -79,7 +90,7 @@
             }
         }
         self.valueIndex = 0;
-        self.valueId = [self stringForIndex:0];
+        self.valueId = [self valueForIndex:0];
     }
 }
 

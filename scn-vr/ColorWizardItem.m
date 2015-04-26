@@ -31,13 +31,13 @@
     if (self) {
         hmds = hmdWizardItem;
         selectedHmdValueId = hmds.valueId;
-        if ([selectedHmdValueId isEqualToString:@"mono"] || [selectedHmdValueId isEqualToString:@"none"]) {
+        if (hmds.selected.deviceUsed == NO) {
             self.count = 1;
         } else {
             self.count = 3;
         }
         self.valueIndex = 0;
-        self.valueId = @"default";
+        self.valueId = [self valueForIndex: 0];
     }
     return self;
 }
@@ -47,17 +47,17 @@
         if (![hmds.valueId isEqualToString:selectedHmdValueId]) {
             selectedHmdValueId = hmds.valueId;
             
-            if ([selectedHmdValueId isEqualToString:@"mono"] || [selectedHmdValueId isEqualToString:@"none"]) {
+            if (hmds.selected.deviceUsed == NO) {
                 self.count = 1;
                 self.valueIndex = 0;
-                self.valueId = @"default";
+                self.valueId = [self valueForIndex: 0];
             } else {
                 self.count = 3;
             }
         }
     } else {
         self.valueIndex = 0;
-        self.valueId = @"default";
+        self.valueId = [self valueForIndex: 0];
     }
 }
 
@@ -72,10 +72,10 @@
 -(void) loadForIdentity:(NSString *) identity {
     if (self.count == 1) {
         self.valueIndex = 0;
-        self.valueId = [self stringForIndex:0];
+        self.valueId = [self valueForIndex:0];
     } else {
         for (int i = 0; i < self.count; i++) {
-            NSString * temp = [self stringForIndex:i];
+            NSString * temp = [self valueForIndex:i];
             if ([temp isEqualToString:identity]) {
                 self.valueIndex = i;
                 self.valueId = temp;
@@ -84,14 +84,14 @@
         }
        
         self.valueIndex = 0;
-        self.valueId = [self stringForIndex:0];
+        self.valueId = [self valueForIndex:0];
     }
 }
 
 -(NSString *) stringForIndex:(int) index {
     switch (index) {
         case 0:
-            return @"Default";
+            return [NSString stringWithFormat: @"Default (%2.2f)", hmds.selected.correctionCoefficient ];
         case 1:
             return @"Off";
         case 2:
@@ -101,20 +101,16 @@
     }
 }
 
--(void) selectedIndex:(int) index {
-    self.valueIndex = index;
+-(NSString *) valueForIndex:(int) index {
     switch (index) {
         case 0:
-            self.valueId = @"Default";
-            break;
+            return @"Default";
         case 1:
-            self.valueId = @"Off";
-            break;
+            return @"Off";
         case 2:
-            self.valueId =  @"Custom";
-            break;
+            return @"Custom";
         default:
-            self.valueId =  @"Unknown";
+            return @"Unknown";
     }
 }
 
