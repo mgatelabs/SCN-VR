@@ -26,14 +26,21 @@
 
 - (instancetype)initWith:(ColorWizardItem *) colorWizardItem
 {
-    self = [super initWith:@"... Value" info:@"Complex math nonsense.  Play with it until it looks right," itemId: WIZARD_ITEM_COLOR_VALUE type:WizardItemDataTypeInt];
+    self = [super initWith:@"... Value" info:@"Complex math nonsense.  Play with it until it looks right," itemId: WIZARD_ITEM_COLOR_VALUE type:WizardItemDataTypeSlideFloat];
     if (self) {
         color = colorWizardItem;
         self.count = 81;
-        self.valueIndex = 20 * 2;
-        self.valueId = @"0.00";
+        
+        self.slideValue = [NSNumber numberWithFloat:0.0f];
+        self.slideMin = [NSNumber numberWithFloat:-3.0f];
+        self.slideMax = [NSNumber numberWithFloat:3.0f];
+        self.slideStep = [NSNumber numberWithFloat:0.01f];
     }
     return self;
+}
+
+-(void) reset {
+    self.slideValue = [NSNumber numberWithFloat:0.0f];
 }
 
 -(BOOL) available {
@@ -49,13 +56,8 @@
     self.valueId = [self stringForIndex:value];
 }
 
--(NSString *) stringForIndex:(int) index {
-    return [NSString stringWithFormat:@"%1.2f", (index - 40) / 20.0f];
-}
-
--(void) selectedIndex:(int) index {
-    self.valueIndex = index;
-    self.valueId = [self stringForIndex:index];
+-(NSString *) stringForSlider {
+    return [NSString stringWithFormat:@"%1.2f", [self.slideValue floatValue]];
 }
 
 -(WizardItemNotReadyAction) notReadyAction {
@@ -63,7 +65,7 @@
 }
 
 -(void) updateProfileInstance:(ProfileInstance *) instance {
-    instance.colorCorrectionValue = (self.valueIndex - 40) / 20.0f;
+    instance.colorCorrectionValue = [self.slideValue floatValue];
 }
 
 @end

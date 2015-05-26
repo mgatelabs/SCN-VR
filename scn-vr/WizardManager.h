@@ -46,4 +46,8 @@
 
 -(void) addExtendedItem:(WizardItem *) item;
 
+-(void) verify;
+
+-(void) makeDirty;
+
 @end

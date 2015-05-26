@@ -26,18 +26,24 @@
 }
 
 + (id)sharedManager {
+    return [ProfileManager sharedManager: nil];
+}
+
++ (id)sharedManager:(NSString *) groupName {
     static ProfileManager *sharedMyManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
+        sharedMyManager = [[self alloc] initWithGroup:groupName];
     });
     return sharedMyManager;
 }
 
-- (instancetype)init
+- (instancetype)initWithGroup:(NSString *) groupName
 {
     self = [super init];
     if (self) {
+        
+        _groupName = groupName;
         
         wizard = [[WizardManager alloc] init];
         
@@ -46,12 +52,11 @@
         _profiles = [[NSMutableArray alloc] initWithCapacity:5];
         _index = -1;
         
-        NSFileManager * fileManager = [NSFileManager defaultManager];
-        
-        if ([fileManager fileExistsAtPath:self.profileFilePath]) {
-            [self load];
+        if ([self canLoadFromGroup]) {
+            
+        } else if ([self canLoadFromFile]) {
+            [self persist];
         } else {
-            // Create a default profile
             [self reset];
             [self persist];
         }
@@ -59,8 +64,7 @@
         if (_profiles.count == 0) {
             [self reset];
             [self persist];
-        }
-        
+        }        
     }
     return self;
 }
@@ -106,13 +110,43 @@
     }
 }
 
--(void) load {
+-(BOOL) canLoadFromFile {
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:self.profileFilePath]) {
+        [self loadFromFile];
+        return YES;
+    }
+    return NO;
+}
+
+-(BOOL) canLoadFromGroup {
     
+    NSUserDefaults * defs;
+    
+    if (_groupName != nil) {
+        defs = [[NSUserDefaults alloc] initWithSuiteName:_groupName];
+    } else {
+        defs = [NSUserDefaults standardUserDefaults];
+    }
+    
+    NSDictionary * tempDict = [defs valueForKey:@"profiles.items"];
+    
+    if (tempDict != nil) {
+        [self loadFromDictionary:tempDict];
+        return YES;
+    }
+    
+    return NO;
+}
+
+-(void) loadFromFile {
     NSDictionary * profileSettings = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:_profileFilePath] options:0 error:nil];
-    
+    [self loadFromDictionary:profileSettings];
+}
+
+-(void) loadFromDictionary:(NSDictionary *) profileSettings {
     NSNumber * indexNumber = [profileSettings valueForKey:@"index"];
-    
-    
+
     NSMutableArray * profileItems = [profileSettings valueForKey:@"profiles"];
     
     for (int i = 0; i < profileItems.count; i++) {
@@ -159,9 +193,19 @@
     [profileSettings setValue:[NSNumber numberWithInt:_index] forKey:@"index"];
     [profileSettings setValue:profileItems forKey:@"profiles"];
     
-    NSData * jsonData = [NSJSONSerialization dataWithJSONObject:profileSettings options:0 error:nil];
+    NSUserDefaults * defs;
     
-    [jsonData writeToFile:_profileFilePath options:0 error:nil];
+    if (_groupName != nil) {
+        defs = [[NSUserDefaults alloc] initWithSuiteName:_groupName];
+    } else {
+        defs = [NSUserDefaults standardUserDefaults];
+    }
+    
+    [defs setValue:profileSettings forKey:@"profiles.items"];
+    [defs synchronize];
+    
+    //NSData * jsonData = [NSJSONSerialization dataWithJSONObject:profileSettings options:0 error:nil];
+    //[jsonData writeToFile:_profileFilePath options:0 error:nil];
     
 }
 

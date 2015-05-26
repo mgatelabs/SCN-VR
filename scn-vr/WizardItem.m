@@ -72,6 +72,24 @@
     
 }
 
+-(void) loadForNumber:(NSNumber *) value {
+    _slideValue = value;
+}
+
+-(NSString *) stringForSlider {
+    switch (_type) {
+        case WizardItemDataTypeSlideFloat:
+            return [NSString stringWithFormat:@"%2.2f", [_slideValue floatValue]];
+            break;
+        case WizardItemDataTypeSlideInt:
+            return [NSString stringWithFormat:@"%d", [_slideValue intValue]];
+            break;
+        default:
+            return @"";
+            break;
+    }
+}
+
 -(int) prepValueToSave {
     return self.valueIndex;
 }

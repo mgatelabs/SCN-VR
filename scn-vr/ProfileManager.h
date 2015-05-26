@@ -30,7 +30,13 @@
 
 @property (assign, nonatomic, readonly) int count;
 
+@property (strong, nonatomic, readonly) NSString * groupName;
+
 + (id)sharedManager;
+
++ (id)sharedManager:(NSString *) groupName;
+
+- (instancetype)initWithGroup:(NSString *) groupName;
 
 -(NSString *) nameForIndex:(int) index;
 
@@ -42,7 +48,13 @@
 
 -(int) newProfile;
 
--(void) load;
+-(BOOL) canLoadFromFile;
+
+-(BOOL) canLoadFromGroup;
+
+-(void) loadFromDictionary:(NSDictionary *) profileSettings;
+
+-(void) loadFromFile;
 
 -(void) persist;
 

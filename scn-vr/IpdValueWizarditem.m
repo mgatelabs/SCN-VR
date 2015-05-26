@@ -27,13 +27,19 @@
 
 - (instancetype)initWith:(IpdWizardItem *) ipdWizardItem second:(BOOL) secondItem
 {
-    self = [super initWith:secondItem ? @"Camera IPD" : @"Your IPD" info:@"Distance in MM" itemId: secondItem ? WIZARD_ITEM_IPD_VALUE2 : WIZARD_ITEM_IPD_VALUE1 type:WizardItemDataTypeInt];
+    self = [super initWith:secondItem ? @"Camera IPD" : @"Your IPD" info:@"Distance in MM" itemId: secondItem ? WIZARD_ITEM_IPD_VALUE2 : WIZARD_ITEM_IPD_VALUE1 type:WizardItemDataTypeSlideFloat];
     if (self) {
         second = secondItem;
         ipds = ipdWizardItem;
-        self.count = 75 * 2;
-        self.valueIndex = 62 * 2;
-        self.valueId = @"62";
+        
+        self.slideValue = [NSNumber numberWithFloat:62.0f];
+        self.slideMin = [NSNumber numberWithFloat:40.0f];
+        self.slideMax = [NSNumber numberWithFloat:80.0f];
+        self.slideStep = [NSNumber numberWithFloat:0.5f];
+        
+        //self.count = 75 * 2;
+        //self.valueIndex = 62 * 2;
+        //self.valueId = @"62";
     }
     return self;
 }
@@ -46,6 +52,10 @@
     return ipds.valueIndex == 2;
 }
 
+-(void) reset {
+    self.slideValue = [NSNumber numberWithFloat:62.0f];
+}
+
 -(void) loadForInt:(int) value {
     self.valueIndex = value;
     self.valueId = [self stringForIndex:value];
@@ -55,15 +65,19 @@
     return [NSString stringWithFormat:@"%1.1f MM", index / 2.0f];
 }
 
+-(NSString *) stringForSlider {
+    return [NSString stringWithFormat:@"%1.1f MM", [self.slideValue floatValue]];
+}
+
 -(WizardItemNotReadyAction) notReadyAction {
     return WizardItemNotReadyActionContinue;
 }
 
 -(void) updateProfileInstance:(ProfileInstance *) instance {
     if (second) {
-        instance.cameraIPD = self.valueIndex / 2.0f;
+        instance.cameraIPD = [self.slideValue floatValue];
     } else {
-        instance.viewerIPD = self.valueIndex / 2.0f;
+        instance.viewerIPD = [self.slideValue floatValue];
     }
 }
 

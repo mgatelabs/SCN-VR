@@ -29,6 +29,8 @@
     
     [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscape name:@"Landscape" key:@"land"]];
     
+    [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscapeSquared name:@"Landscape²" key:@"land2"]];
+    
     BOOL iPad = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
     
     // iPad Users get more options

@@ -25,11 +25,17 @@
 
 - (instancetype)initWithVirtual:(VirtualDeviceWizardItem *) virtualWizard physical:(PhysicalDeviceWizardItem *) physicalWizard mode:(int) mode
 {
-    self = [super initWith: (mode == 0 ? @"Width (MM)" : @"Height (MM)")  info:(mode == 0 ? @"Window width in MM" : @"Window height in MM") itemId:(mode == 0 ? WIZARD_ITEM_VIRTUAL_DEVICE_WIDTH : WIZARD_ITEM_VIRTUAL_DEVICE_HEIGHT) type:WizardItemDataTypeInt];
+    self = [super initWith: (mode == 0 ? @"Width (MM)" : @"Height (MM)")  info:(mode == 0 ? @"Window width in MM" : @"Window height in MM") itemId:(mode == 0 ? WIZARD_ITEM_VIRTUAL_DEVICE_WIDTH : WIZARD_ITEM_VIRTUAL_DEVICE_HEIGHT) type:WizardItemDataTypeSlideFloat];
     if (self) {
         _physicalWizard = physicalWizard;
         _virtualWizard = virtualWizard;
         _mode = mode;
+        
+        self.slideValue = [NSNumber numberWithFloat:80.0f];
+        self.slideMin = [NSNumber numberWithFloat:10.0f];
+        self.slideMax = [NSNumber numberWithFloat:120.0f];
+        self.slideStep = [NSNumber numberWithFloat:0.5f];
+        
         self.count = 0;
         self.valueId = @"";
         self.valueIndex = 0;
@@ -41,39 +47,38 @@
     if ([_virtualWizard ready]) {
         
         if (_virtualWizard.virtualDevice.type == VirtualDeviceConfigurationTypeLandscapeCustom || _virtualWizard.virtualDevice.type == VirtualDeviceConfigurationTypePortraitCustom) {
-            int maxIndex;
+            //int maxIndex;
+            
+            float maxSize;
             
             if (_mode == 0) {
-                maxIndex = 1 + (_virtualWizard.virtualDevice.type == VirtualDeviceConfigurationTypeLandscapeCustom ? _physicalWizard.selected.widthMM : _physicalWizard.selected.heightMM);
+                maxSize = (_virtualWizard.virtualDevice.type == VirtualDeviceConfigurationTypeLandscapeCustom ? _physicalWizard.selected.widthMM : _physicalWizard.selected.heightMM);
             } else if (_mode == 1) {
-                maxIndex = 1 + (_virtualWizard.virtualDevice.type == VirtualDeviceConfigurationTypeLandscapeCustom ? _physicalWizard.selected.heightMM : _physicalWizard.selected.widthMM);
+                maxSize = (_virtualWizard.virtualDevice.type == VirtualDeviceConfigurationTypeLandscapeCustom ? _physicalWizard.selected.heightMM : _physicalWizard.selected.widthMM);
             }
             
-            self.count = (maxIndex * 4) - 1;
-            if (self.valueIndex >= self.count) {
-                self.valueIndex = self.count - 1;
-                self.valueId = [self stringForIndex:self.valueIndex];
+            self.count = 2;
+            
+            self.slideMax = [NSNumber numberWithFloat:maxSize];
+            
+            if (self.slideValue.floatValue > self.slideMax.floatValue) {
+                self.slideValue = self.slideMax;
             }
+            
+            //if (self.valueIndex >= self.count) {
+            //    self.valueIndex = self.count - 1;
+            //    self.valueId = [self stringForIndex:self.valueIndex];
+            //}
         } else {
             self.count = 1;
             self.valueIndex = 0;
-            self.valueId = [self stringForIndex:0];
+            //self.valueId = [self stringForIndex:0];
         }
     } else {
         self.count = 1;
         self.valueIndex = 0;
-        self.valueId = [self stringForIndex:0];
+        //self.valueId = [self stringForIndex:0];
     }
-}
-
--(void) selectedIndex:(int) index {
-    self.valueIndex = index;
-    self.valueId = [self stringForIndex:index];
-}
-
--(void) loadForInt:(int) value {
-    self.valueIndex = value;
-    self.valueId = [self stringForIndex:value];
 }
 
 -(BOOL) available {
@@ -89,13 +94,18 @@
     return [NSString stringWithFormat:@"%2.2f MM, %2.2f IN", mm, mm / IN_2_MM];
 }
 
+-(NSString *) stringForSlider {
+    return [NSString stringWithFormat:@"%2.2f MM", [self.slideValue floatValue]];
+}
+
 -(void) updateProfileInstance:(ProfileInstance *) instance {
     
     if (_mode == 0) {
-        instance.virtualWidthMM = (self.valueIndex / 4.0f) + 1;
+        instance.virtualWidthMM = [self.slideValue floatValue];
     } else {
-        instance.virtualHeightMM = (self.valueIndex / 4.0f) + 1;
+        instance.virtualHeightMM = [self.slideValue floatValue];
     
+        // We only do this logic once, so do it here
     
         switch (_virtualWizard.virtualDevice.type) {
             case VirtualDeviceConfigurationTypeLandscapeCustom: {

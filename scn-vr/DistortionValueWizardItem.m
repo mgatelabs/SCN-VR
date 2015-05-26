@@ -27,13 +27,20 @@
 
 - (instancetype)initWith:(DistortionWizardItem *) distortionWizardItem second:(BOOL) second
 {
-    self = [super initWith: second ? @"... Value 2" : @"... Value 1" info:@"Complex math nonsense, just play with each option until you get something positive." itemId: second ? WIZARD_ITEM_DISTORTION_VALUE2 : WIZARD_ITEM_DISTORTION_VALUE1 type:WizardItemDataTypeInt];
+    self = [super initWith: second ? @"... Value 2" : @"... Value 1" info:@"Complex math nonsense, just play with each option until you get something positive." itemId: second ? WIZARD_ITEM_DISTORTION_VALUE2 : WIZARD_ITEM_DISTORTION_VALUE1 type:WizardItemDataTypeSlideFloat];
     if (self) {
         isSecond = second;
         distortion = distortionWizardItem;
         self.count = 81;
         self.valueIndex = 20 * 2;
         self.valueId = @"0.00";
+        
+        
+        self.slideValue = [NSNumber numberWithFloat:0.0f];
+        self.slideMin = [NSNumber numberWithFloat:-3.0f];
+        self.slideMax = [NSNumber numberWithFloat:3.0f];
+        self.slideStep = [NSNumber numberWithFloat:0.01f];
+        
     }
     return self;
 }
@@ -48,6 +55,10 @@
 
 -(NSString *) stringForIndex:(int) index {
     return [NSString stringWithFormat:@"%1.2f", (index - 40) / 20.0f];
+}
+
+-(NSString *) stringForSlider {
+    return [NSString stringWithFormat:@"%1.2f", [self.slideValue floatValue]];
 }
 
 -(void) loadForInt:(int) value {
@@ -66,9 +77,9 @@
 
 -(void) updateProfileInstance:(ProfileInstance *) instance {
     if (isSecond) {
-        instance.distortionCorrectionValue2 = (self.valueIndex - 40) / 20.0f;
+        instance.distortionCorrectionValue2 = [self.slideValue floatValue];
     } else {
-        instance.distortionCorrectionValue1 = (self.valueIndex - 40) / 20.0f;
+        instance.distortionCorrectionValue1 = [self.slideValue floatValue];
     }
     
 }

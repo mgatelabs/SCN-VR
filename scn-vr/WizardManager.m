@@ -141,6 +141,10 @@
     [self filter];
 }
 
+-(void) makeDirty {
+    _dirty = YES;
+}
+
 -(int) item:(int) item {
     WizardItem * wizardItem = [_visibleItems objectAtIndex:item];
     return wizardItem.valueIndex;
@@ -175,7 +179,7 @@
     
     for (int i = 0; i < _filteredItems.count; i++) {
         WizardItem * item = [_filteredItems objectAtIndex:i];
-        if (item.count > 1) {
+        if ((item.type == WizardItemDataTypeSlideFloat || item.type == WizardItemDataTypeSlideInt) || item.count > 1) {
             item.visibleIndex = (int)_visibleItems.count;
             [_visibleItems addObject:item];
         }
@@ -201,7 +205,7 @@
     
     for (int i = incomingFilteredItemCount; i < _filteredItems.count; i++) {
         WizardItem * item = [_filteredItems objectAtIndex:i];
-        if (item.count > 1) {
+        if ((item.type == WizardItemDataTypeSlideFloat || item.type == WizardItemDataTypeSlideInt) || item.count > 1) {
             item.visibleIndex = (int)_visibleItems.count;
             [_visibleItems addObject:item];
         }
@@ -240,13 +244,22 @@
     for (int i = 0; i < _filteredItems.count; i++) {
         WizardItem * item = [_filteredItems objectAtIndex:i];
         
+        //NSLog(@"Saving Key For: %d", item.itemId);
+        
+        NSString * itemIdString = [NSString stringWithFormat:@"%d", item.itemId];
+        
         switch (item.type) {
             case WizardItemDataTypeInt:
-                [values setValue:[NSNumber numberWithInt:[item prepValueToSave]] forKey:[NSString stringWithFormat:@"%d", item.itemId]];
+                [values setValue:[NSNumber numberWithInt:[item prepValueToSave]] forKey: itemIdString];
                 break;
             case WizardItemDataTypeString:
-                [values setValue:item.valueId forKey:[NSString stringWithFormat:@"%d", item.itemId]];
+                [values setValue:item.valueId forKey:itemIdString];
                 break;
+            case WizardItemDataTypeSlideFloat:
+            case WizardItemDataTypeSlideInt: {
+                //NSLog(@"Setting value for %d", item.itemId);
+                [values setValue:item.slideValue forKey:itemIdString];
+            } break;
             default:
                 NSLog(@"Unknown Wizard Item Type");
                 break;
@@ -278,6 +291,13 @@
                     [item loadForIdentity:string];
                 }
             } break;
+            case WizardItemDataTypeSlideFloat:
+            case WizardItemDataTypeSlideInt: {
+                NSNumber * numb = [payload valueForKey:[NSString stringWithFormat:@"%d", item.itemId]];
+                if (numb != nil) {
+                    [item loadForNumber:numb];
+                }
+            } break;
         }
         
         [item chainUpdated];
@@ -302,6 +322,16 @@
                 NSString * string = [payload valueForKey:[NSString stringWithFormat:@"%d", item.itemId]];
                 if (string != nil) {
                     [item loadForIdentity:string];
+                }
+            } break;
+            case WizardItemDataTypeSlideFloat:
+            case WizardItemDataTypeSlideInt: {
+                NSNumber * numb = [payload valueForKey:[NSString stringWithFormat:@"%d", item.itemId]];
+                //NSLog(@"Trying to load for %d", item.itemId);
+                if (numb != nil) {
+                    [item loadForNumber:numb];
+                } else {
+                    //NSLog(@"No value for %d", item.itemId);
                 }
             } break;
         }
@@ -330,6 +360,28 @@
 
 -(void) addExtendedItem:(WizardItem *) item {
     [_extendedItems addObject:item];
+}
+
+-(void) verify {
+    for (int i = 0; i < _baseItems.count - 1; i++) {
+        WizardItem * sItem = _baseItems[i];
+        for (int j = i + 1; j < _baseItems.count; j++) {
+            WizardItem * oItem = _baseItems[j];
+            if (sItem.itemId == oItem.itemId) {
+                NSLog(@"Duplicate Found With ID: %d", oItem.itemId);
+            }
+        }
+    }
+    
+    for (int i = 0; i < _extendedItems.count - 1; i++) {
+        WizardItem * sItem = _extendedItems[i];
+        for (int j = i + 1; j < _extendedItems.count; j++) {
+            WizardItem * oItem = _extendedItems[j];
+            if (sItem.itemId == oItem.itemId) {
+                NSLog(@"Duplicate Found With ID: %d", oItem.itemId);
+            }
+        }
+    }
 }
 
 @end

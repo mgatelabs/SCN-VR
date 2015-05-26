@@ -27,13 +27,19 @@
 
 - (instancetype)initWith:(FovWizardItem *) fovWizardItem second:(BOOL) secondItem
 {
-    self = [super initWith:secondItem ? @"Horizontal FOV" : @"Vertical FOV" info:@"Custom field of view setting." itemId: secondItem ? WIZARD_ITEM_FOV_V : WIZARD_ITEM_FOV_H type:WizardItemDataTypeInt];
+    self = [super initWith:secondItem ? @"Horizontal FOV" : @"Vertical FOV" info:@"Custom field of view setting." itemId: secondItem ? WIZARD_ITEM_FOV_V : WIZARD_ITEM_FOV_H type:WizardItemDataTypeSlideFloat];
     if (self) {
         second = secondItem;
         fovs = fovWizardItem;
-        self.count = ((120 - 45) * 4) + 1;
-        self.valueIndex = ((80 - 45) * 4);
-        self.valueId = @"80";
+        
+        self.slideValue = [NSNumber numberWithFloat:80.0f];
+        self.slideMin = [NSNumber numberWithFloat:45.0f];
+        self.slideMax = [NSNumber numberWithFloat:120.0f];
+        self.slideStep = [NSNumber numberWithFloat:2.5f];
+        
+        //self.count = ((120 - 45) * 4) + 1;
+        //self.valueIndex = ((80 - 45) * 4);
+        //self.valueId = @"80";
     }
     return self;
 }
@@ -46,6 +52,10 @@
     return fovs.valueIndex == 1;
 }
 
+-(void) reset {
+    self.slideValue = [NSNumber numberWithFloat:80.0f];
+}
+
 -(void) loadForInt:(int) value {
     self.valueIndex = value;
     self.valueId = [self stringForIndex:value];
@@ -53,6 +63,10 @@
 
 -(NSString *) stringForIndex:(int) index {
     return [NSString stringWithFormat:@"%1.2f Degrees", (index / 4.0f) + 45];
+}
+
+-(NSString *) stringForSlider {
+    return [NSString stringWithFormat:@"%1.2f°", [self.slideValue floatValue]];
 }
 
 -(void) selectedIndex:(int) index {
@@ -66,9 +80,9 @@
 
 -(void) updateProfileInstance:(ProfileInstance *) instance {
     if (second) {
-        instance.vFov = (self.valueIndex / 4.0f) + 45;
+        instance.vFov = [self.slideValue floatValue];
     } else {
-        instance.hFov = (self.valueIndex / 4.0f) + 45;
+        instance.hFov = [self.slideValue floatValue];
     }
 }
 

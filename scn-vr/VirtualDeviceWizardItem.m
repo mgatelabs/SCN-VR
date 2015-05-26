@@ -106,6 +106,7 @@
                 case VirtualDeviceConfigurationTypeLandscape169:
                 case VirtualDeviceConfigurationTypePortrait:
                 case VirtualDeviceConfigurationTypePortrait169:
+                case VirtualDeviceConfigurationTypeLandscapeSquared:
                     break;
                 case VirtualDeviceConfigurationTypeLandscapeVirtual: {
                     float deviceHeight = selectedMobile.heightMM * 1.1f;
@@ -179,6 +180,31 @@
             instance.virtualOffsetBottom = 0;
             
             break;
+        case VirtualDeviceConfigurationTypeLandscapeSquared: {
+        
+            instance.landscapeView = YES;
+            
+            int halfWidth = instance.physicalWidthPX / 2;
+            if (halfWidth > instance.physicalHeightPX) {
+                // Need to shrink width
+                instance.virtualWidthPX = halfWidth * 2;
+                instance.virtualHeightPX = instance.physicalHeightPX;
+            } else {
+                // Need to shrink height
+                instance.virtualWidthPX = instance.physicalWidthPX;
+                instance.virtualHeightPX = instance.physicalWidthPX / 2;
+            }
+            
+            instance.virtualHeightIN = instance.virtualHeightPX / instance.physicalDPI;
+            instance.virtualWidthIN = instance.virtualWidthPX / instance.physicalDPI;
+            
+            instance.virtualHeightMM = instance.virtualHeightIN * IN_2_MM;
+            instance.virtualWidthMM = instance.virtualWidthIN * IN_2_MM;
+            
+            instance.virtualOffsetLeft = (instance.physicalWidthPX - instance.virtualWidthPX) / 2;
+            instance.virtualOffsetBottom = (instance.physicalHeightPX - instance.virtualHeightPX) / 2;
+            
+        } break;
         case VirtualDeviceConfigurationTypeLandscape169:
             instance.landscapeView = YES;
             
@@ -192,8 +218,6 @@
             
             instance.virtualOffsetLeft = 0;
             instance.virtualOffsetBottom = (instance.physicalHeightPX - instance.virtualHeightPX) / 2;
-            
-            
             break;
         case VirtualDeviceConfigurationTypePortrait:
             instance.landscapeView = NO;

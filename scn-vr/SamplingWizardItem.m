@@ -15,7 +15,7 @@
 
 - (instancetype)initWith:(HmdWizardItem *) hmdWizardItem
 {
-    self = [super initWith:@"Super Sampling" info:@"Super sampling is a technique that will increase quality, but degrade performance." itemId:WIZARD_ITEM_DISTORTION type:WizardItemDataTypeInt];
+    self = [super initWith:@"Super Sampling" info:@"Super sampling is a technique that will increase quality, but degrade performance." itemId:WIZARD_ITEM_SUPER_SAMPLING type:WizardItemDataTypeInt];
     if (self) {
         hmds = hmdWizardItem;
         selectedHmdValueId = hmds.valueId;

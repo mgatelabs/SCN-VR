@@ -94,6 +94,7 @@ typedef NS_ENUM(NSInteger, ProfileInstanceSS)
 @property (strong, nonatomic) NSMutableDictionary * extended;
 
 -(int) getExtendedValueFor:(NSString *) key withDefaultInt:(int) value;
+-(float) getExtendedValueFor:(NSString *) key withDefaultFloat:(float) value;
 -(NSString *) getExtendedValueFor:(NSString *) key withDefaultNSString:(NSString *) value;
 
 @end
