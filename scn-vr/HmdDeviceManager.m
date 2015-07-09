@@ -91,6 +91,18 @@
     firefly.internal = YES;
     firefly.deviceUsed = YES;
     
+    HmdDeviceConfiguration * vrOne = [HmdDeviceManager addHmdTo: hmds name:@"ZEISS VR ONE" identifier:@"vrone" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:85.0f correctionCoefficient:-2.0f distortionFactorA:1.25f distortionFactorB:1.25f];
+    vrOne.internal = YES;
+    vrOne.deviceUsed = YES;
+    
+    HmdDeviceConfiguration * dive5 = [HmdDeviceManager addHmdTo: hmds name:@"Durovis Dive 5\"" identifier:@"dive5" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:90.0f correctionCoefficient:-1.5f distortionFactorA:0.5f distortionFactorB:0.2f];
+    dive5.internal = YES;
+    dive5.deviceUsed = YES;
+    
+    HmdDeviceConfiguration * homido5 = [HmdDeviceManager addHmdTo: hmds name:@"Homido 5\"" identifier:@"Homido5" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:90.0f correctionCoefficient:-1.5f distortionFactorA:0.5f distortionFactorB:0.2f];
+    homido5.internal = YES;
+    homido5.deviceUsed = YES;
+    
     return hmds;
 }
 

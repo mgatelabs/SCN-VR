@@ -65,6 +65,11 @@
 @property (assign, readonly) BOOL restrictYaw;
 @property (assign, readonly) BOOL restrictPitch;
 
+@property (assign, atomic) BOOL enableRawValues;
+@property (assign, readonly) float rawYaw;
+@property (assign, readonly) float rawPitch;
+@property (assign, readonly) float rawRoll;
+
 @property (assign) BOOL useHeadTracking;
 
 @property (assign, readonly) GLKQuaternion nullViewpoint;

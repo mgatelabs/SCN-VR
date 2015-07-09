@@ -38,6 +38,7 @@
     [self setPaused:YES];
     
     _restrictToAxis = NO;
+    _enableRawValues = NO;
     
     ProfileManager * profiles = [ProfileManager sharedManager];
     self.profile = [profiles getCurrentProfileInstance];
@@ -314,16 +315,17 @@
     
     altered =GLKQuaternionMultiply(cameraOrientation, gyroValues);
     
-    if (_restrictToAxis) {
+    if (_restrictToAxis || _enableRawValues) {
         GLKQuaternion q = altered;
-        
-        float yaw = !_restrictYaw ? atan2(2.0*(q.x*q.y + q.w*q.z), q.w*q.w + q.x*q.x - q.y*q.y - q.z*q.z) : 0;
-        float pitch = !_restrictPitch ? -M_PI_2 + atan2(2.0*(q.y*q.z + q.w*q.x), q.w*q.w - q.x*q.x - q.y*q.y + q.z*q.z) : 0;
-        float roll = !_restrictRoll ? -asin(-2.0*(q.x*q.z - q.w*q.y)) : 0;
-        
-        GLKQuaternion qY = GLKQuaternionMakeWithAngleAndAxis(yaw, 0, 1, 0);
-        GLKQuaternion qP = GLKQuaternionMakeWithAngleAndAxis(pitch, 1, 0, 0);
-        GLKQuaternion qR = GLKQuaternionMakeWithAngleAndAxis(roll, 0, 0, 1);
+        _rawYaw = !_restrictYaw || _enableRawValues ? atan2(2.0*(q.x*q.y + q.w*q.z), q.w*q.w + q.x*q.x - q.y*q.y - q.z*q.z) : 0;
+        _rawPitch = !_restrictPitch || _enableRawValues ? -M_PI_2 + atan2(2.0*(q.y*q.z + q.w*q.x), q.w*q.w - q.x*q.x - q.y*q.y + q.z*q.z) : 0;
+        _rawRoll = !_restrictRoll || _enableRawValues ? -asin(-2.0*(q.x*q.z - q.w*q.y)) : 0;
+    }
+    
+    if (_restrictToAxis) {
+        GLKQuaternion qY = GLKQuaternionMakeWithAngleAndAxis(_rawYaw, 0, 1, 0);
+        GLKQuaternion qP = GLKQuaternionMakeWithAngleAndAxis(_rawPitch, 1, 0, 0);
+        GLKQuaternion qR = GLKQuaternionMakeWithAngleAndAxis(_rawRoll, 0, 0, 1);
         
         GLKQuaternion A = GLKQuaternionMultiply(qR, qY);
         
