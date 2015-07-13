@@ -59,6 +59,9 @@
 
 #define WIZARD_ITEM_COLOR_VALUE 28
 
+#define WIZARD_ITEM_VIEW_SHIFT_X 29
+#define WIZARD_ITEM_VIEW_SHIFT_Y 30
+
 typedef NS_ENUM(NSInteger, WizardItemChangeAction)
 {
     WizardItemChangeActionNone = 0,

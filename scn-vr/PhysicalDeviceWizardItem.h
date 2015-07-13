@@ -27,4 +27,6 @@
 
 - (instancetype)init;
 
+-(MobileDeviceConfiguration *) getDevice;
+
 @end

@@ -27,9 +27,17 @@
 @property (strong, nonatomic, readonly) NSMutableArray * sourceItems;
 @property (strong, nonatomic, readonly) NSMutableArray * items;
 @property (weak, nonatomic, readonly) VirtualDeviceConfiguration * virtualDevice;
+@property (strong, nonatomic, readonly) ProfileInstance * tempProfileInstance;
 
 - (instancetype)initWith:(PhysicalDeviceWizardItem *) deviceWizardItem;
 
 -(void) filterDevices;
+
+-(void) updateTargetInfo;
+
+-(float) getTargetVirtualWidthMM;
+-(float) getTargetVirtualHeightMM;
+-(float) getPhysicalWidthMM;
+-(float) getPhysicalHeightMM;
 
 @end

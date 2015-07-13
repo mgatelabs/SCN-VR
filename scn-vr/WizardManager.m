@@ -35,6 +35,7 @@
 #import "DistortionQualityWizardItem.h"
 #import "PhysicalDpiWizardItem.h"
 #import "SamplingWizardItem.h"
+#import "VirtualPositionWizardItem.h"
 
 @implementation WizardManager
 
@@ -67,6 +68,12 @@
         [_baseItems addObject:[[VirtualCustomWizardItem alloc] initWithVirtual:virtualWizard physical:device mode:0]];
         
         [_baseItems addObject:[[VirtualCustomWizardItem alloc] initWithVirtual:virtualWizard physical:device mode:1]];
+        
+        VirtualPositionWizardItem * virtualPositionX = [[VirtualPositionWizardItem alloc] initWith:virtualWizard isX:YES];
+        [_baseItems addObject: virtualPositionX];
+        
+        VirtualPositionWizardItem * virtualPositionY = [[VirtualPositionWizardItem alloc] initWith:virtualWizard isX:NO];
+        [_baseItems addObject: virtualPositionY];
         
         // HMD Selection
         HmdWizardItem * hmds = [[HmdWizardItem alloc] init];
@@ -277,6 +284,8 @@
     
     for (int i = 0; i < _baseItems.count; i++) {
         WizardItem * item = [_baseItems objectAtIndex:i];
+        
+        //NSLog(@"Load For Item %@", [item title]);
         
         switch (item.type) {
             case WizardItemDataTypeInt: {

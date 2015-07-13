@@ -31,6 +31,7 @@
 {
     self = [super initWith:@"Window" info:@"With this setting you can change how content is displayed on your device." itemId:WIZARD_ITEM_VIRTUAL_DEVICE type:WizardItemDataTypeString];
     if (self) {
+        _tempProfileInstance = [[ProfileInstance alloc] init];
         devices = deviceWizardItem;
         _items = [[NSMutableArray alloc] initWithCapacity:10];
         _sourceItems = [VirtualDeviceManager getVirtualDevices];
@@ -46,6 +47,7 @@
     _virtualDevice = [_items objectAtIndex:0];
     self.valueId = _virtualDevice.key;
     self.valueIndex = 0;
+    [self updateTargetInfo];
 }
 
 -(WizardItemChangeAction) changeAction {
@@ -64,7 +66,7 @@
     _virtualDevice = [_items objectAtIndex:0];
     self.valueId = _virtualDevice.key;
     self.valueIndex = 0;
-    
+
     for (int i = 0; i < _items.count; i++) {
         VirtualDeviceConfiguration * temp = [_items objectAtIndex:i];
         if ([temp.key isEqualToString:identity]) {
@@ -74,7 +76,7 @@
             break;
         }
     }
-    
+    [self updateTargetInfo];
 }
 
 -(void) chainUpdated {
@@ -85,6 +87,8 @@
             if (selectedMobile != nil) {
                 [self filterDevices];
             }
+        } else {
+            [self updateTargetInfo];
         }
     } else {
         _virtualDevice = nil;
@@ -148,6 +152,7 @@
     }
     [self selectedIndex:0];
     self.count = (int)_items.count;
+    [self updateTargetInfo];
 }
 
 -(NSString *) stringForIndex:(int) index {
@@ -160,6 +165,7 @@
     VirtualDeviceConfiguration * d = [_items objectAtIndex:index];
     _virtualDevice = d;
     self.valueId = d.key;
+    [self updateTargetInfo];
 }
 
 -(void) updateProfileInstance:(ProfileInstance *) instance {
@@ -303,6 +309,45 @@
         } break;
     }
     
+}
+
+-(void) updateTargetInfo {
+    
+    [selectedMobile ready];
+    
+    NSLog(@"%@", selectedMobile.name);
+    
+    _tempProfileInstance.physicalWidthPX = selectedMobile.widthPx;
+    _tempProfileInstance.physicalHeightPX = selectedMobile.heightPx;
+    _tempProfileInstance.forcedScale = selectedMobile.forcedScale;
+    
+    if (!selectedMobile.custom) {
+        _tempProfileInstance.physicalWidthIN = selectedMobile.widthIN;
+        _tempProfileInstance.physicalWidthMM = selectedMobile.widthMM;
+        
+        _tempProfileInstance.physicalHeightIN = selectedMobile.heightIN;
+        _tempProfileInstance.physicalHeightMM = selectedMobile.heightMM;
+        
+        _tempProfileInstance.physicalDPI = selectedMobile.physicalDpi;
+    }
+    
+    [self updateProfileInstance:_tempProfileInstance];
+}
+
+-(float) getTargetVirtualWidthMM {
+    return _tempProfileInstance.virtualWidthMM;
+}
+
+-(float) getTargetVirtualHeightMM {
+    return _tempProfileInstance.virtualHeightMM;
+}
+
+-(float) getPhysicalWidthMM {
+    return _tempProfileInstance.physicalWidthMM;
+}
+
+-(float) getPhysicalHeightMM {
+    return _tempProfileInstance.physicalHeightMM;
 }
 
 @end

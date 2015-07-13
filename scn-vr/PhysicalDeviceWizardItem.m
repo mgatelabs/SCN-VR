@@ -61,6 +61,7 @@
         MobileDeviceConfiguration * temp = [mdm.devices objectAtIndex:i];
         if ([temp.identifier isEqualToString:identity]) {
             device = temp;
+            _selected = device;
             self.valueId = temp.identifier;
             self.valueIndex = i;
             break;
@@ -104,6 +105,10 @@
         
         instance.physicalDPI = device.physicalDpi;
     }
+}
+
+-(MobileDeviceConfiguration *) getDevice {
+    return device;
 }
 
 @end
