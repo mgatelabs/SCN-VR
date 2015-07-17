@@ -56,7 +56,7 @@
     float halfMin = min / 2.0f;
     float give = halfTotal - halfMin;
     
-    NSLog(@"%@ %f - %f", self.title, total, min);
+    //NSLog(@"%@ %f - %f", self.title, total, min);
     
     _allowShift = (give > 0.25f);
     

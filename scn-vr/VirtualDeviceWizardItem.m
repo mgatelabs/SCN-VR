@@ -315,7 +315,7 @@
     
     [selectedMobile ready];
     
-    NSLog(@"%@", selectedMobile.name);
+    //NSLog(@"%@", selectedMobile.name);
     
     _tempProfileInstance.physicalWidthPX = selectedMobile.widthPx;
     _tempProfileInstance.physicalHeightPX = selectedMobile.heightPx;
