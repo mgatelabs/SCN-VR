@@ -53,7 +53,7 @@
             
             if (_mode == 0) {
                 maxSize = (_virtualWizard.virtualDevice.type == VirtualDeviceConfigurationTypeLandscapeCustom ? _physicalWizard.selected.widthMM : _physicalWizard.selected.heightMM);
-            } else if (_mode == 1) {
+            } else /* if (_mode == 1)*/ {
                 maxSize = (_virtualWizard.virtualDevice.type == VirtualDeviceConfigurationTypeLandscapeCustom ? _physicalWizard.selected.heightMM : _physicalWizard.selected.widthMM);
             }
             

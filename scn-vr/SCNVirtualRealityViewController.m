@@ -290,6 +290,8 @@
     return self.profile.landscapeView ? UIInterfaceOrientationMaskLandscapeRight : UIInterfaceOrientationMaskPortrait;
 }
 
+//public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations
+
 - (BOOL) prefersStatusBarHidden {
     return YES;
 }

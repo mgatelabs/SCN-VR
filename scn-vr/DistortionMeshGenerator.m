@@ -127,7 +127,7 @@
     
     float scaleFactor = 1.0f/ MAX(leftEye?-1*(1-maxX):maxX,maxY);
     
-    for(int i=0; i< numVertices; i++) {
+    for(int i = 0; i < numVertices; i++) {
         points[i].x *=scaleFactor;
         points[i].x += calculatedOffsetX;
         points[i].y *=scaleFactor;
