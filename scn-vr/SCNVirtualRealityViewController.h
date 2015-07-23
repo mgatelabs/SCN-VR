@@ -33,6 +33,10 @@
 // This needs to be set in the segue to this screen
 @property (strong, nonatomic) ProfileInstance * profile;
 
+@property (assign, nonatomic, readonly) BOOL isLoaded;
+
+-(void) loadIt;
+
 // Source are defined render textures
 @property (strong, nonatomic) RenderTexture * leftSourceTexture;
 @property (strong, nonatomic) RenderTexture * rightSourceTexture;

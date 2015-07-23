@@ -37,11 +37,25 @@
     [super viewDidLoad];
     [self setPaused:YES];
     
-    _restrictToAxis = NO;
-    _enableRawValues = NO;
+    //NSLog(@"View Did Load");
     
     ProfileManager * profiles = [ProfileManager sharedManager];
     self.profile = [profiles getCurrentProfileInstance];
+    
+    //_isLoaded = NO;
+    
+    [self loadIt];
+}
+
+-(void) loadIt {
+    
+    //NSLog(@"Load It");
+    
+    _restrictToAxis = NO;
+    _enableRawValues = NO;
+    
+    //ProfileManager * profiles = [ProfileManager sharedManager];
+    //self.profile = [profiles getCurrentProfileInstance];
     
     _nullViewpoint = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(-1.57079633f, 0, 0, 1), GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
     
@@ -166,11 +180,35 @@
     [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
+/*
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    if (_isLoaded == NO) {
+        _isLoaded = YES;
+        [self loadIt];
+    }
     [self setPaused:NO];
     [_profile.tracker start];
 }
+*/
+
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+//    if (_isLoaded == NO) {
+//        _isLoaded = YES;
+//        [self loadIt];
+//    }
+    [self setPaused:NO];
+    [_profile.tracker start];
+}
+
+
+//-(void) viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    [self setPaused:NO];
+ //   [_profile.tracker start];
+//}
 
 -(void) viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
@@ -280,6 +318,11 @@
         return [_leftRenderer hitTest:CGPointMake(x, y) options:nil];
     }
     return nil;
+}
+
+
+- (BOOL)shouldAutorotate {
+    return NO;
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
