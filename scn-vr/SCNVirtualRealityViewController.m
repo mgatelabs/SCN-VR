@@ -165,12 +165,12 @@
     
     _scene = [self generateScene];
     
-    _leftRenderer = [SCNRenderer rendererWithContext:(__bridge void *)(_context) options:nil];
+    _leftRenderer = [SCNRenderer rendererWithContext:(__bridge EAGLContext * _Nonnull)((__bridge void *)(_context)) options:nil];
     _leftRenderer.showsStatistics = NO;
     _leftRenderer.scene = _scene;
     _leftRenderer.playing = YES;
     
-    _rightRenderer = [SCNRenderer rendererWithContext:(__bridge void *)(_context) options:nil];
+    _rightRenderer = [SCNRenderer rendererWithContext:(__bridge EAGLContext * _Nonnull)((__bridge void *)(_context)) options:nil];
     _rightRenderer.showsStatistics = NO;
     _rightRenderer.scene = _scene;
     _rightRenderer.playing = YES;
@@ -388,7 +388,7 @@
     [EAGLContext setCurrentContext:_context];
     
     // Make sure we have access to the screen's render & depth buffers
-    [_destTexture restore];
+    
     
     //[self checkGlErrorStatus];
     

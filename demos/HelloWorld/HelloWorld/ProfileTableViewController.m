@@ -1,6 +1,6 @@
 //
 //  ProfileTableViewController.m
-//  Mobile VR Player
+//  Mobile VR Station
 //
 //  Created by Michael Fuller on 1/17/15.
 //  Copyright (c) 2015 M-Gate Labs. All rights reserved.
@@ -10,6 +10,7 @@
 #import "NameValueTableViewCell.h"
 #import "WizardItemTableViewController.h"
 #import "ProfileNameTableViewCell.h"
+#import "ProfileSliderTableViewCell.h"
 
 @interface ProfileTableViewController ()
 
@@ -108,14 +109,29 @@
         } break;
         case 1:
         default: {
-            NameValueTableViewCell *cell = (NameValueTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"nameValue" forIndexPath:indexPath];
-       
             WizardItem * item = [_wizard.visibleItems objectAtIndex:indexPath.row];
-        
-            cell.name.text = item.title;
-            cell.value.text = [item stringForIndex:item.valueIndex];
             
-            return cell;
+            switch (item.type) {
+                case WizardItemDataTypeSlideFloat:
+                case WizardItemDataTypeSlideInt: {
+                    
+                    ProfileSliderTableViewCell * cell = (ProfileSliderTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"slider" forIndexPath:indexPath];
+                    
+                    cell.item = item;
+                    cell.manager = _wizard;
+                    [cell update];
+                    
+                    return cell;
+                    
+                } break;
+                default: {
+                    NameValueTableViewCell *cell = (NameValueTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"nameValue" forIndexPath:indexPath];
+                    
+                    cell.name.text = item.title;
+                    cell.value.text = [item stringForIndex:item.valueIndex];
+                    return cell;
+                } break;
+            }
         } break;
     }
 }

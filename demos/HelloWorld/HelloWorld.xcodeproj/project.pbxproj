@@ -24,6 +24,7 @@
 		AC7ECEFA1AD1B72F00F2A232 /* WizardItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7ECEF91AD1B72F00F2A232 /* WizardItemTableViewController.m */; };
 		AC7ECEFC1AD1B76D00F2A232 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC7ECEFB1AD1B76D00F2A232 /* CoreMotion.framework */; };
 		AC7ECF061AD1B7F000F2A232 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7ECF051AD1B7F000F2A232 /* HomeViewController.m */; };
+		ACAFAF071B6C7F5C004BF387 /* ProfileSliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAFAF061B6C7F5C004BF387 /* ProfileSliderTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		AC7ECEFB1AD1B76D00F2A232 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		AC7ECF041AD1B7F000F2A232 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		AC7ECF051AD1B7F000F2A232 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		ACAFAF051B6C7F5C004BF387 /* ProfileSliderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSliderTableViewCell.h; sourceTree = "<group>"; };
+		ACAFAF061B6C7F5C004BF387 /* ProfileSliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSliderTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,8 @@
 				AC7ECEF11AD1B44E00F2A232 /* ProfileTableViewController.m */,
 				AC7ECEEC1AD1B44E00F2A232 /* ProfileNameTableViewCell.h */,
 				AC7ECEED1AD1B44E00F2A232 /* ProfileNameTableViewCell.m */,
+				ACAFAF051B6C7F5C004BF387 /* ProfileSliderTableViewCell.h */,
+				ACAFAF061B6C7F5C004BF387 /* ProfileSliderTableViewCell.m */,
 			);
 			name = Item;
 			sourceTree = "<group>";
@@ -325,6 +330,7 @@
 				AC7ECEC21AD1AE9E00F2A232 /* ViewController.m in Sources */,
 				AC7ECEFA1AD1B72F00F2A232 /* WizardItemTableViewController.m in Sources */,
 				AC7ECEBF1AD1AE9E00F2A232 /* AppDelegate.m in Sources */,
+				ACAFAF071B6C7F5C004BF387 /* ProfileSliderTableViewCell.m in Sources */,
 				AC7ECEF21AD1B44E00F2A232 /* ProfileNameTableViewCell.m in Sources */,
 				AC7ECEF41AD1B44E00F2A232 /* ProfileTableViewController.m in Sources */,
 				AC6BEBDD1AD234C00073BE68 /* BasicGameViewController.m in Sources */,
