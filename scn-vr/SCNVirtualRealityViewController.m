@@ -24,10 +24,8 @@
     
 }
 
-@property (strong, nonatomic) EAGLContext *context;
-
 - (void) setupGL;
-- (void) checkGlErrorStatus;
+- (void) checkGlErrorStatus:(int) marker;
 
 @end
 
@@ -37,25 +35,19 @@
     [super viewDidLoad];
     [self setPaused:YES];
     
-    //NSLog(@"View Did Load");
-    
     ProfileManager * profiles = [ProfileManager sharedManager];
     self.profile = [profiles getCurrentProfileInstance];
-    
-    //_isLoaded = NO;
     
     [self loadIt];
 }
 
 -(void) loadIt {
+    self.paused = YES;
     
     //NSLog(@"Load It");
     
     _restrictToAxis = NO;
     _enableRawValues = NO;
-    
-    //ProfileManager * profiles = [ProfileManager sharedManager];
-    //self.profile = [profiles getCurrentProfileInstance];
     
     _nullViewpoint = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(-1.57079633f, 0, 0, 1), GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
     
@@ -180,35 +172,12 @@
     [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
-/*
--(void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if (_isLoaded == NO) {
-        _isLoaded = YES;
-        [self loadIt];
-    }
-    [self setPaused:NO];
-    [_profile.tracker start];
-}
-*/
-
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//    if (_isLoaded == NO) {
-//        _isLoaded = YES;
-//        [self loadIt];
-//    }
     [self setPaused:NO];
     [_profile.tracker start];
 }
-
-
-//-(void) viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    [self setPaused:NO];
- //   [_profile.tracker start];
-//}
 
 -(void) viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
@@ -265,8 +234,7 @@
     if ([EAGLContext currentContext] == self.context) {
         [EAGLContext setCurrentContext:nil];
     }
-    
-    _context = nil;
+    self.context = nil;
 }
 
 #pragma mark - Scene Helpers
@@ -309,6 +277,13 @@
 -(NSArray *) viewpointSees {
     if (_viewpoint != nil) {
         return [_leftRenderer hitTest:CGPointMake(_leftEyeSource.w / 2, _leftEyeSource.h / 2) options:nil];
+    }
+    return nil;
+}
+
+-(NSArray *) viewpointSeesWithOffset:(float) offset {
+    if (_viewpoint != nil) {
+        return [_leftRenderer hitTest:CGPointMake((_leftEyeSource.w / 2) + offset, _leftEyeSource.h / 2) options:nil];
     }
     return nil;
 }
@@ -387,10 +362,12 @@
     
     [EAGLContext setCurrentContext:_context];
     
+    [self checkGlErrorStatus: -1];
+    
     // Make sure we have access to the screen's render & depth buffers
+    [_destTexture ready];
     
-    
-    //[self checkGlErrorStatus];
+    [self checkGlErrorStatus: 0];
     
     if (_viewpoint != nil) {
         
@@ -398,14 +375,21 @@
         
         // Render both eyes
         [_leftEyeSource bindAndClear];
+        
+        [self checkGlErrorStatus: 100];
+        
         [_leftRenderer renderAtTime:interval];
+        //glFlush();
+        
+        [self checkGlErrorStatus: 1];
         
         if (_viewpoint.rightEye != nil) {
             [_rightEyeSource bind];
             [_rightRenderer renderAtTime:interval];
+            //glFlush();
         }
         
-        [self checkGlErrorStatus];
+        [self checkGlErrorStatus: 2];
         
         switch (_profile.viewportCount) {
             case 1: {
@@ -419,33 +403,15 @@
                     
                     [_rightEyeDest view];
                     
-                    //[self checkGlErrorStatus];
-                    
                     [_eyeColorCorrection activateShaderFor:_profile leftEye:NO texture:_rightEyeSource.dest.textureId];
-                    
-                    //[self checkGlErrorStatus];
                     
                     [_rightEyeMesh draw];
                     
-                    //[self checkGlErrorStatus];
-                    
                     [_leftEyeDest view];
                     
-                    //[self checkGlErrorStatus];
-                    
                     [_eyeColorCorrection activateShaderFor:_profile leftEye:YES texture:_leftEyeSource.dest.textureId];
-        
-                    //[self checkGlErrorStatus];
-                    
-                    //glEnableVertexAttribArray(GLKVertexAttribPosition);
-                    //glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
-                    
+
                     [_leftEyeMesh draw];
-        
-                    //[self checkGlErrorStatus];
-                    
-                    //glDisableVertexAttribArray(GLKVertexAttribPosition);
-                    //glDisableVertexAttribArray(GLKVertexAttribTexCoord0);
                     
                 }
                 
@@ -466,10 +432,10 @@
     glEnable(GL_DEPTH_TEST);
 }
 
--(void) checkGlErrorStatus {
+-(void) checkGlErrorStatus:(int) marker {
     GLenum errorState = glGetError();
     if (errorState != GL_NO_ERROR) {
-        NSLog(@"GL Error Detected: %d", errorState);
+        NSLog(@"GL Error Detected: %d - %d", errorState, marker);
     }
 }
 

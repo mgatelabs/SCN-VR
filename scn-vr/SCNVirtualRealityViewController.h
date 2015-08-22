@@ -33,6 +33,8 @@
 // This needs to be set in the segue to this screen
 @property (strong, nonatomic) ProfileInstance * profile;
 
+@property (strong, nonatomic) EAGLContext *context;
+
 @property (assign, nonatomic, readonly) BOOL isLoaded;
 
 -(void) loadIt;
@@ -95,6 +97,8 @@
 - (void) updateViewpointOrientation;
 
 -(NSArray *) viewpointSees;
+
+-(NSArray *) viewpointSeesWithOffset:(float) offset;
 
 -(NSArray *) viewpointSeesAt:(float) x y:(float) y;
 

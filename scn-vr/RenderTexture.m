@@ -81,8 +81,6 @@
         _bottom = 0;
         
         _dontClearColorBuffer = NO;
-        
-        [self build];
     }
     return self;
 }
@@ -106,8 +104,6 @@
         _bottom = bottom;
         
         _dontClearColorBuffer = NO;
-        
-        [self build];
     }
     return self;
 }
@@ -164,9 +160,15 @@
     }
 }
 
+-(void) ready {
+    if (_state != RenderTextureStateReady) {
+        [self build];
+    }
+}
+
 -(void) bind {
     
-    if (_state == RenderTextureStateMinimized) {
+    if (_state != RenderTextureStateReady) {
         [self build];
     }
     
@@ -253,14 +255,8 @@
 
 // Force the texture to rebuild itself
 -(void) restore {
-    if (_type == RenderTextureTypeDefined) {
-    if (_state == RenderTextureStateMinimized) {
+    if (_state != RenderTextureStateReady) {
         [self build];
-    }
-    } else if (_type == RenderTextureTypeInfered) {
-        if (_state != RenderTextureStateReady) {
-            [self build];
-        }
     }
 }
 

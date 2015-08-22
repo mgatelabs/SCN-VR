@@ -62,16 +62,6 @@
         }
 
         self.camera = camera;
-        
-        /*
-        SCNRenderer * renderer = [SCNRenderer rendererWithContext:(__bridge void *)(context) options:nil];
-        
-        _renderer = renderer;
-        renderer.showsStatistics = NO;
-        renderer.delegate = self;
-        renderer.scene = scene;
-        renderer.pointOfView = self;
-        renderer.playing = YES;*/
     }
  
     return self;

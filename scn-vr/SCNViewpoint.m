@@ -50,7 +50,7 @@
                 SCNEye * leftEye = [[SCNEye alloc] initAs:_leftEyeSource pair:pair scene:scene context:context];
                 _leftEye = leftEye;
                 [_neck addChildNode:_leftEye];
-                
+                                
                 SCNEye * rightEye = [[SCNEye alloc] initAs:_rightEyeSource pair:pair scene:scene context:context];
                 _rightEye = rightEye;
                 [_neck addChildNode:_rightEye];
