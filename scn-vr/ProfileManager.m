@@ -131,9 +131,8 @@
     
     NSDictionary * tempDict = [defs valueForKey:@"profiles.items"];
     
-    if (tempDict != nil) {
-        [self loadFromDictionary:tempDict];
-        return YES;
+    if (tempDict != nil && [tempDict objectForKey:@"index"] != nil && [tempDict objectForKey:@"profiles"] != nil) {
+        return [self loadFromDictionary:tempDict];
     }
     
     return NO;
@@ -144,26 +143,33 @@
     [self loadFromDictionary:profileSettings];
 }
 
--(void) loadFromDictionary:(NSDictionary *) profileSettings {
+-(BOOL) loadFromDictionary:(NSDictionary *) profileSettings {
     NSNumber * indexNumber = [profileSettings valueForKey:@"index"];
 
     NSMutableArray * profileItems = [profileSettings valueForKey:@"profiles"];
     
-    for (int i = 0; i < profileItems.count; i++) {
-        NSDictionary * profileData = [profileItems objectAtIndex:i];
-        ProfileConfiguration * configuration = [[ProfileConfiguration alloc] init];
-        
-        configuration.name = [profileData valueForKey:@"name"];
-        NSNumber * identityNumber = [profileData valueForKey:@"identity"];
-        configuration.identity = [identityNumber intValue];
-        configuration.values = [NSMutableDictionary dictionaryWithDictionary:[profileData valueForKey:@"values"]];
-        
-        [_profiles addObject:configuration];
+    if (profileItems != nil && indexNumber != nil) {
+    
+        for (int i = 0; i < profileItems.count; i++) {
+            NSDictionary * profileData = [profileItems objectAtIndex:i];
+            ProfileConfiguration * configuration = [[ProfileConfiguration alloc] init];
+            
+            if ([profileData valueForKey:@"name"] != nil && [profileData valueForKey:@"identity"] != nil && [profileData valueForKey:@"values"] != nil) {
+                configuration.name = [profileData valueForKey:@"name"];
+                NSNumber * identityNumber = [profileData valueForKey:@"identity"];
+                configuration.identity = [identityNumber intValue];
+                configuration.values = [NSMutableDictionary dictionaryWithDictionary:[profileData valueForKey:@"values"]];
+                
+                [_profiles addObject:configuration];
+            }
+        }
+    
+        _index = (int)[indexNumber intValue];
+    
+        _count = (int)_profiles.count;
+        return true;
     }
-    
-    _index = (int)[indexNumber intValue];
-    
-    _count = (int)_profiles.count;
+    return false;
 }
 
 -(void) persist {

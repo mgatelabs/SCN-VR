@@ -32,18 +32,26 @@
     if (self) {
         tm = [TrackingManager sharedManager];
         // Just one tracker for now, don't care
-        if (tm.trackers.count == 1) {
-            tracker = [tm.trackers objectAtIndex:0];
-            self.valueId = tracker.identity;
-            self.valueIndex = 0;
-            self.count = 1;
-        }
+        //if (tm.trackers.count == 1) {
+        [self reset];
+        //}
     }
     return self;
 }
 
+-(void) reset {
+    tracker = [tm.trackers objectAtIndex:0];
+    self.valueId = tracker.identity;
+    self.valueIndex = 0;
+    self.count = (int)tm.trackers.count;
+}
+
 -(WizardItemChangeAction) changeAction {
     return WizardItemChangeActionNone;
+}
+
+-(WizardItemNotReadyAction) notReadyAction {
+    return WizardItemNotReadyActionContinue;
 }
 
 -(void) loadForIdentity:(NSString *) identity {
@@ -63,16 +71,24 @@
     
 }
 
--(BOOL) ready {
-    return self.count > 0;
+-(NSString *) stringForIndex:(int) index {
+    TrackerBase * temp = [tm.trackers objectAtIndex:index];
+    return temp.name;
+}
+
+-(void) selectedIndex:(int) index {
+    self.valueIndex = index;
+    TrackerBase * temp = [tm.trackers objectAtIndex:index];
+    tracker = temp;
+    self.valueId = temp.identity;
 }
 
 -(BOOL) available {
-    return true;
+    return self.count > 0;
 }
 
--(NSString *) stringForIndex:(int) index {
-    return tracker.name;
+-(BOOL) ready {
+    return self.count > 0;
 }
 
 -(void) updateProfileInstance:(ProfileInstance *) instance {

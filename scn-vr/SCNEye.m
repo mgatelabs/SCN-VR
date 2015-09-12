@@ -57,7 +57,7 @@
                 camera.categoryBitMask = 2;
             } break;
             case EyeTextureSideMono: {
-                camera.categoryBitMask = 3;
+                camera.categoryBitMask = 1;
             } break;
         }
 

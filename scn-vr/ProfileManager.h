@@ -52,7 +52,7 @@
 
 -(BOOL) canLoadFromGroup;
 
--(void) loadFromDictionary:(NSDictionary *) profileSettings;
+-(BOOL) loadFromDictionary:(NSDictionary *) profileSettings;
 
 -(void) loadFromFile;
 

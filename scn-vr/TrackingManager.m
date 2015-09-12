@@ -38,6 +38,7 @@
         _trackers = [[NSMutableArray alloc] initWithCapacity:2];
         
         [_trackers addObject:[[CoreMotionTracker alloc] init]];
+        [_trackers addObject:[[CoreMotionTracker alloc] initWithoutMagnet]];
         // Does not work, please fix
         //[_trackers addObject:[[IMUTracker alloc] init]];
         

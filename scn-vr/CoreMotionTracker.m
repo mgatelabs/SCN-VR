@@ -45,6 +45,25 @@
     return self;
 }
 
+- (instancetype)initWithoutMagnet {
+    self = [super initWith:@"CoreMotion NO Magnetometer" identity:@"cmmotionmanagernomag"];
+    if (self) {
+        
+        landscapeRotationFix = GLKQuaternionMakeWithAngleAndAxis(-1.57079633f, 0, 0, 1);
+        
+        self.motionManager = [[CMMotionManager alloc] init];
+        
+        useMagnet = NO;
+        
+        self.motionManager.deviceMotionUpdateInterval = 1.0f / 60;
+        if (useMagnet) {
+            self.motionManager.magnetometerUpdateInterval = 1.0f / 60;
+            self.motionManager.showsDeviceMovementDisplay = YES;
+        }
+    }
+    return self;
+}
+
 -(void) start {
     [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame: useMagnet ? CMAttitudeReferenceFrameXArbitraryCorrectedZVertical : CMAttitudeReferenceFrameXArbitraryZVertical];
 }

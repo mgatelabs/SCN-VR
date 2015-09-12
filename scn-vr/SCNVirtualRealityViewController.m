@@ -157,12 +157,12 @@
     
     _scene = [self generateScene];
     
-    _leftRenderer = [SCNRenderer rendererWithContext:(__bridge EAGLContext * _Nonnull)((__bridge void *)(_context)) options:nil];
+    _leftRenderer = [SCNRenderer rendererWithContext:(__bridge void *)(_context) options:nil];
     _leftRenderer.showsStatistics = NO;
     _leftRenderer.scene = _scene;
     _leftRenderer.playing = YES;
     
-    _rightRenderer = [SCNRenderer rendererWithContext:(__bridge EAGLContext * _Nonnull)((__bridge void *)(_context)) options:nil];
+    _rightRenderer = [SCNRenderer rendererWithContext:(__bridge void *)(_context) options:nil];
     _rightRenderer.showsStatistics = NO;
     _rightRenderer.scene = _scene;
     _rightRenderer.playing = YES;
@@ -283,6 +283,9 @@
 
 -(NSArray *) viewpointSeesWithOffset:(float) offset {
     if (_viewpoint != nil) {
+        if (_profile.viewportCount == 1) {
+            offset = 0;
+        }
         return [_leftRenderer hitTest:CGPointMake((_leftEyeSource.w / 2) + offset, _leftEyeSource.h / 2) options:nil];
     }
     return nil;
