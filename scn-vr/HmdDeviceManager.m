@@ -99,7 +99,7 @@
     dive5.internal = YES;
     dive5.deviceUsed = YES;
     
-    HmdDeviceConfiguration * homido5 = [HmdDeviceManager addHmdTo: hmds name:@"Homido 5\"" identifier:@"Homido5" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:90.0f correctionCoefficient:-1.5f distortionFactorA:0.5f distortionFactorB:0.2f];
+    HmdDeviceConfiguration * homido5 = [HmdDeviceManager addHmdTo: hmds name:@"Homido" identifier:@"Homido5" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:90.0f correctionCoefficient:-1.5f distortionFactorA:0.5f distortionFactorB:0.2f];
     homido5.internal = YES;
     homido5.deviceUsed = YES;
     

@@ -62,16 +62,17 @@
 }
 
 -(void) zeroIPD {
+    _limitedIPD = YES;
     if (_leftEye != nil) {
         [_leftEye zeroIPD];
     }
-    
     if (_rightEye != nil) {
         [_rightEye zeroIPD];
     }
 }
 
 -(void) resetIPD {
+    _limitedIPD = NO;
     if (_leftEye != nil) {
         [_leftEye resetIPD];
     }

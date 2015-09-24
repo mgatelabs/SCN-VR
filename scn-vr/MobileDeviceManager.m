@@ -148,6 +148,10 @@
     tempConfig = [MobileDeviceManager createDevice:@"iPad 7.9\" (Retina)" identifier:@"ipadmini2" widthPx:2048 heightPx:1536 dpi:326 tablet:YES];
     [tempList addObject: tempConfig];
     
+    //iPad Pro (retina)    2732x2048 264 ppi
+    tempConfig = [MobileDeviceManager createDevice:@"iPad 12.9\" (Retina)" identifier:@"ipadpro" widthPx:2732 heightPx:2048 dpi:264 tablet:YES];
+    [tempList addObject: tempConfig];
+    
     for (int i = 0; i < tempList.count; i++) {
         MobileDeviceConfiguration * c = [tempList objectAtIndex:i];
         c.internal = YES;

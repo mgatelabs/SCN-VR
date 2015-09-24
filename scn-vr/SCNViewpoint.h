@@ -38,6 +38,8 @@
 @property (weak, readonly, nonatomic) EyeTexture * leftEyeSource;
 @property (weak, readonly, nonatomic) EyeTexture * rightEyeSource;
 
+@property (assign, nonatomic, readonly) BOOL limitedIPD;
+
 - (instancetype)initAsGhost:(EyeTexture *) left right:(EyeTexture *) right pair:(ProfileInstance *) pair scene:(SCNScene *) scene context:(EAGLContext *) context;
 
 -(void) zeroIPD;

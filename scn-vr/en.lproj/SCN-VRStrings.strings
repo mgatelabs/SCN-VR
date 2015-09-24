@@ -1,0 +1,25 @@
+/* 
+  SVN-VRStrings.strings
+  scn-vr
+
+  Created by Michael Fuller on 4/18/15.
+  Copyright (c) 2015 M-Gate Labs. All rights reserved.
+*/
+
+/* Default Cardboard Option */
+"Profile-Cardboard" = "Male - Cardboard";
+
+/* Default Child Option */
+"Profile-Child" = "Child Mode";
+
+/* Default Female Cardboard Option */
+"Profile-FemaleCardboard" = "Female - Cardboard";
+
+/* Default Homido Option */
+"Profile-Homido" = "Male - Homido";
+
+/* Default Homido Option */
+"Profile-FemaleHomido" = "Female - Homido";
+
+/* Default SBS Option */
+"Profile-SBS" = "Default - Side By Side";

@@ -245,12 +245,15 @@
 
 -(void) reset {
     
+    int wizardIndex;
+    WizardItem * wi;
+    
     [_profiles removeAllObjects];
     
+    // Default Side By Side
     [wizard reset];
-    
     ProfileConfiguration * pc = [[ProfileConfiguration alloc] init];
-    pc.name = NSLocalizedStringFromTableInBundle(@"Default", @"SCN-VRStrings", [NSBundle mainBundle], @"Default title");
+    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-SBS", @"SCN-VRStrings", [NSBundle mainBundle], @"Default - Side by Side");
     pc.identity = 0;
     // The defaults should be SBS Landscape
     pc.values = [wizard extractItem];
@@ -260,6 +263,105 @@
     [_profiles addObject:pc];
     
     _count = (int)_profiles.count;
+    
+    // Cardboard
+    [wizard reset];
+    pc = [[ProfileConfiguration alloc] init];
+    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-Cardboard", @"SCN-VRStrings", [NSBundle mainBundle], @"Default - Cardboard");
+    pc.identity = 1;
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
+    [wizard item: wizardIndex changedTo:3];
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_IPD];
+    [wizard item: wizardIndex changedTo:1];
+    
+    pc.values = [wizard extractItem];
+    
+    [_profiles addObject:pc];
+    
+    // Cardboard
+    [wizard reset];
+    pc = [[ProfileConfiguration alloc] init];
+    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-FemaleCardboard", @"SCN-VRStrings", [NSBundle mainBundle], @"Female - Cardboard");
+    pc.identity = 2;
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
+    [wizard item: wizardIndex changedTo:3];
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_IPD];
+    [wizard item: wizardIndex changedTo:2];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_IPD_VALUE1];
+    wi.slideValue = @58.0f;
+    [wizard item: wizardIndex changedTo:2];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_IPD_VALUE2];
+    wi.slideValue = @58.0f;
+    
+    [wizard filter];
+    
+    pc.values = [wizard extractItem];
+    
+    [_profiles addObject:pc];
+    
+    // Homido
+    [wizard reset];
+    pc = [[ProfileConfiguration alloc] init];
+    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-Homido", @"SCN-VRStrings", [NSBundle mainBundle], @"Default - Homido");
+    pc.identity = 3;
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
+    [wizard item: wizardIndex changedTo:7];
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_IPD];
+    [wizard item: wizardIndex changedTo:1];
+    
+    pc.values = [wizard extractItem];
+    
+    [_profiles addObject:pc];
+    
+    _count = (int)_profiles.count;
+    
+    // Homido
+    [wizard reset];
+    pc = [[ProfileConfiguration alloc] init];
+    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-FemaleHomido", @"SCN-VRStrings", [NSBundle mainBundle], @"Female - Homido");
+    pc.identity = 3;
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
+    [wizard item: wizardIndex changedTo:7];
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_IPD];
+    [wizard item: wizardIndex changedTo:2];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_IPD_VALUE1];
+    wi.slideValue = @58.0f;
+    [wizard item: wizardIndex changedTo:2];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_IPD_VALUE2];
+    wi.slideValue = @58.0f;
+    
+    [wizard filter];
+    
+    pc.values = [wizard extractItem];
+    
+    [_profiles addObject:pc];
+    
+    _count = (int)_profiles.count;
+    
+    // Child
+    [wizard reset];
+    pc = [[ProfileConfiguration alloc] init];
+    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-Child", @"SCN-VRStrings", [NSBundle mainBundle], @"Default - Child");
+    pc.identity = 4;
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
+    [wizard item: wizardIndex changedTo:0];
+    
+    pc.values = [wizard extractItem];
+    
+    [_profiles addObject:pc];
+    
+    _count = (int)_profiles.count;
+    
 }
 
 -(WizardManager *) wizardManager {
