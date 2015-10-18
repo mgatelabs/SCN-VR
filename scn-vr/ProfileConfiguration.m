@@ -22,4 +22,13 @@
 
 @implementation ProfileConfiguration
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _referenceIndex = -1;
+    }
+    return self;
+}
+
 @end
