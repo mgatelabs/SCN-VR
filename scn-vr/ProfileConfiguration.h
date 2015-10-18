@@ -23,7 +23,9 @@
 @interface ProfileConfiguration : NSObject
 
 @property (strong, nonatomic) NSString * name;
+@property (assign, nonatomic) BOOL favorite;
 @property (assign, nonatomic) int identity;
+@property (assign, nonatomic) int referenceIndex;
 @property (strong, nonatomic) NSMutableDictionary * values;
 
 @end
