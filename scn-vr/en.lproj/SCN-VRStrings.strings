@@ -7,19 +7,19 @@
 */
 
 /* Default Cardboard Option */
-"Profile-Cardboard" = "Male - Cardboard";
+"Profile-Cardboard" = "Cardboard - 62 IPD (M)";
 
 /* Default Child Option */
 "Profile-Child" = "Child Mode";
 
 /* Default Female Cardboard Option */
-"Profile-FemaleCardboard" = "Female - Cardboard";
+"Profile-FemaleCardboard" = "Cardboard - 58 IPD (F)";
 
 /* Default Homido Option */
-"Profile-Homido" = "Male - Homido";
+"Profile-Homido" = "Homido - 62 IPD (M)";
 
 /* Default Homido Option */
-"Profile-FemaleHomido" = "Female - Homido";
+"Profile-FemaleHomido" = "Homido - 58 IPD (F)";
 
 /* Default SBS Option */
 "Profile-SBS" = "Default - Side By Side";

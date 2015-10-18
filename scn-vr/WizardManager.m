@@ -137,8 +137,10 @@
     
     _dirty = YES;
     
-    WizardItem * wizardItem = [_visibleItems objectAtIndex:item];
-    [wizardItem selectedIndex:index];
+    if (item >= 0 && item < _visibleItems.count) {
+        WizardItem * wizardItem = [_visibleItems objectAtIndex:item];
+        [wizardItem selectedIndex:index];
+    }
     
     for (int i = 0; i < _baseItems.count; i++) {
         WizardItem * item = [_baseItems objectAtIndex:i];
@@ -146,6 +148,16 @@
     }
     
     [self filter];
+}
+
+-(int) findWizardIdexWithIdentity:(int) identity {
+    for (int i = 0; i < _visibleItems.count; i++) {
+        WizardItem * item = _visibleItems[i];
+        if (item.itemId == identity) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 -(void) makeDirty {
@@ -391,6 +403,23 @@
             }
         }
     }
+}
+
+-(WizardItem *) findWizardItemWithIdentity:(int) identity {
+    for (int i = 0; i < _baseItems.count - 1; i++) {
+        WizardItem * sItem = _baseItems[i];
+        if (sItem.itemId == identity) {
+            return sItem;
+        }
+    }
+    
+    for (int i = 0; i < _extendedItems.count - 1; i++) {
+        WizardItem * sItem = _extendedItems[i];
+        if (sItem.itemId == identity) {
+            return sItem;
+        }
+    }
+    return nil;
 }
 
 @end

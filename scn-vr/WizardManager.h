@@ -50,4 +50,7 @@
 
 -(void) makeDirty;
 
+-(WizardItem *) findWizardItemWithIdentity:(int) identity;
+-(int) findWizardIdexWithIdentity:(int) identity;
+
 @end

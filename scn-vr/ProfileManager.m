@@ -148,6 +148,8 @@
 
     NSMutableArray * profileItems = [profileSettings valueForKey:@"profiles"];
     
+    [_profiles removeAllObjects];
+    
     if (profileItems != nil && indexNumber != nil) {
     
         for (int i = 0; i < profileItems.count; i++) {
@@ -155,6 +157,12 @@
             ProfileConfiguration * configuration = [[ProfileConfiguration alloc] init];
             
             if ([profileData valueForKey:@"name"] != nil && [profileData valueForKey:@"identity"] != nil && [profileData valueForKey:@"values"] != nil) {
+                
+                if ([profileData valueForKey:@"fav"] != nil) {
+                    NSNumber * favValue = [profileData valueForKey:@"fav"];
+                    configuration.favorite = favValue.boolValue;
+                }
+                
                 configuration.name = [profileData valueForKey:@"name"];
                 NSNumber * identityNumber = [profileData valueForKey:@"identity"];
                 configuration.identity = [identityNumber intValue];
@@ -174,6 +182,21 @@
 
 -(void) persist {
     
+    NSDictionary * profileSettings = [self exportToDictonary];
+    
+    NSUserDefaults * defs;
+    
+    if (_groupName != nil) {
+        defs = [[NSUserDefaults alloc] initWithSuiteName:_groupName];
+    } else {
+        defs = [NSUserDefaults standardUserDefaults];
+    }
+    
+    [defs setValue:profileSettings forKey:@"profiles.items"];
+    [defs synchronize];
+}
+
+-(NSDictionary *) exportToDictonary {
     NSMutableArray * profileItems = [[NSMutableArray alloc] initWithCapacity:_profiles.count];
     
     // Make sure we always have presets
@@ -188,6 +211,7 @@
         NSMutableDictionary * profileData = [NSMutableDictionary dictionaryWithCapacity:3];
         
         [profileData setValue:profile.name forKey:@"name"];
+        [profileData setValue:[NSNumber numberWithBool:profile.favorite] forKey:@"fav"];
         [profileData setValue:[NSNumber numberWithInt:profile.identity] forKey:@"identity"];
         [profileData setValue:profile.values forKey:@"values"];
         
@@ -199,20 +223,24 @@
     [profileSettings setValue:[NSNumber numberWithInt:_index] forKey:@"index"];
     [profileSettings setValue:profileItems forKey:@"profiles"];
     
-    NSUserDefaults * defs;
-    
-    if (_groupName != nil) {
-        defs = [[NSUserDefaults alloc] initWithSuiteName:_groupName];
-    } else {
-        defs = [NSUserDefaults standardUserDefaults];
+    return profileSettings;
+}
+
+/**
+  * Get all selected favorites, except for the current item, if it's a favorite
+  */
+-(NSArray *) getFavorites {
+    NSMutableArray * results = [[NSMutableArray alloc] initWithCapacity:5];
+    for (int i = 0; i < _profiles.count; i++) {
+        ProfileConfiguration * pc = _profiles[i];
+        if (pc.favorite) {
+            if (self.index != i) {
+                pc.referenceIndex = i;
+                [results addObject:pc];
+            }
+        }
     }
-    
-    [defs setValue:profileSettings forKey:@"profiles.items"];
-    [defs synchronize];
-    
-    //NSData * jsonData = [NSJSONSerialization dataWithJSONObject:profileSettings options:0 error:nil];
-    //[jsonData writeToFile:_profileFilePath options:0 error:nil];
-    
+    return results;
 }
 
 -(int) newProfile {
@@ -243,6 +271,92 @@
     return returnIndex;
 }
 
+-(int) newProfileForCardboardWithIPD:(float) ipd {
+    int minProfileIdentity = 0;
+    int wizardIndex;
+    WizardItem * wi;
+    
+    for (int i = 0; i < _profiles.count; i++) {
+        ProfileConfiguration * pc= [_profiles objectAtIndex:i];
+        if (pc.identity > minProfileIdentity) {
+            minProfileIdentity = pc.identity + 1;
+        }
+    }
+    
+    ProfileConfiguration * pc = [[ProfileConfiguration alloc] init];
+    pc.name = NSLocalizedStringFromTableInBundle(@"New Profile", @"SCN-VRStrings", [NSBundle mainBundle], @"New Profile title");
+    
+    pc.identity = minProfileIdentity;
+    // The defaults should be SBS Landscape
+    [wizard reset];
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
+    [wizard item: wizardIndex changedTo:3];
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_IPD];
+    [wizard item: wizardIndex changedTo:2];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_IPD_VALUE1];
+    wi.slideValue = [NSNumber numberWithFloat:ipd];
+    [wizard item: wizardIndex changedTo:2];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_IPD_VALUE2];
+    wi.slideValue = [NSNumber numberWithFloat:ipd];
+    
+    pc.values = [wizard extractItem];
+    
+    int returnIndex = (int)_profiles.count;
+    
+    [_profiles addObject:pc];
+    
+    _count = (int)_profiles.count;
+    
+    return returnIndex;
+}
+
+-(int) newProfileForHomidoWithIPD:(float) ipd {
+    int minProfileIdentity = 0;
+    int wizardIndex;
+    WizardItem * wi;
+    
+    for (int i = 0; i < _profiles.count; i++) {
+        ProfileConfiguration * pc= [_profiles objectAtIndex:i];
+        if (pc.identity > minProfileIdentity) {
+            minProfileIdentity = pc.identity + 1;
+        }
+    }
+    
+    ProfileConfiguration * pc = [[ProfileConfiguration alloc] init];
+    pc.name = NSLocalizedStringFromTableInBundle(@"New Profile", @"SCN-VRStrings", [NSBundle mainBundle], @"New Profile title");
+    
+    pc.identity = minProfileIdentity;
+    // The defaults should be SBS Landscape
+    [wizard reset];
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
+    [wizard item: wizardIndex changedTo:7];
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_IPD];
+    [wizard item: wizardIndex changedTo:2];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_IPD_VALUE1];
+    wi.slideValue = [NSNumber numberWithFloat:ipd];
+    [wizard item: wizardIndex changedTo:2];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_IPD_VALUE2];
+    wi.slideValue = [NSNumber numberWithFloat:ipd];
+    
+    pc.values = [wizard extractItem];
+    
+    int returnIndex = (int)_profiles.count;
+    
+    [_profiles addObject:pc];
+    
+    _count = (int)_profiles.count;
+    
+    return returnIndex;
+}
+
 -(void) reset {
     
     int wizardIndex;
@@ -253,6 +367,7 @@
     // Default Side By Side
     [wizard reset];
     ProfileConfiguration * pc = [[ProfileConfiguration alloc] init];
+    pc.favorite = YES;
     pc.name = NSLocalizedStringFromTableInBundle(@"Profile-SBS", @"SCN-VRStrings", [NSBundle mainBundle], @"Default - Side by Side");
     pc.identity = 0;
     // The defaults should be SBS Landscape
@@ -267,6 +382,7 @@
     // Cardboard
     [wizard reset];
     pc = [[ProfileConfiguration alloc] init];
+    pc.favorite = YES;
     pc.name = NSLocalizedStringFromTableInBundle(@"Profile-Cardboard", @"SCN-VRStrings", [NSBundle mainBundle], @"Default - Cardboard");
     pc.identity = 1;
     wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
@@ -282,6 +398,7 @@
     // Cardboard
     [wizard reset];
     pc = [[ProfileConfiguration alloc] init];
+    pc.favorite = YES;
     pc.name = NSLocalizedStringFromTableInBundle(@"Profile-FemaleCardboard", @"SCN-VRStrings", [NSBundle mainBundle], @"Female - Cardboard");
     pc.identity = 2;
     wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
@@ -306,6 +423,7 @@
     // Homido
     [wizard reset];
     pc = [[ProfileConfiguration alloc] init];
+    pc.favorite = YES;
     pc.name = NSLocalizedStringFromTableInBundle(@"Profile-Homido", @"SCN-VRStrings", [NSBundle mainBundle], @"Default - Homido");
     pc.identity = 3;
     
@@ -324,6 +442,7 @@
     // Homido
     [wizard reset];
     pc = [[ProfileConfiguration alloc] init];
+    pc.favorite = YES;
     pc.name = NSLocalizedStringFromTableInBundle(@"Profile-FemaleHomido", @"SCN-VRStrings", [NSBundle mainBundle], @"Female - Homido");
     pc.identity = 3;
     
@@ -351,6 +470,7 @@
     // Child
     [wizard reset];
     pc = [[ProfileConfiguration alloc] init];
+    pc.favorite = YES;
     pc.name = NSLocalizedStringFromTableInBundle(@"Profile-Child", @"SCN-VRStrings", [NSBundle mainBundle], @"Default - Child");
     pc.identity = 4;
     wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
@@ -362,6 +482,10 @@
     
     _count = (int)_profiles.count;
     
+}
+
+-(void) addBuiltIn {
+
 }
 
 -(WizardManager *) wizardManager {

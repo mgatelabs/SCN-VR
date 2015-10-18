@@ -47,6 +47,8 @@
 -(void) moveIndex:(int) index to:(int) toIndex;
 
 -(int) newProfile;
+-(int) newProfileForCardboardWithIPD:(float) ipd;
+-(int) newProfileForHomidoWithIPD:(float) ipd;
 
 -(BOOL) canLoadFromFile;
 
@@ -60,8 +62,12 @@
 
 -(void) reset;
 
+-(NSArray *) getFavorites;
+
 -(WizardManager *) wizardManager;
 
 -(ProfileInstance *) getCurrentProfileInstance;
+
+-(NSDictionary *) exportToDictonary;
 
 @end

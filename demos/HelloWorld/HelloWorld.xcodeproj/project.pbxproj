@@ -20,11 +20,12 @@
 		AC7ECEF21AD1B44E00F2A232 /* ProfileNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7ECEED1AD1B44E00F2A232 /* ProfileNameTableViewCell.m */; };
 		AC7ECEF31AD1B44E00F2A232 /* ProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7ECEEF1AD1B44E00F2A232 /* ProfilesViewController.m */; };
 		AC7ECEF41AD1B44E00F2A232 /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7ECEF11AD1B44E00F2A232 /* ProfileTableViewController.m */; };
-		AC7ECEF71AD1B65E00F2A232 /* NameValueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7ECEF61AD1B65E00F2A232 /* NameValueTableViewCell.m */; };
 		AC7ECEFA1AD1B72F00F2A232 /* WizardItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7ECEF91AD1B72F00F2A232 /* WizardItemTableViewController.m */; };
 		AC7ECEFC1AD1B76D00F2A232 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC7ECEFB1AD1B76D00F2A232 /* CoreMotion.framework */; };
 		AC7ECF061AD1B7F000F2A232 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7ECF051AD1B7F000F2A232 /* HomeViewController.m */; };
+		AC9F82231BD36B1E0062FCA4 /* NameValueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F82221BD36B1E0062FCA4 /* NameValueTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		ACAFAF071B6C7F5C004BF387 /* ProfileSliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAFAF061B6C7F5C004BF387 /* ProfileSliderTableViewCell.m */; };
+		ACAFAF091B6C8237004BF387 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAFAF081B6C8237004BF387 /* SpriteKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,15 +62,16 @@
 		AC7ECEEF1AD1B44E00F2A232 /* ProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilesViewController.m; sourceTree = "<group>"; };
 		AC7ECEF01AD1B44E00F2A232 /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewController.h; sourceTree = "<group>"; };
 		AC7ECEF11AD1B44E00F2A232 /* ProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewController.m; sourceTree = "<group>"; };
-		AC7ECEF51AD1B65E00F2A232 /* NameValueTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameValueTableViewCell.h; sourceTree = "<group>"; };
-		AC7ECEF61AD1B65E00F2A232 /* NameValueTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameValueTableViewCell.m; sourceTree = "<group>"; };
 		AC7ECEF81AD1B72F00F2A232 /* WizardItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardItemTableViewController.h; sourceTree = "<group>"; };
 		AC7ECEF91AD1B72F00F2A232 /* WizardItemTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardItemTableViewController.m; sourceTree = "<group>"; };
 		AC7ECEFB1AD1B76D00F2A232 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		AC7ECF041AD1B7F000F2A232 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		AC7ECF051AD1B7F000F2A232 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		AC9F82211BD36B1E0062FCA4 /* NameValueTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameValueTableViewCell.h; sourceTree = "<group>"; };
+		AC9F82221BD36B1E0062FCA4 /* NameValueTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameValueTableViewCell.m; sourceTree = "<group>"; };
 		ACAFAF051B6C7F5C004BF387 /* ProfileSliderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSliderTableViewCell.h; sourceTree = "<group>"; };
 		ACAFAF061B6C7F5C004BF387 /* ProfileSliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSliderTableViewCell.m; sourceTree = "<group>"; };
+		ACAFAF081B6C8237004BF387 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACAFAF091B6C8237004BF387 /* SpriteKit.framework in Frameworks */,
 				AC7ECEFC1AD1B76D00F2A232 /* CoreMotion.framework in Frameworks */,
 				AC7ECEEB1AD1B0EB00F2A232 /* GLKit.framework in Frameworks */,
 				AC7ECEE91AD1B0E600F2A232 /* libscn-vr.a in Frameworks */,
@@ -127,6 +130,7 @@
 		AC7ECEAD1AD1AE9E00F2A232 = {
 			isa = PBXGroup;
 			children = (
+				ACAFAF081B6C8237004BF387 /* SpriteKit.framework */,
 				AC7ECEFB1AD1B76D00F2A232 /* CoreMotion.framework */,
 				AC7ECEEA1AD1B0EB00F2A232 /* GLKit.framework */,
 				AC7ECEE81AD1B0E600F2A232 /* libscn-vr.a */,
@@ -221,8 +225,8 @@
 		AC7ECF001AD1B79C00F2A232 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				AC7ECEF51AD1B65E00F2A232 /* NameValueTableViewCell.h */,
-				AC7ECEF61AD1B65E00F2A232 /* NameValueTableViewCell.m */,
+				AC9F82211BD36B1E0062FCA4 /* NameValueTableViewCell.h */,
+				AC9F82221BD36B1E0062FCA4 /* NameValueTableViewCell.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -334,8 +338,8 @@
 				AC7ECEF21AD1B44E00F2A232 /* ProfileNameTableViewCell.m in Sources */,
 				AC7ECEF41AD1B44E00F2A232 /* ProfileTableViewController.m in Sources */,
 				AC6BEBDD1AD234C00073BE68 /* BasicGameViewController.m in Sources */,
+				AC9F82231BD36B1E0062FCA4 /* NameValueTableViewCell.m in Sources */,
 				AC7ECF061AD1B7F000F2A232 /* HomeViewController.m in Sources */,
-				AC7ECEF71AD1B65E00F2A232 /* NameValueTableViewCell.m in Sources */,
 				AC7ECEF31AD1B44E00F2A232 /* ProfilesViewController.m in Sources */,
 				AC7ECEBC1AD1AE9E00F2A232 /* main.m in Sources */,
 			);
@@ -461,6 +465,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
 				INFOPLIST_FILE = HelloWorld/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -477,6 +482,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_ON_DEMAND_RESOURCES = NO;
 				INFOPLIST_FILE = HelloWorld/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -313,33 +313,33 @@
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
+                                            <exclude reference="3My-xB-xFv"/>
                                             <exclude reference="5Eu-xo-0wz"/>
                                             <exclude reference="MDI-de-ntN"/>
-                                            <exclude reference="rN6-rZ-JFO"/>
-                                            <exclude reference="fb1-RA-h3j"/>
-                                            <exclude reference="3My-xB-xFv"/>
-                                            <exclude reference="vrE-Qh-2q2"/>
                                             <exclude reference="OXd-MF-89T"/>
-                                            <exclude reference="glm-66-yZd"/>
+                                            <exclude reference="fb1-RA-h3j"/>
+                                            <exclude reference="rN6-rZ-JFO"/>
+                                            <exclude reference="vrE-Qh-2q2"/>
                                             <exclude reference="BlQ-mO-JEe"/>
-                                            <exclude reference="o2J-rG-HbQ"/>
                                             <exclude reference="Oh9-ir-hvu"/>
-                                            <exclude reference="dNR-La-3r7"/>
                                             <exclude reference="Upi-Ze-cQQ"/>
+                                            <exclude reference="dNR-La-3r7"/>
+                                            <exclude reference="glm-66-yZd"/>
                                             <exclude reference="hAs-bS-cWV"/>
-                                            <exclude reference="SGR-m7-l4Y"/>
-                                            <exclude reference="tUF-PV-L7H"/>
-                                            <exclude reference="Gg9-Ro-HuF"/>
-                                            <exclude reference="pJh-X2-b61"/>
+                                            <exclude reference="o2J-rG-HbQ"/>
                                             <exclude reference="4AU-dU-pbx"/>
-                                            <exclude reference="tl1-1m-J55"/>
-                                            <exclude reference="lVM-KO-5R9"/>
+                                            <exclude reference="DaH-Vr-0VN"/>
+                                            <exclude reference="Gg9-Ro-HuF"/>
+                                            <exclude reference="SGR-m7-l4Y"/>
+                                            <exclude reference="SsZ-4h-ecB"/>
                                             <exclude reference="hDV-MW-jZt"/>
                                             <exclude reference="jRH-2O-8Mx"/>
                                             <exclude reference="lHW-p0-VxD"/>
-                                            <exclude reference="DaH-Vr-0VN"/>
+                                            <exclude reference="lVM-KO-5R9"/>
+                                            <exclude reference="pJh-X2-b61"/>
                                             <exclude reference="qxU-a5-3TS"/>
-                                            <exclude reference="SsZ-4h-ecB"/>
+                                            <exclude reference="tUF-PV-L7H"/>
+                                            <exclude reference="tl1-1m-J55"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -407,19 +407,21 @@
         <!--GLKit View Controller-->
         <scene sceneID="bjG-KA-tiK">
             <objects>
-                <glkViewController preferredFramesPerSecond="30" id="m4u-gU-5S0" customClass="BasicGameViewController" sceneMemberID="viewController">
+                <glkViewController preferredFramesPerSecond="60" id="m4u-gU-5S0" customClass="BasicGameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vBt-vU-ayx"/>
                         <viewControllerLayoutGuide type="bottom" id="Tg0-Lm-Cvt"/>
                     </layoutGuides>
-                    <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="DMN-a6-lXY">
+                    <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" drawableDepthFormat="24" drawableStencilFormat="8" enableSetNeedsDisplay="NO" id="DMN-a6-lXY">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <connections>
                             <outlet property="delegate" destination="m4u-gU-5S0" id="gra-z2-v19"/>
                         </connections>
                     </glkView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
+                        <outlet property="view" destination="DMN-a6-lXY" id="HyI-uZ-doa"/>
                         <segue destination="Mi0-mP-GUO" kind="unwind" identifier="exitToHome" unwindAction="returnFromPlayerToHome:" id="3H9-rN-ee7"/>
                     </connections>
                 </glkViewController>

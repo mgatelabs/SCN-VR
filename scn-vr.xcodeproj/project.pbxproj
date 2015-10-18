@@ -147,7 +147,7 @@
 		AC2743791A6F5FC100CEC7AD /* FovWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FovWizardItem.m; sourceTree = "<group>"; };
 		AC27437B1A6F616800CEC7AD /* FovItemWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FovItemWizardItem.h; sourceTree = "<group>"; };
 		AC27437C1A6F616800CEC7AD /* FovItemWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FovItemWizardItem.m; sourceTree = "<group>"; };
-		AC31F30A1AE2D35100E0B161 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/SVN-VRStrings.strings"; sourceTree = "<group>"; };
+		AC31F30A1AE2D35100E0B161 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/SCN-VRStrings.strings"; sourceTree = "<group>"; };
 		AC3E0F5B1A4934FA00AFE6AA /* libscn-vr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libscn-vr.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3E0F661A4934FB00AFE6AA /* scn-vrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "scn-vrTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3E0F6C1A4934FB00AFE6AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -276,7 +276,7 @@
 		AC31F3081AE2D31D00E0B161 /* base */ = {
 			isa = PBXGroup;
 			children = (
-				AC31F30B1AE2D35100E0B161 /* SVN-VRStrings.strings */,
+				AC31F30B1AE2D35100E0B161 /* SCN-VRStrings.strings */,
 			);
 			name = base;
 			sourceTree = "<group>";
@@ -731,12 +731,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AC31F30B1AE2D35100E0B161 /* SVN-VRStrings.strings */ = {
+		AC31F30B1AE2D35100E0B161 /* SCN-VRStrings.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				AC31F30A1AE2D35100E0B161 /* en */,
 			);
-			name = "SVN-VRStrings.strings";
+			name = "SCN-VRStrings.strings";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
