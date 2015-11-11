@@ -19,6 +19,7 @@
  ************************************************************************/
 
 #import "DistortionValueWizardItem.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation DistortionValueWizardItem {
     DistortionWizardItem * distortion;
@@ -27,7 +28,7 @@
 
 - (instancetype)initWith:(DistortionWizardItem *) distortionWizardItem second:(BOOL) second
 {
-    self = [super initWith: second ? @"... Value 2" : @"... Value 1" info:@"Complex math nonsense, just play with each option until you get something positive." itemId: second ? WIZARD_ITEM_DISTORTION_VALUE2 : WIZARD_ITEM_DISTORTION_VALUE1 type:WizardItemDataTypeSlideFloat];
+    self = [super initWith: second ?  NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_DISTORTION_DETAIL_2", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"... Value 2") : NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_DISTORTION_DETAIL_1", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"... Value 1") info: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_DISTORTION_DETAIL", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Complex math nonsense, just play with each option until you get something positive.") itemId: second ? WIZARD_ITEM_DISTORTION_VALUE2 : WIZARD_ITEM_DISTORTION_VALUE1 type:WizardItemDataTypeSlideFloat];
     if (self) {
         isSecond = second;
         distortion = distortionWizardItem;

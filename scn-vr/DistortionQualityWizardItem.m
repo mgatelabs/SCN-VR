@@ -19,12 +19,13 @@
  ************************************************************************/
 
 #import "DistortionQualityWizardItem.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation DistortionQualityWizardItem
 
 - (instancetype)initWith:(DistortionWizardItem *) distortion
 {
-    self = [super initWith:@"... Quality" info:@"Our distortion effect is handled through a mesh, not a shader, so a high quality mesh will provide more accurate results, but impact system performance." itemId:WIZARD_ITEM_DISTORTION_QUALITY type:WizardItemDataTypeInt];
+    self = [super initWith: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_DISTORTION_DETAIL", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"... Quality") info: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_DISTORTION_DETAIL", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Our distortion effect is handled through a mesh, not a shader, so a high quality mesh will provide more accurate results, but impact system performance.") itemId:WIZARD_ITEM_DISTORTION_QUALITY type:WizardItemDataTypeInt];
     if (self) {
         self.distortion = distortion;
 
@@ -61,19 +62,19 @@
 -(NSString *) stringForIndex:(int) index {
     switch (index) {
         case 0:
-            return @"Lowest 4x4";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_QUALITY_LOWEST", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Lowest 4x4");
         case 1:
-            return @"Lower 8x8";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_QUALITY_LOWER", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Lower 8x8");
         case 2:
-            return @"Low 12x12";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_QUALITY_LOW", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Low 12x12");
         case 3:
-            return @"Decent 16x16";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_QUALITY_DECENT", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Decent 16x16");
         case 4:
-            return @"High 18x18";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_QUALITY_HIGH", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"High 18x18");
         case 5:
-            return @"Highest 20x20";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_QUALITY_HIGHEST", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Highest 20x20");
         default:
-            return @"Unknown";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_UNKNOWN", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], nil);
     }
 }
 

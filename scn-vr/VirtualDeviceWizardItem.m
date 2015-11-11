@@ -21,6 +21,7 @@
 #import "VirtualDeviceWizardItem.h"
 #import "VirtualDeviceManager.h"
 #import "Constants.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation VirtualDeviceWizardItem {
     PhysicalDeviceWizardItem * devices;
@@ -29,7 +30,7 @@
 
 - (instancetype)initWith:(PhysicalDeviceWizardItem *) deviceWizardItem
 {
-    self = [super initWith:@"Window" info:@"With this setting you can change how content is displayed on your device." itemId:WIZARD_ITEM_VIRTUAL_DEVICE type:WizardItemDataTypeString];
+    self = [super initWith: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_WINDOW", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Window") info: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_WINDOW", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"With this setting you can change how content is displayed on your device.") itemId:WIZARD_ITEM_VIRTUAL_DEVICE type:WizardItemDataTypeString];
     if (self) {
         _tempProfileInstance = [[ProfileInstance alloc] init];
         devices = deviceWizardItem;

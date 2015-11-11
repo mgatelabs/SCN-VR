@@ -19,6 +19,7 @@
  ************************************************************************/
 
 #import "ColorValueWizardItem.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation ColorValueWizardItem{
     ColorWizardItem * color;
@@ -26,7 +27,7 @@
 
 - (instancetype)initWith:(ColorWizardItem *) colorWizardItem
 {
-    self = [super initWith:@"... Value" info:@"Complex math nonsense.  Play with it until it looks right," itemId: WIZARD_ITEM_COLOR_VALUE type:WizardItemDataTypeSlideFloat];
+    self = [super initWith: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_COLOR_DETAIL", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Custom Color Value") info: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_COLOR_DETAIL", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Complex math nonsense.  Play with it until it looks right") itemId: WIZARD_ITEM_COLOR_VALUE type:WizardItemDataTypeSlideFloat];
     if (self) {
         color = colorWizardItem;
         self.count = 81;

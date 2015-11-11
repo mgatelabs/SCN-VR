@@ -30,7 +30,7 @@
 @property (strong, nonatomic) NSMutableArray * visibleItems;
 
 @property (assign, nonatomic, readonly) BOOL dirty;
-
+@property (assign, nonatomic) int profileIndex;
 @property (assign, nonatomic, readonly) int profileItemCount;
 @property (assign, nonatomic, readonly) int extenedItemCount;
 

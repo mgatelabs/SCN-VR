@@ -98,7 +98,7 @@
         }
     }
     
-    NSLog(@"Logic problem, selected item is not in array");
+    //NSLog(@"Logic problem, selected item is not in array");
     
     return -1;
 }

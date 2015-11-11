@@ -20,6 +20,7 @@
 
 #import "ProfileManager.h"
 #import "ProfileConfiguration.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation ProfileManager {
     WizardManager * wizard;
@@ -255,7 +256,7 @@
     }
         
     ProfileConfiguration * pc = [[ProfileConfiguration alloc] init];
-    pc.name = NSLocalizedStringFromTableInBundle(@"New Profile", @"SCN-VRStrings", [NSBundle mainBundle], @"New Profile title");
+    pc.name = NSLocalizedStringFromTableInBundle(@"New Profile", @"SCN-VRStrings", [SCNVRResourceBundler getSCNVRResourceBundle], @"New Profile title");
     
     pc.identity = minProfileIdentity;
     // The defaults should be SBS Landscape
@@ -284,7 +285,7 @@
     }
     
     ProfileConfiguration * pc = [[ProfileConfiguration alloc] init];
-    pc.name = NSLocalizedStringFromTableInBundle(@"New Profile", @"SCN-VRStrings", [NSBundle mainBundle], @"New Profile title");
+    pc.name = NSLocalizedStringFromTableInBundle(@"New Profile", @"SCN-VRStrings", [SCNVRResourceBundler getSCNVRResourceBundle], @"New Profile title");
     
     pc.identity = minProfileIdentity;
     // The defaults should be SBS Landscape
@@ -327,7 +328,7 @@
     }
     
     ProfileConfiguration * pc = [[ProfileConfiguration alloc] init];
-    pc.name = NSLocalizedStringFromTableInBundle(@"New Profile", @"SCN-VRStrings", [NSBundle mainBundle], @"New Profile title");
+    pc.name = NSLocalizedStringFromTableInBundle(@"New Profile", @"SCN-VRStrings", [SCNVRResourceBundler getSCNVRResourceBundle], @"New Profile title");
     
     pc.identity = minProfileIdentity;
     // The defaults should be SBS Landscape
@@ -368,7 +369,7 @@
     [wizard reset];
     ProfileConfiguration * pc = [[ProfileConfiguration alloc] init];
     pc.favorite = YES;
-    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-SBS", @"SCN-VRStrings", [NSBundle mainBundle], @"Default - Side by Side");
+    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-SBS", @"SCN-VRStrings", [SCNVRResourceBundler getSCNVRResourceBundle], @"Default - Side by Side");
     pc.identity = 0;
     // The defaults should be SBS Landscape
     pc.values = [wizard extractItem];
@@ -383,7 +384,7 @@
     [wizard reset];
     pc = [[ProfileConfiguration alloc] init];
     pc.favorite = YES;
-    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-Cardboard", @"SCN-VRStrings", [NSBundle mainBundle], @"Default - Cardboard");
+    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-Cardboard", @"SCN-VRStrings", [SCNVRResourceBundler getSCNVRResourceBundle], @"Default - Cardboard");
     pc.identity = 1;
     wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
     [wizard item: wizardIndex changedTo:3];
@@ -399,7 +400,7 @@
     [wizard reset];
     pc = [[ProfileConfiguration alloc] init];
     pc.favorite = YES;
-    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-FemaleCardboard", @"SCN-VRStrings", [NSBundle mainBundle], @"Female - Cardboard");
+    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-FemaleCardboard", @"SCN-VRStrings", [SCNVRResourceBundler getSCNVRResourceBundle], @"Female - Cardboard");
     pc.identity = 2;
     wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
     [wizard item: wizardIndex changedTo:3];
@@ -424,7 +425,7 @@
     [wizard reset];
     pc = [[ProfileConfiguration alloc] init];
     pc.favorite = YES;
-    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-Homido", @"SCN-VRStrings", [NSBundle mainBundle], @"Default - Homido");
+    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-Homido", @"SCN-VRStrings", [SCNVRResourceBundler getSCNVRResourceBundle], @"Default - Homido");
     pc.identity = 3;
     
     wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
@@ -443,7 +444,7 @@
     [wizard reset];
     pc = [[ProfileConfiguration alloc] init];
     pc.favorite = YES;
-    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-FemaleHomido", @"SCN-VRStrings", [NSBundle mainBundle], @"Female - Homido");
+    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-FemaleHomido", @"SCN-VRStrings", [SCNVRResourceBundler getSCNVRResourceBundle], @"Female - Homido");
     pc.identity = 3;
     
     wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
@@ -471,7 +472,7 @@
     [wizard reset];
     pc = [[ProfileConfiguration alloc] init];
     pc.favorite = YES;
-    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-Child", @"SCN-VRStrings", [NSBundle mainBundle], @"Default - Child");
+    pc.name = NSLocalizedStringFromTableInBundle(@"Profile-Child", @"SCN-VRStrings", [SCNVRResourceBundler getSCNVRResourceBundle], @"Default - Child");
     pc.identity = 4;
     wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
     [wizard item: wizardIndex changedTo:0];

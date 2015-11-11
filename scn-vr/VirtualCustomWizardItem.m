@@ -20,12 +20,13 @@
 
 #import "VirtualCustomWizardItem.h"
 #import "Constants.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation VirtualCustomWizardItem
 
 - (instancetype)initWithVirtual:(VirtualDeviceWizardItem *) virtualWizard physical:(PhysicalDeviceWizardItem *) physicalWizard mode:(int) mode
 {
-    self = [super initWith: (mode == 0 ? @"Width (MM)" : @"Height (MM)")  info:(mode == 0 ? @"Window width in MM" : @"Window height in MM") itemId:(mode == 0 ? WIZARD_ITEM_VIRTUAL_DEVICE_WIDTH : WIZARD_ITEM_VIRTUAL_DEVICE_HEIGHT) type:WizardItemDataTypeSlideFloat];
+    self = [super initWith: (mode == 0 ?  NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_WINDOW_W", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Window Width (MM)") :  NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_WINDOW_H", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Window Height (MM)"))  info:(mode == 0 ?  NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_WINDOW_W", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Window width in MM") :  NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_WINDOW_H", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Window height in MM")) itemId:(mode == 0 ? WIZARD_ITEM_VIRTUAL_DEVICE_WIDTH : WIZARD_ITEM_VIRTUAL_DEVICE_HEIGHT) type:WizardItemDataTypeSlideFloat];
     if (self) {
         _physicalWizard = physicalWizard;
         _virtualWizard = virtualWizard;
@@ -64,11 +65,7 @@
             if (self.slideValue.floatValue > self.slideMax.floatValue) {
                 self.slideValue = self.slideMax;
             }
-            
-            //if (self.valueIndex >= self.count) {
-            //    self.valueIndex = self.count - 1;
-            //    self.valueId = [self stringForIndex:self.valueIndex];
-            //}
+
         } else {
             self.count = 1;
             self.valueIndex = 0;

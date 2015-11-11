@@ -19,6 +19,7 @@
  ************************************************************************/
 
 #import "FovWizardItem.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation FovWizardItem{
     HmdWizardItem * hmds;
@@ -26,7 +27,7 @@
 
 - (instancetype)initWith:(HmdWizardItem *) hmdWizardItem
 {
-    self = [super initWith:@"Field Of View (FOV)" info:@"The field of view is how wide and high you can see." itemId:WIZARD_ITEM_FOV type:WizardItemDataTypeString];
+    self = [super initWith:NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_FOV", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Field Of View (FOV)") info:NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_FOV", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"The field of view is how wide and high you can see.") itemId:WIZARD_ITEM_FOV type:WizardItemDataTypeString];
     if (self) {
         hmds = hmdWizardItem;
         self.count = 2;
@@ -56,11 +57,11 @@
 -(NSString *) stringForIndex:(int) index {
     switch (index) {
         case 0:
-            return [NSString stringWithFormat:@"Default (%2.1f)", hmds.selected.fov];
+            return  [NSString stringWithFormat:NSLocalizedStringFromTableInBundle(@"VALUE_DEFAULT_2.1f", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Default (%2.1f)"), hmds.selected.fov];
         case 1:
-            return @"Custom";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_CUSTOM", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], nil);
         default:
-            return @"Unknown";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_UNKNOWN", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], nil);
     }
 }
 

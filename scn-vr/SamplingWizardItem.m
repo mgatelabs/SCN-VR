@@ -7,6 +7,7 @@
 //
 
 #import "SamplingWizardItem.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation SamplingWizardItem{
     HmdWizardItem * hmds;
@@ -15,7 +16,7 @@
 
 - (instancetype)initWith:(HmdWizardItem *) hmdWizardItem
 {
-    self = [super initWith:@"Super Sampling" info:@"Super sampling is a technique that will increase quality, but degrade performance." itemId:WIZARD_ITEM_SUPER_SAMPLING type:WizardItemDataTypeInt];
+    self = [super initWith: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_SS", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Super Sampling") info: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_SS", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Super sampling is a technique that will increase quality, but degrade performance.") itemId:WIZARD_ITEM_SUPER_SAMPLING type:WizardItemDataTypeInt];
     if (self) {
         hmds = hmdWizardItem;
         selectedHmdValueId = hmds.valueId;
@@ -102,15 +103,15 @@
 -(NSString *) stringForIndex:(int) index {
     switch (index) {
         case 0:
-            return @"1x - Standard";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_SS_1X", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"1x - Standard");
         case 1:
-            return @"1.25x";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_SS_125X", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"1.25x");
         case 2:
-            return @"1.5x";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_SS_15X", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"1.5x");
         case 3:
-            return @"2x";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_SS_2X", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"2x");
         default:
-            return @"Unknown";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_UNKNOWN", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], nil);
     }
 }
 

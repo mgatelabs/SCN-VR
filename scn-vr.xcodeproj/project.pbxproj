@@ -87,6 +87,12 @@
 		ACD2E83F1A6E15C60069C361 /* VirtualCustomWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD2E83E1A6E15C60069C361 /* VirtualCustomWizardItem.m */; };
 		ACD2E8421A6E21270069C361 /* PhysicalDpiWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD2E8411A6E21270069C361 /* PhysicalDpiWizardItem.m */; };
 		ACE4C32D1AD0FD2A00AB4042 /* SamplingWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE4C32C1AD0FD2A00AB4042 /* SamplingWizardItem.m */; };
+		ACF3EA251BEEF58500A2459A /* SCN-VRProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC05FD9C1BEDD2FA00A95641 /* SCN-VRProfile.strings */; };
+		ACF3EA261BEEF58900A2459A /* SCN-VRStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC05FD9A1BEDD2E800A95641 /* SCN-VRStrings.strings */; };
+		ACF3EA281BEEF5E700A2459A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACF3EA271BEEF5E700A2459A /* Info.plist */; };
+		ACF3EA291BEEF68200A2459A /* SCNVRResourceBundle.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = ACF3EA1F1BEEF4BD00A2459A /* SCNVRResourceBundle.bundle */; };
+		ACF3EA311BEEFC4300A2459A /* SCNVRResourceBundler.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF3EA301BEEFC4300A2459A /* SCNVRResourceBundler.m */; };
+		ACF3EA341BEF0C6900A2459A /* SCN-VRDevices.strings in Resources */ = {isa = PBXBuildFile; fileRef = ACF3EA321BEF0C5600A2459A /* SCN-VRDevices.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +112,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				ACF3EA291BEEF68200A2459A /* SCNVRResourceBundle.bundle in CopyFiles */,
 				AC4B1D6F1A6B8A070072B916 /* ProfileInstance.h in CopyFiles */,
 				AC3D44331A6B205200724A76 /* ProfileConfiguration.h in CopyFiles */,
 				AC3EA5731A6A310B00E3D31A /* ProfileManager.h in CopyFiles */,
@@ -143,11 +150,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AC05FD991BEDD2E800A95641 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/SCN-VRStrings.strings"; sourceTree = "<group>"; };
+		AC05FD9B1BEDD2FA00A95641 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/SCN-VRProfile.strings"; sourceTree = "<group>"; };
 		AC2743781A6F5FC100CEC7AD /* FovWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FovWizardItem.h; sourceTree = "<group>"; };
 		AC2743791A6F5FC100CEC7AD /* FovWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FovWizardItem.m; sourceTree = "<group>"; };
 		AC27437B1A6F616800CEC7AD /* FovItemWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FovItemWizardItem.h; sourceTree = "<group>"; };
 		AC27437C1A6F616800CEC7AD /* FovItemWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FovItemWizardItem.m; sourceTree = "<group>"; };
-		AC31F30A1AE2D35100E0B161 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/SCN-VRStrings.strings"; sourceTree = "<group>"; };
 		AC3E0F5B1A4934FA00AFE6AA /* libscn-vr.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libscn-vr.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3E0F661A4934FB00AFE6AA /* scn-vrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "scn-vrTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC3E0F6C1A4934FB00AFE6AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -241,6 +249,11 @@
 		ACD2E8411A6E21270069C361 /* PhysicalDpiWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicalDpiWizardItem.m; sourceTree = "<group>"; };
 		ACE4C32B1AD0FD2A00AB4042 /* SamplingWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SamplingWizardItem.h; sourceTree = "<group>"; };
 		ACE4C32C1AD0FD2A00AB4042 /* SamplingWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplingWizardItem.m; sourceTree = "<group>"; };
+		ACF3EA1F1BEEF4BD00A2459A /* SCNVRResourceBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SCNVRResourceBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACF3EA271BEEF5E700A2459A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACF3EA2F1BEEFC4300A2459A /* SCNVRResourceBundler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNVRResourceBundler.h; sourceTree = "<group>"; };
+		ACF3EA301BEEFC4300A2459A /* SCNVRResourceBundler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCNVRResourceBundler.m; sourceTree = "<group>"; };
+		ACF3EA331BEF0C5600A2459A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/SCN-VRDevices.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,23 +275,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ACF3EA1C1BEEF4BD00A2459A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		AC31F3071AE2D30300E0B161 /* Languages */ = {
 			isa = PBXGroup;
 			children = (
-				AC31F3081AE2D31D00E0B161 /* base */,
+				ACF3EA321BEF0C5600A2459A /* SCN-VRDevices.strings */,
+				AC05FD9C1BEDD2FA00A95641 /* SCN-VRProfile.strings */,
+				AC05FD9A1BEDD2E800A95641 /* SCN-VRStrings.strings */,
+				ACF3EA2F1BEEFC4300A2459A /* SCNVRResourceBundler.h */,
+				ACF3EA301BEEFC4300A2459A /* SCNVRResourceBundler.m */,
 			);
 			name = Languages;
-			sourceTree = "<group>";
-		};
-		AC31F3081AE2D31D00E0B161 /* base */ = {
-			isa = PBXGroup;
-			children = (
-				AC31F30B1AE2D35100E0B161 /* SCN-VRStrings.strings */,
-			);
-			name = base;
 			sourceTree = "<group>";
 		};
 		AC3E0F521A4934FA00AFE6AA = {
@@ -289,6 +305,7 @@
 				AC3E0FB41A4937B900AFE6AA /* SceneKit.framework */,
 				AC3E0F5D1A4934FA00AFE6AA /* scn-vr */,
 				AC3E0F6A1A4934FB00AFE6AA /* scn-vrTests */,
+				ACF3EA201BEEF4BD00A2459A /* SCNVRResourceBundle */,
 				AC3E0F5C1A4934FA00AFE6AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -298,6 +315,7 @@
 			children = (
 				AC3E0F5B1A4934FA00AFE6AA /* libscn-vr.a */,
 				AC3E0F661A4934FB00AFE6AA /* scn-vrTests.xctest */,
+				ACF3EA1F1BEEF4BD00A2459A /* SCNVRResourceBundle.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -553,10 +571,7 @@
 				AC8CF4EA1B536797003C3729 /* Unknown Device */,
 				AC8CF4EC1B5367BB003C3729 /* Virtual */,
 				AC8CF4ED1B5367C7003C3729 /* HMD */,
-				AC2743781A6F5FC100CEC7AD /* FovWizardItem.h */,
-				AC2743791A6F5FC100CEC7AD /* FovWizardItem.m */,
-				AC27437B1A6F616800CEC7AD /* FovItemWizardItem.h */,
-				AC27437C1A6F616800CEC7AD /* FovItemWizardItem.m */,
+				ACF3EA351BEF142D00A2459A /* FOV */,
 				AC3EA55D1A6A190800E3D31A /* IpdWizardItem.h */,
 				AC3EA55E1A6A190800E3D31A /* IpdWizardItem.m */,
 				AC3EA5601A6A1ECF00E3D31A /* IpdValueWizarditem.h */,
@@ -575,6 +590,25 @@
 				ACE4C32C1AD0FD2A00AB4042 /* SamplingWizardItem.m */,
 			);
 			name = Items;
+			sourceTree = "<group>";
+		};
+		ACF3EA201BEEF4BD00A2459A /* SCNVRResourceBundle */ = {
+			isa = PBXGroup;
+			children = (
+				ACF3EA271BEEF5E700A2459A /* Info.plist */,
+			);
+			path = SCNVRResourceBundle;
+			sourceTree = "<group>";
+		};
+		ACF3EA351BEF142D00A2459A /* FOV */ = {
+			isa = PBXGroup;
+			children = (
+				AC2743781A6F5FC100CEC7AD /* FovWizardItem.h */,
+				AC2743791A6F5FC100CEC7AD /* FovWizardItem.m */,
+				AC27437B1A6F616800CEC7AD /* FovItemWizardItem.h */,
+				AC27437C1A6F616800CEC7AD /* FovItemWizardItem.m */,
+			);
+			name = FOV;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -615,6 +649,23 @@
 			productReference = AC3E0F661A4934FB00AFE6AA /* scn-vrTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		ACF3EA1E1BEEF4BD00A2459A /* SCNVRResourceBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACF3EA241BEEF4BD00A2459A /* Build configuration list for PBXNativeTarget "SCNVRResourceBundle" */;
+			buildPhases = (
+				ACF3EA1B1BEEF4BD00A2459A /* Sources */,
+				ACF3EA1C1BEEF4BD00A2459A /* Frameworks */,
+				ACF3EA1D1BEEF4BD00A2459A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SCNVRResourceBundle;
+			productName = SCNVRResourceBundle;
+			productReference = ACF3EA1F1BEEF4BD00A2459A /* SCNVRResourceBundle.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -629,6 +680,9 @@
 					};
 					AC3E0F651A4934FB00AFE6AA = {
 						CreatedOnToolsVersion = 6.1.1;
+					};
+					ACF3EA1E1BEEF4BD00A2459A = {
+						CreatedOnToolsVersion = 7.1;
 					};
 				};
 			};
@@ -646,6 +700,7 @@
 			targets = (
 				AC3E0F5A1A4934FA00AFE6AA /* scn-vr */,
 				AC3E0F651A4934FB00AFE6AA /* scn-vrTests */,
+				ACF3EA1E1BEEF4BD00A2459A /* SCNVRResourceBundle */,
 			);
 		};
 /* End PBXProject section */
@@ -655,6 +710,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACF3EA1D1BEEF4BD00A2459A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACF3EA261BEEF58900A2459A /* SCN-VRStrings.strings in Resources */,
+				ACF3EA341BEF0C6900A2459A /* SCN-VRDevices.strings in Resources */,
+				ACF3EA251BEEF58500A2459A /* SCN-VRProfile.strings in Resources */,
+				ACF3EA281BEEF5E700A2459A /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,6 +752,7 @@
 				AC3E0FB21A49374600AFE6AA /* TrackingManager.m in Sources */,
 				AC40FACA1A77541200FD6151 /* DistortionQualityWizardItem.m in Sources */,
 				AC3EA5651A6A252900E3D31A /* ColorWizardItem.m in Sources */,
+				ACF3EA311BEEFC4300A2459A /* SCNVRResourceBundler.m in Sources */,
 				ACD2E8421A6E21270069C361 /* PhysicalDpiWizardItem.m in Sources */,
 				AC8CF4F01B536804003C3729 /* VirtualPositionWizardItem.m in Sources */,
 				AC3E0FA81A49374600AFE6AA /* MobileDeviceManager.m in Sources */,
@@ -720,6 +787,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ACF3EA1B1BEEF4BD00A2459A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -731,12 +805,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AC31F30B1AE2D35100E0B161 /* SCN-VRStrings.strings */ = {
+		AC05FD9A1BEDD2E800A95641 /* SCN-VRStrings.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				AC31F30A1AE2D35100E0B161 /* en */,
+				AC05FD991BEDD2E800A95641 /* en */,
 			);
 			name = "SCN-VRStrings.strings";
+			sourceTree = "<group>";
+		};
+		AC05FD9C1BEDD2FA00A95641 /* SCN-VRProfile.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC05FD9B1BEDD2FA00A95641 /* en */,
+			);
+			name = "SCN-VRProfile.strings";
+			sourceTree = "<group>";
+		};
+		ACF3EA321BEF0C5600A2459A /* SCN-VRDevices.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACF3EA331BEF0C5600A2459A /* en */,
+			);
+			name = "SCN-VRDevices.strings";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -870,6 +960,44 @@
 			};
 			name = Release;
 		};
+		ACF3EA221BEEF4BD00A2459A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SCNVRResourceBundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mgatelabs.SCNVRResourceBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		ACF3EA231BEEF4BD00A2459A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SCNVRResourceBundle/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mgatelabs.SCNVRResourceBundle;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -896,6 +1024,15 @@
 			buildConfigurations = (
 				AC3E0F731A4934FB00AFE6AA /* Debug */,
 				AC3E0F741A4934FB00AFE6AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACF3EA241BEEF4BD00A2459A /* Build configuration list for PBXNativeTarget "SCNVRResourceBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACF3EA221BEEF4BD00A2459A /* Debug */,
+				ACF3EA231BEEF4BD00A2459A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

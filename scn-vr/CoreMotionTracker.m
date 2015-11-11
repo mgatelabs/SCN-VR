@@ -19,6 +19,7 @@
  ************************************************************************/
 
 #import "CoreMotionTracker.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation CoreMotionTracker {
     GLKQuaternion landscapeRotationFix;
@@ -27,7 +28,7 @@
 
 - (instancetype)init
 {
-    self = [super initWith:@"CoreMotion" identity:@"cmmotionmanager"];
+    self = [super initWith: NSLocalizedStringFromTableInBundle(@"TRACKER_COREMOTION", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"CoreMotion") identity:@"cmmotionmanager"];
     if (self) {
         
         landscapeRotationFix = GLKQuaternionMakeWithAngleAndAxis(-1.57079633f, 0, 0, 1);
@@ -46,7 +47,7 @@
 }
 
 - (instancetype)initWithoutMagnet {
-    self = [super initWith:@"CoreMotion NO Magnetometer" identity:@"cmmotionmanagernomag"];
+    self = [super initWith: NSLocalizedStringFromTableInBundle(@"TRACKER_COREMOTION_NO_MAG", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"CoreMotion NO Magnetometer") identity:@"cmmotionmanagernomag"];
     if (self) {
         
         landscapeRotationFix = GLKQuaternionMakeWithAngleAndAxis(-1.57079633f, 0, 0, 1);

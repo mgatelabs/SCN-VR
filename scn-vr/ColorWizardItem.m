@@ -19,6 +19,7 @@
  ************************************************************************/
 
 #import "ColorWizardItem.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation ColorWizardItem{
     HmdWizardItem * hmds;
@@ -27,7 +28,7 @@
 
 - (instancetype)initWith:(HmdWizardItem *) hmdWizardItem
 {
-    self = [super initWith:@"Color" info:@"HMD lenses often cause color distortion, this option will attempt to fix that." itemId:WIZARD_ITEM_COLOR type:WizardItemDataTypeString];
+    self = [super initWith:NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_COLOR", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Color") info:NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_COLOR", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"HMD lenses often cause color distortion, this option will attempt to fix that.") itemId:WIZARD_ITEM_COLOR type:WizardItemDataTypeString];
     if (self) {
         hmds = hmdWizardItem;
         selectedHmdValueId = hmds.valueId;
@@ -91,13 +92,13 @@
 -(NSString *) stringForIndex:(int) index {
     switch (index) {
         case 0:
-            return [NSString stringWithFormat: @"Default (%2.2f)", hmds.selected.correctionCoefficient ];
+            return [NSString stringWithFormat: NSLocalizedStringFromTableInBundle(@"VALUE_DEFAULT_2.1f", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Default (%2.1f)"), hmds.selected.correctionCoefficient ];
         case 1:
-            return @"Off";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_OFF", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], nil);
         case 2:
-            return @"Custom";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_CUSTOM", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], nil);
         default:
-            return @"Unknown";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_UNKNOWN", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], nil);
     }
 }
 

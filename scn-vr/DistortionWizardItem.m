@@ -19,6 +19,7 @@
  ************************************************************************/
 
 #import "DistortionWizardItem.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation DistortionWizardItem{
     HmdWizardItem * hmds;
@@ -27,7 +28,7 @@
 
 - (instancetype)initWith:(HmdWizardItem *) hmdWizardItem
 {
-    self = [super initWith:@"Distortion" info:@"HMD lenses cause content to stretch outwards.  Use this setting to cancel the distortion." itemId:WIZARD_ITEM_DISTORTION type:WizardItemDataTypeString];
+    self = [super initWith: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_DISTORTION", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Distortion") info: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_DISTORTION", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"HMD lenses cause content to stretch outwards.  Use this setting to cancel the distortion.") itemId:WIZARD_ITEM_DISTORTION type:WizardItemDataTypeString];
     if (self) {
         hmds = hmdWizardItem;
         selectedHmdValueId = hmds.valueId;
@@ -91,13 +92,13 @@
 -(NSString *) stringForIndex:(int) index {
     switch (index) {
         case 0:
-            return [NSString stringWithFormat: @"Default (%2.2f, %2.2f)", hmds.selected.distortionFactorA, hmds.selected.distortionFactorB];
+            return [NSString stringWithFormat: NSLocalizedStringFromTableInBundle(@"VALUE_DEFAULT_2.2_2.2f", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Default (%2.2f, %2.2f)"), hmds.selected.distortionFactorA, hmds.selected.distortionFactorB];
         case 1:
-            return @"Off";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_OFF", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], nil);
         case 2:
-            return @"Custom";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_CUSTOM", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], nil);
         default:
-            return @"Unknown";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_UNKNOWN", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], nil);
     }
 }
 

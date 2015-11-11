@@ -19,6 +19,7 @@
  ************************************************************************/
 
 #import "MobileDeviceManager.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation MobileDeviceManager
 
@@ -59,30 +60,32 @@
     MobileDeviceConfiguration * tempConfig;
     
     // iPhone4S              640×960   326 ppi
-    tempConfig = [MobileDeviceManager createDevice:@"iPhone 4S" identifier:@"iphone4s" widthPx:960 heightPx:640 dpi:326 tablet:NO];
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_4S", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 4S") identifier:@"iphone4s" widthPx:960 heightPx:640 dpi:326 tablet:NO];
     tempConfig.widthPoint = 480;
     tempConfig.heightPoint = 320;
     tempConfig.minNativeScale = 1.99;
     tempConfig.maxNativeScale = 2.01;
-    tempConfig.virtualName = @"3.5\"";
+    tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_3.5INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"3.5\"");
     [tempList addObject:tempConfig];
     
     // iPhone5               640×1136  326 ppi
     // iPhone5C              640×1136  326 ppi
     // iPhone5S              640×1136  326 ppi
-    tempConfig = [MobileDeviceManager createDevice:@"iPhone 5" identifier:@"iphone5" widthPx:1136 heightPx:640 dpi:326 tablet:NO];
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_5", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 5") identifier:@"iphone5" widthPx:1136 heightPx:640 dpi:326 tablet:NO];
     tempConfig.widthPoint = 568;
     tempConfig.heightPoint = 320;
     tempConfig.minNativeScale = 1.99;
     tempConfig.maxNativeScale = 2.01;
     tempConfig.virtualName = @"4\"";
+    tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_4INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"4\"");
     [tempList addObject:tempConfig];
     
     ////////////////////////
     
     // iPhone6 (Zoomed)       750×1334  326 ppi
-    tempConfig = [MobileDeviceManager createDevice:@"iPhone 6 (Zoomed)" identifier:@"iphone6zoomed" widthPx:1331 heightPx:750 dpi:326 tablet:NO];
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_6Z", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 6 (Zoomed)") identifier:@"iphone6zoomed" widthPx:1331 heightPx:750 dpi:326 tablet:NO];
     tempConfig.virtualName = @"4.7\"";
+    tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_4.7INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"4.7\"");
     tempConfig.widthPoint = 568;
     tempConfig.heightPoint = 320;
     tempConfig.minNativeScale = 2.21; // It will be bigger then 2
@@ -91,8 +94,9 @@
     [tempList addObject:tempConfig];
     
     // iPhone6               750×1334  326 ppi
-    tempConfig = [MobileDeviceManager createDevice:@"iPhone 6" identifier:@"iphone6" widthPx:1334 heightPx:750 dpi:326 tablet:NO];
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_6", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 6") identifier:@"iphone6" widthPx:1334 heightPx:750 dpi:326 tablet:NO];
     tempConfig.virtualName = @"4.7\"";
+    tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_4.7INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"4.7\"");
     tempConfig.widthPoint = 667;
     tempConfig.heightPoint = 375;
     tempConfig.minNativeScale = 1.99;
@@ -102,8 +106,9 @@
     ////////////////////////
     
     // iPhone6Plus           1080×1920 401 ppi
-    tempConfig = [MobileDeviceManager createDevice:@"iPhone 6+ (Zoomed)" identifier:@"iphone6pluszoomed" widthPx:1920 heightPx:1080 dpi:401 tablet:NO];
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_6Plus", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 6+ (Zoomed)") identifier:@"iphone6pluszoomed" widthPx:1920 heightPx:1080 dpi:401 tablet:NO];
     tempConfig.virtualName = @"5.5\"";
+    tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_5.5INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"5.5\"");
     tempConfig.widthPoint = 667;
     tempConfig.heightPoint = 375;
     tempConfig.minNativeScale = 2.75f; // 2.88
@@ -113,8 +118,9 @@
     
     
     // iPhone6Plus           1080×1920 401 ppi
-    tempConfig = [MobileDeviceManager createDevice:@"iPhone 6+" identifier:@"iphone6plus" widthPx:1920 heightPx:1080 dpi:401 tablet:NO];
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_6PlusZ", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 6+") identifier:@"iphone6plus" widthPx:1920 heightPx:1080 dpi:401 tablet:NO];
     tempConfig.virtualName = @"5.5\"";
+    tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_5.5INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"5.5\"");
     [tempList addObject: tempConfig];
     tempConfig.widthPoint = 736;
     tempConfig.heightPoint = 414;
@@ -131,25 +137,25 @@
     #endif
     
     //iPad2                 1024x768  132 ppi
-    tempConfig = [MobileDeviceManager createDevice:@"iPad 9.7\"" identifier:@"ipad2" widthPx:1024 heightPx:768 dpi:132 tablet:YES];
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPAD_9.7", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPad 9.7\"") identifier:@"ipad2" widthPx:1024 heightPx:768 dpi:132 tablet:YES];
     [tempList addObject:tempConfig];
     
     //iPad (3gen)           2048x1536 264 ppi
     //iPad (4gen)           2048x1536 264 ppi
     //iPad Air              2048x1536 264 ppi
-    tempConfig = [MobileDeviceManager createDevice:@"iPad 9.7\" (Retina)" identifier:@"ipad" widthPx:2048 heightPx:1536 dpi:264 tablet:YES];
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPAD_9.7_RETINA", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPad 9.7\" (Retina)") identifier:@"ipad" widthPx:2048 heightPx:1536 dpi:264 tablet:YES];
     [tempList addObject:tempConfig];
     
     //iPad mini             1024x768  163 ppi
-    tempConfig = [MobileDeviceManager createDevice:@"iPad 7.9\"" identifier:@"ipadmini" widthPx:1024 heightPx:768 dpi:163 tablet:YES];
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPAD_7.9", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPad 7.9\"") identifier:@"ipadmini" widthPx:1024 heightPx:768 dpi:163 tablet:YES];
     [tempList addObject: tempConfig];
     
     //iPad mini (retina)    2048x1536 326 ppi
-    tempConfig = [MobileDeviceManager createDevice:@"iPad 7.9\" (Retina)" identifier:@"ipadmini2" widthPx:2048 heightPx:1536 dpi:326 tablet:YES];
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPAD_7.9_RETINA", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPad 7.9\" (Retina)") identifier:@"ipadmini2" widthPx:2048 heightPx:1536 dpi:326 tablet:YES];
     [tempList addObject: tempConfig];
     
     //iPad Pro (retina)    2732x2048 264 ppi
-    tempConfig = [MobileDeviceManager createDevice:@"iPad 12.9\" (Retina)" identifier:@"ipadpro" widthPx:2732 heightPx:2048 dpi:264 tablet:YES];
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPAD_12.9", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPad 12.9\" (Retina)") identifier:@"ipadpro" widthPx:2732 heightPx:2048 dpi:264 tablet:YES];
     [tempList addObject: tempConfig];
     
     for (int i = 0; i < tempList.count; i++) {

@@ -20,6 +20,7 @@
 
 #import "TrackerWizardItem.h"
 #import "TrackingManager.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation TrackerWizardItem {
     TrackingManager * tm;
@@ -28,7 +29,7 @@
 
 - (instancetype)init
 {
-    self = [super initWith:@"Head Tracker" info:@"Select your preferred head tracker." itemId:WIZARD_ITEM_HEADTRACKER type:WizardItemDataTypeString];
+    self = [super initWith: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_TRACKER", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Head Tracker") info: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_TRACKER", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Select your preferred head tracker.") itemId:WIZARD_ITEM_HEADTRACKER type:WizardItemDataTypeString];
     if (self) {
         tm = [TrackingManager sharedManager];
         // Just one tracker for now, don't care

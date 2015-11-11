@@ -20,6 +20,7 @@
 
 #import "VirtualDeviceManager.h"
 #import "MobileDeviceManager.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation VirtualDeviceManager
 
@@ -27,23 +28,27 @@
     
     NSMutableArray * devices = [[NSMutableArray alloc] initWithCapacity:10];
     
-    [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscape name:@"Landscape" key:@"land"]];
+    [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscape name:NSLocalizedStringFromTableInBundle(@"VIRTUAL_LANDSCAPE", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Landscape") key:@"land"]];
     
-    [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscapeSquared name:@"Landscape²" key:@"land2"]];
+    [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscapeSquared name: NSLocalizedStringFromTableInBundle(@"VIRTUAL_LANDSCAPE2", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Landscape²")  key:@"land2"]];
     
     BOOL iPad = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
     
     // iPad Users get more options
     if (iPad) {
         
-        [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscape169 name:@"Landscape 16:9" key:@"land169"]];
+        [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscape169 name: NSLocalizedStringFromTableInBundle(@"VIRTUAL_LANDSCAPE_169", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Landscape 16:9")  key:@"land169"]];
         
-        [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypePortrait name:@"Portrait" key:@"port"]];
+        [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypePortrait name: NSLocalizedStringFromTableInBundle(@"VIRTUAL_PORTRAIT", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Portrait")  key:@"port"]];
         
-        [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypePortrait169 name:@"Portrait 16:9" key:@"port169"]];
+        [devices addObject:[[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypePortrait169 name: NSLocalizedStringFromTableInBundle(@"VIRTUAL_PORTRAIT_169", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Portrait 16:9") key:@"port169"]];
     }
     
     NSMutableArray * tempDevices = [MobileDeviceManager getDevices];
+    
+    NSString * landscapeNameFormat = NSLocalizedStringFromTableInBundle(@"VIRTUAL_LANDSCAPE_FORMAT", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Landscape %@");
+    
+    NSString * portraitNameFormat = NSLocalizedStringFromTableInBundle(@"VIRTUAL_PORTRAIT_FORMAT", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Portrait %@");
     
     for (int i = 0; i < tempDevices.count; i++) {
         MobileDeviceConfiguration * c = [tempDevices objectAtIndex:i];
@@ -53,19 +58,19 @@
         }
         
         if (!c.tablet) {
-            [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscapeVirtual name:[@"Landscape " stringByAppendingString:c.virtualName] key:[@"vl_" stringByAppendingString:c.identifier] device:c]];
+            
+            [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscapeVirtual name:[NSString stringWithFormat:landscapeNameFormat, c.virtualName] key:[@"vl_" stringByAppendingString:c.identifier] device:c]];
             
             if (iPad) {
-                [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypePortraitVirtual name:[@"Portrait " stringByAppendingString:c.virtualName] key:[@"vp_" stringByAppendingString:c.identifier] device:c]];
+                [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypePortraitVirtual name:[NSString stringWithFormat:portraitNameFormat, c.virtualName] key:[@"vp_" stringByAppendingString:c.identifier] device:c]];
             }
         }
     }
     
-    
-    [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscapeCustom name:@"Custom Landscape" key:@"cl"]];
+    [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscapeCustom name: NSLocalizedStringFromTableInBundle(@"VIRTUAL_LANDSCAPE_CUSTOM", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Custom Landscape") key:@"cl"]];
     
     if (iPad) {
-        [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypePortraitCustom name:@"Custom Portrait" key:@"cp"]];
+        [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypePortraitCustom name: NSLocalizedStringFromTableInBundle(@"VIRTUAL_PORTRAIT_CUSTOM", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Custom Portrait") key:@"cp"]];
     }
     
     return devices;

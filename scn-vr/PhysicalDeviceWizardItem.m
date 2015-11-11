@@ -20,6 +20,7 @@
 
 #import "PhysicalDeviceWizardItem.h"
 #import "MobileDeviceManager.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation PhysicalDeviceWizardItem {
     MobileDeviceManager * mdm;
@@ -28,7 +29,7 @@
 
 - (instancetype)init
 {
-    self = [super initWith:@"Device" info:@"Please select the device you are currently using. Selecting a incorrect device will distort your perspective." itemId:WIZARD_ITEM_DEVICE type:WizardItemDataTypeString];
+    self = [super initWith: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_DEVICE", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Device") info: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_DEVICE", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Please select the device you are currently using. Selecting a incorrect device will distort your perspective.") itemId:WIZARD_ITEM_DEVICE type:WizardItemDataTypeString];
     if (self) {
         mdm = [MobileDeviceManager sharedManager];
         self.count = (int)mdm.devices.count;

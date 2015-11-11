@@ -19,6 +19,7 @@
  ************************************************************************/
 
 #import "IpdValueWizarditem.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation IpdValueWizarditem {
     IpdWizardItem * ipds;
@@ -27,7 +28,7 @@
 
 - (instancetype)initWith:(IpdWizardItem *) ipdWizardItem second:(BOOL) secondItem
 {
-    self = [super initWith:secondItem ? @"Camera IPD" : @"Your IPD" info:@"Distance in MM" itemId: secondItem ? WIZARD_ITEM_IPD_VALUE2 : WIZARD_ITEM_IPD_VALUE1 type:WizardItemDataTypeSlideFloat];
+    self = [super initWith:secondItem ? NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_CAMERA-IPD", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Camera IPD") : NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_YOUR-IPD", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Your IPD value") info:NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_YOUR-IPD", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"The distance in MM between your or the virtual eyes") itemId: secondItem ? WIZARD_ITEM_IPD_VALUE2 : WIZARD_ITEM_IPD_VALUE1 type:WizardItemDataTypeSlideFloat];
     if (self) {
         second = secondItem;
         ipds = ipdWizardItem;
@@ -36,10 +37,6 @@
         self.slideMin = [NSNumber numberWithFloat:40.0f];
         self.slideMax = [NSNumber numberWithFloat:80.0f];
         self.slideStep = [NSNumber numberWithFloat:0.5f];
-        
-        //self.count = 75 * 2;
-        //self.valueIndex = 62 * 2;
-        //self.valueId = @"62";
     }
     return self;
 }

@@ -19,6 +19,7 @@
  ************************************************************************/
 
 #import "IpdWizardItem.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation IpdWizardItem {
     HmdWizardItem * hmds;
@@ -27,7 +28,9 @@
 
 - (instancetype)initWith:(HmdWizardItem *) hmdWizardItem
 {
-    self = [super initWith:@"IPD" info:@"IPD refers to the distance between your eyes.  Center will keep each eye centered.  Default will move the eyes to match the default setting and parts of the eye may go off screen.  Custom allows you to specify your own IPD value." itemId:WIZARD_ITEM_IPD type:WizardItemDataTypeString];
+    //
+    
+    self = [super initWith:NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_IPD", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"IPD") info:NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_IPD", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"IPD refers to the distance between your eyes.  Center will keep each eye centered.  Default will move the eyes to match the default setting and parts of the eye may go off screen.  Custom allows you to specify your own IPD value.") itemId:WIZARD_ITEM_IPD type:WizardItemDataTypeString];
     if (self) {
         hmds = hmdWizardItem;
         selectedHmdValueId = hmds.valueId;
@@ -87,11 +90,11 @@
 -(NSString *) stringForIndex:(int) index {
     switch (index) {
         case 0:
-            return @"Center (Eye Strain)";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_CENTER_WARN", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Center (Eye Strain)");
         case 1:
-            return [NSString stringWithFormat: @"Default (%2.1f MM) :)", hmds.selected.ipd];
+            return [NSString stringWithFormat: NSLocalizedStringFromTableInBundle(@"VALUE_DEFAULT_2.1f", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Default (%2.1f)"), hmds.selected.ipd];
         case 2:
-            return @"Custom";
+            return NSLocalizedStringFromTableInBundle(@"VALUE_CUSTOM", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], nil);
         case 3:
             return [NSString stringWithFormat: @"Adult (%2.1f MM)", hmds.selected.ipdAdult];
         case 4:

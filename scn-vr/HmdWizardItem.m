@@ -21,6 +21,7 @@
 #import "HmdWizardItem.h"
 #import "HmdDeviceManager.h"
 #import "RenderManager.h"
+#import "SCNVRResourceBundler.h"
 
 @implementation HmdWizardItem {
     NSArray * hmds;
@@ -28,9 +29,8 @@
 
 - (instancetype)init
 {
-    self = [super initWith:@"Head Mounted Display (HMD)" info:@"Please let us know what Head Mounted Device, HMD, you are currently using.  If you don't have a HMD, select one of the 'NONE' options.  'None (MONO)' is designed for children under 7." itemId:WIZARD_ITEM_HMD type:WizardItemDataTypeString];
+    self = [super initWith: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_HMD", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Head Mounted Display (HMD)") info: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_HMD", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Please let us know what Head Mounted Device, HMD, you are currently using.  If you don't have a HMD, select one of the 'NONE' options.  'None (MONO)' is designed for children under 7.") itemId:WIZARD_ITEM_HMD type:WizardItemDataTypeString];
     if (self) {
-        
         hmds = [HmdDeviceManager getHMDs];
         
         self.count = (int)hmds.count;
