@@ -41,9 +41,13 @@
 }
 
 -(BOOL) ready {
-    return true;
+    return _allowShift;
 }
 
+-(WizardItemNotReadyAction) notReadyAction {
+    return WizardItemNotReadyActionContinue;
+}
+    
 -(void) loadForNumber:(NSNumber *) value {
     [super loadForNumber:value];
     [self updateInfo];
@@ -57,8 +61,8 @@
     float halfMin = min / 2.0f;
     float give = halfTotal - halfMin;
     
-    _allowShift = (give > 0.25f);
-
+    _allowShift = (give > 0.35f);
+    self.count = _allowShift ? 3 : 0;
     self.slideMin = [NSNumber numberWithFloat:-give];
     self.slideMax = [NSNumber numberWithFloat:+give];
     self.slideStep = [NSNumber numberWithFloat:0.25f];
