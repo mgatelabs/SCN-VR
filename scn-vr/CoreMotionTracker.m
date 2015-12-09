@@ -22,7 +22,7 @@
 #import "SCNVRResourceBundler.h"
 
 @implementation CoreMotionTracker {
-    GLKQuaternion landscapeRotationFix;
+    GLKQuaternion rotationFix;
     BOOL useMagnet;
 }
 
@@ -31,7 +31,7 @@
     self = [super initWith: NSLocalizedStringFromTableInBundle(@"TRACKER_COREMOTION", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"CoreMotion") identity:@"cmmotionmanager"];
     if (self) {
         
-        landscapeRotationFix = GLKQuaternionMakeWithAngleAndAxis(-1.57079633f, 0, 0, 1);
+        rotationFix = GLKQuaternionMakeWithAngleAndAxis(-M_PI_2, 0, 0, 1);
         
         self.motionManager = [[CMMotionManager alloc] init];
         
@@ -49,18 +49,13 @@
 - (instancetype)initWithoutMagnet {
     self = [super initWith: NSLocalizedStringFromTableInBundle(@"TRACKER_COREMOTION_NO_MAG", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"CoreMotion NO Magnetometer") identity:@"cmmotionmanagernomag"];
     if (self) {
-        
-        landscapeRotationFix = GLKQuaternionMakeWithAngleAndAxis(-1.57079633f, 0, 0, 1);
+        rotationFix = GLKQuaternionMakeWithAngleAndAxis(-M_PI_2, 0, 0, 1);
         
         self.motionManager = [[CMMotionManager alloc] init];
         
         useMagnet = NO;
         
         self.motionManager.deviceMotionUpdateInterval = 1.0f / 60;
-        if (useMagnet) {
-            self.motionManager.magnetometerUpdateInterval = 1.0f / 60;
-            self.motionManager.showsDeviceMovementDisplay = YES;
-        }
     }
     return self;
 }
@@ -79,7 +74,7 @@
     CMQuaternion currentAttitude_noQ = self.motionManager.deviceMotion.attitude.quaternion;
     
     if (useMagnet) {
-        // Just grab the value
+        // Just grab the value, seems to make a difference
         float x = self.motionManager.deviceMotion.magneticField.field.x;
         x += self.motionManager.deviceMotion.magneticField.field.y;
         x += self.motionManager.deviceMotion.magneticField.field.z;
@@ -88,15 +83,15 @@
     }
     
     GLKQuaternion baseRotation = GLKQuaternionMake(currentAttitude_noQ.x, currentAttitude_noQ.y, currentAttitude_noQ.z, currentAttitude_noQ.w);
+    
     if (self.landscape) {
-        self.orientation = GLKQuaternionMultiply(baseRotation, landscapeRotationFix);
+        self.orientation = GLKQuaternionMultiply(baseRotation, rotationFix);
     } else {
-        self.orientation = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(-M_PI / 2.0f, 0, 0, 1), baseRotation);
+        self.orientation = GLKQuaternionMultiply(rotationFix, baseRotation);
     }
     #else
-    
+    // For Testing
     self.orientation = GLKQuaternionMultiply(landscapeRotationFix, GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
-    
     #endif
 }
 
