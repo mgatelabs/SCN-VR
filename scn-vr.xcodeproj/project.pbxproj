@@ -86,13 +86,9 @@
 		AC83FBCA1A68D03B00B1727F /* VirtualDeviceWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC83FBC91A68D03B00B1727F /* VirtualDeviceWizardItem.m */; };
 		AC83FBCB1A68D79C00B1727F /* VirtualDeviceWizardItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC83FBC81A68D03B00B1727F /* VirtualDeviceWizardItem.h */; };
 		AC8CF4F01B536804003C3729 /* VirtualPositionWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8CF4EF1B536804003C3729 /* VirtualPositionWizardItem.m */; };
-		ACB06CF91C0EBE940098E1E0 /* SCN-VRDevices.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC0FFC771BFED0870014A218 /* SCN-VRDevices.strings */; };
-		ACB06CFA1C0EBE970098E1E0 /* SCN-VRProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC0FFC791BFED0870014A218 /* SCN-VRProfile.strings */; };
-		ACB06CFB1C0EBE990098E1E0 /* SCN-VRStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC0FFC7B1BFED0870014A218 /* SCN-VRStrings.strings */; };
 		ACD2E83F1A6E15C60069C361 /* VirtualCustomWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD2E83E1A6E15C60069C361 /* VirtualCustomWizardItem.m */; };
 		ACD2E8421A6E21270069C361 /* PhysicalDpiWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD2E8411A6E21270069C361 /* PhysicalDpiWizardItem.m */; };
 		ACE4C32D1AD0FD2A00AB4042 /* SamplingWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE4C32C1AD0FD2A00AB4042 /* SamplingWizardItem.m */; };
-		ACF3EA281BEEF5E700A2459A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACF3EA271BEEF5E700A2459A /* Info.plist */; };
 		ACF3EA291BEEF68200A2459A /* SCNVRResourceBundle.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = ACF3EA1F1BEEF4BD00A2459A /* SCNVRResourceBundle.bundle */; };
 		ACF3EA311BEEFC4300A2459A /* SCNVRResourceBundler.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF3EA301BEEFC4300A2459A /* SCNVRResourceBundler.m */; };
 /* End PBXBuildFile section */
@@ -145,9 +141,6 @@
 		AC0FFC6E1BFECD140014A218 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Base.lproj/SCN-VRDevices.strings"; sourceTree = "<group>"; };
 		AC0FFC701BFECD140014A218 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Base.lproj/SCN-VRProfile.strings"; sourceTree = "<group>"; };
 		AC0FFC721BFECD140014A218 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Base.lproj/SCN-VRStrings.strings"; sourceTree = "<group>"; };
-		AC0FFC781BFED0870014A218 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SCN-VRDevices.strings"; sourceTree = "<group>"; };
-		AC0FFC7A1BFED0870014A218 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SCN-VRProfile.strings"; sourceTree = "<group>"; };
-		AC0FFC7C1BFED0870014A218 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SCN-VRStrings.strings"; sourceTree = "<group>"; };
 		AC2743781A6F5FC100CEC7AD /* FovWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FovWizardItem.h; sourceTree = "<group>"; };
 		AC2743791A6F5FC100CEC7AD /* FovWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FovWizardItem.m; sourceTree = "<group>"; };
 		AC27437B1A6F616800CEC7AD /* FovItemWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FovItemWizardItem.h; sourceTree = "<group>"; };
@@ -281,20 +274,9 @@
 			name = Base.lproj;
 			sourceTree = "<group>";
 		};
-		AC0FFC7D1BFED08A0014A218 /* zh-Hans */ = {
-			isa = PBXGroup;
-			children = (
-				AC0FFC771BFED0870014A218 /* SCN-VRDevices.strings */,
-				AC0FFC791BFED0870014A218 /* SCN-VRProfile.strings */,
-				AC0FFC7B1BFED0870014A218 /* SCN-VRStrings.strings */,
-			);
-			name = "zh-Hans";
-			sourceTree = "<group>";
-		};
 		AC31F3071AE2D30300E0B161 /* Languages */ = {
 			isa = PBXGroup;
 			children = (
-				AC0FFC7D1BFED08A0014A218 /* zh-Hans */,
 				AC0FFC6C1BFECD060014A218 /* Base.lproj */,
 				ACF3EA2F1BEEFC4300A2459A /* SCNVRResourceBundler.h */,
 				ACF3EA301BEEFC4300A2459A /* SCNVRResourceBundler.m */,
@@ -695,12 +677,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC0FFC761BFECD690014A218 /* SCN-VRStrings.strings in Resources */,
-				ACB06CFB1C0EBE990098E1E0 /* SCN-VRStrings.strings in Resources */,
 				AC0FFC741BFECD640014A218 /* SCN-VRDevices.strings in Resources */,
-				ACF3EA281BEEF5E700A2459A /* Info.plist in Resources */,
-				ACB06CF91C0EBE940098E1E0 /* SCN-VRDevices.strings in Resources */,
 				AC0FFC751BFECD670014A218 /* SCN-VRProfile.strings in Resources */,
-				ACB06CFA1C0EBE970098E1E0 /* SCN-VRProfile.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,30 +768,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				AC0FFC721BFECD140014A218 /* Base */,
-			);
-			name = "SCN-VRStrings.strings";
-			sourceTree = "<group>";
-		};
-		AC0FFC771BFED0870014A218 /* SCN-VRDevices.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AC0FFC781BFED0870014A218 /* zh-Hans */,
-			);
-			name = "SCN-VRDevices.strings";
-			sourceTree = "<group>";
-		};
-		AC0FFC791BFED0870014A218 /* SCN-VRProfile.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AC0FFC7A1BFED0870014A218 /* zh-Hans */,
-			);
-			name = "SCN-VRProfile.strings";
-			sourceTree = "<group>";
-		};
-		AC0FFC7B1BFED0870014A218 /* SCN-VRStrings.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AC0FFC7C1BFED0870014A218 /* zh-Hans */,
 			);
 			name = "SCN-VRStrings.strings";
 			sourceTree = "<group>";
