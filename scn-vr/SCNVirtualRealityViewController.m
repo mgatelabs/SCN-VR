@@ -37,8 +37,13 @@
     
     ProfileManager * profiles = [ProfileManager sharedManager];
     self.profile = [profiles getCurrentProfileInstance];
+    [self adjustProfileAtStartup];
     
     [self loadIt];
+}
+
+-(void) adjustProfileAtStartup {
+
 }
 
 -(void) loadIt {

@@ -84,6 +84,8 @@
 
 -(void) afterGenerateScene;
 
+-(void) adjustProfileAtStartup;
+
 // Viewport Helpers
 
 -(SCNViewpoint *) generateGhostViewpoint;

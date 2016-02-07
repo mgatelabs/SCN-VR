@@ -97,4 +97,8 @@ typedef NS_ENUM(NSInteger, ProfileInstanceSS)
 -(float) getExtendedValueFor:(NSString *) key withDefaultFloat:(float) value;
 -(NSString *) getExtendedValueFor:(NSString *) key withDefaultNSString:(NSString *) value;
 
+-(void) setExtendedValueFor:(NSString *) key withInt:(int) value;
+-(void) setExtendedValueFor:(NSString *) key withFloat:(float) value;
+-(void) setExtendedValueFor:(NSString *) key withNSString:(NSString *) value;
+
 @end

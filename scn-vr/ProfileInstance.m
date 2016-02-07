@@ -56,6 +56,18 @@
     return current;
 }
 
+-(void) setExtendedValueFor:(NSString *) key withInt:(int) value {
+    [_extended setValue:[NSNumber numberWithInt:value] forKey:key];
+}
+
+-(void) setExtendedValueFor:(NSString *) key withFloat:(float) value {
+    [_extended setValue:[NSNumber numberWithFloat:value] forKey:key];
+}
+
+-(void) setExtendedValueFor:(NSString *) key withNSString:(NSString *) value {
+    [_extended setValue:value forKey:key];
+}
+
 - (void)dealloc
 {
     _extended = nil;
