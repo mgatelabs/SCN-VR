@@ -331,12 +331,7 @@
     GLKQuaternion gyroValues = _useHeadTracking ? _profile.tracker.orientation : _nullViewpoint;
     GLKQuaternion altered;
     
-    // May be slow, but this is prototype code
-    GLKQuaternion cameraOrientation = GLKQuaternionIdentity;
-    
-    cameraOrientation = GLKQuaternionMultiply(cameraOrientation, GLKQuaternionMakeWithAngleAndAxis(1.57079633f, 0, 0, 1));
-    
-    altered =GLKQuaternionMultiply(cameraOrientation, gyroValues);
+    altered =GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 0, 0, 1), gyroValues);
     
     if (_restrictToAxis || _enableRawValues) {
         GLKQuaternion q = altered;
@@ -358,6 +353,54 @@
     _viewpoint.neck.orientation = SCNVector4Make(altered.x, altered.y, altered.z, altered.w);
     
 }
+
+// Testing, Ignore for Now
+//-(void) clearViewAdjustment {
+ //   viewAdjustment = GLKQuaternionIdentity;
+//}
+
+//-(GLKQuaternion) sampleViewAdjustment {
+//    GLKQuaternion q = _useHeadTracking ? _profile.tracker.orientation : _nullViewpoint;
+    
+    //q = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 0, 0, 1), q);
+    
+    //return GLKQuaternionInvert(q);
+    
+    //GLKQuaternion q = gyroValues;
+    
+   
+    //float ry = atan2(2.0*(q.x*q.y + q.w*q.z), q.w*q.w + q.x*q.x - q.y*q.y - q.z*q.z);
+    //float rp = -M_PI_2 + atan2(2.0*(q.y*q.z + q.w*q.x), q.w*q.w - q.x*q.x - q.y*q.y + q.z*q.z);
+    //float rr = -asin(-2.0*(q.x*q.z - q.w*q.y));
+    
+    //ry = 0;
+    //rp = 0;
+    
+    //NSLog(@"Y: %2.2f, P: %2.2f, R: %2.2f", ry, rp, rr);
+    
+    //rr = - rr;
+    
+    
+    
+    //gyroValues = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 0, 1, 0), gyroValues);
+    
+    //GLKQuaternion qY = GLKQuaternionMakeWithAngleAndAxis(ry, 0, 1, 0);
+    //GLKQuaternion qY = GLKQuaternionMakeWithAngleAndAxis(ry, 0, 0, 1);
+    //GLKQuaternion qP = GLKQuaternionMakeWithAngleAndAxis(rp, 1, 0, 0);
+    //GLKQuaternion qP = GLKQuaternionMakeWithAngleAndAxis(rp, 1, 0, 0);
+    //GLKQuaternion qR = GLKQuaternionMakeWithAngleAndAxis(rr, 0, 0, 1);
+    //GLKQuaternion qR = GLKQuaternionMakeWithAngleAndAxis(rr, 0, 1, 0);
+    
+    //GLKQuaternion A = GLKQuaternionMultiply(qR, qY);
+    
+    //GLKQuaternion altered = /*GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 1, 0, 0),  */GLKQuaternionMultiply(A, qP)/*)*/;
+    
+    //return altered;
+    
+    //viewAdjustment = GLKQuaternionInvert(altered);
+    
+    //viewAdjustment = GLKQuaternionInvert(gyroValues);
+//}
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     

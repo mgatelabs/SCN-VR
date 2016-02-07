@@ -13,7 +13,7 @@
     static NSBundle *sharedBundle = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedBundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"SCNVRResourceBundle" ofType:@"bundle"]];
+        sharedBundle = [NSBundle mainBundle];
     });
     return sharedBundle;
 }

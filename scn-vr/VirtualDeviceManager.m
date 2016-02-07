@@ -58,7 +58,6 @@
         }
         
         if (!c.tablet) {
-            
             [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscapeVirtual name:[NSString stringWithFormat:landscapeNameFormat, c.virtualName] key:[@"vl_" stringByAppendingString:c.identifier] device:c]];
             
             if (iPad) {
