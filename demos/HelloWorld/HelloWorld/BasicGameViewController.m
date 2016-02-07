@@ -19,6 +19,10 @@
 -(SCNScene *) generateScene {
     SCNScene * scene = [SCNScene scene];
     
+    SCNNode * world = [SCNNode node];
+    
+    [scene.rootNode addChildNode:world];
+    
     SCNText * text = [SCNText textWithString:@"Hello World" extrusionDepth:1];
     SCNNode * textNode = [SCNNode nodeWithGeometry:text];
     textNode.position = SCNVector3Make(-20, 20, 0);
@@ -29,7 +33,7 @@
     GLKQuaternion textOrientation = GLKQuaternionMakeWithAngleAndAxis(1.57079633f, 1, 0, 0);
     textNode.orientation = SCNVector4Make(textOrientation.x, textOrientation.y, textOrientation.z, textOrientation.w);
     
-    [scene.rootNode addChildNode:textNode];
+    [world addChildNode:textNode];
     
     return scene;
 }
@@ -39,8 +43,6 @@
     [self.scene.rootNode addChildNode:viewpoint];
     
     [self setViewpointTo:viewpoint];
-    
-    //self.scene.background.contents = @[@"void.png",@"void.png",@"void.png",@"void.png",@"void.png",@"void.png"];
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
