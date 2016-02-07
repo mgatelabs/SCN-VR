@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AC14C27B1C04314100476B0E /* SCNVRResourceBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AC14C27A1C04314100476B0E /* SCNVRResourceBundle.bundle */; };
 		AC6BEBDD1AD234C00073BE68 /* BasicGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6BEBDC1AD234C00073BE68 /* BasicGameViewController.m */; };
 		AC7ECEBC1AD1AE9E00F2A232 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7ECEBB1AD1AE9E00F2A232 /* main.m */; };
 		AC7ECEBF1AD1AE9E00F2A232 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7ECEBE1AD1AE9E00F2A232 /* AppDelegate.m */; };
@@ -27,6 +26,9 @@
 		AC9F82231BD36B1E0062FCA4 /* NameValueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F82221BD36B1E0062FCA4 /* NameValueTableViewCell.m */; };
 		ACAFAF071B6C7F5C004BF387 /* ProfileSliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAFAF061B6C7F5C004BF387 /* ProfileSliderTableViewCell.m */; };
 		ACAFAF091B6C8237004BF387 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAFAF081B6C8237004BF387 /* SpriteKit.framework */; };
+		ACF5039A1C6709970034F6FB /* SCN-VRDevices.strings in Resources */ = {isa = PBXBuildFile; fileRef = ACF503941C6709970034F6FB /* SCN-VRDevices.strings */; };
+		ACF5039B1C6709970034F6FB /* SCN-VRProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = ACF503961C6709970034F6FB /* SCN-VRProfile.strings */; };
+		ACF5039C1C6709970034F6FB /* SCN-VRStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = ACF503981C6709970034F6FB /* SCN-VRStrings.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		AC14C27A1C04314100476B0E /* SCNVRResourceBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SCNVRResourceBundle.bundle; path = "../../../../../Library/Developer/Xcode/DerivedData/helloworld-edznyixdcsgxyycxrtuwywndabcd/Build/Products/Debug-iphoneos/SCNVRResourceBundle.bundle"; sourceTree = "<group>"; };
 		AC6BEBDB1AD234C00073BE68 /* BasicGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicGameViewController.h; sourceTree = "<group>"; };
 		AC6BEBDC1AD234C00073BE68 /* BasicGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicGameViewController.m; sourceTree = "<group>"; };
 		AC7ECEB61AD1AE9E00F2A232 /* HelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +75,9 @@
 		ACAFAF051B6C7F5C004BF387 /* ProfileSliderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSliderTableViewCell.h; sourceTree = "<group>"; };
 		ACAFAF061B6C7F5C004BF387 /* ProfileSliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSliderTableViewCell.m; sourceTree = "<group>"; };
 		ACAFAF081B6C8237004BF387 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		ACF503951C6709970034F6FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "../../scn-vr/Base.lproj/SCN-VRDevices.strings"; sourceTree = "<group>"; };
+		ACF503971C6709970034F6FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "../../scn-vr/Base.lproj/SCN-VRProfile.strings"; sourceTree = "<group>"; };
+		ACF503991C6709970034F6FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "../../scn-vr/Base.lproj/SCN-VRStrings.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,11 +136,11 @@
 		AC7ECEAD1AD1AE9E00F2A232 = {
 			isa = PBXGroup;
 			children = (
-				AC14C27A1C04314100476B0E /* SCNVRResourceBundle.bundle */,
 				ACAFAF081B6C8237004BF387 /* SpriteKit.framework */,
 				AC7ECEFB1AD1B76D00F2A232 /* CoreMotion.framework */,
 				AC7ECEEA1AD1B0EB00F2A232 /* GLKit.framework */,
 				AC7ECEE81AD1B0E600F2A232 /* libscn-vr.a */,
+				ACF5039D1C67099A0034F6FB /* Required */,
 				AC7ECEB81AD1AE9E00F2A232 /* HelloWorld */,
 				AC7ECED21AD1AE9E00F2A232 /* HelloWorldTests */,
 				AC7ECEB71AD1AE9E00F2A232 /* Products */,
@@ -234,6 +238,16 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		ACF5039D1C67099A0034F6FB /* Required */ = {
+			isa = PBXGroup;
+			children = (
+				ACF503941C6709970034F6FB /* SCN-VRDevices.strings */,
+				ACF503961C6709970034F6FB /* SCN-VRProfile.strings */,
+				ACF503981C6709970034F6FB /* SCN-VRStrings.strings */,
+			);
+			name = Required;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -283,6 +297,7 @@
 				TargetAttributes = {
 					AC7ECEB51AD1AE9E00F2A232 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 53N68F829D;
 					};
 					AC7ECECE1AD1AE9E00F2A232 = {
 						CreatedOnToolsVersion = 6.2;
@@ -314,8 +329,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC14C27B1C04314100476B0E /* SCNVRResourceBundle.bundle in Resources */,
 				AC7ECEC51AD1AE9E00F2A232 /* Main.storyboard in Resources */,
+				ACF5039B1C6709970034F6FB /* SCN-VRProfile.strings in Resources */,
+				ACF5039C1C6709970034F6FB /* SCN-VRStrings.strings in Resources */,
+				ACF5039A1C6709970034F6FB /* SCN-VRDevices.strings in Resources */,
 				AC7ECECA1AD1AE9E00F2A232 /* LaunchScreen.xib in Resources */,
 				AC7ECEC71AD1AE9E00F2A232 /* Images.xcassets in Resources */,
 			);
@@ -382,6 +399,30 @@
 				AC7ECEC91AD1AE9E00F2A232 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		ACF503941C6709970034F6FB /* SCN-VRDevices.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACF503951C6709970034F6FB /* Base */,
+			);
+			name = "SCN-VRDevices.strings";
+			sourceTree = "<group>";
+		};
+		ACF503961C6709970034F6FB /* SCN-VRProfile.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACF503971C6709970034F6FB /* Base */,
+			);
+			name = "SCN-VRProfile.strings";
+			sourceTree = "<group>";
+		};
+		ACF503981C6709970034F6FB /* SCN-VRStrings.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACF503991C6709970034F6FB /* Base */,
+			);
+			name = "SCN-VRStrings.strings";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -469,6 +510,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				INFOPLIST_FILE = HelloWorld/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -479,6 +522,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "../../scn-vr";
 			};
 			name = Debug;
@@ -487,6 +531,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				INFOPLIST_FILE = HelloWorld/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -497,6 +543,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "../../scn-vr";
 			};
 			name = Release;
