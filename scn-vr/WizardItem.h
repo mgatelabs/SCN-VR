@@ -124,4 +124,7 @@ typedef NS_ENUM(NSInteger, WizardItemNotReadyAction)
 
 -(void) updateProfileInstance:(ProfileInstance *) instance;
 
+-(BOOL) hasIcon;
+-(NSString *) getIconName;
+
 @end

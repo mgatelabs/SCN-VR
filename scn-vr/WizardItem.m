@@ -111,4 +111,12 @@
     
 }
 
+-(BOOL) hasIcon {
+    return false;
+}
+
+-(NSString *) getIconName {
+    return nil;
+}
+
 @end
