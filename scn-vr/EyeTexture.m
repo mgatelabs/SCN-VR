@@ -70,8 +70,7 @@
     [_dest bindAndClearRect:_x y:_y width:_w height:_h];
 }
 
--(void) view {
-    
+-(void) view {    
     glViewport(_dest.left + _x, _dest.bottom + _y, _w, _h);
 }
 
