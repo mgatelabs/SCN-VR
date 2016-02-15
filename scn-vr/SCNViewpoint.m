@@ -92,6 +92,16 @@
     }
 }
 
+-(void) orthoScale:(double) value {
+    if (_leftEye != nil) {
+        [_leftEye orthoScale:value];
+    }
+    
+    if (_rightEye != nil) {
+        [_rightEye orthoScale:value];
+    }
+}
+
 - (void)dealloc
 {
     _leftEyeSource = nil;

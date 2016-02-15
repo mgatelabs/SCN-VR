@@ -45,5 +45,6 @@
 -(void) zeroIPD;
 -(void) resetIPD;
 -(void) ortho:(BOOL) value;
+-(void) orthoScale:(double) value;
 
 @end

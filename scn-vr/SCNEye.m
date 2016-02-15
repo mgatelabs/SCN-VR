@@ -80,6 +80,10 @@
     self.camera.usesOrthographicProjection = value;
 }
 
+-(void) orthoScale:(double) value {
+    self.camera.orthographicScale = value;
+}
+
 - (void)dealloc
 {
     //self.camera = nil;
