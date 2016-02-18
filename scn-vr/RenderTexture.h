@@ -61,11 +61,12 @@ typedef NS_ENUM(NSInteger, RenderTextureType)
 - (instancetype)initAsDefined:(int) width height:(int) height left:(int) left bottom:(int) bottom;
 
 -(void) bind;
+-(BOOL) bindAndClear;
 -(void) ready;
 -(void) build;
 
 -(void) bindWithRect:(int) x y:(int) y width:(int) width height:(int) height;
--(void) bindAndClearRect:(int) x y:(int) y width:(int) width height:(int) height;
+-(BOOL) bindAndClearRect:(int) x y:(int) y width:(int) width height:(int) height;
 
 -(void) minimize;
 
