@@ -69,13 +69,7 @@
     
     float widthIPDRatio;
     
-    //widthIPDRatio = pair.viewerIPD / pair.virtualWidthMM;
-    
-    //float widthIPDRatio = (pair.viewerIPD <= pair.virtualWidthMM * 0.5f)?(pair.viewerIPD / pair.virtualWidthMM) : 0.5f;
-    
     widthIPDRatio = 0.5f;
-    
-    
     
     CGPoint center = CGPointMake(leftEye ? 1 - widthIPDRatio: widthIPDRatio, 0.5f);
     int x, y;
@@ -132,7 +126,6 @@
         points[i].x += calculatedOffsetX;
         points[i].y *=scaleFactor;
     }
-    
     
     return [[VBOWrap alloc] initWith:points pointCount:numVertices indexes:indexes indexCount:indexCount];
 }

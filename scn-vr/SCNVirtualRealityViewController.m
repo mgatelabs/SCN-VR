@@ -19,8 +19,12 @@
  ************************************************************************/
 
 #import "SCNVirtualRealityViewController.h"
+#import "AlignmentHelper.h"
 
 @interface SCNVirtualRealityViewController () {
+    BOOL isShutdown;
+    int monoNeedsClearingCount;
+    AlignmentHelper * alignment;
     
 }
 
@@ -82,6 +86,9 @@
     _destTexture = [[RenderTexture alloc] initAsInfered:self.profile.virtualWidthPX height:self.profile.virtualHeightPX left:self.profile.virtualOffsetLeft bottom:self.profile.virtualOffsetBottom];
     
     _eyeColorCorrection = nil;
+    
+    // Mono Mode, because I want alignment
+    _monoEyeSource = [[EyeTexture alloc] initAs:EyeTextureSideMono dest:_destTexture];
     
     switch (self.profile.viewportCount) {
         case 1: {
@@ -174,6 +181,8 @@
     
     [self afterGenerateScene];
     
+    alignment = [[AlignmentHelper alloc] initWithProfile:self.profile];
+    
     [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
@@ -191,55 +200,71 @@
     [_profile.tracker stop];
 }
 
+-(void) shutdown {
+    // ONly allow one shutdown
+    if (!isShutdown) {
+        isShutdown = YES;
+        
+        [self setPaused:YES];
+        
+        //NSLog(@"Tearing down");
+        
+        for (int i = (int)_scene.rootNode.childNodes.count - 1; i >= 0; i--) {
+            SCNNode * child = [_scene.rootNode.childNodes objectAtIndex:i];
+            [child removeFromParentNode];
+        }
+        
+        _leftRenderer.delegate = nil;
+        _leftRenderer.pointOfView = nil;
+        _leftRenderer.scene = nil;
+        _leftRenderer = nil;
+        
+        _rightRenderer.delegate = nil;
+        _rightRenderer.pointOfView = nil;
+        _rightRenderer.scene = nil;
+        _rightRenderer = nil;
+        
+        _profile = nil;
+        
+        // Source are defined render textures
+        _leftSourceTexture = nil;
+        _rightSourceTexture = nil;
+        
+        _leftEyeSource = nil;
+        _rightEyeSource = nil;
+        _monoEyeSource = nil;
+        
+        _leftEyeDest = nil;
+        _rightEyeDest = nil;
+        
+        _eyeColorCorrection = nil;
+        
+        [_leftEyeMesh shutdown];
+        _leftEyeMesh = nil;
+        if (_rightEyeMesh != nil) {
+            [_rightEyeMesh shutdown];
+            _rightEyeMesh = nil;
+        }
+        
+        [alignment shutdown];
+        
+        _viewpoint = nil;
+        
+        // THis is the infered render texture
+        _destTexture = nil;
+        
+        _scene = nil;
+        
+        if ([EAGLContext currentContext] == self.context) {
+            [EAGLContext setCurrentContext:nil];
+        }
+        self.context = nil;
+    }
+}
+
 - (void)dealloc
 {
-    [self setPaused:YES];
-    
-    //NSLog(@"Tearing down");
-    
-    for (int i = (int)_scene.rootNode.childNodes.count - 1; i >= 0; i--) {
-        SCNNode * child = [_scene.rootNode.childNodes objectAtIndex:i];
-        [child removeFromParentNode];
-    }
-    
-    _leftRenderer.delegate = nil;
-    _leftRenderer.pointOfView = nil;
-    _leftRenderer.scene = nil;
-    _leftRenderer = nil;
-    
-    _rightRenderer.delegate = nil;
-    _rightRenderer.pointOfView = nil;
-    _rightRenderer.scene = nil;
-    _rightRenderer = nil;
-    
-    _profile = nil;
-    
-    // Source are defined render textures
-    _leftSourceTexture = nil;
-    _rightSourceTexture = nil;
-    
-    _leftEyeSource = nil;
-    _rightEyeSource = nil;
-    
-    _leftEyeDest = nil;
-    _rightEyeDest = nil;
-    
-    _eyeColorCorrection = nil;
-    
-    _leftEyeMesh = nil;
-    _rightEyeMesh = nil;
-    
-    _viewpoint = nil;
-    
-    // THis is the infered render texture
-    _destTexture = nil;
-    
-    _scene = nil;
-    
-    if ([EAGLContext currentContext] == self.context) {
-        [EAGLContext setCurrentContext:nil];
-    }
-    self.context = nil;
+    [self shutdown];
 }
 
 #pragma mark - Scene Helpers
@@ -346,9 +371,9 @@
     }
     
     if (_restrictToAxis) {
-        GLKQuaternion qY = GLKQuaternionMakeWithAngleAndAxis(_rawYaw, 0, 1, 0);
-        GLKQuaternion qP = GLKQuaternionMakeWithAngleAndAxis(_rawPitch, 1, 0, 0);
-        GLKQuaternion qR = GLKQuaternionMakeWithAngleAndAxis(_rawRoll, 0, 0, 1);
+        GLKQuaternion qY = GLKQuaternionMakeWithAngleAndAxis(_restrictHead ? 0 : _rawYaw, 0, 1, 0);
+        GLKQuaternion qP = GLKQuaternionMakeWithAngleAndAxis(_restrictHead ? 0 : _rawPitch, 1, 0, 0);
+        GLKQuaternion qR = GLKQuaternionMakeWithAngleAndAxis(_restrictHead ? 0 : _rawRoll, 0, 0, 1);
         
         GLKQuaternion A = GLKQuaternionMultiply(qR, qY);
         
@@ -358,54 +383,6 @@
     _viewpoint.neck.orientation = SCNVector4Make(altered.x, altered.y, altered.z, altered.w);
     
 }
-
-// Testing, Ignore for Now
-//-(void) clearViewAdjustment {
- //   viewAdjustment = GLKQuaternionIdentity;
-//}
-
-//-(GLKQuaternion) sampleViewAdjustment {
-//    GLKQuaternion q = _useHeadTracking ? _profile.tracker.orientation : _nullViewpoint;
-    
-    //q = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 0, 0, 1), q);
-    
-    //return GLKQuaternionInvert(q);
-    
-    //GLKQuaternion q = gyroValues;
-    
-   
-    //float ry = atan2(2.0*(q.x*q.y + q.w*q.z), q.w*q.w + q.x*q.x - q.y*q.y - q.z*q.z);
-    //float rp = -M_PI_2 + atan2(2.0*(q.y*q.z + q.w*q.x), q.w*q.w - q.x*q.x - q.y*q.y + q.z*q.z);
-    //float rr = -asin(-2.0*(q.x*q.z - q.w*q.y));
-    
-    //ry = 0;
-    //rp = 0;
-    
-    //NSLog(@"Y: %2.2f, P: %2.2f, R: %2.2f", ry, rp, rr);
-    
-    //rr = - rr;
-    
-    
-    
-    //gyroValues = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 0, 1, 0), gyroValues);
-    
-    //GLKQuaternion qY = GLKQuaternionMakeWithAngleAndAxis(ry, 0, 1, 0);
-    //GLKQuaternion qY = GLKQuaternionMakeWithAngleAndAxis(ry, 0, 0, 1);
-    //GLKQuaternion qP = GLKQuaternionMakeWithAngleAndAxis(rp, 1, 0, 0);
-    //GLKQuaternion qP = GLKQuaternionMakeWithAngleAndAxis(rp, 1, 0, 0);
-    //GLKQuaternion qR = GLKQuaternionMakeWithAngleAndAxis(rr, 0, 0, 1);
-    //GLKQuaternion qR = GLKQuaternionMakeWithAngleAndAxis(rr, 0, 1, 0);
-    
-    //GLKQuaternion A = GLKQuaternionMultiply(qR, qY);
-    
-    //GLKQuaternion altered = /*GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 1, 0, 0),  */GLKQuaternionMultiply(A, qP)/*)*/;
-    
-    //return altered;
-    
-    //viewAdjustment = GLKQuaternionInvert(altered);
-    
-    //viewAdjustment = GLKQuaternionInvert(gyroValues);
-//}
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     
@@ -420,61 +397,70 @@
     
     [self checkGlErrorStatus: 0];
     
-    if (_viewpoint != nil) {
-        
-        CFTimeInterval interval = CACurrentMediaTime();
-        
-        // Render both eyes
-        [_leftEyeSource bindAndClear];
-        
-        [self checkGlErrorStatus: 100];
-        
-        [_leftRenderer renderAtTime:interval];
-        //glFlush();
-        
-        [self checkGlErrorStatus: 1];
-        
-        if (_viewpoint.rightEye != nil) {
-            [_rightEyeSource bind];
-            [_rightRenderer renderAtTime:interval];
+    if (_enableAlignmentMask) {
+        //NSLog(@"Mono");
+        [_monoEyeSource bindAndClear];
+        [alignment draw];
+        monoNeedsClearingCount = 3;
+    } else if (_viewpoint != nil) {
+        if (monoNeedsClearingCount > 0) {
+            // Make sure any alt framebuffers are also cleared
+            if ([_destTexture bindAndClear]) {
+                monoNeedsClearingCount--;
+            }
+        } else {
+            CFTimeInterval interval = CACurrentMediaTime();
+            
+            // Render both eyes
+            [_leftEyeSource bindAndClear];
+            
+            [self checkGlErrorStatus: 100];
+            
+            [_leftRenderer renderAtTime:interval];
             //glFlush();
-        }
-        
-        [self checkGlErrorStatus: 2];
-        
-        switch (_profile.viewportCount) {
-            case 1: {
-                
-            } break;
-            case 2: {
-                
-                if (_profile.basicView == NO) {
+            
+            [self checkGlErrorStatus: 1];
+            
+            if (_viewpoint.rightEye != nil) {
+                [_rightEyeSource bind];
+                [_rightRenderer renderAtTime:interval];
+                //glFlush();
+            }
+            
+            [self checkGlErrorStatus: 2];
+            
+            switch (_profile.viewportCount) {
+                case 1: {
                     
-                    [_destTexture bind];
+                } break;
+                case 2: {
                     
-                    [_rightEyeDest view];
+                    if (_profile.basicView == NO) {
+                        
+                        [_destTexture bind];
+                        
+                        [_rightEyeDest view];
+                        
+                        [_eyeColorCorrection activateShaderFor:_profile leftEye:NO texture:_rightEyeSource.dest.textureId];
+                        
+                        [_rightEyeMesh draw];
+                        
+                        [_leftEyeDest view];
+                        
+                        [_eyeColorCorrection activateShaderFor:_profile leftEye:YES texture:_leftEyeSource.dest.textureId];
+                        
+                        [_leftEyeMesh draw];
+                        
+                    }
                     
-                    [_eyeColorCorrection activateShaderFor:_profile leftEye:NO texture:_rightEyeSource.dest.textureId];
-                    
-                    [_rightEyeMesh draw];
-                    
-                    [_leftEyeDest view];
-                    
-                    [_eyeColorCorrection activateShaderFor:_profile leftEye:YES texture:_leftEyeSource.dest.textureId];
-
-                    [_leftEyeMesh draw];
-                    
-                }
-                
-            } break;
+                } break;
+            }
         }
     } else {
         NSLog(@"Viewport has not been set, please set a viewport before rendeirng begins");
     }
     
     glFlush();
-    
-    //[[UIScreen mainScreen] setBrightness: 0.8f];
 }
 
 #pragma mark - GL Specific
@@ -486,7 +472,7 @@
 -(void) checkGlErrorStatus:(int) marker {
     GLenum errorState = glGetError();
     if (errorState != GL_NO_ERROR) {
-        NSLog(@"GL Error Detected: %d - %d", errorState, marker);
+        NSLog(@"GL Error Detected - Marker: %d, Code: %d", marker, errorState);
     }
 }
 
@@ -495,6 +481,10 @@
     _restrictPitch = pitch;
     _restrictRoll = roll;
     _restrictToAxis = _restrictYaw || _restrictPitch || _restrictRoll;
+}
+
+-(void) restrictHeadMovement:(BOOL) value {
+    _restrictHead = value;
 }
 
 @end

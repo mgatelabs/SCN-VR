@@ -30,7 +30,9 @@ NSString *const vertexShaderString = SHADER_STRING
  
  attribute vec4 _glesVertex;
  attribute vec4 _glesMultiTexCoord0;
+ 
  uniform highp vec2 _SHIFT;
+ 
  varying highp vec2 xlv_TEXCOORD0;
  void main ()
 {
@@ -47,9 +49,10 @@ NSString *const fragmentShaderString = SHADER_STRING
  precision highp float;
  
  uniform sampler2D _MainTex;
- uniform highp float _AberrationOffset;
  uniform highp vec2 _Center;
  uniform highp float _ChromaticConstant;
+ uniform highp float _AberrationOffset;
+ 
  varying highp vec2 xlv_TEXCOORD0;
  void main ()
 {
@@ -98,14 +101,14 @@ enum
     UNIFORM_CHROMATICCONSTANT = 3,
     UNIFORM_SHIFT = 4
 };
-GLint uniforms[5];
 
 @interface ColorCorrection (){
-
     GLuint _program;
+    GLint uniforms[5];
 }
 
 - (BOOL)loadShaders;
+-(void) checkGlErrorStatus:(int) mode;
 
 @end
 
@@ -124,37 +127,34 @@ GLint uniforms[5];
     
     glUseProgram(_program);
     
-    glUniform2f(uniforms[UNIFORM_SHIFT], leftEye ? 0.0f : 0.5f, 0.0f);
+    //[self checkGlErrorStatus:301];
     
     glUniform1f(uniforms[UNIFORM_ABERRATIONOFFSET], pair.colorCorrection ? pair.colorCorrectionValue : 0.0f);
     
-    //glUniform1f(uniforms[UNIFORM_ABERRATIONOFFSET], 0.0f);
+    //[self checkGlErrorStatus:300];
+    
+    glUniform2f(uniforms[UNIFORM_SHIFT], leftEye ? 0.0f : 0.5f, 0.0f);
+
+
+    //[self checkGlErrorStatus:302];
     
     float ratio = (pair.viewerIPD * 0.5f) / pair.virtualWidthMM;
     
     glUniform2f(uniforms[UNIFORM_CENTER], 0.5f+(leftEye ? -ratio:ratio),0.5f);
     
-    //if (leftEye) {
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture);
-        glUniform1i(uniforms[UNIFORM_MAINTEX], 0);
-    //} else {
-    //    glActiveTexture(GL_TEXTURE1);
-    //    glBindTexture(GL_TEXTURE_2D, texture);
-    //    glUniform1i(uniforms[UNIFORM_MAINTEX], 1);
-    //}
-    //float convergeOffset = ((pair.mobile.widthMM * 0.5f) - pair.hmd.ipd) / pair.mobile.widthMM;
-    //glUniform2f(uniforms[UNIFORM_], leftEye ? 0.0f : 0.5f, 0);
-    //mat.SetVector("_CONVERGE",new Vector2((_leftEye?1f:-1f)*convergeOffset,0));
-    //mat.SetFloat ("_AberrationOffset",deviceConfig.enableChromaticCorrection?deviceConfig.chromaticCorrection:0f);
-    //mat.SetVector ("_Center",new Vector2(0.5f+(_leftEye?-ratio:ratio),0.5f));
+    //[self checkGlErrorStatus:303];
     
-    //glUniform2f(scaleUniform, (w/2.0f) * scaleFactor, (h/2.0f) * scaleFactor * as);
-    //glUniform2f(scaleInUniform, (2.0f/w), (2.0f/h) / as);
-    //glUniform4f(hmdWarpParamUniform, 1.0, 0.22, 0.24, 0.0);
+    glActiveTexture(GL_TEXTURE0);
     
-    //glUniform2f(lensCenterUniform, x + (w + distortion * 0.5f)*0.5f, y + h*0.5f);
-    //glUniform2f(screenCenterUniform, x + w*0.5f, y + h*0.5f);
+    //[self checkGlErrorStatus:304];
+    
+    glBindTexture(GL_TEXTURE_2D, texture);
+    
+    //[self checkGlErrorStatus:305];
+    
+    glUniform1i(uniforms[UNIFORM_MAINTEX], 0);
+    
+    //[self checkGlErrorStatus:306];
 }
 
 - (BOOL)loadShaders
@@ -214,6 +214,8 @@ GLint uniforms[5];
     uniforms[UNIFORM_ABERRATIONOFFSET] = glGetUniformLocation(_program, "_AberrationOffset");
     uniforms[UNIFORM_CENTER] = glGetUniformLocation(_program, "_Center");
     uniforms[UNIFORM_CHROMATICCONSTANT] = glGetUniformLocation(_program, "_ChromaticConstant");
+    
+    
     uniforms[UNIFORM_SHIFT] = glGetUniformLocation(_program, "_SHIFT");
     
     // Release vertex and fragment shaders.
@@ -308,6 +310,13 @@ GLint uniforms[5];
     if (_program) {
         glDeleteProgram(_program);
         _program = 0;
+    }
+}
+
+-(void) checkGlErrorStatus:(int) mode {
+    GLenum errorState = glGetError();
+    if (errorState != GL_NO_ERROR) {
+        NSLog(@"GL Error Detected: %d - %d", mode, errorState);
     }
 }
 

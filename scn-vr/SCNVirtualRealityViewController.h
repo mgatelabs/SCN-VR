@@ -44,6 +44,9 @@
 @property (strong, nonatomic) RenderTexture * rightSourceTexture;
 @property (strong, nonatomic) EyeTexture * leftEyeSource;
 @property (strong, nonatomic) EyeTexture * rightEyeSource;
+@property (strong, nonatomic) EyeTexture * monoEyeSource;
+
+@property (assign, nonatomic) BOOL enableAlignmentMask;
 
 @property (assign, nonatomic, readonly) float nativeScale;
 
@@ -70,6 +73,7 @@
 @property (assign, readonly) BOOL restrictRoll;
 @property (assign, readonly) BOOL restrictYaw;
 @property (assign, readonly) BOOL restrictPitch;
+@property (assign, readonly) BOOL restrictHead;
 
 @property (assign, atomic) BOOL enableRawValues;
 @property (assign, readonly) float rawYaw;
@@ -105,5 +109,8 @@
 -(NSArray *) viewpointSeesAt:(float) x y:(float) y;
 
 -(void) restrictYaw:(BOOL) yaw pitch:(BOOL) pitch roll:(BOOL) roll;
+-(void) restrictHeadMovement:(BOOL) value;
+
+-(void) shutdown;
 
 @end
