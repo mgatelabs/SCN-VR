@@ -166,6 +166,30 @@
     }
 }
 
+-(BOOL) bindAndClear {
+    if (_state != RenderTextureStateReady) {
+        [self build];
+    }
+    
+    // If everything is fine, get this texture ready for business
+    if (_state == RenderTextureStateReady) {
+        if (_type == RenderTextureTypeDefined) {
+            glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
+            glBindRenderbuffer(GL_RENDERBUFFER, _depthBuffer);
+        } else {
+            glBindFramebuffer(GL_FRAMEBUFFER, _inferedFrameBuffer);
+            glBindRenderbuffer(GL_RENDERBUFFER, _inferedDepthBuffer);
+        }
+        
+        glViewport(_left, _bottom, _width, _height);
+        
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        return YES;
+    }
+    return NO;
+}
+
 -(void) bind {
     
     if (_state != RenderTextureStateReady) {
@@ -211,7 +235,7 @@
     }
 }
 
--(void) bindAndClearRect:(int) x y:(int) y width:(int) width height:(int) height {
+-(BOOL) bindAndClearRect:(int) x y:(int) y width:(int) width height:(int) height {
     if (_state != RenderTextureStateReady) {
         [self build];
     }
@@ -230,7 +254,9 @@
         
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        return YES;
     }
+    return NO;
 }
 
 // Reduce memory consumption

@@ -79,6 +79,10 @@
     homido5.internal = YES;
     homido5.deviceUsed = YES;
     
+    HmdDeviceConfiguration * viewmaster1 = [HmdDeviceManager addHmdTo: hmds name: NSLocalizedStringFromTableInBundle(@"HMD_VIEWMASTER1", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"ViewMaster1") identifier:@"ViewMaster1" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionNone viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:90.0f correctionCoefficient:0.0f distortionFactorA:0.25f distortionFactorB:0.35f];
+    viewmaster1.internal = YES;
+    viewmaster1.deviceUsed = YES;
+    
     return hmds;
 }
 

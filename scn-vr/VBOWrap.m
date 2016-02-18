@@ -47,39 +47,47 @@
     return self;
 }
 
+- (instancetype)initWith:(struct VertexPoint *) points pointCount:(int) pointCount faces:(struct Face3 *) faces faceCount:(int) faceCount
+{
+    self = [super init];
+    if (self) {
+        elementCount = faceCount * 3;
+        
+        glGenBuffers(1, &pointBuffer);
+        glBindBuffer(GL_ARRAY_BUFFER, pointBuffer);
+        glBufferData(GL_ARRAY_BUFFER, pointCount * sizeof(struct VertexPoint), points, GL_STATIC_DRAW);
+        
+        glGenBuffers(1, &indexBuffer);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, faceCount * sizeof(struct Face3), faces, GL_STATIC_DRAW);
+        
+    }
+    return self;
+}
+
 -(void) draw {
     if (elementCount > 0) {
         
-        glBindBuffer(GL_ARRAY_BUFFER, pointBuffer);
-        
-        //glVertexAttribPointer(distortionPositionAttribute, 2, GL_FLOAT, 0, 0, leftEyeVertices);
-        //glVertexAttribPointer(distortionTextureCoordinateAttribute, 2, GL_FLOAT, 0, 0, textureCoordinates);
+        //[self checkGlErrorStatus:999];
         
         glBindBuffer(GL_ARRAY_BUFFER, pointBuffer);
         glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(struct VertexPoint), (void *)offsetof(struct VertexPoint, x));
         glEnableVertexAttribArray(GLKVertexAttribPosition);
         
+        //[self checkGlErrorStatus:1000];
+        
         glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(struct VertexPoint), (void *)offsetof(struct VertexPoint, ux));
         glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
         
-        //glEnableVertexAttribArray(GLKVertexAttribPosition);
-        //glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 2, BUFFER_OFFSET(0));
-        
-        //glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
-        //glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 3, BUFFER_OFFSET(3));
-        
-        //[self checkGlErrorStatus];
-        
-        
-        [self checkGlErrorStatus];
+        //[self checkGlErrorStatus:1001];
         
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
         
-        [self checkGlErrorStatus];
+        //[self checkGlErrorStatus:1002];
         
         glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, (void*)0);
         
-        [self checkGlErrorStatus];
+        //[self checkGlErrorStatus:1003];
         
         glDisableVertexAttribArray(GLKVertexAttribPosition);
         glDisableVertexAttribArray(GLKVertexAttribTexCoord0);
@@ -90,19 +98,23 @@
 }
 
 - (void)dealloc {
-    glDeleteBuffers(1, &pointBuffer);
-    //glDeleteBuffers(1, &uvBuffer);
-    glDeleteBuffers(1, &indexBuffer);
-    pointBuffer = 0;
-    //uvBuffer = 0;
-    indexBuffer = 0;
-    elementCount = 0;
+    [self shutdown];
 }
 
--(void) checkGlErrorStatus {
+-(void) shutdown {
+    if (elementCount > 0) {
+        glDeleteBuffers(1, &pointBuffer);
+        glDeleteBuffers(1, &indexBuffer);
+        pointBuffer = 0;
+        indexBuffer = 0;
+        elementCount = 0;
+    }
+}
+
+-(void) checkGlErrorStatus:(int) mode {
     GLenum errorState = glGetError();
     if (errorState != GL_NO_ERROR) {
-        NSLog(@"GL Error Detected: %d", errorState);
+        NSLog(@"GL Error Detected: %d - %d", mode, errorState);
     }
 }
 

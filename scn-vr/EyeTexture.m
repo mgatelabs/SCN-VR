@@ -66,8 +66,8 @@
     [_dest bindWithRect:_x y:_y width:_w height:_h];
 }
 
--(void) bindAndClear {
-    [_dest bindAndClearRect:_x y:_y width:_w height:_h];
+-(BOOL) bindAndClear {
+    return [_dest bindAndClearRect:_x y:_y width:_w height:_h];
 }
 
 -(void) view {    

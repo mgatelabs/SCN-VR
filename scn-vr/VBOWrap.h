@@ -40,12 +40,22 @@ struct VertexPoint {
     float uy;
 };
 
+struct Face3 {
+    int a;
+    int b;
+    int c;
+};
+
 @interface VBOWrap : NSObject
 
 - (instancetype)initWith:(struct VertexPoint *) points pointCount:(int) pointCount indexes:(int *) indexes indexCount:(int) indexCount;
 
+- (instancetype)initWith:(struct VertexPoint *) points pointCount:(int) pointCount faces:(struct Face3 *) faces faceCount:(int) faceCount;
+
 -(void) draw;
 
--(void) checkGlErrorStatus;
+-(void) checkGlErrorStatus:(int) mode;
+
+-(void) shutdown;
 
 @end
