@@ -5,6 +5,24 @@ This is a iOS 8.1+ static library for rendering VR content with SceneKit.
 
 A Hello World demo has also been provided that has profile support.
 
+Why does SCN-VR exist?
+======
+
+I did not want to pay for unity pro license, so I created this framework from the now defunct ALPS-VR for unity. 
+
+Future Work
+======
+
+1.	I really want to rewrite the distortion mesh logic, so the fragment shader could do less.
+2.	I really want to rewrite the eye logic, so you could more finely control where and how large each eye target is.  And also ensure they are always 1:1 ratio.
+3.	Integrate google cardboard QR scanning
+4.	Integrate Mobile VR Station’s profile editing screen into SCN-VR.  So it could be used as a linked Storyboard.
+
+Other Projects
+======
+
+1. I'm porting SCN-VR to ThreeJS
+
 Setting Up
 ======
 
@@ -14,6 +32,7 @@ Setting Up
 4. Add SCN-VR library to your workspace
 5. Link your project to SCN-VR
 6. Setup user header search paths
+7. Add SCN-VR's String files into your app
 
 Useful Classes
 ======
