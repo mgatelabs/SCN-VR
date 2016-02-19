@@ -10,6 +10,11 @@ Why does SCN-VR exist?
 
 I did not want to pay for unity pro license, so I created this framework from the now defunct ALPS-VR for unity. 
 
+Concerns
+======
+
+1.	I'm pretty sure the color correction shader has a problem.
+
 Future Work
 ======
 
