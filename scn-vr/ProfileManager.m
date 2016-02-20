@@ -358,6 +358,49 @@
     return returnIndex;
 }
 
+-(int) newProfileForViewMaster2015WithIPD:(float) ipd {
+    int minProfileIdentity = 0;
+    int wizardIndex;
+    WizardItem * wi;
+    
+    for (int i = 0; i < _profiles.count; i++) {
+        ProfileConfiguration * pc= [_profiles objectAtIndex:i];
+        if (pc.identity > minProfileIdentity) {
+            minProfileIdentity = pc.identity + 1;
+        }
+    }
+    
+    ProfileConfiguration * pc = [[ProfileConfiguration alloc] init];
+    pc.name = NSLocalizedStringFromTableInBundle(@"New Profile", @"SCN-VRStrings", [SCNVRResourceBundler getSCNVRResourceBundle], @"New Profile title");
+    
+    pc.identity = minProfileIdentity;
+    // The defaults should be SBS Landscape
+    [wizard reset];
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
+    [wizard item: wizardIndex changedTo:8];
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_IPD];
+    [wizard item: wizardIndex changedTo:2];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_IPD_VALUE1];
+    wi.slideValue = [NSNumber numberWithFloat:ipd];
+    [wizard item: wizardIndex changedTo:2];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_IPD_VALUE2];
+    wi.slideValue = [NSNumber numberWithFloat:ipd];
+    
+    pc.values = [wizard extractItem];
+    
+    int returnIndex = (int)_profiles.count;
+    
+    [_profiles addObject:pc];
+    
+    _count = (int)_profiles.count;
+    
+    return returnIndex;
+}
+
 -(void) reset {
     
     int wizardIndex;
