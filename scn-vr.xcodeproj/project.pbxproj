@@ -86,6 +86,7 @@
 		ACD2E83F1A6E15C60069C361 /* VirtualCustomWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD2E83E1A6E15C60069C361 /* VirtualCustomWizardItem.m */; };
 		ACD2E8421A6E21270069C361 /* PhysicalDpiWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD2E8411A6E21270069C361 /* PhysicalDpiWizardItem.m */; };
 		ACE4C32D1AD0FD2A00AB4042 /* SamplingWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE4C32C1AD0FD2A00AB4042 /* SamplingWizardItem.m */; };
+		ACE5FB801C727820001DA708 /* AlignmentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE5FB7F1C727820001DA708 /* AlignmentHelper.m */; };
 		ACF3EA311BEEFC4300A2459A /* SCNVRResourceBundler.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF3EA301BEEFC4300A2459A /* SCNVRResourceBundler.m */; };
 /* End PBXBuildFile section */
 
@@ -232,6 +233,8 @@
 		ACD2E8411A6E21270069C361 /* PhysicalDpiWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicalDpiWizardItem.m; sourceTree = "<group>"; };
 		ACE4C32B1AD0FD2A00AB4042 /* SamplingWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SamplingWizardItem.h; sourceTree = "<group>"; };
 		ACE4C32C1AD0FD2A00AB4042 /* SamplingWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplingWizardItem.m; sourceTree = "<group>"; };
+		ACE5FB7E1C727820001DA708 /* AlignmentHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlignmentHelper.h; sourceTree = "<group>"; };
+		ACE5FB7F1C727820001DA708 /* AlignmentHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlignmentHelper.m; sourceTree = "<group>"; };
 		ACF3EA271BEEF5E700A2459A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACF3EA2F1BEEFC4300A2459A /* SCNVRResourceBundler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNVRResourceBundler.h; sourceTree = "<group>"; };
 		ACF3EA301BEEFC4300A2459A /* SCNVRResourceBundler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCNVRResourceBundler.m; sourceTree = "<group>"; };
@@ -332,6 +335,7 @@
 		AC3E0FCE1A4937F800AFE6AA /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				ACE5FB7D1C7277F5001DA708 /* Alignment */,
 				AC3EA56F1A6A30EA00E3D31A /* Profile */,
 				AC83FBB71A68C6E400B1727F /* Wizard */,
 				AC3E0FD21A49380E00AFE6AA /* Physical Devices */,
@@ -564,6 +568,15 @@
 			name = Items;
 			sourceTree = "<group>";
 		};
+		ACE5FB7D1C7277F5001DA708 /* Alignment */ = {
+			isa = PBXGroup;
+			children = (
+				ACE5FB7E1C727820001DA708 /* AlignmentHelper.h */,
+				ACE5FB7F1C727820001DA708 /* AlignmentHelper.m */,
+			);
+			name = Alignment;
+			sourceTree = "<group>";
+		};
 		ACF3EA201BEEF4BD00A2459A /* SCNVRResourceBundle */ = {
 			isa = PBXGroup;
 			children = (
@@ -646,6 +659,7 @@
 				AC83FBC11A68CB7800B1727F /* TrackerWizardItem.m in Sources */,
 				AC83FBBE1A68C80200B1727F /* WizardItem.m in Sources */,
 				AC3EA5681A6A26F100E3D31A /* ColorValueWizardItem.m in Sources */,
+				ACE5FB801C727820001DA708 /* AlignmentHelper.m in Sources */,
 				AC3E0FA01A49374600AFE6AA /* ColorCorrection.m in Sources */,
 				AC4FF9781A5B8EC0006B7B04 /* VirtualDeviceConfiguration.m in Sources */,
 				AC3EA55F1A6A190800E3D31A /* IpdWizardItem.m in Sources */,
