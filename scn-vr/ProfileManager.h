@@ -49,6 +49,7 @@
 -(int) newProfile;
 -(int) newProfileForCardboardWithIPD:(float) ipd;
 -(int) newProfileForHomidoWithIPD:(float) ipd;
+-(int) newProfileForViewMaster2015WithIPD:(float) ipd;
 
 -(BOOL) canLoadFromFile;
 
