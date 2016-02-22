@@ -39,6 +39,7 @@
 - (instancetype)initWithGroup:(NSString *) groupName;
 
 -(NSString *) nameForIndex:(int) index;
+-(BOOL) isFavorite:(int) index;
 
 -(void) selectIndex:(int) index;
 

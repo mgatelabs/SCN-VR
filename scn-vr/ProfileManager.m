@@ -75,6 +75,11 @@
     return p.name;
 }
 
+-(BOOL) isFavorite:(int) index {
+    ProfileConfiguration * p = [_profiles objectAtIndex:index];
+    return p.favorite;
+}
+
 -(void) selectIndex:(int) index {
     _index = index;
     [self persist];
