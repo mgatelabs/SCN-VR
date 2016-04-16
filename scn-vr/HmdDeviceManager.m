@@ -43,15 +43,18 @@
 
 +(NSMutableArray *) getHMDs {
     NSMutableArray * hmds = [[NSMutableArray alloc] initWithCapacity:4];
-        
+    
+    // 0
     HmdDeviceConfiguration * mono = [HmdDeviceManager addHmdTo:hmds name: NSLocalizedStringFromTableInBundle(@"HMD_NONE_MONO", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"None (Mono)") identifier:@"mono" distortion:HmdDeviceConfigurationDistortionNone correction:HmdDeviceConfigurationCorrectionNone viewpoints:HmdDeviceConfigurationViewpointsMono ipd:0.0f ild:0.0f fov:85.0f correctionCoefficient:0.0f distortionFactorA:0.0f distortionFactorB:0.0f];
     mono.internal = YES;
     mono.hFov = 100;
     mono.vFov = 75;
     
+    // 1
     HmdDeviceConfiguration * sbs = [HmdDeviceManager addHmdTo: hmds name: NSLocalizedStringFromTableInBundle(@"HMD_NONE_SBS", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"None (SBS)") identifier:@"none" distortion:HmdDeviceConfigurationDistortionNone correction:HmdDeviceConfigurationCorrectionNone viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:85.0f correctionCoefficient:0.0f distortionFactorA:0.0f distortionFactorB:0.0f];
     sbs.internal = YES;
     
+    // 2
     HmdDeviceConfiguration * altergaze = [HmdDeviceManager addHmdTo: hmds name: NSLocalizedStringFromTableInBundle(@"HMD_ALTERGAZE", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Altergaze") identifier:@"altergaze" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:85.0f correctionCoefficient:-1.0f distortionFactorA:0.4f distortionFactorB:0.2f];
     altergaze.internal = YES;
     altergaze.extraIpdAvailable = YES;
@@ -59,11 +62,13 @@
     altergaze.ipdChild = 47.5f;
     altergaze.deviceUsed = YES;
     
+    // 3
     HmdDeviceConfiguration * cardboard = [HmdDeviceManager addHmdTo: hmds name: NSLocalizedStringFromTableInBundle(@"HMD_CARDBOARD", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Cardboard") identifier:@"cardboard" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:85.0f correctionCoefficient:-1.5f distortionFactorA:0.5f distortionFactorB:0.2f];
     cardboard.internal = YES;
     cardboard.deviceUsed = YES;
     
-    HmdDeviceConfiguration * firefly = [HmdDeviceManager addHmdTo: hmds name: NSLocalizedStringFromTableInBundle(@"HMD_FIREFLY", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Firefly") identifier:@"firefly" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:85.0f correctionCoefficient:-2.0f distortionFactorA:0.7f distortionFactorB:0.2f];
+    // 4
+    HmdDeviceConfiguration * firefly = [HmdDeviceManager addHmdTo: hmds name: NSLocalizedStringFromTableInBundle(@"HMD_FREEFLY", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Freefly") identifier:@"firefly" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:85.0f correctionCoefficient:-2.0f distortionFactorA:0.7f distortionFactorB:0.2f];
     firefly.internal = YES;
     firefly.deviceUsed = YES;
     

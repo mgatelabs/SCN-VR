@@ -91,7 +91,7 @@
     }
     #else
     // For Testing
-    self.orientation = GLKQuaternionMultiply(landscapeRotationFix, GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
+    self.orientation = GLKQuaternionMultiply(rotationFix, GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
     #endif
 }
 

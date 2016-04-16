@@ -24,6 +24,11 @@
 
 @implementation ProfileManager {
     WizardManager * wizard;
+    BOOL wizardStateUpdate;
+    int wizardStateIndex;
+    ProfileConfiguration * wizardProfile;
+    NSString * wizardProfileName;
+    BOOL wizardFavoriteStatus;
 }
 
 + (id)sharedManager {
@@ -86,12 +91,14 @@
 }
 
 -(void) deleteIndex:(int) index {
-    [_profiles removeObjectAtIndex:index];
-    _count = (int)_profiles.count;
-    if (index == _index) {
-        _index = 0;
-    } else if (index < _index) {
-        _index--;
+    if (index >= 0 && index < _profiles.count) {
+        [_profiles removeObjectAtIndex:index];
+        _count = (int)_profiles.count;
+        if (index == _index) {
+            _index = 0;
+        } else if (index < _index) {
+            _index--;
+        }
     }
 }
 
@@ -390,10 +397,83 @@
     
     wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_IPD_VALUE1];
     wi.slideValue = [NSNumber numberWithFloat:ipd];
-    [wizard item: wizardIndex changedTo:2];
     
     wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_IPD_VALUE2];
     wi.slideValue = [NSNumber numberWithFloat:ipd];
+    
+    pc.values = [wizard extractItem];
+    
+    int returnIndex = (int)_profiles.count;
+    
+    [_profiles addObject:pc];
+    
+    _count = (int)_profiles.count;
+    
+    return returnIndex;
+}
+
+-(int) newCustomProfileFor:(NSString *) name vfov:(float) vfov hfov:(float) hfov ipd:(float) ipd distortion0:(float) distortion0  distortion1:(float) distortion1 {
+
+    int minProfileIdentity = 0;
+    int wizardIndex;
+    WizardItem * wi;
+    
+    for (int i = 0; i < _profiles.count; i++) {
+        ProfileConfiguration * pc= [_profiles objectAtIndex:i];
+        if (pc.identity > minProfileIdentity) {
+            minProfileIdentity = pc.identity + 1;
+        }
+    }
+    
+    ProfileConfiguration * pc = [[ProfileConfiguration alloc] init];
+    pc.name = (name != nil && name.length > 0) ? name : NSLocalizedStringFromTableInBundle(@"New Profile", @"SCN-VRStrings", [SCNVRResourceBundler getSCNVRResourceBundle], @"New Profile title");
+    
+    pc.identity = minProfileIdentity;
+    // The defaults should be SBS Landscape
+    [wizard reset];
+    
+    // Default to cardboard
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
+    [wizard item: wizardIndex changedTo:3];
+    
+    // IPD
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_IPD];
+    [wizard item: wizardIndex changedTo:2];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_IPD_VALUE1];
+    wi.slideValue = [NSNumber numberWithFloat:ipd];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_IPD_VALUE2];
+    wi.slideValue = [NSNumber numberWithFloat:ipd];
+    
+    // Field of view
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_FOV];
+    [wizard item: wizardIndex changedTo:1];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_FOV_H];
+    wi.slideValue = [NSNumber numberWithFloat:hfov];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_FOV_V];
+    wi.slideValue = [NSNumber numberWithFloat:vfov];
+    
+    // Distortion
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_DISTORTION];
+    [wizard item: wizardIndex changedTo:2];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_DISTORTION_VALUE1];
+    wi.slideValue = [NSNumber numberWithFloat:distortion0];
+    
+    wi = [wizard findWizardItemWithIdentity:WIZARD_ITEM_DISTORTION_VALUE2];
+    wi.slideValue = [NSNumber numberWithFloat:distortion1];
+    
+    // Color
+    
+    wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_COLOR];
+    [wizard item: wizardIndex changedTo:1];
     
     pc.values = [wizard extractItem];
     
@@ -447,7 +527,7 @@
     // Cardboard
     [wizard reset];
     pc = [[ProfileConfiguration alloc] init];
-    pc.favorite = YES;
+    pc.favorite = NO;
     pc.name = NSLocalizedStringFromTableInBundle(@"Profile-FemaleCardboard", @"SCN-VRStrings", [SCNVRResourceBundler getSCNVRResourceBundle], @"Female - Cardboard");
     pc.identity = 2;
     wizardIndex = [wizard findWizardIdexWithIdentity:WIZARD_ITEM_HMD];
@@ -491,7 +571,7 @@
     // Homido
     [wizard reset];
     pc = [[ProfileConfiguration alloc] init];
-    pc.favorite = YES;
+    pc.favorite = NO;
     pc.name = NSLocalizedStringFromTableInBundle(@"Profile-FemaleHomido", @"SCN-VRStrings", [SCNVRResourceBundler getSCNVRResourceBundle], @"Female - Homido");
     pc.identity = 3;
     
@@ -550,6 +630,196 @@
     [wizard insertItem:pc.values];
     
     return [wizard buildProfileInstance];
+}
+
+-(ProfileInstance *) getLiveProfileInstance {
+    return [wizard buildProfileInstance];
+}
+
+#pragma mark - External Editing
+
+-(WizardManager *) getLiveWizard {
+    return wizard;
+}
+
+-(void) startNewWizard {
+    [wizard reset];
+    wizardStateUpdate = NO;
+    wizardStateIndex = -1;
+    wizardProfile = [[ProfileConfiguration alloc] init];
+    
+    wizardProfileName = NSLocalizedStringFromTableInBundle(@"New Profile", @"SCN-VRStrings", [SCNVRResourceBundler getSCNVRResourceBundle], @"New Profile title");
+    wizardFavoriteStatus = NO;
+}
+
+-(void) setProfileName:(NSString *) name {
+    if (name != nil && name.length > 0) {
+        wizardProfileName = name;
+    }
+}
+
+-(NSString *) getProfileName {
+    if (wizardProfileName != nil) {
+        return wizardProfileName;
+    }
+    return @"Unknown";
+}
+
+-(BOOL) isFavoriteProfile {
+    return wizardFavoriteStatus;
+}
+
+-(void) setFavoriteProfile:(BOOL) value {
+    wizardFavoriteStatus = value;
+}
+
+-(void) openWizardForIndex:(int) index {
+    [wizard reset];
+    wizardStateUpdate = YES;
+    wizardStateIndex = index;
+    if (index >= 0 && index < _profiles.count) {
+        wizardProfile = _profiles[index];
+        wizardProfileName = wizardProfile.name;
+        wizardFavoriteStatus = wizardProfile.favorite;
+        [wizard insertItem:wizardProfile.values];
+        wizard.profileIndex = index;
+    } else {
+        [self startNewWizard];
+    }
+}
+
+-(int) getWizardItemIndex:(int) wizardId {
+    WizardItem * wi = [wizard findWizardItemWithIdentity:wizardId];
+    if (wi != nil) {
+        if (!(wi.type == WizardItemDataTypeString || wi.type == WizardItemDataTypeInt)) {
+            NSLog(@"Wizard %d is not an index type", wizardId);
+        }
+        return wi.valueIndex;
+    }
+    return -1;
+}
+
+-(WizardItem *) getWizardItem:(int) wizardId {
+    WizardItem * wi = [wizard findWizardItemWithIdentity:wizardId];
+    if (wi != nil) {
+        return wi;
+    }
+    NSLog(@"getWizardItem: Could not locate wizard item: %d", wizardId);
+    return nil;
+}
+
+-(float) getWizardItemFloat:(int) wizardId {
+    WizardItem * wi = [wizard findWizardItemWithIdentity:wizardId];
+    if (wi != nil) {
+        if (wi.type != WizardItemDataTypeSlideFloat) {
+            NSLog(@"Wizard %d is not an float type", wizardId);
+        }
+        return wi.slideValue.floatValue;
+    }
+    NSLog(@"getWizardItemFloat: Could not locate wizard item: %d", wizardId);
+    return -1;
+}
+
+-(int) getWizardItemInt:(int) wizardId {
+    WizardItem * wi = [wizard findWizardItemWithIdentity:wizardId];
+    if (wi != nil) {
+        if (wi.type != WizardItemDataTypeSlideInt) {
+            NSLog(@"Wizard %d is not an int type", wizardId);
+        }
+        return wi.slideValue.intValue;
+    }
+    NSLog(@"getWizardItemInt: Could not locate wizard item: %d", wizardId);
+    return -1;
+}
+
+-(void) setWizardItem:(int) wizardId toIndex:(int) intValue {
+    int wizardIndex = [wizard findWizardIdexWithIdentity:wizardId];
+    if (wizardIndex >= 0) {
+        [wizard item: wizardIndex changedTo:intValue];
+    } else {
+        NSLog(@"Error, Did not find Wizard Item with id: %d", wizardId);
+    }
+}
+
+-(void) setWizardItem:(int) wizardId toFloat:(float) floatValue {
+    
+    WizardItem * wi = [wizard findWizardItemWithIdentity:wizardId];
+    if (wi != nil) {
+        wi.slideValue = [NSNumber numberWithFloat:floatValue];
+    } else {
+        NSLog(@"Error, Did not find Wizard Item with id: %d", wizardId);
+    }
+}
+
+-(void) setWizardItem:(int) wizardId toInt:(int) intValue{
+    WizardItem * wi = [wizard findWizardItemWithIdentity:wizardId];
+    if (wi != nil) {
+        wi.slideValue = [NSNumber numberWithInt:intValue];
+    } else {
+        NSLog(@"Error, Did not find Wizard Item with id: %d", wizardId);
+    }
+}
+
+-(void) nudgeFloatWizardItem:(int) wizardId positive:(BOOL) positive {
+    WizardItem * wi = [wizard findWizardItemWithIdentity:wizardId];
+    if (wi != nil) {
+        float newValue = wi.slideValue.floatValue + (wi.slideStep.floatValue * (positive ? 1 : -1));
+        if (newValue >= wi.slideMin.floatValue && newValue <= wi.slideMax.floatValue) {
+            wi.slideValue = [NSNumber numberWithFloat:newValue];
+        }
+    } else {
+        NSLog(@"Error, Did not find Wizard Item with id: %d", wizardId);
+    }
+}
+
+-(void) copyWizardState {
+    wizardStateUpdate = NO;
+    wizardStateIndex = -1;
+    wizardProfile = [[ProfileConfiguration alloc] init];
+    wizardProfileName = [NSString stringWithFormat:@"%@ Copy", wizardProfileName];
+    [self persistWizardState];
+}
+
+-(int) persistWizardState {
+    // Set properties
+    wizardProfile.name = wizardProfileName;
+    wizardProfile.favorite = wizardFavoriteStatus;
+    if (wizardStateUpdate) {
+        [wizardProfile setValues:[wizard extractItem]];
+        [self persist];
+        return wizardStateIndex;
+    } else {
+        int minProfileIdentity = 0;
+        int wizardIndex;
+        WizardItem * wi;
+        
+        for (int i = 0; i < _profiles.count; i++) {
+            ProfileConfiguration * pc= [_profiles objectAtIndex:i];
+            if (pc.identity > minProfileIdentity) {
+                minProfileIdentity = pc.identity + 1;
+            }
+        }
+        
+        wizardProfile.values = [wizard extractItem];
+        
+        int returnIndex = (int)_profiles.count;
+        
+        [_profiles addObject:wizardProfile];
+        
+        _count = (int)_profiles.count;
+
+        [self persist];
+        
+        return returnIndex;
+    }
+}
+
+-(void) cancelWizard {
+    [wizard reset];
+    wizardStateUpdate = NO;
+    wizardStateIndex = -1;
+    wizardProfileName = nil;
+    wizardFavoriteStatus = NO;
 }
 
 @end

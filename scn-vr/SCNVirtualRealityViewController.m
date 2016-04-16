@@ -25,7 +25,6 @@
     BOOL isShutdown;
     int monoNeedsClearingCount;
     AlignmentHelper * alignment;
-    
 }
 
 - (void) setupGL;
@@ -38,9 +37,11 @@
 -(void) viewDidLoad {
     [super viewDidLoad];
     [self setPaused:YES];
+    self.noTrackQuaternion = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 1, 0, 0), GLKQuaternionIdentity);;
     
     ProfileManager * profiles = [ProfileManager sharedManager];
-    self.profile = [profiles getCurrentProfileInstance];
+    self.profile = profiles.liveMode ? [profiles getLiveProfileInstance] : [profiles getCurrentProfileInstance];
+    profiles.liveMode = NO; // Always reset live mode so it can't persist
     [self adjustProfileAtStartup];
     
     [self loadIt];
@@ -371,15 +372,16 @@
     }
     
     if (_restrictToAxis) {
-        GLKQuaternion qY = GLKQuaternionMakeWithAngleAndAxis(_restrictHead ? 0 : _rawYaw, 0, 1, 0);
-        GLKQuaternion qP = GLKQuaternionMakeWithAngleAndAxis(_restrictHead ? 0 : _rawPitch, 1, 0, 0);
-        GLKQuaternion qR = GLKQuaternionMakeWithAngleAndAxis(_restrictHead ? 0 : _rawRoll, 0, 0, 1);
-        
-        GLKQuaternion A = GLKQuaternionMultiply(qR, qY);
-        
-        altered = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 1, 0, 0),  GLKQuaternionMultiply(A, qP));
+        if (_restrictHead) {
+            altered = self.noTrackQuaternion;
+        } else {
+            GLKQuaternion qY = GLKQuaternionMakeWithAngleAndAxis(_rawYaw, 0, 1, 0);
+            GLKQuaternion qP = GLKQuaternionMakeWithAngleAndAxis(_rawPitch, 1, 0, 0);
+            GLKQuaternion qR = GLKQuaternionMakeWithAngleAndAxis(_rawRoll, 0, 0, 1);
+            GLKQuaternion A = GLKQuaternionMultiply(qR, qY);
+            altered = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 1, 0, 0),  GLKQuaternionMultiply(A, qP));
+        }
     }
-    
     _viewpoint.neck.orientation = SCNVector4Make(altered.x, altered.y, altered.z, altered.w);
     
 }

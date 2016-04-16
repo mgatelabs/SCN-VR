@@ -406,14 +406,14 @@
 }
 
 -(WizardItem *) findWizardItemWithIdentity:(int) identity {
-    for (int i = 0; i < _baseItems.count - 1; i++) {
+    for (int i = 0; i < _baseItems.count; i++) {
         WizardItem * sItem = _baseItems[i];
         if (sItem.itemId == identity) {
             return sItem;
         }
     }
     
-    for (int i = 0; i < _extendedItems.count - 1; i++) {
+    for (int i = 0; i < _extendedItems.count; i++) {
         WizardItem * sItem = _extendedItems[i];
         if (sItem.itemId == identity) {
             return sItem;

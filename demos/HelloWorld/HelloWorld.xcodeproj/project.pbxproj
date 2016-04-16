@@ -26,6 +26,9 @@
 		AC9F82231BD36B1E0062FCA4 /* NameValueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F82221BD36B1E0062FCA4 /* NameValueTableViewCell.m */; };
 		ACAFAF071B6C7F5C004BF387 /* ProfileSliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAFAF061B6C7F5C004BF387 /* ProfileSliderTableViewCell.m */; };
 		ACAFAF091B6C8237004BF387 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAFAF081B6C8237004BF387 /* SpriteKit.framework */; };
+		ACEB621F1CAB9EDD0016BC98 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACEB621E1CAB9EDD0016BC98 /* MediaPlayer.framework */; };
+		ACEB62211CAB9EFF0016BC98 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACEB62201CAB9EFF0016BC98 /* AVFoundation.framework */; };
+		ACEB62231CAB9F670016BC98 /* mov_bbb_sample.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = ACEB62221CAB9F670016BC98 /* mov_bbb_sample.mp4 */; };
 		ACF5039A1C6709970034F6FB /* SCN-VRDevices.strings in Resources */ = {isa = PBXBuildFile; fileRef = ACF503941C6709970034F6FB /* SCN-VRDevices.strings */; };
 		ACF5039B1C6709970034F6FB /* SCN-VRProfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = ACF503961C6709970034F6FB /* SCN-VRProfile.strings */; };
 		ACF5039C1C6709970034F6FB /* SCN-VRStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = ACF503981C6709970034F6FB /* SCN-VRStrings.strings */; };
@@ -75,6 +78,9 @@
 		ACAFAF051B6C7F5C004BF387 /* ProfileSliderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSliderTableViewCell.h; sourceTree = "<group>"; };
 		ACAFAF061B6C7F5C004BF387 /* ProfileSliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSliderTableViewCell.m; sourceTree = "<group>"; };
 		ACAFAF081B6C8237004BF387 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		ACEB621E1CAB9EDD0016BC98 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		ACEB62201CAB9EFF0016BC98 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		ACEB62221CAB9F670016BC98 /* mov_bbb_sample.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = mov_bbb_sample.mp4; path = ../../../../../../Desktop/mov_bbb_sample.mp4; sourceTree = "<group>"; };
 		ACF503951C6709970034F6FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "../../scn-vr/Base.lproj/SCN-VRDevices.strings"; sourceTree = "<group>"; };
 		ACF503971C6709970034F6FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "../../scn-vr/Base.lproj/SCN-VRProfile.strings"; sourceTree = "<group>"; };
 		ACF503991C6709970034F6FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "../../scn-vr/Base.lproj/SCN-VRStrings.strings"; sourceTree = "<group>"; };
@@ -85,6 +91,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACEB62211CAB9EFF0016BC98 /* AVFoundation.framework in Frameworks */,
+				ACEB621F1CAB9EDD0016BC98 /* MediaPlayer.framework in Frameworks */,
 				ACAFAF091B6C8237004BF387 /* SpriteKit.framework in Frameworks */,
 				AC7ECEFC1AD1B76D00F2A232 /* CoreMotion.framework in Frameworks */,
 				AC7ECEEB1AD1B0EB00F2A232 /* GLKit.framework in Frameworks */,
@@ -136,6 +144,8 @@
 		AC7ECEAD1AD1AE9E00F2A232 = {
 			isa = PBXGroup;
 			children = (
+				ACEB62201CAB9EFF0016BC98 /* AVFoundation.framework */,
+				ACEB621E1CAB9EDD0016BC98 /* MediaPlayer.framework */,
 				ACAFAF081B6C8237004BF387 /* SpriteKit.framework */,
 				AC7ECEFB1AD1B76D00F2A232 /* CoreMotion.framework */,
 				AC7ECEEA1AD1B0EB00F2A232 /* GLKit.framework */,
@@ -223,6 +233,7 @@
 		AC7ECEFF1AD1B79200F2A232 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				ACEB62221CAB9F670016BC98 /* mov_bbb_sample.mp4 */,
 				AC6BEBDB1AD234C00073BE68 /* BasicGameViewController.h */,
 				AC6BEBDC1AD234C00073BE68 /* BasicGameViewController.m */,
 			);
@@ -333,6 +344,7 @@
 				ACF5039B1C6709970034F6FB /* SCN-VRProfile.strings in Resources */,
 				ACF5039C1C6709970034F6FB /* SCN-VRStrings.strings in Resources */,
 				ACF5039A1C6709970034F6FB /* SCN-VRDevices.strings in Resources */,
+				ACEB62231CAB9F670016BC98 /* mov_bbb_sample.mp4 in Resources */,
 				AC7ECECA1AD1AE9E00F2A232 /* LaunchScreen.xib in Resources */,
 				AC7ECEC71AD1AE9E00F2A232 /* Images.xcassets in Resources */,
 			);

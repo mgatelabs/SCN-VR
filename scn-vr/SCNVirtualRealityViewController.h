@@ -37,6 +37,8 @@
 
 @property (assign, nonatomic, readonly) BOOL isLoaded;
 
+@property (assign, nonatomic) GLKQuaternion noTrackQuaternion;
+
 -(void) loadIt;
 
 // Source are defined render textures

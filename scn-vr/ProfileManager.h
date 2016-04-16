@@ -32,6 +32,8 @@
 
 @property (strong, nonatomic, readonly) NSString * groupName;
 
+@property (assign, nonatomic) BOOL liveMode;
+
 + (id)sharedManager;
 
 + (id)sharedManager:(NSString *) groupName;
@@ -51,6 +53,7 @@
 -(int) newProfileForCardboardWithIPD:(float) ipd;
 -(int) newProfileForHomidoWithIPD:(float) ipd;
 -(int) newProfileForViewMaster2015WithIPD:(float) ipd;
+-(int) newCustomProfileFor:(NSString *) name vfov:(float) vfov hfov:(float) hfov ipd:(float) ipd distortion0:(float) distortion0  distortion1:(float) distortion1;
 
 -(BOOL) canLoadFromFile;
 
@@ -69,7 +72,33 @@
 -(WizardManager *) wizardManager;
 
 -(ProfileInstance *) getCurrentProfileInstance;
+-(ProfileInstance *) getLiveProfileInstance;
 
 -(NSDictionary *) exportToDictonary;
+
+// Wizard Edit Operations, Dangerous
+-(WizardManager *) getLiveWizard;
+-(void) startNewWizard;
+-(void) openWizardForIndex:(int) index;
+
+-(BOOL) isFavoriteProfile;
+-(void) setFavoriteProfile:(BOOL) value;
+
+-(void) setProfileName:(NSString *) name;
+-(NSString *) getProfileName;
+
+-(int) getWizardItemIndex:(int) wizardId;
+-(float) getWizardItemFloat:(int) wizardId;
+-(WizardItem *) getWizardItem:(int) wizardId;
+-(int) getWizardItemInt:(int) wizardId;
+-(void) setWizardItem:(int) wizardId toIndex:(int) intValue;
+-(void) setWizardItem:(int) wizardId toInt:(int) intValue;
+
+-(void) nudgeFloatWizardItem:(int) wizardId positive:(BOOL) positive;
+-(void) setWizardItem:(int) wizardId toFloat:(float) floatValue;
+
+-(void) copyWizardState;
+-(int) persistWizardState;
+-(void) cancelWizard;
 
 @end
