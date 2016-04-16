@@ -75,4 +75,4 @@ Supported HMDs
 Special Thanks
 ======
 
-Part of this library is based upon work done by http://www.alpsvr.com/ , please visit them for building VR Unity apps.
+Part of this library is based upon work done by ALPSVR, please visit them for building VR Unity apps.
