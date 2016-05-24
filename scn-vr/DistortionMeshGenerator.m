@@ -56,16 +56,10 @@
     //If IPD is smaller than half of the width, we take width/2 for IPD
     //Otherwise meshes are outward-oriented
     
+    float widthOverHeight = pair.correctHeightWidth ? (float)pair.virtualHeightPX / ((float)pair.virtualWidthPX / 2.0f) : 1.0f;
+    
     float halfDeviceWidth = pair.virtualWidthMM / 2.0f;
     float halfIPDWidth = pair.viewerIPD / 2.0f;
-    float calculatedOffsetX = (halfIPDWidth / halfDeviceWidth) - 0.5f;
-    if (leftEye) {
-        calculatedOffsetX *= -1;
-    }
-    
-    if (pair.centerIPD) {
-        calculatedOffsetX = 0;
-    }
     
     float widthIPDRatio;
     
@@ -122,8 +116,9 @@
     float scaleFactor = 1.0f/ MAX(leftEye?-1*(1-maxX):maxX,maxY);
     
     for(int i = 0; i < numVertices; i++) {
-        points[i].x *=scaleFactor;
-        points[i].x += calculatedOffsetX;
+        float px = points[i].x;
+        px *= (scaleFactor * widthOverHeight);
+        points[i].x = px;
         points[i].y *=scaleFactor;
     }
     

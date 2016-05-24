@@ -68,9 +68,31 @@
     [_extended setValue:value forKey:key];
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     _extended = nil;
+}
+
+-(void) calculateIpdAdjustment {
+    if (self.centerIPD) {
+        _leftIpdAdjustment = 0;
+        _rightIpdAdjustment = 0;
+    } else {
+        float halfDeviceWidth = self.virtualWidthMM / 2.0f;
+        float halfIPDWidth = self.viewerIPD / 2.0f;
+        
+        float origOffsetOffsetX = (halfIPDWidth / halfDeviceWidth);
+        
+        // Flip the Space
+        float leftOffsetX = 1.0f - origOffsetOffsetX;
+        leftOffsetX *= 2.0f;
+        leftOffsetX -= 1.0f;
+        _leftIpdAdjustment = leftOffsetX;
+        
+        float rightOffsetX = origOffsetOffsetX;
+        rightOffsetX *= 2.0f;
+        rightOffsetX -= 1.0f;
+        _rightIpdAdjustment = rightOffsetX;
+    }
 }
 
 @end

@@ -84,6 +84,21 @@
     self.camera.orthographicScale = value;
 }
 
+-(void) applyFov:(float) hFov v:(float) vFov {
+    self.camera.xFov = hFov;
+    self.camera.yFov = vFov;
+}
+
+-(void) applyIpd:(float) ipd {
+    float eyeDistance = ((ipd / 1000.0f) / 2.0f);
+    if (_dest.side == EyeTextureSideLeft) {
+        eyeDistance *= -1;
+    }
+    _eyeDistance = eyeDistance;
+    // Move eye into place
+    self.transform = SCNMatrix4MakeTranslation(_eyeDistance, 0.0, 0.0);
+}
+
 - (void)dealloc
 {
     //self.camera = nil;

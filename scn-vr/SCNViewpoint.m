@@ -102,6 +102,22 @@
     }
 }
 
+-(void) applyFov:(float) hFov v:(float) vFov {
+    if (_leftEye != nil) {
+        [_leftEye applyFov:hFov v: vFov];
+    }
+    if (_rightEye != nil) {
+        [_rightEye applyFov:hFov v: vFov];
+    }
+}
+
+-(void) applyIpd:(float) ipd {
+    if (_leftEye != nil && _rightEye != nil) {
+        [_leftEye applyIpd:ipd];
+        [_rightEye applyIpd:ipd];
+    }
+}
+
 - (void)dealloc
 {
     _leftEyeSource = nil;

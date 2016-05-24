@@ -47,4 +47,7 @@
 -(void) ortho:(BOOL) value;
 -(void) orthoScale:(double) value;
 
+-(void) applyFov:(float) hFov v:(float) vFov;
+-(void) applyIpd:(float) ipd;
+
 @end

@@ -32,6 +32,7 @@ NSString *const vertexShaderString = SHADER_STRING
  attribute vec4 _glesMultiTexCoord0;
  
  uniform highp vec2 _SHIFT;
+ uniform highp float _ipdAdjust;
  
  varying highp vec2 xlv_TEXCOORD0;
  void main ()
@@ -39,7 +40,7 @@ NSString *const vertexShaderString = SHADER_STRING
     highp vec2 tmpvar_1;
     tmpvar_1.x = ((_glesMultiTexCoord0.x * 0.5) + _SHIFT).x;
     tmpvar_1.y = _glesMultiTexCoord0.y;
-    gl_Position = _glesVertex;
+    gl_Position = vec4(_glesVertex.x + _ipdAdjust, _glesVertex.y, _glesVertex.z, _glesVertex.w);
     xlv_TEXCOORD0 = tmpvar_1;
 }
 );
@@ -99,12 +100,13 @@ enum
     UNIFORM_ABERRATIONOFFSET = 1,
     UNIFORM_CENTER = 2,
     UNIFORM_CHROMATICCONSTANT = 3,
-    UNIFORM_SHIFT = 4
+    UNIFORM_SHIFT = 4,
+    UNIFORM_IPDADJUST = 5
 };
 
 @interface ColorCorrection (){
     GLuint _program;
-    GLint uniforms[5];
+    GLint uniforms[6];
 }
 
 - (BOOL)loadShaders;
@@ -138,9 +140,12 @@ enum
 
     //[self checkGlErrorStatus:302];
     
-    float ratio = (pair.viewerIPD * 0.5f) / pair.virtualWidthMM;
+    //float ratio = (pair.viewerIPD * 0.5f) / pair.virtualWidthMM;
     
-    glUniform2f(uniforms[UNIFORM_CENTER], 0.5f+(leftEye ? -ratio:ratio),0.5f);
+    //glUniform2f(uniforms[UNIFORM_CENTER], 0.5f+(leftEye ? -ratio:ratio),0.5f);
+    glUniform2f(uniforms[UNIFORM_CENTER], leftEye ? 0.25 : 0.75/* 0.5*/,0.5f);
+    
+    glUniform1f(uniforms[UNIFORM_IPDADJUST], leftEye ? pair.leftIpdAdjustment : pair.rightIpdAdjustment);
     
     //[self checkGlErrorStatus:303];
     
@@ -214,8 +219,8 @@ enum
     uniforms[UNIFORM_ABERRATIONOFFSET] = glGetUniformLocation(_program, "_AberrationOffset");
     uniforms[UNIFORM_CENTER] = glGetUniformLocation(_program, "_Center");
     uniforms[UNIFORM_CHROMATICCONSTANT] = glGetUniformLocation(_program, "_ChromaticConstant");
-    
-    
+    uniforms[UNIFORM_IPDADJUST] = glGetUniformLocation(_program, "_ipdAdjust");
+        
     uniforms[UNIFORM_SHIFT] = glGetUniformLocation(_program, "_SHIFT");
     
     // Release vertex and fragment shaders.

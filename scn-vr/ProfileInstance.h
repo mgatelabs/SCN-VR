@@ -81,6 +81,10 @@ typedef NS_ENUM(NSInteger, ProfileInstanceSS)
 @property (assign, nonatomic) float viewerIPD;
 @property (assign, nonatomic) BOOL centerIPD;
 
+// IPD Rendering Adjustments
+@property (assign, nonatomic, readonly) float leftIpdAdjustment;
+@property (assign, nonatomic, readonly) float rightIpdAdjustment;
+
 // Color Correction
 @property (assign, nonatomic) BOOL colorCorrection;
 @property (assign, nonatomic) float colorCorrectionValue;
@@ -89,6 +93,10 @@ typedef NS_ENUM(NSInteger, ProfileInstanceSS)
 @property (assign, nonatomic) BOOL distortionCorrection;
 @property (assign, nonatomic) float distortionCorrectionValue1;
 @property (assign, nonatomic) float distortionCorrectionValue2;
+
+@property (assign, nonatomic) BOOL correctHeightWidth;
+
+
 
 // Extended
 @property (strong, nonatomic) NSMutableDictionary * extended;
@@ -100,5 +108,7 @@ typedef NS_ENUM(NSInteger, ProfileInstanceSS)
 -(void) setExtendedValueFor:(NSString *) key withInt:(int) value;
 -(void) setExtendedValueFor:(NSString *) key withFloat:(float) value;
 -(void) setExtendedValueFor:(NSString *) key withNSString:(NSString *) value;
+
+-(void) calculateIpdAdjustment;
 
 @end

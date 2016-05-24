@@ -36,6 +36,7 @@
 #import "PhysicalDpiWizardItem.h"
 #import "SamplingWizardItem.h"
 #import "VirtualPositionWizardItem.h"
+#import "AspectDistortionWizardItem.h"
 
 @implementation WizardManager
 
@@ -127,6 +128,9 @@
         // Super Sampling
         SamplingWizardItem * samples = [[SamplingWizardItem alloc] initWith:hmds];
         [_baseItems addObject:samples];
+        
+        AspectDistortionWizardItem * adwi = [[AspectDistortionWizardItem alloc] initWith:hmds];
+        [_baseItems addObject:adwi];
         
         [self filter];
     }

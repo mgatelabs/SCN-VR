@@ -80,7 +80,7 @@
     dive5.internal = YES;
     dive5.deviceUsed = YES;
     
-    HmdDeviceConfiguration * homido5 = [HmdDeviceManager addHmdTo: hmds name: NSLocalizedStringFromTableInBundle(@"HMD_HOMIDO", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Homido") identifier:@"Homido5" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:90.0f correctionCoefficient:-0.25f distortionFactorA:0.5f distortionFactorB:0.2f];
+    HmdDeviceConfiguration * homido5 = [HmdDeviceManager addHmdTo: hmds name: NSLocalizedStringFromTableInBundle(@"HMD_HOMIDO", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Homido") identifier:@"Homido5" distortion:HmdDeviceConfigurationDistortionBarrel correction:HmdDeviceConfigurationCorrectionChromatic viewpoints:HmdDeviceConfigurationViewpointsSBS ipd:62.0f ild:62.0f fov:100.0f correctionCoefficient:-0.25f distortionFactorA:0.5f distortionFactorB:0.2f];
     homido5.internal = YES;
     homido5.deviceUsed = YES;
     

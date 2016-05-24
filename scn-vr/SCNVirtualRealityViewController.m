@@ -142,6 +142,8 @@
                     self.profile.ssMode = ProfileInstanceSS1X;
                 }
                 
+                [self.profile calculateIpdAdjustment];
+                
                 _leftSourceTexture = [_profile.renderer generateRenderTexture:self.profile];
                 _rightSourceTexture = _leftSourceTexture;
                 
@@ -260,6 +262,8 @@
             [EAGLContext setCurrentContext:nil];
         }
         self.context = nil;
+        
+        _profile = nil;
     }
 }
 
