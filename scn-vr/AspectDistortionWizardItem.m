@@ -71,6 +71,11 @@
     }
 }
 
+-(void) loadForInt:(int) value {
+    self.valueIndex = value;
+    self.valueId = [self stringForIndex:value];
+}
+
 -(void) selectedIndex:(int) index {
     self.valueIndex = index;
     self.valueId = [self stringForIndex:self.valueIndex];
