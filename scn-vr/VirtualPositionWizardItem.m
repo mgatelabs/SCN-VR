@@ -55,9 +55,24 @@
 
 -(void) updateInfo {
     
-    float total = self.itemId == WIZARD_ITEM_VIEW_SHIFT_X ? [_vdw getPhysicalWidthMM] : [_vdw getPhysicalHeightMM];
+    float pwm;
+    float phm;
+    float vwm;
+    float vhm;
+    
+    if ([_vdw isLandscape]) {
+        pwm = [_vdw getPhysicalWidthMM];
+        phm = [_vdw getPhysicalHeightMM];
+    } else {
+        pwm = [_vdw getPhysicalHeightMM];
+        phm = [_vdw getPhysicalWidthMM];
+    }
+    vwm = [_vdw getTargetVirtualWidthMM];
+    vhm = [_vdw getTargetVirtualHeightMM];
+    
+    float total = self.itemId == WIZARD_ITEM_VIEW_SHIFT_X ? pwm : phm;
     float halfTotal = total / 2.0f;
-    float min = self.itemId == WIZARD_ITEM_VIEW_SHIFT_X ? [_vdw getTargetVirtualWidthMM] : [_vdw getTargetVirtualHeightMM];
+    float min = self.itemId == WIZARD_ITEM_VIEW_SHIFT_X ? vwm : vhm;
     float halfMin = min / 2.0f;
     float give = halfTotal - halfMin;
     
@@ -79,11 +94,21 @@
             // Reverse from MM to PX
             int offset = (int)((self.slideValue.floatValue / IN_2_MM) * instance.physicalDPI);
         
+            
+            
             // Only shift, we we can
             if (self.itemId == WIZARD_ITEM_VIEW_SHIFT_X) {
-                instance.virtualOffsetLeft = (instance.physicalWidthPX / 2) + offset - (instance.virtualWidthPX / 2);
+                if (instance.landscapeView) {
+                    instance.virtualOffsetLeft = (instance.physicalWidthPX / 2) + offset - (instance.virtualWidthPX / 2);
+                } else  {
+                    instance.virtualOffsetLeft  = (instance.physicalHeightPX / 2.0f) + offset - (instance.virtualWidthPX / 2.0f);
+                }
             } else if (self.itemId == WIZARD_ITEM_VIEW_SHIFT_Y) {
-                instance.virtualOffsetBottom  = (instance.physicalHeightPX / 2) + offset - (instance.virtualHeightPX / 2);
+                if (instance.landscapeView) {
+                    instance.virtualOffsetBottom  = (instance.physicalHeightPX / 2.0f) + offset - (instance.virtualHeightPX / 2.0f);
+                } else {
+                    instance.virtualOffsetBottom = (instance.physicalWidthPX / 2.0f) + offset - (instance.virtualHeightPX / 2.0f);
+                }
             }
         }
     }

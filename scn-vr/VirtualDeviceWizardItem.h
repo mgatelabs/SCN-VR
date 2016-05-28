@@ -39,5 +39,6 @@
 -(float) getTargetVirtualHeightMM;
 -(float) getPhysicalWidthMM;
 -(float) getPhysicalHeightMM;
+-(BOOL) isLandscape;
 
 @end

@@ -191,25 +191,25 @@
         
             instance.landscapeView = YES;
             
-            int halfWidth = instance.physicalWidthPX / 2;
+            int halfWidth = (int)(instance.physicalWidthPX / 2.0f);
             if (halfWidth > instance.physicalHeightPX) {
                 // Need to shrink width
-                instance.virtualWidthPX = halfWidth * 2;
+                instance.virtualWidthPX = (halfWidth * 2);
                 instance.virtualHeightPX = instance.physicalHeightPX;
             } else {
                 // Need to shrink height
                 instance.virtualWidthPX = instance.physicalWidthPX;
-                instance.virtualHeightPX = instance.physicalWidthPX / 2;
+                instance.virtualHeightPX = (int)(instance.physicalWidthPX / 2.0f);
             }
             
-            instance.virtualHeightIN = instance.virtualHeightPX / instance.physicalDPI;
-            instance.virtualWidthIN = instance.virtualWidthPX / instance.physicalDPI;
+            instance.virtualHeightIN = (float)instance.virtualHeightPX / (float)instance.physicalDPI;
+            instance.virtualWidthIN = (float)instance.virtualWidthPX / (float)instance.physicalDPI;
             
-            instance.virtualHeightMM = instance.virtualHeightIN * IN_2_MM;
-            instance.virtualWidthMM = instance.virtualWidthIN * IN_2_MM;
+            instance.virtualHeightMM = (float)instance.virtualHeightIN * IN_2_MM;
+            instance.virtualWidthMM = (float)instance.virtualWidthIN * IN_2_MM;
             
-            instance.virtualOffsetLeft = (instance.physicalWidthPX - instance.virtualWidthPX) / 2;
-            instance.virtualOffsetBottom = (instance.physicalHeightPX - instance.virtualHeightPX) / 2;
+            instance.virtualOffsetLeft = (int)((instance.physicalWidthPX - (float)instance.virtualWidthPX) / 2.0f);
+            instance.virtualOffsetBottom = (int)((instance.physicalHeightPX - (float)instance.virtualHeightPX) / 2.0f);
             
         } break;
         case VirtualDeviceConfigurationTypeLandscape169:
@@ -219,12 +219,12 @@
             instance.virtualWidthIN = instance.physicalWidthIN;
             instance.virtualWidthMM = instance.physicalWidthMM;
             
-            instance.virtualHeightPX = (instance.virtualWidthPX * 9) / 16;
-            instance.virtualHeightIN = instance.virtualHeightPX / instance.physicalDPI;
-            instance.virtualHeightMM = instance.virtualHeightIN * IN_2_MM;
+            instance.virtualHeightPX = (int)((instance.virtualWidthPX * 9.0f) / 16.0f);
+            instance.virtualHeightIN = (float)instance.virtualHeightPX / (float)instance.physicalDPI;
+            instance.virtualHeightMM = (float)instance.virtualHeightIN * IN_2_MM;
             
             instance.virtualOffsetLeft = 0;
-            instance.virtualOffsetBottom = (instance.physicalHeightPX - instance.virtualHeightPX) / 2;
+            instance.virtualOffsetBottom = (int)((instance.physicalHeightPX - instance.virtualHeightPX) / 2.0f);
             break;
         case VirtualDeviceConfigurationTypePortrait:
             instance.landscapeView = NO;
@@ -248,12 +248,12 @@
             instance.virtualWidthIN = instance.physicalHeightIN;
             instance.virtualWidthMM = instance.physicalHeightMM;
             
-            instance.virtualHeightPX = (instance.virtualWidthPX * 9) / 16;
-            instance.virtualHeightIN = instance.virtualHeightPX / instance.physicalDPI;
-            instance.virtualHeightMM = instance.virtualHeightIN * IN_2_MM;
+            instance.virtualHeightPX = (int)((instance.virtualWidthPX * 9.0f) / 16.0f);
+            instance.virtualHeightIN = (float)instance.virtualHeightPX / (float)instance.physicalDPI;
+            instance.virtualHeightMM = (float)instance.virtualHeightIN * IN_2_MM;
             
             instance.virtualOffsetLeft = 0;
-            instance.virtualOffsetBottom = (instance.physicalWidthPX - instance.virtualHeightPX) / 2;
+            instance.virtualOffsetBottom = (int)((instance.physicalWidthPX - instance.virtualHeightPX) / 2.0f);
             
             break;
         case VirtualDeviceConfigurationTypeLandscapeVirtual: {
@@ -268,18 +268,18 @@
             float targetWidthIN = targetWidthMM / IN_2_MM;
             float targetHeightIN = targetHeightMM / IN_2_MM;
             
-            instance.virtualWidthPX = targetWidthIN * instance.physicalDPI;
-            instance.virtualHeightPX = targetHeightIN * instance.physicalDPI;
+            instance.virtualWidthPX = (int)((float)targetWidthIN * (float)instance.physicalDPI);
+            instance.virtualHeightPX = (int)((float)targetHeightIN * (float)instance.physicalDPI);
             
             // May be overkill
-            instance.virtualWidthIN = instance.virtualWidthPX / instance.physicalDPI;
-            instance.virtualHeightIN = instance.virtualHeightPX / instance.physicalDPI;
+            instance.virtualWidthIN = (float)instance.virtualWidthPX / (float)instance.physicalDPI;
+            instance.virtualHeightIN = (float)instance.virtualHeightPX / (float)instance.physicalDPI;
             
-            instance.virtualWidthMM = instance.virtualWidthIN * IN_2_MM;
-            instance.virtualHeightMM = instance.virtualHeightIN * IN_2_MM;
+            instance.virtualWidthMM = (float)instance.virtualWidthIN * IN_2_MM;
+            instance.virtualHeightMM = (float)instance.virtualHeightIN * IN_2_MM;
             
-            instance.virtualOffsetLeft = (instance.physicalWidthPX - instance.virtualWidthPX) / 2;
-            instance.virtualOffsetBottom = (instance.physicalHeightPX - instance.virtualHeightPX) / 2;
+            instance.virtualOffsetLeft = (int)((instance.physicalWidthPX - instance.virtualWidthPX) / 2.0f);
+            instance.virtualOffsetBottom = (int)((instance.physicalHeightPX - instance.virtualHeightPX) / 2.0f);
             
         } break;
         case VirtualDeviceConfigurationTypePortraitVirtual: {
@@ -292,17 +292,17 @@
             float targetWidthIN = targetWidthMM / IN_2_MM;
             float targetHeightIN = targetHeightMM / IN_2_MM;
             
-            instance.virtualWidthPX = targetWidthIN * instance.physicalDPI;
-            instance.virtualHeightPX = targetHeightIN * instance.physicalDPI;
+            instance.virtualWidthPX = (int) ((float)targetWidthIN * (float)instance.physicalDPI);
+            instance.virtualHeightPX = (int) ((float)targetHeightIN * (float)instance.physicalDPI);
             
-            instance.virtualWidthIN = instance.virtualWidthPX / instance.physicalDPI;
-            instance.virtualHeightIN = instance.virtualHeightPX / instance.physicalDPI;
+            instance.virtualWidthIN = (float)instance.virtualWidthPX / (float)instance.physicalDPI;
+            instance.virtualHeightIN = (float)instance.virtualHeightPX / (float)instance.physicalDPI;
             
-            instance.virtualWidthMM = instance.virtualWidthIN * IN_2_MM;
-            instance.virtualHeightMM = instance.virtualHeightIN * IN_2_MM;
+            instance.virtualWidthMM = (float)instance.virtualWidthIN * IN_2_MM;
+            instance.virtualHeightMM = (float)instance.virtualHeightIN * IN_2_MM;
             
-            instance.virtualOffsetLeft = (instance.physicalHeightPX / 2) - (instance.virtualWidthPX /2);
-            instance.virtualOffsetBottom = (instance.physicalWidthPX / 2) - (instance.virtualHeightPX / 2);
+            instance.virtualOffsetLeft = (int)((instance.physicalHeightPX / 2.0f) - (instance.virtualWidthPX /2.0f));
+            instance.virtualOffsetBottom = (int)((instance.physicalWidthPX / 2.0f) - (instance.virtualHeightPX / 2.0f));
             
         } break;
         default: {
@@ -332,6 +332,18 @@
         _tempProfileInstance.physicalDPI = selectedMobile.physicalDpi;
     }
     
+    switch (_virtualDevice.type) {
+        case VirtualDeviceConfigurationTypePortrait:
+        case VirtualDeviceConfigurationTypePortrait169:
+        case VirtualDeviceConfigurationTypePortraitCustom:
+        case VirtualDeviceConfigurationTypePortraitVirtual:
+            _tempProfileInstance.landscapeView = NO;
+            break;
+        default:
+            _tempProfileInstance.landscapeView = YES;
+            break;
+    }
+    
     [self updateProfileInstance:_tempProfileInstance];
 }
 
@@ -349,6 +361,10 @@
 
 -(float) getPhysicalHeightMM {
     return _tempProfileInstance.physicalHeightMM;
+}
+
+-(BOOL) isLandscape {
+    return _tempProfileInstance.landscapeView;
 }
 
 @end
