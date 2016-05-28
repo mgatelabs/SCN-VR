@@ -35,6 +35,7 @@
 -(int) getExtendedValueFor:(NSString *) key withDefaultInt:(int) value {
     NSNumber * current = [_extended valueForKey:key];
     if (current == nil) {
+        NSLog(@"No value for key: %@", key);
         return value;
     }
     return [current intValue];
@@ -43,6 +44,7 @@
 -(float) getExtendedValueFor:(NSString *) key withDefaultFloat:(float) value {
     NSNumber * current = [_extended valueForKey:key];
     if (current == nil) {
+        NSLog(@"No value for key: %@", key);
         return value;
     }
     return [current floatValue];
@@ -51,6 +53,7 @@
 -(NSString *) getExtendedValueFor:(NSString *) key withDefaultNSString:(NSString *) value {
     NSString * current = [_extended valueForKey:key];
     if (current == nil) {
+        NSLog(@"No value for key: %@", key);
         return value;
     }
     return current;
