@@ -83,6 +83,7 @@
 @property (assign, readonly) float rawRoll;
 
 @property (assign) BOOL useHeadTracking;
+@property (assign) BOOL lockHeadTracking;
 
 @property (assign, readonly) GLKQuaternion nullViewpoint;
 

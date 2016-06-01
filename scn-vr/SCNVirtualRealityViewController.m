@@ -61,6 +61,7 @@
     
     _nullViewpoint = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(-1.57079633f, 0, 0, 1), GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
     
+    _lockHeadTracking = NO;
     _useHeadTracking = YES;
     
     self.profile.tracker.landscape = self.profile.landscapeView;
@@ -386,7 +387,9 @@
             altered = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 1, 0, 0),  GLKQuaternionMultiply(A, qP));
         }
     }
-    _viewpoint.neck.orientation = SCNVector4Make(altered.x, altered.y, altered.z, altered.w);
+    if (!_lockHeadTracking) {
+        _viewpoint.neck.orientation = SCNVector4Make(altered.x, altered.y, altered.z, altered.w);
+    }
     
 }
 
