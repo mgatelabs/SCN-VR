@@ -71,6 +71,7 @@
 		AC4FF97B1A5B903F006B7B04 /* VirtualDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4FF97A1A5B903F006B7B04 /* VirtualDeviceManager.m */; };
 		AC4FF97C1A5B904C006B7B04 /* VirtualDeviceConfiguration.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC4FF9761A5B8EC0006B7B04 /* VirtualDeviceConfiguration.h */; };
 		AC4FF97D1A5B904C006B7B04 /* VirtualDeviceManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC4FF9791A5B903F006B7B04 /* VirtualDeviceManager.h */; };
+		AC55159B1CE19BFF00DA9196 /* AspectDistortionWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55159A1CE19BFF00DA9196 /* AspectDistortionWizardItem.m */; };
 		AC5669B01A4FCB9E000FDC31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5669AF1A4FCB9E000FDC31 /* UIKit.framework */; };
 		AC83FBBA1A68C6FD00B1727F /* WizardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC83FBB91A68C6FD00B1727F /* WizardManager.m */; };
 		AC83FBBB1A68C70F00B1727F /* WizardManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC83FBB81A68C6FD00B1727F /* WizardManager.h */; };
@@ -214,6 +215,8 @@
 		AC4FF9771A5B8EC0006B7B04 /* VirtualDeviceConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualDeviceConfiguration.m; sourceTree = "<group>"; };
 		AC4FF9791A5B903F006B7B04 /* VirtualDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualDeviceManager.h; sourceTree = "<group>"; };
 		AC4FF97A1A5B903F006B7B04 /* VirtualDeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualDeviceManager.m; sourceTree = "<group>"; };
+		AC5515991CE19BFF00DA9196 /* AspectDistortionWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AspectDistortionWizardItem.h; sourceTree = "<group>"; };
+		AC55159A1CE19BFF00DA9196 /* AspectDistortionWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AspectDistortionWizardItem.m; sourceTree = "<group>"; };
 		AC5669AF1A4FCB9E000FDC31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AC83FBB81A68C6FD00B1727F /* WizardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardManager.h; sourceTree = "<group>"; };
 		AC83FBB91A68C6FD00B1727F /* WizardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardManager.m; sourceTree = "<group>"; };
@@ -478,6 +481,31 @@
 			name = "Virtual Devices";
 			sourceTree = "<group>";
 		};
+		AC5515981CE19B7F00DA9196 /* With Cardboard */ = {
+			isa = PBXGroup;
+			children = (
+				AC3EA55D1A6A190800E3D31A /* IpdWizardItem.h */,
+				AC3EA55E1A6A190800E3D31A /* IpdWizardItem.m */,
+				AC3EA5601A6A1ECF00E3D31A /* IpdValueWizarditem.h */,
+				AC3EA5611A6A1ECF00E3D31A /* IpdValueWizarditem.m */,
+				AC3EA5631A6A252900E3D31A /* ColorWizardItem.h */,
+				AC3EA5641A6A252900E3D31A /* ColorWizardItem.m */,
+				AC3EA5661A6A26F100E3D31A /* ColorValueWizardItem.h */,
+				AC3EA5671A6A26F100E3D31A /* ColorValueWizardItem.m */,
+				AC3EA5691A6A2A0500E3D31A /* DistortionWizardItem.h */,
+				AC3EA56A1A6A2A0500E3D31A /* DistortionWizardItem.m */,
+				AC3EA56C1A6A2BA800E3D31A /* DistortionValueWizardItem.h */,
+				AC3EA56D1A6A2BA800E3D31A /* DistortionValueWizardItem.m */,
+				AC40FAC81A77541200FD6151 /* DistortionQualityWizardItem.h */,
+				AC40FAC91A77541200FD6151 /* DistortionQualityWizardItem.m */,
+				ACE4C32B1AD0FD2A00AB4042 /* SamplingWizardItem.h */,
+				ACE4C32C1AD0FD2A00AB4042 /* SamplingWizardItem.m */,
+				AC5515991CE19BFF00DA9196 /* AspectDistortionWizardItem.h */,
+				AC55159A1CE19BFF00DA9196 /* AspectDistortionWizardItem.m */,
+			);
+			name = "With Cardboard";
+			sourceTree = "<group>";
+		};
 		AC83FBB71A68C6E400B1727F /* Wizard */ = {
 			isa = PBXGroup;
 			children = (
@@ -548,22 +576,7 @@
 				AC8CF4EC1B5367BB003C3729 /* Virtual */,
 				AC8CF4ED1B5367C7003C3729 /* HMD */,
 				ACF3EA351BEF142D00A2459A /* FOV */,
-				AC3EA55D1A6A190800E3D31A /* IpdWizardItem.h */,
-				AC3EA55E1A6A190800E3D31A /* IpdWizardItem.m */,
-				AC3EA5601A6A1ECF00E3D31A /* IpdValueWizarditem.h */,
-				AC3EA5611A6A1ECF00E3D31A /* IpdValueWizarditem.m */,
-				AC3EA5631A6A252900E3D31A /* ColorWizardItem.h */,
-				AC3EA5641A6A252900E3D31A /* ColorWizardItem.m */,
-				AC3EA5661A6A26F100E3D31A /* ColorValueWizardItem.h */,
-				AC3EA5671A6A26F100E3D31A /* ColorValueWizardItem.m */,
-				AC3EA5691A6A2A0500E3D31A /* DistortionWizardItem.h */,
-				AC3EA56A1A6A2A0500E3D31A /* DistortionWizardItem.m */,
-				AC3EA56C1A6A2BA800E3D31A /* DistortionValueWizardItem.h */,
-				AC3EA56D1A6A2BA800E3D31A /* DistortionValueWizardItem.m */,
-				AC40FAC81A77541200FD6151 /* DistortionQualityWizardItem.h */,
-				AC40FAC91A77541200FD6151 /* DistortionQualityWizardItem.m */,
-				ACE4C32B1AD0FD2A00AB4042 /* SamplingWizardItem.h */,
-				ACE4C32C1AD0FD2A00AB4042 /* SamplingWizardItem.m */,
+				AC5515981CE19B7F00DA9196 /* With Cardboard */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -692,6 +705,7 @@
 				AC3E0FAC1A49374600AFE6AA /* RenderTexture.m in Sources */,
 				AC3E0FB01A49374600AFE6AA /* SCNVirtualRealityViewController.m in Sources */,
 				ACE4C32D1AD0FD2A00AB4042 /* SamplingWizardItem.m in Sources */,
+				AC55159B1CE19BFF00DA9196 /* AspectDistortionWizardItem.m in Sources */,
 				AC4FF97B1A5B903F006B7B04 /* VirtualDeviceManager.m in Sources */,
 				AC27437D1A6F616800CEC7AD /* FovItemWizardItem.m in Sources */,
 				AC3E0FA71A49374600AFE6AA /* MobileDeviceConfiguration.m in Sources */,
