@@ -25,7 +25,7 @@
     
     [scene.rootNode addChildNode:world];
     
-    /*
+    
     SCNText * text = [SCNText textWithString:@"Hello World" extrusionDepth:1];
     SCNNode * textNode = [SCNNode nodeWithGeometry:text];
     textNode.position = SCNVector3Make(-20, 20, 0);
@@ -37,8 +37,8 @@
     textNode.orientation = SCNVector4Make(textOrientation.x, textOrientation.y, textOrientation.z, textOrientation.w);
     
     [world addChildNode:textNode];
-    */
     
+    /*
     SCNNode * globalRotation = [SCNNode node];
     SCNMatrix4 fix1 = SCNMatrix4MakeRotation(M_PI_2, 1, 0, 0);
     SCNMatrix4 fix2 = SCNMatrix4MakeRotation(M_PI, 0, 0, 1);
@@ -70,8 +70,11 @@
     videoNode.geometry.firstMaterial.diffuse.contentsTransform = matrix;
     videoNode.position = SCNVector3Make(0, 0, 0);
     [player play];
-    
+     
     [globalRotation addChildNode:videoNode];
+    */
+    
+    
     
     
     return scene;
