@@ -37,8 +37,9 @@
     if (self) {
         _trackers = [[NSMutableArray alloc] initWithCapacity:2];
         
-        [_trackers addObject:[[CoreMotionTracker alloc] init]];
         [_trackers addObject:[[CoreMotionTracker alloc] initWithoutMagnet]];
+        [_trackers addObject:[[CoreMotionTracker alloc] init]];
+        
         // Does not work, please fix
         //[_trackers addObject:[[IMUTracker alloc] init]];
         
