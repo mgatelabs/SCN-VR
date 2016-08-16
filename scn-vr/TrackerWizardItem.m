@@ -32,10 +32,7 @@
     self = [super initWith: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_TRACKER", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Head Tracker") info: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_TRACKER", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Select your preferred head tracker.") itemId:WIZARD_ITEM_HEADTRACKER type:WizardItemDataTypeString];
     if (self) {
         tm = [TrackingManager sharedManager];
-        // Just one tracker for now, don't care
-        //if (tm.trackers.count == 1) {
         [self reset];
-        //}
     }
     return self;
 }
@@ -57,9 +54,10 @@
 
 -(void) loadForIdentity:(NSString *) identity {
     tracker = [tm.trackers objectAtIndex:0];
+    // Default to first item
     self.valueId = tracker.identity;
     self.valueIndex = 0;
-    
+    // Now search for the actual item
     for (int i = 0; i < tm.trackers.count; i++) {
         TrackerBase * temp = [tm.trackers objectAtIndex:i];
         if ([temp.identity isEqualToString:identity]) {

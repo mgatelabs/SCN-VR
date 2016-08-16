@@ -28,7 +28,7 @@
 
 - (instancetype)init
 {
-    self = [super initWith: NSLocalizedStringFromTableInBundle(@"TRACKER_COREMOTION", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"CoreMotion") identity:@"cmmotionmanager"];
+    self = [super initWith: NSLocalizedStringFromTableInBundle(@"TRACKER_COREMOTION", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"CoreMotion") identity:@"corewithmagnet"];
     if (self) {
         
         rotationFix = GLKQuaternionMakeWithAngleAndAxis(-M_PI_2, 0, 0, 1);
@@ -47,7 +47,7 @@
 }
 
 - (instancetype)initWithoutMagnet {
-    self = [super initWith: NSLocalizedStringFromTableInBundle(@"TRACKER_COREMOTION_NO_MAG", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"CoreMotion NO Magnetometer") identity:@"cmmotionmanagernomag"];
+    self = [super initWith: NSLocalizedStringFromTableInBundle(@"TRACKER_COREMOTION_NO_MAG", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"CoreMotion NO Magnetometer") identity:@"corewithoutmagnet"];
     if (self) {
         rotationFix = GLKQuaternionMakeWithAngleAndAxis(-M_PI_2, 0, 0, 1);
         
