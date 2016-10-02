@@ -122,7 +122,7 @@
             break;
         case 1:
             instance.distortionCorrection = NO;
-            [instance.extended setValue:[NSNumber numberWithInt:4] forKey:@"vr.distortion.quality"];
+            instance.meshQuality = 4;
             break;
         case 2:
             // Defer

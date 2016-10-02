@@ -29,6 +29,7 @@
 
 - (void) setupGL;
 - (void) checkGlErrorStatus:(int) marker;
+- (void) regenerateDistortionMesh;
 
 @end
 
@@ -190,6 +191,18 @@
     [UIApplication sharedApplication].idleTimerDisabled = YES;
 }
 
+-(void) regenerateDistortionMesh {
+    if (!self.profile.basicView) {
+        [_leftEyeMesh shutdown];
+        _leftEyeMesh = nil;
+        _leftEyeMesh = [DistortionMeshGenerator generateMeshFor:_profile eye:EyeTextureSideLeft];
+        if (_rightEyeMesh != nil) {
+            [_rightEyeMesh shutdown];
+            _rightEyeMesh = nil;
+            _rightEyeMesh = [DistortionMeshGenerator generateMeshFor:_profile eye:EyeTextureSideRight];
+        }
+    }
+}
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -284,6 +297,12 @@
     
 }
 
+#pragma mark - Helpers
+
+-(void) recenterView {
+    [self.profile.tracker calibrate];
+}
+
 #pragma mark - Viewport Helpers
 
 -(SCNViewpoint *) generateGhostViewpoint {
@@ -356,6 +375,9 @@
 #pragma mark - GLKView and GLKViewController delegate methods
 
 - (void)update {
+    if ([self.profile.tracker isRecenterRequired]) {
+        [self recenterView];
+    }
     // Get the latest position
     [self.profile.tracker capture];
     
@@ -395,7 +417,11 @@
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
     
-    //[[UIScreen mainScreen] setBrightness: 0.7];
+    // So distortion messes can update in real time
+    if (self.profile.distortionMeshOutOfSync) {
+        self.profile.distortionMeshOutOfSync = NO;
+        [self regenerateDistortionMesh];
+    }
     
     [EAGLContext setCurrentContext:_context];
     

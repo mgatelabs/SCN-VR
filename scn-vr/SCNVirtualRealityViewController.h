@@ -93,7 +93,11 @@
 
 -(void) adjustProfileAtStartup;
 
-// Viewport Helpers
+#pragma mark - Helpers
+
+-(void) recenterView;
+
+#pragma mark - Viewport Helpers
 
 -(SCNViewpoint *) generateGhostViewpoint;
 

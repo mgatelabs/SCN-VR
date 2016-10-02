@@ -73,6 +73,7 @@
 		AC4FF97D1A5B904C006B7B04 /* VirtualDeviceManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC4FF9791A5B903F006B7B04 /* VirtualDeviceManager.h */; };
 		AC55159B1CE19BFF00DA9196 /* AspectDistortionWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55159A1CE19BFF00DA9196 /* AspectDistortionWizardItem.m */; };
 		AC5669B01A4FCB9E000FDC31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5669AF1A4FCB9E000FDC31 /* UIKit.framework */; };
+		AC7121C71D7E670A00B7DAC0 /* NullTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7121C61D7E670A00B7DAC0 /* NullTracker.m */; };
 		AC83FBBA1A68C6FD00B1727F /* WizardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC83FBB91A68C6FD00B1727F /* WizardManager.m */; };
 		AC83FBBB1A68C70F00B1727F /* WizardManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC83FBB81A68C6FD00B1727F /* WizardManager.h */; };
 		AC83FBBE1A68C80200B1727F /* WizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC83FBBD1A68C80200B1727F /* WizardItem.m */; };
@@ -218,6 +219,8 @@
 		AC5515991CE19BFF00DA9196 /* AspectDistortionWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AspectDistortionWizardItem.h; sourceTree = "<group>"; };
 		AC55159A1CE19BFF00DA9196 /* AspectDistortionWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AspectDistortionWizardItem.m; sourceTree = "<group>"; };
 		AC5669AF1A4FCB9E000FDC31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		AC7121C51D7E670A00B7DAC0 /* NullTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullTracker.h; sourceTree = "<group>"; };
+		AC7121C61D7E670A00B7DAC0 /* NullTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullTracker.m; sourceTree = "<group>"; };
 		AC83FBB81A68C6FD00B1727F /* WizardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardManager.h; sourceTree = "<group>"; };
 		AC83FBB91A68C6FD00B1727F /* WizardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardManager.m; sourceTree = "<group>"; };
 		AC83FBBC1A68C80200B1727F /* WizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardItem.h; sourceTree = "<group>"; };
@@ -382,6 +385,8 @@
 				AC3E0F9D1A49374600AFE6AA /* TrackingManager.m */,
 				AC3F55CA1A4DF93C00955ECC /* IMUTracker.h */,
 				AC3F55CB1A4DF93C00955ECC /* IMUTracker.m */,
+				AC7121C51D7E670A00B7DAC0 /* NullTracker.h */,
+				AC7121C61D7E670A00B7DAC0 /* NullTracker.m */,
 			);
 			name = Tracking;
 			sourceTree = "<group>";
@@ -702,6 +707,7 @@
 				AC3EA5761A6A321500E3D31A /* ProfileConfiguration.m in Sources */,
 				AC3E0FAE1A49374600AFE6AA /* SCNEye.m in Sources */,
 				AC3E0FB31A49374600AFE6AA /* VBOWrap.m in Sources */,
+				AC7121C71D7E670A00B7DAC0 /* NullTracker.m in Sources */,
 				AC3E0FAC1A49374600AFE6AA /* RenderTexture.m in Sources */,
 				AC3E0FB01A49374600AFE6AA /* SCNVirtualRealityViewController.m in Sources */,
 				ACE4C32D1AD0FD2A00AB4042 /* SamplingWizardItem.m in Sources */,

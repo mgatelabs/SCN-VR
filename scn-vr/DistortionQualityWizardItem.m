@@ -110,8 +110,7 @@
             value = 16;
             break;
     }
-    
-    [instance.extended setValue:[NSNumber numberWithInt:value] forKey:@"vr.distortion.quality"];
+    instance.meshQuality = value;
 }
 
 @end

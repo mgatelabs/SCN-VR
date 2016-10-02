@@ -20,6 +20,11 @@
 
 #import "TrackerBase.h"
 
+@interface TrackerBase() {
+    BOOL _recenterRequested;
+}
+@end
+
 @implementation TrackerBase
 
 - (instancetype)initWith:(NSString *) name identity:(NSString *) identity
@@ -49,6 +54,16 @@
 
 -(void) capture {
     NSLog(@"This is not a valid tracker, please override");
+}
+
+-(void) requestRecenter {
+    _recenterRequested = YES;
+}
+
+-(BOOL) isRecenterRequired {
+    BOOL result = _recenterRequested;
+    _recenterRequested = NO;
+    return result;
 }
 
 @end

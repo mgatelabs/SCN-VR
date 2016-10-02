@@ -772,6 +772,19 @@
     }
 }
 
+-(void) nudgeIndexWizardItem:(int) wizardId positive:(BOOL) positive {
+    WizardItem * wi = [wizard findWizardItemWithIdentity:wizardId];
+    if (wi != nil) {
+        if (positive && wi.valueIndex + 1 < wi.count) {
+            [wi selectedIndex:wi.valueIndex + 1];
+        } else if (!positive && wi.valueIndex - 1 >= 0) {
+            [wi selectedIndex:wi.valueIndex - 1];
+        }
+    } else {
+        NSLog(@"Error, Did not find Wizard Item with id: %d", wizardId);
+    }
+}
+
 -(void) copyWizardState {
     wizardStateUpdate = NO;
     wizardStateIndex = -1;

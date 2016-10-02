@@ -97,6 +97,8 @@
 -(void) nudgeFloatWizardItem:(int) wizardId positive:(BOOL) positive;
 -(void) setWizardItem:(int) wizardId toFloat:(float) floatValue;
 
+-(void) nudgeIndexWizardItem:(int) wizardId positive:(BOOL) positive;
+
 -(void) copyWizardState;
 -(int) persistWizardState;
 -(void) cancelWizard;

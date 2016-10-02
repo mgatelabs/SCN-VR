@@ -93,10 +93,12 @@ typedef NS_ENUM(NSInteger, ProfileInstanceSS)
 @property (assign, nonatomic) BOOL distortionCorrection;
 @property (assign, nonatomic) float distortionCorrectionValue1;
 @property (assign, nonatomic) float distortionCorrectionValue2;
+@property (assign, nonatomic) int meshQuality;
+
 
 @property (assign, nonatomic) BOOL correctHeightWidth;
 
-
+@property (assign, nonatomic) BOOL distortionMeshOutOfSync;
 
 // Extended
 @property (strong, nonatomic) NSMutableDictionary * extended;

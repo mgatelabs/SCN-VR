@@ -19,6 +19,7 @@
  ************************************************************************/
 
 #import "TrackingManager.h"
+#import "NullTracker.h"
 
 @implementation TrackingManager
 
@@ -39,6 +40,7 @@
         
         [_trackers addObject:[[CoreMotionTracker alloc] initWithoutMagnet]];
         [_trackers addObject:[[CoreMotionTracker alloc] init]];
+        [_trackers addObject:[[NullTracker alloc] init]];
         
         // Does not work, please fix
         //[_trackers addObject:[[IMUTracker alloc] init]];

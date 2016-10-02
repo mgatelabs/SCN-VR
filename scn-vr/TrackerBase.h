@@ -40,4 +40,9 @@
 
 -(void) capture;
 
+
+-(void) requestRecenter;
+
+-(BOOL) isRecenterRequired;
+
 @end
