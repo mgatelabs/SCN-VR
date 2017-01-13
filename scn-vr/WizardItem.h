@@ -64,6 +64,8 @@
 
 #define WIZARD_ITEM_CORRECT_ASPECT 31
 
+#define WIZARD_ITEM_DISPLAY_MODE 32
+
 typedef NS_ENUM(NSInteger, WizardItemChangeAction)
 {
     WizardItemChangeActionNone = 0,

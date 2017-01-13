@@ -107,6 +107,8 @@
 
 - (void) update;
 
+-(GLKQuaternion) getHeadtrackingOrientation;
+
 - (void) updateViewpointOrientation;
 
 -(NSArray *) viewpointSees;

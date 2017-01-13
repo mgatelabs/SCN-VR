@@ -21,8 +21,9 @@
 #import <SceneKit/SceneKit.h>
 #import "EyeTexture.h"
 #import "ProfileInstance.h"
+#import "ShutdownProtocol.h"
 
-@interface SCNEye : SCNNode
+@interface SCNEye : SCNNode <ShutdownProtocol>
 
 @property (weak, nonatomic, readonly) EyeTexture * dest;
 @property (assign, nonatomic, readonly) float eyeDistance;
@@ -37,5 +38,7 @@
 
 -(void) applyFov:(float) hFov v:(float) vFov;
 -(void) applyIpd:(float) ipd;;
+
+-(void) shutdown;
 
 @end

@@ -52,7 +52,7 @@
 
 -(void) persist {
     NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
-    [defs setValue:_tracker.identity forKey:@"scn-vr.trackers.selected"];
+    [defs setObject:_tracker.identity forKey:@"scn-vr.trackers.selected"];
     [defs synchronize];
 }
 

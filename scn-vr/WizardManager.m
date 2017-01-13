@@ -37,6 +37,7 @@
 #import "SamplingWizardItem.h"
 #import "VirtualPositionWizardItem.h"
 #import "AspectDistortionWizardItem.h"
+#import "DisplayModeWizarditem.h"
 
 @implementation WizardManager
 
@@ -79,6 +80,9 @@
         // HMD Selection
         HmdWizardItem * hmds = [[HmdWizardItem alloc] init];
         [_baseItems addObject: hmds];
+        
+        DisplayModeWizarditem * dmwi = [[DisplayModeWizarditem alloc] initWith:hmds];
+        [_baseItems addObject:dmwi];
         
         // Fov Alteration
         FovWizardItem * fovWizard = [[FovWizardItem alloc] initWith:hmds];
@@ -131,6 +135,8 @@
         
         AspectDistortionWizardItem * adwi = [[AspectDistortionWizardItem alloc] initWith:hmds];
         [_baseItems addObject:adwi];
+        
+        
         
         [self filter];
     }
@@ -273,15 +279,15 @@
         
         switch (item.type) {
             case WizardItemDataTypeInt:
-                [values setValue:[NSNumber numberWithInt:[item prepValueToSave]] forKey: itemIdString];
+                [values setObject:[NSNumber numberWithInt:[item prepValueToSave]] forKey: itemIdString];
                 break;
             case WizardItemDataTypeString:
-                [values setValue:item.valueId forKey:itemIdString];
+                [values setObject:item.valueId forKey:itemIdString];
                 break;
             case WizardItemDataTypeSlideFloat:
             case WizardItemDataTypeSlideInt: {
                 //NSLog(@"Setting value for %d", item.itemId);
-                [values setValue:item.slideValue forKey:itemIdString];
+                [values setObject:item.slideValue forKey:itemIdString];
             } break;
             default:
                 NSLog(@"Unknown Wizard Item Type");

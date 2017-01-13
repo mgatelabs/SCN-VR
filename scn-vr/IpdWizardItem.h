@@ -25,8 +25,4 @@
 
 - (instancetype)initWith:(HmdWizardItem *) hmdWizardItem;
 
--(int) indexForString:(NSString *) source;
-
-
-
 @end

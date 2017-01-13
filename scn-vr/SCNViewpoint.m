@@ -120,22 +120,31 @@
 
 - (void)dealloc
 {
-    _leftEyeSource = nil;
-    _rightEyeSource = nil;
-    _sourceTexture = nil;
+    [self shutdown];
+}
+
+-(void) shutdown {
     
     if (_leftEye != nil) {
+        [_leftEye shutdown];
         [_leftEye removeFromParentNode];
         _leftEye = nil;
     }
     
     if (_rightEye != nil) {
+        [_rightEye shutdown];
         [_rightEye removeFromParentNode];
         _rightEye = nil;
     }
     
+    _leftEyeSource = nil;
+    
+    _rightEyeSource = nil;
+    
+    _sourceTexture = nil;
+    
     if (_neck != nil) {
-        //[_neck removeFromParentNode];
+        [_neck removeFromParentNode];
         _neck = nil;
     }
 }

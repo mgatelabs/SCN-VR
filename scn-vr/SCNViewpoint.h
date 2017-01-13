@@ -25,8 +25,9 @@
 #import "EyeTexture.h"
 #import "RenderBase.h"
 #import "ProfileInstance.h"
+#import "ShutdownProtocol.h"
 
-@interface SCNViewpoint : SCNNode
+@interface SCNViewpoint : SCNNode <ShutdownProtocol>
 
 @property (readonly, nonatomic, weak) SCNNode * neck;
 
@@ -49,5 +50,7 @@
 
 -(void) applyFov:(float) hFov v:(float) vFov;
 -(void) applyIpd:(float) ipd;
+
+-(void) shutdown;
 
 @end

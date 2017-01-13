@@ -96,13 +96,18 @@
     }
     _eyeDistance = eyeDistance;
     // Move eye into place
+    //NSLog(@"Apply IPD: %2.2f", _eyeDistance);
     self.transform = SCNMatrix4MakeTranslation(_eyeDistance, 0.0, 0.0);
 }
 
 - (void)dealloc
 {
-    //self.camera = nil;
+    [self shutdown];
+}
+
+-(void) shutdown {
     _dest = nil;
+    self.camera = nil;
 }
 
 @end

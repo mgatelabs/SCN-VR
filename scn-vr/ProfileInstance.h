@@ -73,6 +73,8 @@ typedef NS_ENUM(NSInteger, ProfileInstanceSS)
 @property (assign, nonatomic) int hFov;
 @property (assign, nonatomic) int vFov;
 
+@property (assign, nonatomic) BOOL displayModeFlippedFlag;
+
 // Super Sampling
 @property (assign, nonatomic) ProfileInstanceSS ssMode;
 

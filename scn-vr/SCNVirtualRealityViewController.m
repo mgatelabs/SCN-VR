@@ -45,6 +45,7 @@
     profiles.liveMode = NO; // Always reset live mode so it can't persist
     [self adjustProfileAtStartup];
     
+    // Generate 1
     [self loadIt];
 }
 
@@ -161,9 +162,10 @@
                 // The right eye's output
                 _rightEyeSource = [[EyeTexture alloc] initAs:EyeTextureSideRight dest:_rightSourceTexture];
                 
+                _rightEyeDest = [[EyeTexture alloc] initAs:EyeTextureSideRight dest:_destTexture];
+                
                 _rightEyeMesh = [DistortionMeshGenerator generateMeshFor:_profile eye:EyeTextureSideRight];
                 
-                _rightEyeDest = [[EyeTexture alloc] initAs:EyeTextureSideRight dest:_destTexture];
                 
                 _eyeColorCorrection = [[ColorCorrection alloc] init];
                 
@@ -172,6 +174,7 @@
         } break;
     }
     
+    // Generate 1
     _scene = [self generateScene];
     
     _leftRenderer = [SCNRenderer rendererWithContext:(_context) options:nil];
@@ -264,6 +267,7 @@
         }
         
         [alignment shutdown];
+        alignment = nil;
         
         _viewpoint = nil;
         
@@ -312,9 +316,11 @@
 -(void) setViewpointTo:(SCNViewpoint *) viewpoint {
     _viewpoint = viewpoint;
     
-    _leftRenderer.pointOfView = _viewpoint.leftEye;
     if (_viewpoint.rightEye != nil) {
-        _rightRenderer.pointOfView = _viewpoint.rightEye;
+        _leftRenderer.pointOfView = !_profile.displayModeFlippedFlag ?  _viewpoint.leftEye : _viewpoint.rightEye;
+        _rightRenderer.pointOfView = !_profile.displayModeFlippedFlag ?  _viewpoint.rightEye : _viewpoint.leftEye;
+    } else {
+        _leftRenderer.pointOfView = _viewpoint.leftEye;
     }
     
     [self updateViewpointOrientation];
@@ -384,9 +390,14 @@
     [self updateViewpointOrientation];
 }
 
+-(GLKQuaternion) getHeadtrackingOrientation {
+    return _useHeadTracking ? _profile.tracker.orientation : _nullViewpoint;
+}
+
 -(void) updateViewpointOrientation {
         
-    GLKQuaternion gyroValues = _useHeadTracking ? _profile.tracker.orientation : _nullViewpoint;
+    GLKQuaternion gyroValues = [self getHeadtrackingOrientation];
+    
     GLKQuaternion altered;
     
     altered =GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 0, 0, 1), gyroValues);
@@ -452,17 +463,15 @@
             [self checkGlErrorStatus: 100];
             
             [_leftRenderer renderAtTime:interval];
-            //glFlush();
             
-            [self checkGlErrorStatus: 1];
+            //[self checkGlErrorStatus: 1];
             
             if (_viewpoint.rightEye != nil) {
                 [_rightEyeSource bind];
                 [_rightRenderer renderAtTime:interval];
-                //glFlush();
             }
             
-            [self checkGlErrorStatus: 2];
+            //[self checkGlErrorStatus: 2];
             
             switch (_profile.viewportCount) {
                 case 1: {

@@ -74,6 +74,7 @@
 		AC55159B1CE19BFF00DA9196 /* AspectDistortionWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55159A1CE19BFF00DA9196 /* AspectDistortionWizardItem.m */; };
 		AC5669B01A4FCB9E000FDC31 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5669AF1A4FCB9E000FDC31 /* UIKit.framework */; };
 		AC7121C71D7E670A00B7DAC0 /* NullTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7121C61D7E670A00B7DAC0 /* NullTracker.m */; };
+		AC72AF021DFD30F9002F8E43 /* DisplayModeWizarditem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC72AF011DFD30F9002F8E43 /* DisplayModeWizarditem.m */; };
 		AC83FBBA1A68C6FD00B1727F /* WizardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC83FBB91A68C6FD00B1727F /* WizardManager.m */; };
 		AC83FBBB1A68C70F00B1727F /* WizardManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC83FBB81A68C6FD00B1727F /* WizardManager.h */; };
 		AC83FBBE1A68C80200B1727F /* WizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC83FBBD1A68C80200B1727F /* WizardItem.m */; };
@@ -85,6 +86,7 @@
 		AC83FBCA1A68D03B00B1727F /* VirtualDeviceWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC83FBC91A68D03B00B1727F /* VirtualDeviceWizardItem.m */; };
 		AC83FBCB1A68D79C00B1727F /* VirtualDeviceWizardItem.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AC83FBC81A68D03B00B1727F /* VirtualDeviceWizardItem.h */; };
 		AC8CF4F01B536804003C3729 /* VirtualPositionWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8CF4EF1B536804003C3729 /* VirtualPositionWizardItem.m */; };
+		ACA1C62D1DB728FA002E261A /* ShutdownProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = ACA1C62C1DB7282D002E261A /* ShutdownProtocol.h */; };
 		ACD2E83F1A6E15C60069C361 /* VirtualCustomWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD2E83E1A6E15C60069C361 /* VirtualCustomWizardItem.m */; };
 		ACD2E8421A6E21270069C361 /* PhysicalDpiWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD2E8411A6E21270069C361 /* PhysicalDpiWizardItem.m */; };
 		ACE4C32D1AD0FD2A00AB4042 /* SamplingWizardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE4C32C1AD0FD2A00AB4042 /* SamplingWizardItem.m */; };
@@ -99,6 +101,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				ACA1C62D1DB728FA002E261A /* ShutdownProtocol.h in CopyFiles */,
 				AC4B1D6F1A6B8A070072B916 /* ProfileInstance.h in CopyFiles */,
 				AC3D44331A6B205200724A76 /* ProfileConfiguration.h in CopyFiles */,
 				AC3EA5731A6A310B00E3D31A /* ProfileManager.h in CopyFiles */,
@@ -221,6 +224,8 @@
 		AC5669AF1A4FCB9E000FDC31 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AC7121C51D7E670A00B7DAC0 /* NullTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullTracker.h; sourceTree = "<group>"; };
 		AC7121C61D7E670A00B7DAC0 /* NullTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NullTracker.m; sourceTree = "<group>"; };
+		AC72AF001DFD30F9002F8E43 /* DisplayModeWizarditem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayModeWizarditem.h; sourceTree = "<group>"; };
+		AC72AF011DFD30F9002F8E43 /* DisplayModeWizarditem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayModeWizarditem.m; sourceTree = "<group>"; };
 		AC83FBB81A68C6FD00B1727F /* WizardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardManager.h; sourceTree = "<group>"; };
 		AC83FBB91A68C6FD00B1727F /* WizardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizardManager.m; sourceTree = "<group>"; };
 		AC83FBBC1A68C80200B1727F /* WizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizardItem.h; sourceTree = "<group>"; };
@@ -233,6 +238,7 @@
 		AC83FBC91A68D03B00B1727F /* VirtualDeviceWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualDeviceWizardItem.m; sourceTree = "<group>"; };
 		AC8CF4EE1B536804003C3729 /* VirtualPositionWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualPositionWizardItem.h; sourceTree = "<group>"; };
 		AC8CF4EF1B536804003C3729 /* VirtualPositionWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualPositionWizardItem.m; sourceTree = "<group>"; };
+		ACA1C62C1DB7282D002E261A /* ShutdownProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShutdownProtocol.h; sourceTree = "<group>"; };
 		ACD2E83D1A6E15C60069C361 /* VirtualCustomWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualCustomWizardItem.h; sourceTree = "<group>"; };
 		ACD2E83E1A6E15C60069C361 /* VirtualCustomWizardItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualCustomWizardItem.m; sourceTree = "<group>"; };
 		ACD2E8401A6E21270069C361 /* PhysicalDpiWizardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalDpiWizardItem.h; sourceTree = "<group>"; };
@@ -440,6 +446,7 @@
 				AC3E0F9F1A49374600AFE6AA /* VBOWrap.m */,
 				AC449CB91A49CF3200EC14BB /* ListableArray.h */,
 				AC449CBA1A49CF3200EC14BB /* ListableArray.m */,
+				ACA1C62C1DB7282D002E261A /* ShutdownProtocol.h */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -507,6 +514,8 @@
 				ACE4C32C1AD0FD2A00AB4042 /* SamplingWizardItem.m */,
 				AC5515991CE19BFF00DA9196 /* AspectDistortionWizardItem.h */,
 				AC55159A1CE19BFF00DA9196 /* AspectDistortionWizardItem.m */,
+				AC72AF001DFD30F9002F8E43 /* DisplayModeWizarditem.h */,
+				AC72AF011DFD30F9002F8E43 /* DisplayModeWizarditem.m */,
 			);
 			name = "With Cardboard";
 			sourceTree = "<group>";
@@ -705,6 +714,7 @@
 				AC3E0FA31A49374600AFE6AA /* EyeTexture.m in Sources */,
 				AC3E0FAD1A49374600AFE6AA /* SBSRenderInstance.m in Sources */,
 				AC3EA5761A6A321500E3D31A /* ProfileConfiguration.m in Sources */,
+				AC72AF021DFD30F9002F8E43 /* DisplayModeWizarditem.m in Sources */,
 				AC3E0FAE1A49374600AFE6AA /* SCNEye.m in Sources */,
 				AC3E0FB31A49374600AFE6AA /* VBOWrap.m in Sources */,
 				AC7121C71D7E670A00B7DAC0 /* NullTracker.m in Sources */,

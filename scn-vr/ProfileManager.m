@@ -194,18 +194,14 @@
 }
 
 -(void) persist {
-    
     NSDictionary * profileSettings = [self exportToDictonary];
-    
     NSUserDefaults * defs;
-    
     if (_groupName != nil) {
         defs = [[NSUserDefaults alloc] initWithSuiteName:_groupName];
     } else {
         defs = [NSUserDefaults standardUserDefaults];
     }
-    
-    [defs setValue:profileSettings forKey:@"profiles.items"];
+    [defs setObject:profileSettings forKey:@"profiles.items"];
     [defs synchronize];
 }
 
@@ -223,18 +219,18 @@
         
         NSMutableDictionary * profileData = [NSMutableDictionary dictionaryWithCapacity:3];
         
-        [profileData setValue:profile.name forKey:@"name"];
-        [profileData setValue:[NSNumber numberWithBool:profile.favorite] forKey:@"fav"];
-        [profileData setValue:[NSNumber numberWithInt:profile.identity] forKey:@"identity"];
-        [profileData setValue:profile.values forKey:@"values"];
+        [profileData setObject:profile.name forKey:@"name"];
+        [profileData setObject:[NSNumber numberWithBool:profile.favorite] forKey:@"fav"];
+        [profileData setObject:[NSNumber numberWithInt:profile.identity] forKey:@"identity"];
+        [profileData setObject:profile.values forKey:@"values"];
         
         [profileItems addObject:profileData];
     }
     
     NSMutableDictionary * profileSettings = [NSMutableDictionary dictionaryWithCapacity:2];
     
-    [profileSettings setValue:[NSNumber numberWithInt:_index] forKey:@"index"];
-    [profileSettings setValue:profileItems forKey:@"profiles"];
+    [profileSettings setObject:[NSNumber numberWithInt:_index] forKey:@"index"];
+    [profileSettings setObject:profileItems forKey:@"profiles"];
     
     return profileSettings;
 }
@@ -487,6 +483,8 @@
 }
 
 -(void) reset {
+    
+    //NSLog(@"Resetting Profile State");
     
     int wizardIndex;
     WizardItem * wi;
