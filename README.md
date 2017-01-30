@@ -3,25 +3,24 @@ SCN-VR
 
 This is a iOS 8.1+ static library for rendering VR content with SceneKit.
 
-A Hello World demo has also been provided that has profile support.
+A Hello World demo has also been provided that has profile support, but its not that great.
 
 Why does SCN-VR exist?
 ======
 
-I did not want to pay for unity pro license, so I created this framework from the now defunct ALPS-VR for unity. 
+I did not want to pay for unity pro 4.x license, so I created this framework from the defunct ALPS-VR for unity.  ALPS-VR may not be defunct, but the website did redirect to a placeholder site when I checked.
 
 Concerns
 ======
 
-1.	I'm pretty sure the color correction shader has a problem.
+1.	I'm pretty sure the color correction shader has a problem and should be set to 0.0.
 
 Future Work
 ======
 
 1.	I really want to rewrite the distortion mesh logic, so the fragment shader could do less.
-2.	I really want to rewrite the eye logic, so you could more finely control where and how large each eye target is.  And also ensure they are always 1:1 ratio.
-3.	Integrate google cardboard QR scanning
-4.	Integrate Mobile VR Station’s profile editing screen into SCN-VR.  So it could be used as a linked Storyboard.
+2.	Integrate google cardboard QR scanning (This is in Mobile VR Station)
+3.	Integrate Mobile VR Station’s profile editing screen into SCN-VR.  So it could be used as a linked Storyboard.
 
 Other Projects
 ======
@@ -52,11 +51,13 @@ Supported Devices
 
 - iPhone 4S
 - iPhone 5/S/C
-- iPhone 6
-- iPhone 6 Plus
+- iPhone 6/S
+- iPhone 6/S Plus
+- iPhone 7
 - iPad 2+
 - iPad Air
 - iPad Mini
+- iPad Pro
 
 Supported HMDs
 ======
