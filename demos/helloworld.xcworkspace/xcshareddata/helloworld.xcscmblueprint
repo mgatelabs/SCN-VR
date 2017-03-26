@@ -1,0 +1,44 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "291F59A91508428BF69E6159252E766CB1E128A1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "E12F2CB802EBFD8CFCC5761E20B7480C2F71D5F2" : 0,
+    "E920E4BC9470919D5E9FEE4F090E4F6FC2B681D3" : 0,
+    "B7C6B5FEF626CE136355752FFCB5B95365294769" : 0,
+    "291F59A91508428BF69E6159252E766CB1E128A1" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "006CF7C1-C1E5-468F-8F29-0628F33804C4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "E12F2CB802EBFD8CFCC5761E20B7480C2F71D5F2" : "..\/mobile-vr-player\/source",
+    "E920E4BC9470919D5E9FEE4F090E4F6FC2B681D3" : "..\/mobile-vr-player\/assets",
+    "B7C6B5FEF626CE136355752FFCB5B95365294769" : "..\/..\/..\/..\/Volumes\/BOOTCAMP\/Users\/Michael%20Fuller\/Documents\/vr",
+    "291F59A91508428BF69E6159252E766CB1E128A1" : "source"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "helloworld",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "demos\/helloworld.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/192.168.128.72:8080\/r\/scn-vr\/source",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "291F59A91508428BF69E6159252E766CB1E128A1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/littlebox:29418\/mobile-vr-player\/backend.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B7C6B5FEF626CE136355752FFCB5B95365294769"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/192.168.128.72:8080\/r\/mobile-vr-player\/source",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E12F2CB802EBFD8CFCC5761E20B7480C2F71D5F2"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/192.168.128.72:8080\/r\/mobile-vr-player\/assets",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E920E4BC9470919D5E9FEE4F090E4F6FC2B681D3"
+    }
+  ]
+}

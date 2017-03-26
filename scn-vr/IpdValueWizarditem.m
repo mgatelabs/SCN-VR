@@ -35,7 +35,7 @@
         
         self.slideValue = [NSNumber numberWithFloat:62.0f];
         self.slideMin = [NSNumber numberWithFloat: secondItem ? 0.0f : 20.0f];
-        self.slideMax = [NSNumber numberWithFloat:80.0f];
+        self.slideMax = [NSNumber numberWithFloat:secondItem ? 160.0f: 80.0f];
         self.slideStep = [NSNumber numberWithFloat:0.5f];
     }
     return self;

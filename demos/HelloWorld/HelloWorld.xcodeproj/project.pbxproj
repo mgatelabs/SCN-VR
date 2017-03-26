@@ -26,6 +26,7 @@
 		AC9F82231BD36B1E0062FCA4 /* NameValueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F82221BD36B1E0062FCA4 /* NameValueTableViewCell.m */; };
 		ACAFAF071B6C7F5C004BF387 /* ProfileSliderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAFAF061B6C7F5C004BF387 /* ProfileSliderTableViewCell.m */; };
 		ACAFAF091B6C8237004BF387 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACAFAF081B6C8237004BF387 /* SpriteKit.framework */; };
+		ACAFD9E81D41D3DB00586F99 /* mov_bbb.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = ACAFD9E71D41D3DB00586F99 /* mov_bbb.mp4 */; };
 		ACEB621F1CAB9EDD0016BC98 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACEB621E1CAB9EDD0016BC98 /* MediaPlayer.framework */; };
 		ACEB62211CAB9EFF0016BC98 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACEB62201CAB9EFF0016BC98 /* AVFoundation.framework */; };
 		ACF5039A1C6709970034F6FB /* SCN-VRDevices.strings in Resources */ = {isa = PBXBuildFile; fileRef = ACF503941C6709970034F6FB /* SCN-VRDevices.strings */; };
@@ -77,6 +78,7 @@
 		ACAFAF051B6C7F5C004BF387 /* ProfileSliderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSliderTableViewCell.h; sourceTree = "<group>"; };
 		ACAFAF061B6C7F5C004BF387 /* ProfileSliderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSliderTableViewCell.m; sourceTree = "<group>"; };
 		ACAFAF081B6C8237004BF387 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		ACAFD9E71D41D3DB00586F99 /* mov_bbb.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = mov_bbb.mp4; path = ../../../../../../Downloads/mov_bbb.mp4; sourceTree = "<group>"; };
 		ACEB621E1CAB9EDD0016BC98 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		ACEB62201CAB9EFF0016BC98 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		ACF503951C6709970034F6FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "../../scn-vr/Base.lproj/SCN-VRDevices.strings"; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		AC7ECEB81AD1AE9E00F2A232 /* HelloWorld */ = {
 			isa = PBXGroup;
 			children = (
+				ACAFD9E71D41D3DB00586F99 /* mov_bbb.mp4 */,
 				AC7ECF001AD1B79C00F2A232 /* Utils */,
 				AC7ECEFF1AD1B79200F2A232 /* Game */,
 				AC7ECEFE1AD1B78D00F2A232 /* Home */,
@@ -339,6 +342,7 @@
 			files = (
 				AC7ECEC51AD1AE9E00F2A232 /* Main.storyboard in Resources */,
 				ACF5039B1C6709970034F6FB /* SCN-VRProfile.strings in Resources */,
+				ACAFD9E81D41D3DB00586F99 /* mov_bbb.mp4 in Resources */,
 				ACF5039C1C6709970034F6FB /* SCN-VRStrings.strings in Resources */,
 				ACF5039A1C6709970034F6FB /* SCN-VRDevices.strings in Resources */,
 				AC7ECECA1AD1AE9E00F2A232 /* LaunchScreen.xib in Resources */,

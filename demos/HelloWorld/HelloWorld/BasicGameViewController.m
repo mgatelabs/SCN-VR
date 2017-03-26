@@ -38,30 +38,32 @@
     
     [world addChildNode:textNode];
     
-    /*
+    
     SCNNode * globalRotation = [SCNNode node];
     SCNMatrix4 fix1 = SCNMatrix4MakeRotation(M_PI_2, 1, 0, 0);
     SCNMatrix4 fix2 = SCNMatrix4MakeRotation(M_PI, 0, 0, 1);
     globalRotation.transform = SCNMatrix4Mult(fix1, fix2);
     [world addChildNode:globalRotation];
     
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"mov_bbb_sample" ofType:@"mp4"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"mov_bbb" ofType:@"mp4"];
     NSURL* url = [NSURL fileURLWithPath:path];
     AVPlayerItem* playerItem = [[AVPlayerItem alloc] initWithURL:url];
     AVPlayer* player = [AVPlayer playerWithPlayerItem:playerItem];
-    SKVideoNode* playerNode = [[SKVideoNode alloc] initWithAVPlayer:player];
+    //SKVideoNode* playerNode = [[SKVideoNode alloc] initWithAVPlayer:player];
     
-    playerNode.position = CGPointMake(2500 * 0.5, 2500 * 0.5);
-    playerNode.size = CGSizeMake(2500, 2500);
+    //playerNode.position = CGPointMake(2500 * 0.5, 2500 * 0.5);
+    //playerNode.size = CGSizeMake(1200, 1200);
     
-    SKScene* spriteScene = [[SKScene alloc] initWithSize:playerNode.size];
+    //SKScene* spriteScene = [[SKScene alloc] initWithSize:playerNode.size];
+    SKScene* spriteScene = [[SKScene alloc] initWithSize:CGSizeMake(512, 512)];
     spriteScene.scaleMode = SKSceneScaleModeAspectFit;
-    [spriteScene addChild:playerNode];
+    //spriteScene.
+    //[spriteScene addChild:playerNode];
     
     SCNNode* videoNode = [SCNNode new];
     videoNode.categoryBitMask = 3;
     videoNode.geometry = [SCNSphere sphereWithRadius:30];
-    videoNode.geometry.firstMaterial.diffuse.contents = spriteScene;
+    videoNode.geometry.firstMaterial.diffuse.contents = splayer;//priteScene;
     videoNode.geometry.firstMaterial.doubleSided = TRUE;
     
     SCNMatrix4 matrix = SCNMatrix4MakeRotation(M_PI, 0.0, 0.0, 1.0);
@@ -69,10 +71,10 @@
     videoNode.pivot = SCNMatrix4MakeRotation(M_PI_2, 0.0, -1.0, 0.0);
     videoNode.geometry.firstMaterial.diffuse.contentsTransform = matrix;
     videoNode.position = SCNVector3Make(0, 0, 0);
-    [player play];
+    //[player play];
      
     [globalRotation addChildNode:videoNode];
-    */
+    
     
     
     

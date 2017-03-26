@@ -28,7 +28,7 @@
 
 - (instancetype)initWith:(FovWizardItem *) fovWizardItem second:(BOOL) secondItem
 {
-    self = [super initWith:secondItem ? NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_FOV_H", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Horizontal FOV") : NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_FOV_V", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Vertical FOV")  info: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_FOV_DETAIL", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Custom field of view setting.") itemId: secondItem ? WIZARD_ITEM_FOV_V : WIZARD_ITEM_FOV_H type:WizardItemDataTypeSlideFloat];
+    self = [super initWith:secondItem ? NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_FOV_V", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Vertical FOV") : NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_TITLE_FOV_H", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Horizontal FOV")  info: NSLocalizedStringFromTableInBundle(@"WIZARD_ITEM_INFO_FOV_DETAIL", @"SCN-VRProfile", [SCNVRResourceBundler getSCNVRResourceBundle], @"Custom field of view setting.") itemId: secondItem ? WIZARD_ITEM_FOV_V : WIZARD_ITEM_FOV_H type:WizardItemDataTypeSlideFloat];
     if (self) {
         second = secondItem;
         fovs = fovWizardItem;
@@ -37,10 +37,6 @@
         self.slideMin = [NSNumber numberWithFloat:45.0f];
         self.slideMax = [NSNumber numberWithFloat:120.0f];
         self.slideStep = [NSNumber numberWithFloat:2.5f];
-        
-        //self.count = ((120 - 45) * 4) + 1;
-        //self.valueIndex = ((80 - 45) * 4);
-        //self.valueId = @"80";
     }
     return self;
 }
