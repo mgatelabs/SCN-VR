@@ -25,6 +25,7 @@
     BOOL isShutdown;
     int monoNeedsClearingCount;
     AlignmentHelper * alignment;
+    NSMutableDictionary * _hitTestOptions;
 }
 
 - (void) setupGL;
@@ -40,6 +41,11 @@
     [self setPaused:YES];
     self.noTrackQuaternion = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 1, 0, 0), GLKQuaternionIdentity);;
     
+    _hitTestOptions = [NSMutableDictionary dictionary];
+    if (@available(iOS 11, *)) {
+        [_hitTestOptions setObject:[NSNumber numberWithInteger:SCNHitTestSearchModeAll] forKey:SCNHitTestOptionSearchMode];
+    }
+
     ProfileManager * profiles = [ProfileManager sharedManager];
     self.profile = profiles.liveMode ? [profiles getLiveProfileInstance] : [profiles getCurrentProfileInstance];
     profiles.liveMode = NO; // Always reset live mode so it can't persist
@@ -337,7 +343,7 @@
 
 -(NSArray *) viewpointSees {
     if (_viewpoint != nil) {
-        return [_leftRenderer hitTest:CGPointMake(_leftEyeSource.w / 2, _leftEyeSource.h / 2) options:nil];
+        return [_leftRenderer hitTest:CGPointMake(_leftEyeSource.w / 2, _leftEyeSource.h / 2) options:_hitTestOptions];
     }
     return nil;
 }
@@ -347,14 +353,14 @@
         if (_profile.viewportCount == 1 || _viewpoint.limitedIPD) {
             offset = 0;
         }
-        return [_leftRenderer hitTest:CGPointMake((_leftEyeSource.w / 2) + offset, _leftEyeSource.h / 2) options:nil];
+        return [_leftRenderer hitTest:CGPointMake((_leftEyeSource.w / 2) + offset, _leftEyeSource.h / 2) options:_hitTestOptions];
     }
     return nil;
 }
 
 -(NSArray *) viewpointSeesAt:(float) x y:(float) y {
     if (_viewpoint != nil) {
-        return [_leftRenderer hitTest:CGPointMake(x, y) options:nil];
+        return [_leftRenderer hitTest:CGPointMake(x, y) options:_hitTestOptions];
     }
     return nil;
 }
