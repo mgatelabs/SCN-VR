@@ -81,6 +81,7 @@
 @property (assign, readonly) float rawYaw;
 @property (assign, readonly) float rawPitch;
 @property (assign, readonly) float rawRoll;
+@property (strong, readonly) NSMutableDictionary * hitTestOptions;
 
 @property (assign) BOOL useHeadTracking;
 @property (assign) BOOL lockHeadTracking;

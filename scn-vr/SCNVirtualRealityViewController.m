@@ -25,7 +25,7 @@
     BOOL isShutdown;
     int monoNeedsClearingCount;
     AlignmentHelper * alignment;
-    NSMutableDictionary * _hitTestOptions;
+    //NSMutableDictionary * _hitTestOptions;
 }
 
 - (void) setupGL;
