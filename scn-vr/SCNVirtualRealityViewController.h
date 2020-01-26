@@ -39,6 +39,8 @@
 
 @property (assign, nonatomic) GLKQuaternion noTrackQuaternion;
 
+@property (assign, nonatomic) bool reverseTracker;
+
 -(void) loadIt;
 
 // Source are defined render textures

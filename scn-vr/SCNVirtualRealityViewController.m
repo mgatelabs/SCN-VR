@@ -408,6 +408,10 @@
     
     altered =GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 0, 0, 1), gyroValues);
     
+    if (_reverseTracker) {
+        altered =GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI, 0, 0, 1), altered);
+    }
+    
     if (_restrictToAxis || _enableRawValues) {
         GLKQuaternion q = altered;
         _rawYaw = !_restrictYaw || _enableRawValues ? atan2(2.0*(q.x*q.y + q.w*q.z), q.w*q.w + q.x*q.x - q.y*q.y - q.z*q.z) : 0;
@@ -469,15 +473,11 @@
             [self checkGlErrorStatus: 100];
             
             [_leftRenderer renderAtTime:interval];
-            
-            //[self checkGlErrorStatus: 1];
-            
+        
             if (_viewpoint.rightEye != nil) {
                 [_rightEyeSource bind];
                 [_rightRenderer renderAtTime:interval];
             }
-            
-            //[self checkGlErrorStatus: 2];
             
             switch (_profile.viewportCount) {
                 case 1: {
