@@ -38,8 +38,11 @@
     if (self) {
         _trackers = [[NSMutableArray alloc] initWithCapacity:2];
         
-        [_trackers addObject:[[CoreMotionTracker alloc] initWithoutMagnet]];
-        [_trackers addObject:[[CoreMotionTracker alloc] init]];
+        CMMotionManager * manager = [[CMMotionManager alloc] init];
+        manager.deviceMotionUpdateInterval = 1.0f / 60;
+        
+        [_trackers addObject:[[CoreMotionTracker alloc] initWithoutMagnet: manager]];
+        [_trackers addObject:[[CoreMotionTracker alloc] initWithMagnet: manager]];
         [_trackers addObject:[[NullTracker alloc] init]];
         
         // Does not work, please fix
@@ -61,7 +64,13 @@
     
     NSString * selectedIndentity = [defs valueForKey:@"scn-vr.trackers.selected"];
     
-    _tracker = [_trackers objectAtIndex:0];
+    if (@available(iOS 14, *)) {
+        // iOS 14 Defaults to Tracker with Magnet
+        _tracker = [_trackers objectAtIndex:1];
+    } else {
+        // Everyone else will not use the magnet by default
+        _tracker = [_trackers objectAtIndex:0];
+    }
     
     if (selectedIndentity != nil) {
         

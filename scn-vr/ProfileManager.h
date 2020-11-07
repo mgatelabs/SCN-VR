@@ -41,6 +41,8 @@
 - (instancetype)initWithGroup:(NSString *) groupName;
 
 -(NSString *) nameForIndex:(int) index;
+-(NSString *) valueForIndex:(int) index andKey:(NSString *) key;
+
 -(BOOL) isFavorite:(int) index;
 
 -(void) selectIndex:(int) index;
@@ -89,6 +91,7 @@
 
 -(int) getWizardItemIndex:(int) wizardId;
 -(float) getWizardItemFloat:(int) wizardId;
+-(NSString *) getWizardItemString:(int) wizardId;
 -(WizardItem *) getWizardItem:(int) wizardId;
 -(int) getWizardItemInt:(int) wizardId;
 -(void) setWizardItem:(int) wizardId toIndex:(int) intValue;

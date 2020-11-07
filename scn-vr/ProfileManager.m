@@ -80,6 +80,14 @@
     return p.name;
 }
 
+-(NSString *) valueForIndex:(int) index andKey:(NSString *) key {
+    if (_profiles.count <= index) return @"";
+    ProfileConfiguration * p = [_profiles objectAtIndex:index];
+    NSString * value = [p.values valueForKey:key];
+    return value == nil ? @"" : value;
+    
+}
+
 -(BOOL) isFavorite:(int) index {
     ProfileConfiguration * p = [_profiles objectAtIndex:index];
     return p.favorite;
@@ -728,6 +736,18 @@
     }
     NSLog(@"getWizardItemInt: Could not locate wizard item: %d", wizardId);
     return -1;
+}
+
+-(NSString *) getWizardItemString:(int) wizardId {
+    WizardItem * wi = [wizard findWizardItemWithIdentity:wizardId];
+    if (wi != nil) {
+        if (wi.type != WizardItemDataTypeString) {
+            NSLog(@"Wizard %d is not an String type", wizardId);
+        }
+        return wi.valueId;
+    }
+    NSLog(@"getWizardItemString: Could not locate wizard item: %d", wizardId);
+    return @"";
 }
 
 -(void) setWizardItem:(int) wizardId toIndex:(int) intValue {

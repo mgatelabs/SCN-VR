@@ -38,9 +38,13 @@
 }
 
 -(void) reset {
-    tracker = [tm.trackers objectAtIndex:0];
+    int defaultIndex = 0;
+    if (@available(iOS 14, *)) {
+        defaultIndex = 1;
+    }
+    tracker = [tm.trackers objectAtIndex:defaultIndex];
     self.valueId = tracker.identity;
-    self.valueIndex = 0;
+    self.valueIndex = defaultIndex;
     self.count = (int)tm.trackers.count;
 }
 
@@ -53,7 +57,13 @@
 }
 
 -(void) loadForIdentity:(NSString *) identity {
-    tracker = [tm.trackers objectAtIndex:0];
+    
+    int defaultIndex = 0;
+    if (@available(iOS 14, *)) {
+        defaultIndex = 1;
+    }
+    
+    tracker = [tm.trackers objectAtIndex:defaultIndex];
     // Default to first item
     self.valueId = tracker.identity;
     self.valueIndex = 0;

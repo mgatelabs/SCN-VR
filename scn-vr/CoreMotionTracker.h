@@ -25,6 +25,7 @@
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
 
-- (instancetype)initWithoutMagnet;
+- (instancetype)initWithMagnet: (CMMotionManager *) manager;
+- (instancetype)initWithoutMagnet: (CMMotionManager *) manager;
 
 @end
