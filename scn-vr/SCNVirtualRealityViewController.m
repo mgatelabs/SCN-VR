@@ -24,6 +24,7 @@
 @interface SCNVirtualRealityViewController () {
     BOOL isShutdown;
     int monoNeedsClearingCount;
+    int forceScreenClear;
     AlignmentHelper * alignment;
     //NSMutableDictionary * _hitTestOptions;
 }
@@ -39,6 +40,7 @@
 -(void) viewDidLoad {
     [super viewDidLoad];
     [self setPaused:YES];
+    forceScreenClear = 0;
     self.noTrackQuaternion = GLKQuaternionMultiply(GLKQuaternionMakeWithAngleAndAxis(M_PI_2, 1, 0, 0), GLKQuaternionIdentity);;
     
     _hitTestOptions = [NSMutableDictionary dictionary];
@@ -466,6 +468,16 @@
             }
         } else {
             CFTimeInterval interval = CACurrentMediaTime();
+            
+            if (self.profile.ipdOutOfSync) {
+                self.profile.ipdOutOfSync = NO;
+                forceScreenClear = 3;
+            }
+            
+            if (forceScreenClear > 0) {
+                [_destTexture bindAndClear];
+                forceScreenClear--;
+            }
             
             // Render both eyes
             [_leftEyeSource bindAndClear];

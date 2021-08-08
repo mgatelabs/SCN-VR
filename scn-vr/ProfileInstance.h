@@ -101,6 +101,7 @@ typedef NS_ENUM(NSInteger, ProfileInstanceSS)
 @property (assign, nonatomic) BOOL correctHeightWidth;
 
 @property (assign, nonatomic) BOOL distortionMeshOutOfSync;
+@property (assign, nonatomic) BOOL ipdOutOfSync;
 
 // Extended
 @property (strong, nonatomic) NSMutableDictionary * extended;
