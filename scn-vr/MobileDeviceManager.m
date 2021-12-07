@@ -53,6 +53,12 @@
     return self;
 }
 
+#define MIN_2X 1.99
+#define MAX_2X 2.01
+
+#define MIN_3X 2.99
+#define MAX_3X 3.01
+
 +(NSMutableArray *) getDevices {
     
     NSMutableArray * tempList = [[NSMutableArray alloc] initWithCapacity:10];
@@ -63,8 +69,8 @@
     tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_4S", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 4S") identifier:@"iphone4s" widthPx:960 heightPx:640 dpi:326 tablet:NO];
     tempConfig.widthPoint = 480;
     tempConfig.heightPoint = 320;
-    tempConfig.minNativeScale = 1.99;
-    tempConfig.maxNativeScale = 2.01;
+    tempConfig.minNativeScale = MIN_2X;
+    tempConfig.maxNativeScale = MAX_2X;
     tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_3.5INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"3.5\"");
     [tempList addObject:tempConfig];
     
@@ -74,8 +80,8 @@
     tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_5", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 5") identifier:@"iphone5" widthPx:1136 heightPx:640 dpi:326 tablet:NO];
     tempConfig.widthPoint = 568;
     tempConfig.heightPoint = 320;
-    tempConfig.minNativeScale = 1.99;
-    tempConfig.maxNativeScale = 2.01;
+    tempConfig.minNativeScale = MIN_2X;
+    tempConfig.maxNativeScale = MAX_2X;
     tempConfig.virtualName = @"4\"";
     tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_4INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"4\"");
     [tempList addObject:tempConfig];
@@ -99,8 +105,8 @@
     tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_4.7INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"4.7\"");
     tempConfig.widthPoint = 667;
     tempConfig.heightPoint = 375;
-    tempConfig.minNativeScale = 1.99;
-    tempConfig.maxNativeScale = 2.01;
+    tempConfig.minNativeScale = MIN_2X;
+    tempConfig.maxNativeScale = MAX_2X;
     [tempList addObject:tempConfig];
     
     ////////////////////////
@@ -130,85 +136,37 @@
     tempConfig.heightPx = 1242;
     //tempConfig.physicalWidthPx = 2208;
     //tempConfig.physicalHeightPx = 1242;
-    tempConfig.minNativeScale = 2.9;
-    tempConfig.maxNativeScale = 3.1;
+    tempConfig.minNativeScale = MIN_3X;
+    tempConfig.maxNativeScale = MAX_3X;
     tempConfig.forcedScale = 3.0f;
     #endif
     
     ////////////////////////
     
-    // iPhoneX           1125×2436 458 ppi
+    // iPhone X           1125×2436 458 ppi
+    // iPhone 11, 5.8", 1125 x 2436 PX @ 458 ppi, 3x, 375 x 812
     tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_X", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone X") identifier:@"iphonex" widthPx:2436 heightPx:1125 dpi:458 tablet:NO];
-    //tempConfig.virtualName = @"5.8\"";
     tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_5.8INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"5.8\"");
     tempConfig.widthPoint = 812;
     tempConfig.heightPoint = 375;
-    tempConfig.minNativeScale = 2.99f;
-    tempConfig.maxNativeScale = 3.01f;
+    tempConfig.minNativeScale = MIN_3X;
+    tempConfig.maxNativeScale = MAX_3X;
     tempConfig.zoomed = YES;
     [tempList addObject: tempConfig];
     
-    // iPhoneXr           828×1792 326 ppi
+    // iPhone Xr           828 × 1792 326 ppi
+    // iPhone 11, 6.1", 828 x 1792 PX @ 326 ppi, 2x, 414 x 896
     tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_Xr", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone Xr") identifier:@"iphonexr" widthPx:1792 heightPx:828 dpi:326 tablet:NO];
-    //tempConfig.virtualName = @"5.8\"";
     tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_6.1INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"6.1\"");
     tempConfig.widthPoint = 896;
     tempConfig.heightPoint = 414;
-    tempConfig.minNativeScale = 1.99f;
-    tempConfig.maxNativeScale = 2.01f;
+    tempConfig.minNativeScale = MIN_2X;
+    tempConfig.maxNativeScale = MAX_2X;
     tempConfig.zoomed = NO;
     [tempList addObject: tempConfig];
     
-    // iPhone12 Max           1170×2532 @ 460 ppi
-    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_12Pro", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 12Pro") identifier:@"iphone12pro" widthPx:2532 heightPx:1170 dpi:460 tablet:NO];
-    //tempConfig.virtualName = @"5.8\"";
-    tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_6.1INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"6.1\"");
-    tempConfig.widthPoint = 844;
-    tempConfig.heightPoint = 390;
-    tempConfig.minNativeScale = 2.99f;
-    tempConfig.maxNativeScale = 3.01f;
-    tempConfig.zoomed = NO;
-    [tempList addObject: tempConfig];
-    
-    // iPhoneXs Max           1242×2688 @ 458 ppi
-    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_XsMax", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone XsMax") identifier:@"iphonexsmax" widthPx:2688 heightPx:1242 dpi:458 tablet:NO];
-    //tempConfig.virtualName = @"5.8\"";
-    tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_6.5INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"6.5\"");
-    tempConfig.widthPoint = 896;
-    tempConfig.heightPoint = 414;
-    tempConfig.minNativeScale = 2.99f;
-    tempConfig.maxNativeScale = 3.01f;
-    tempConfig.zoomed = NO;
-    [tempList addObject: tempConfig];
-    
-    
-    // iPhone12 Max           1284×2788 @ 458 ppi
-    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_12Max", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 12Max") identifier:@"iphone12max" widthPx:2788 heightPx:1284 dpi:458 tablet:NO];
-    //tempConfig.virtualName = @"5.8\"";
-    tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_6.7INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"6.7\"");
-    tempConfig.widthPoint = 926;
-    tempConfig.heightPoint = 428;
-    tempConfig.minNativeScale = 2.99f;
-    tempConfig.maxNativeScale = 3.01f;
-    tempConfig.zoomed = NO;
-    [tempList addObject: tempConfig];
-    
-    /*
-    // iPhone11 812×1792 323 ppi
-    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_11z", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 11") identifier:@"iphone11" widthPx:1792 heightPx:828 dpi:323 tablet:NO];
-    //tempConfig.virtualName = @"5.8\"";
-    tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_6.1INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"6.1\"");
-    tempConfig.widthPoint = 896;
-    tempConfig.heightPoint = 414;
-    tempConfig.minNativeScale = 1.9f;
-    tempConfig.maxNativeScale = 2.1f;
-    tempConfig.zoomed = NO;
-    [tempList addObject: tempConfig];
-    */
-    
-    // iPhone11 Zoomed 812×1792 323 ppi
-    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_11z", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 11 Zoomed") identifier:@"iphone11z" widthPx:1792 heightPx:812 dpi:323 tablet:NO];
-    //tempConfig.virtualName = @"5.8\"";
+    // iPhone 11 Zoomed 812×1792 323 ppi
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_11z", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 11 Zoomed") identifier:@"iphone11z" widthPx:1792 heightPx:828 dpi:323 tablet:NO];
     tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_6.1INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"6.1\"");
     tempConfig.widthPoint = 812;
     tempConfig.heightPoint = 375;
@@ -217,18 +175,121 @@
     tempConfig.zoomed = YES;
     [tempList addObject: tempConfig];
     
+    // iPhone 11 Pro Max, 6.5" (414 x 896 points @3x)
+    // iPhone XS Max, 6.5", 1242×2688 @ 458 ppi (414 x 896 points @3x)
+    {
+        tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_XsMax", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone XsMax") identifier:@"iphonexsmax" widthPx:2688 heightPx:1242 dpi:458 tablet:NO];
+        tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_6.5INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"6.5\"");
+        tempConfig.widthPoint = 896;
+        tempConfig.heightPoint = 414;
+        tempConfig.minNativeScale = MIN_3X;
+        tempConfig.maxNativeScale = MAX_3X;
+        tempConfig.zoomed = NO;
+        [tempList addObject: tempConfig];
+    }
+    // Phone XS Max Zoomed
+    {
+        tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_XsMaxZo", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone XsMax Zoomed") identifier:@"iphonexsmaxzo" widthPx:2688 heightPx:1242 dpi:458 tablet:NO];
+        tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_6.5INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"6.5\"");
+        tempConfig.widthPoint = 812;
+        tempConfig.heightPoint = 375;
+        tempConfig.minNativeScale = 3.300f;
+        tempConfig.maxNativeScale = 3.320f;
+        tempConfig.zoomed = YES;
+        [tempList addObject: tempConfig];
+    }
+    
+    // iPhone 12
+    // iPhone 12 Pro         1170×2532 @ 460 ppi
+    {
+        tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_12Pro", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 12Pro") identifier:@"iphone12pro" widthPx:2532 heightPx:1170 dpi:460 tablet:NO];
+        tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_6.1INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"6.1\"");
+        tempConfig.widthPoint = 844;
+        tempConfig.heightPoint = 390;
+        tempConfig.minNativeScale = MIN_3X;
+        tempConfig.maxNativeScale = MAX_3X;
+        tempConfig.zoomed = NO;
+        [tempList addObject: tempConfig];
+    }
+    
+    // iPhone 12 Mini,  5.4", 1080 x 2340 (476 ppi), 2.88x, 375 x 812
+    
+    {
+        tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_12MINI", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 12 Mini") identifier:@"iphone12mini" widthPx:2340 heightPx:1080 dpi:476 tablet:NO];
+        tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_5.4INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"5.4\"");
+        tempConfig.widthPoint = 780;
+        tempConfig.heightPoint = 360;
+        tempConfig.minNativeScale = MIN_3X;
+        tempConfig.maxNativeScale = MAX_3X;
+        tempConfig.zoomed = NO;
+        [tempList addObject: tempConfig];
+    }
+    
+    // iPhone 12 Pro Max           1284×2778 @ 458 ppi
+    {
+        tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_12Max", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 12 Max") identifier:@"iphone12max" widthPx:2778 heightPx:1284 dpi:458 tablet:NO];
+        tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_6.7INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"6.7\"");
+        tempConfig.widthPoint = 926;
+        tempConfig.heightPoint = 428;
+        tempConfig.minNativeScale = MIN_3X;
+        tempConfig.maxNativeScale = MAX_3X;
+        tempConfig.zoomed = NO;
+        [tempList addObject: tempConfig];
+    }
+    
     // iPhone SE 2020
     tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_SE2020", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone SE (2020)") identifier:@"iphoneSE20" widthPx:1334 heightPx:750 dpi:326 tablet:NO];
     //tempConfig.virtualName = @"5.8\"";
     tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_4.7INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"4.7\"");
     tempConfig.widthPoint = 667;
     tempConfig.heightPoint = 375;
-    tempConfig.minNativeScale = 1.99f;
-    tempConfig.maxNativeScale = 2.01f;
+    tempConfig.minNativeScale = MIN_2X;
+    tempConfig.maxNativeScale = MAX_2X;
     tempConfig.zoomed = NO;
     [tempList addObject: tempConfig];
     
-    ////////////////////////
+    // iPhone 13,       6.1", 1170 x 2532 (460 ppi), 3x, 390 x 844
+    // iPhone 13 Pro,   6.1", 1170 x 2532 (460 ppi), 3x, 390 x 844
+    {
+        tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_13", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 13") identifier:@"iphone13" widthPx:2532 heightPx:1170 dpi:460 tablet:NO];
+        tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_6.1INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"6.1\"");
+        tempConfig.widthPoint = 844;
+        tempConfig.heightPoint = 390;
+        tempConfig.minNativeScale = MIN_3X;
+        tempConfig.maxNativeScale = MAX_3X;
+        tempConfig.zoomed = NO;
+        [tempList addObject: tempConfig];
+    }
+    
+    // iPhone 13 Mini,  5.4", 1080 x 2340 (476 ppi), 2.88x, 375 x 812
+    {
+        tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_13MINI", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 13 Mini") identifier:@"iphone13mini" widthPx:2340 heightPx:1080 dpi:476 tablet:NO];
+        tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_5.4INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"5.4\"");
+        tempConfig.widthPoint = 812;
+        tempConfig.heightPoint = 375;
+        tempConfig.minNativeScale = 2.87f;
+        tempConfig.maxNativeScale = 2.89f;
+        tempConfig.zoomed = NO;
+        [tempList addObject: tempConfig];
+    }
+
+    // iPhone 13 Pro Max, 6.7", 1284 x 2778 (458 ppi), 3x, 428 x 926
+    // Iphone 12 Pro Max, 6.7" (428 x 926 points @3x)
+    
+    {
+        tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_13PROMAX", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 13 Pro Max") identifier:@"iphone13promax" widthPx:2778 heightPx:1284 dpi:458 tablet:NO];
+        tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_6.7INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"6.7\"");
+        tempConfig.widthPoint = 926;
+        tempConfig.heightPoint = 428;
+        tempConfig.minNativeScale = MIN_3X;
+        tempConfig.maxNativeScale = MAX_3X;
+        tempConfig.zoomed = NO;
+        [tempList addObject: tempConfig];
+    }
+    
+    ///---------------------------------
+    /// iPads
+    /// -------------------------------
     
     //iPad2                 1024x768  132 ppi
     tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPAD_9.7", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPad 9.7\"") identifier:@"ipad2" widthPx:1024 heightPx:768 dpi:132 tablet:YES];
@@ -244,8 +305,21 @@
     tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPAD_7.9", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPad 7.9\"") identifier:@"ipadmini" widthPx:1024 heightPx:768 dpi:163 tablet:YES];
     [tempList addObject: tempConfig];
     
-    //iPad mini (retina)    2048x1536 326 ppi
-    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPAD_7.9_RETINA", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPad 7.9\" (Retina)") identifier:@"ipadmini2" widthPx:2048 heightPx:1536 dpi:326 tablet:YES];
+    // iPad Mini (retina)    2048x1536 326 ppi
+    // iPad Mini 7.9" (2019), 1536 x 2048, 2X, 768 x 1024
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPAD_7.9_RETINA", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPad 7.9\" (Retina)") identifier:@"ipadmini2" widthPx:2048 heightPx:1536 dpi:324 tablet:YES];
+    [tempList addObject: tempConfig];
+    
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPAD_10.9", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPad 10.2\"") identifier:@"ipad102" widthPx:2160 heightPx:1640 dpi:264 tablet:YES];
+    [tempList addObject: tempConfig];
+    
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPAD_10.9", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPad 10.5\"") identifier:@"ipadair105" widthPx:2224 heightPx:1668 dpi:264 tablet:YES];
+    [tempList addObject: tempConfig];
+    
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPAD_10.9", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPad 10.9\"") identifier:@"ipadair109" widthPx:2360 heightPx:1640 dpi:264 tablet:YES];
+    [tempList addObject: tempConfig];
+    
+    tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPAD_11.0", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPad 11.0\"") identifier:@"ipadpro110" widthPx:2388 heightPx:1668 dpi:264 tablet:YES];
     [tempList addObject: tempConfig];
     
     //iPad Pro (retina)    2732x2048 264 ppi

@@ -46,7 +46,7 @@
     
     NSMutableArray * tempDevices = [MobileDeviceManager getDevices];
     
-    NSString * landscapeNameFormat = NSLocalizedStringFromTableInBundle(@"VIRTUAL_LANDSCAPE_FORMAT", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Landscape %@");
+    NSString * landscapeNameFormat = NSLocalizedStringFromTableInBundle(@"VIRTUAL_LANDSCAPE_FORMAT", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Landscape %@ - %@");
     
     NSString * portraitNameFormat = NSLocalizedStringFromTableInBundle(@"VIRTUAL_PORTRAIT_FORMAT", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"Portrait %@");
     
@@ -58,7 +58,7 @@
         }
         
         if (!c.tablet) {
-            [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscapeVirtual name:[NSString stringWithFormat:landscapeNameFormat, c.virtualName] key:[@"vl_" stringByAppendingString:c.identifier] device:c]];
+            [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypeLandscapeVirtual name:[NSString stringWithFormat:landscapeNameFormat, c.virtualName, c.name] key:[@"vl_" stringByAppendingString:c.identifier] device:c]];
             
             if (iPad) {
                 [devices addObject: [[VirtualDeviceConfiguration alloc] initWithType:VirtualDeviceConfigurationTypePortraitVirtual name:[NSString stringWithFormat:portraitNameFormat, c.virtualName] key:[@"vp_" stringByAppendingString:c.identifier] device:c]];
