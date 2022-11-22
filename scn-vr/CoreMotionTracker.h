@@ -25,7 +25,15 @@
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
 
+@property (nonatomic) bool testTiming;
+@property (nonatomic) float testProgress;
+@property (nonatomic) bool checkTiming;
+@property (nonatomic) float foundTiming;
+
+
 - (instancetype)initWithMagnet: (CMMotionManager *) manager;
 - (instancetype)initWithoutMagnet: (CMMotionManager *) manager;
+
+-(float) getTestValueFor:(int) index;
 
 @end

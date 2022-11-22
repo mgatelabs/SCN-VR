@@ -36,13 +36,19 @@
 {
     self = [super init];
     if (self) {
-        _trackers = [[NSMutableArray alloc] initWithCapacity:2];
+        _trackers = [[NSMutableArray alloc] initWithCapacity:3];
         
-        CMMotionManager * manager = [[CMMotionManager alloc] init];
-        manager.deviceMotionUpdateInterval = 1.0f / 60;
+        _manager = [[CMMotionManager alloc] init];
         
-        [_trackers addObject:[[CoreMotionTracker alloc] initWithoutMagnet: manager]];
-        [_trackers addObject:[[CoreMotionTracker alloc] initWithMagnet: manager]];
+        [self updateFrameRate:1.0 / 60.0f];
+          
+        // [self updateFrameRate:1.0 / 100.0];
+        //[self updateFrameRate:1.0 / 60.0];
+        //[self updateFrameRate:1.0 / 50.0];
+        //[self updateFrameRate:1.0 / 50.0];
+        
+        [_trackers addObject:[[CoreMotionTracker alloc] initWithoutMagnet: _manager]];
+        [_trackers addObject:[[CoreMotionTracker alloc] initWithMagnet: _manager]];
         [_trackers addObject:[[NullTracker alloc] init]];
         
         // Does not work, please fix
@@ -118,6 +124,13 @@
 -(void) selectListItemAt:(int) index {
     _tracker = [_trackers objectAtIndex:index];
     [self persist];
+}
+
+-(void) updateFrameRate:(float) rate {
+    self.manager.magnetometerUpdateInterval = rate;
+    self.manager.deviceMotionUpdateInterval = rate;
+    self.manager.gyroUpdateInterval = rate;
+    self.manager.accelerometerUpdateInterval = rate;
 }
 
 @end

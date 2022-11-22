@@ -229,13 +229,11 @@
 }
 
 -(void) shutdown {
-    // ONly allow one shutdown
+    // Only allow one shutdown
     if (!isShutdown) {
         isShutdown = YES;
         
         [self setPaused:YES];
-        
-        //NSLog(@"Tearing down");
         
         for (int i = (int)_scene.rootNode.childNodes.count - 1; i >= 0; i--) {
             SCNNode * child = [_scene.rootNode.childNodes objectAtIndex:i];

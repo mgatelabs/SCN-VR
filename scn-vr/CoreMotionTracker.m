@@ -24,25 +24,30 @@
 @implementation CoreMotionTracker {
     GLKQuaternion rotationFix;
     CMQuaternion _currentAttitude_noQ;
+    NSOperationQueue * _queue;
     BOOL useMagnet;
+    int _frames;
+    NSTimeInterval _startTimestamp;
+    int _frameIndex;
+    float _framesValues[91];
+}
+
+-(float) getTestValueFor:(int) index {
+    return _framesValues[index];
 }
 
 - (instancetype)initWithMagnet: (CMMotionManager *) manager
 {
     self = [super initWith: NSLocalizedStringFromTableInBundle(@"TRACKER_COREMOTION", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"CoreMotion") identity:@"corewithmagnet"];
     if (self) {
-        
         rotationFix = GLKQuaternionMakeWithAngleAndAxis(-M_PI_2, 0, 0, 1);
         
         self.motionManager = manager;
         
         useMagnet = self.motionManager.magnetometerAvailable;
         
-        //self.motionManager.deviceMotionUpdateInterval = 1.0f / 60;
-        //if (useMagnet) {
-        //    self.motionManager.magnetometerUpdateInterval = 1.0f / 60;
-        //    self.motionManager.showsDeviceMovementDisplay = YES;
-        //}
+        _queue = [[NSOperationQueue alloc] init];
+        //_queue.maxConcurrentOperationCount = 5;
     }
     return self;
 }
@@ -56,52 +61,213 @@
         
         useMagnet = NO;
         
-        //self.motionManager.deviceMotionUpdateInterval = 1.0f / 60;
+        _queue = [[NSOperationQueue alloc] init];
     }
     return self;
 }
 
 -(void) start {
-    self.motionManager.showsDeviceMovementDisplay = useMagnet;
-    if (useMagnet) {
-        self.motionManager.magnetometerUpdateInterval = 1.0f / 60.0f;
+    
+    if (_testTiming) {
+        for (int i = 0; i < 91; i++) {
+            _framesValues[i] = -1;
+        }
+        _testProgress = 0;
+        _frameIndex = 0;
     }
-    self.motionManager.deviceMotionUpdateInterval = 1.0f / 60.0f;
+    
+    self.motionManager.showsDeviceMovementDisplay = useMagnet;
     
     CMAttitudeReferenceFrame frame = useMagnet ? CMAttitudeReferenceFrameXArbitraryCorrectedZVertical : CMAttitudeReferenceFrameXArbitraryZVertical;
     
-    [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame: frame];
+    self.foundTiming = 0;
+    _frames = 0;
     
-    /*
-    // Test Code, Made no difference
-    [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame:frame toQueue:[NSOperationQueue mainQueue] withHandler:^(CMDeviceMotion * _Nullable motion, NSError * _Nullable error) {
+    if (_testTiming) {
         
-        #if !(TARGET_IPHONE_SIMULATOR)
+        [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame:frame toQueue:_queue withHandler:^(CMDeviceMotion * _Nullable motion, NSError * _Nullable error) {
+            if (error == nil) {
+                            
+    #if !(TARGET_IPHONE_SIMULATOR)
+                
+                CMQuaternion currentAttitude_noQ = motion.attitude.quaternion;
+                
+                GLKQuaternion baseRotation = GLKQuaternionMake(currentAttitude_noQ.x, currentAttitude_noQ.y, currentAttitude_noQ.z, currentAttitude_noQ.w);
+                
+                if (self.landscape) {
+                    self.orientation = GLKQuaternionMultiply(baseRotation, rotationFix);
+                } else {
+                    self.orientation = GLKQuaternionMultiply(rotationFix, baseRotation);
+                }
+              
+                if (_testTiming) {
+                    if (_frames == 0) {
+                        _startTimestamp = motion.timestamp;
+                    }
+                    _frames++;
+                    if (_frames >= (_frameIndex + 10) * 2) {
+                        double diff = motion.timestamp - _startTimestamp;
+                        if (diff > 0.00) {
+                            self.foundTiming = (double)_frames / diff;
+                        }
+                        _framesValues[_frameIndex] = self.foundTiming;
 
-        CMQuaternion currentAttitude_noQ = motion.attitude.quaternion;
+                        _frameIndex++;
+                        
+                        _testProgress = _frameIndex / 90.0f;
+                        
+                        if (_frameIndex <= 90) {
+                            self.motionManager.deviceMotionUpdateInterval = (1 / (_frameIndex + 10.0));
+                            _frames = -1;
+                            _startTimestamp = motion.timestamp;
+                        } else {
+                            _testTiming = NO;
+                        }
+                    }
+                }
+                
+    #else
+                // For Testing
+                self.orientation = GLKQuaternionMultiply(rotationFix, GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
+    #endif
+            }
+        }];
         
-        GLKQuaternion baseRotation = GLKQuaternionMake(currentAttitude_noQ.x, currentAttitude_noQ.y, currentAttitude_noQ.z, currentAttitude_noQ.w);
+    } else if (_checkTiming) {
+        
+        [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame:frame toQueue:_queue withHandler:^(CMDeviceMotion * _Nullable motion, NSError * _Nullable error) {
+            if (error == nil) {
+                            
+    #if !(TARGET_IPHONE_SIMULATOR)
+                
+                CMQuaternion currentAttitude_noQ = motion.attitude.quaternion;
+                
+                GLKQuaternion baseRotation = GLKQuaternionMake(currentAttitude_noQ.x, currentAttitude_noQ.y, currentAttitude_noQ.z, currentAttitude_noQ.w);
+                
+                if (self.landscape) {
+                    self.orientation = GLKQuaternionMultiply(baseRotation, rotationFix);
+                } else {
+                    self.orientation = GLKQuaternionMultiply(rotationFix, baseRotation);
+                }
 
-        if (self.landscape) {
-            self.orientation = GLKQuaternionMultiply(baseRotation, rotationFix);
-        } else {
-            self.orientation = GLKQuaternionMultiply(rotationFix, baseRotation);
+                if (_frames == 0) {
+                    _startTimestamp = motion.timestamp;
+                }
+                _frames++;
+                if (_frames >= 100) {
+                    double diff = motion.timestamp - _startTimestamp;
+                    if (diff > 0.00) {
+                        self.foundTiming = (double)_frames / diff;
+                    }
+                    _frames = 0;
+                    _startTimestamp = motion.timestamp;
+                }
+                
+    #else
+                // For Testing
+                self.orientation = GLKQuaternionMultiply(rotationFix, GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
+    #endif
+            }
+        }];
+        
+    } else {
+        [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame:frame toQueue:_queue withHandler:^(CMDeviceMotion * _Nullable motion, NSError * _Nullable error) {
+            if (error == nil) {
+                            
+    #if !(TARGET_IPHONE_SIMULATOR)
+                
+                CMQuaternion currentAttitude_noQ = motion.attitude.quaternion;
+                
+                GLKQuaternion baseRotation = GLKQuaternionMake(currentAttitude_noQ.x, currentAttitude_noQ.y, currentAttitude_noQ.z, currentAttitude_noQ.w);
+                
+                if (self.landscape) {
+                    self.orientation = GLKQuaternionMultiply(baseRotation, rotationFix);
+                } else {
+                    self.orientation = GLKQuaternionMultiply(rotationFix, baseRotation);
+                }
+    #else
+                // For Testing
+                self.orientation = GLKQuaternionMultiply(rotationFix, GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
+    #endif
+            }
+        }];
+    }
+    
+    [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame:frame toQueue:_queue withHandler:^(CMDeviceMotion * _Nullable motion, NSError * _Nullable error) {
+        if (error == nil) {
+                        
+#if !(TARGET_IPHONE_SIMULATOR)
+            
+            CMQuaternion currentAttitude_noQ = motion.attitude.quaternion;
+            
+            GLKQuaternion baseRotation = GLKQuaternionMake(currentAttitude_noQ.x, currentAttitude_noQ.y, currentAttitude_noQ.z, currentAttitude_noQ.w);
+            
+            if (self.landscape) {
+                self.orientation = GLKQuaternionMultiply(baseRotation, rotationFix);
+            } else {
+                self.orientation = GLKQuaternionMultiply(rotationFix, baseRotation);
+            }
+          
+            if (_testTiming) {
+                if (_frames == 0) {
+                    _startTimestamp = motion.timestamp;
+                }
+                _frames++;
+                if (_frames >= (_frameIndex + 10) * 2) {
+                    double diff = motion.timestamp - _startTimestamp;
+                    if (diff > 0.00) {
+                        self.foundTiming = (double)_frames / diff;
+                    }
+                    _framesValues[_frameIndex] = self.foundTiming;
+                    
+                    //NSLog(@"%d %2.2f", _frameIndex + 10, self.foundTiming);
+                    _frameIndex++;
+                    
+                    _testProgress = _frameIndex / 90.0f;
+                    
+                    if (_frameIndex <= 90) {
+                        self.motionManager.deviceMotionUpdateInterval = (1 / (_frameIndex + 10.0));
+                        _frames = -1;
+                        _startTimestamp = motion.timestamp;
+                    } else {
+                        _testTiming = NO;
+                    }
+                }
+            }
+            else if (_checkTiming) {
+                if (_frames == 0) {
+                    _startTimestamp = motion.timestamp;
+                }
+                _frames++;
+                if (_frames >= 100) {
+                    double diff = motion.timestamp - _startTimestamp;
+                    if (diff > 0.00) {
+                        self.foundTiming = (double)_frames / diff;
+                    }
+                    _frames = 0;
+                    _startTimestamp = motion.timestamp;
+                }
+                
+                if (_frames > 60000) {
+                    _checkTiming = NO;
+                }
+            }
+#else
+            // For Testing
+            self.orientation = GLKQuaternionMultiply(rotationFix, GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
+#endif
         }
-        #else
-        // For Testing
-        self.orientation = GLKQuaternionMultiply(rotationFix, GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
-        #endif
-        
-        //motion.attitude.quaternion;
     }];
-    */
 }
 
 -(void) stop {
+    _checkTiming = NO;
+    _testTiming = NO;
     [self.motionManager stopDeviceMotionUpdates];
 }
 
 -(void) capture {
+    /*
     #if !(TARGET_IPHONE_SIMULATOR)
     
     CMQuaternion currentAttitude_noQ = self.motionManager.deviceMotion.attitude.quaternion;
@@ -118,6 +284,7 @@
     // For Testing
     self.orientation = GLKQuaternionMultiply(rotationFix, GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
     #endif
+     */
 }
 
 @end

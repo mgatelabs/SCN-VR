@@ -212,7 +212,7 @@
         [tempList addObject: tempConfig];
     }
     
-    // iPhone 12 Mini,  5.4", 1080 x 2340 (476 ppi), 2.88x, 375 x 812
+    // iPhone 12 Mini,  5.4", 1080 x 2340 (476 ppi), 3x, 375 x 812
     
     {
         tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_12MINI", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 12 Mini") identifier:@"iphone12mini" widthPx:2340 heightPx:1080 dpi:476 tablet:NO];
@@ -222,6 +222,19 @@
         tempConfig.minNativeScale = MIN_3X;
         tempConfig.maxNativeScale = MAX_3X;
         tempConfig.zoomed = NO;
+        [tempList addObject: tempConfig];
+    }
+    
+    // iPhone 12 Mini (Zoomed),  5.4", 1080 x 2340 (476 ppi), 3.375x, 320 x 693
+    
+    {
+        tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_12MINIZO", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 12 Mini (Zoomed)") identifier:@"iphone12minizo" widthPx:2340 heightPx:1080 dpi:476 tablet:NO];
+        tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_5.4INCH", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"5.4\"");
+        tempConfig.widthPoint = 693;
+        tempConfig.heightPoint = 320;
+        tempConfig.minNativeScale = 3.3600;
+        tempConfig.maxNativeScale = 3.3800;
+        tempConfig.zoomed = YES;
         [tempList addObject: tempConfig];
     }
     

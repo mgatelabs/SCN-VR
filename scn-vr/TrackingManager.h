@@ -29,10 +29,14 @@
 
 @property (readonly, weak, nonatomic) TrackerBase * tracker;
 
+@property(readonly, strong, nonatomic) CMMotionManager * manager;
+
 -(void) persist;
 
 -(void) load;
 
 + (id)sharedManager;
+
+-(void) updateFrameRate:(float) rate;
 
 @end
