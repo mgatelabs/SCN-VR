@@ -391,7 +391,8 @@
         [self recenterView];
     }
     // Get the latest position
-    [self.profile.tracker capture];
+    // Moved away from doing this
+    //[self.profile.tracker capture];
     
     [self updateViewpointOrientation];
 }
@@ -446,12 +447,16 @@
     
     [EAGLContext setCurrentContext:_context];
     
+    #ifdef DEBUG
     [self checkGlErrorStatus: -1];
+    #endif
     
     // Make sure we have access to the screen's render & depth buffers
     [_destTexture ready];
     
+    #ifdef DEBUG
     [self checkGlErrorStatus: 0];
+    #endif
     
     if (_enableAlignmentMask) {
         //NSLog(@"Mono");
@@ -480,7 +485,9 @@
             // Render both eyes
             [_leftEyeSource bindAndClear];
             
+            #ifdef DEBUG
             [self checkGlErrorStatus: 100];
+            #endif
             
             [_leftRenderer renderAtTime:interval];
         
@@ -517,7 +524,9 @@
             }
         }
     } else {
+        #ifdef DEBUG
         NSLog(@"Viewport has not been set, please set a viewport before rendeirng begins");
+        #endif
     }
     
     glFlush();

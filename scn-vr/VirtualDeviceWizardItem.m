@@ -34,7 +34,7 @@
     if (self) {
         _tempProfileInstance = [[ProfileInstance alloc] init];
         devices = deviceWizardItem;
-        _items = [[NSMutableArray alloc] initWithCapacity:10];
+        _items = [[NSMutableArray alloc] initWithCapacity:15];
         _sourceItems = [VirtualDeviceManager getVirtualDevices];
         
         selectedMobile = devices.selected;

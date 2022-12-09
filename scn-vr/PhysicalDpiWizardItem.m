@@ -30,8 +30,8 @@
     if (self) {
         _physicalWizard = physicalWizard;
         self.count = 0;
-        self.valueId = @"";
-        self.valueIndex = 0;
+        self.valueId = @"460 DPI";
+        self.valueIndex = 328;
     }
     return self;
 }

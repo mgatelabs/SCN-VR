@@ -68,26 +68,16 @@
 -(void) draw {
     if (elementCount > 0) {
         
-        //[self checkGlErrorStatus:999];
-        
         glBindBuffer(GL_ARRAY_BUFFER, pointBuffer);
         glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(struct VertexPoint), (void *)offsetof(struct VertexPoint, x));
         glEnableVertexAttribArray(GLKVertexAttribPosition);
         
-        //[self checkGlErrorStatus:1000];
-        
         glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(struct VertexPoint), (void *)offsetof(struct VertexPoint, ux));
         glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
         
-        //[self checkGlErrorStatus:1001];
-        
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
         
-        //[self checkGlErrorStatus:1002];
-        
         glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_INT, (void*)0);
-        
-        //[self checkGlErrorStatus:1003];
         
         glDisableVertexAttribArray(GLKVertexAttribPosition);
         glDisableVertexAttribArray(GLKVertexAttribTexCoord0);

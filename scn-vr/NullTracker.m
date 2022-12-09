@@ -24,6 +24,8 @@
         GLKQuaternion rotationFix = GLKQuaternionMakeWithAngleAndAxis(-M_PI_2, 0, 0, 1);
         
         result = GLKQuaternionMultiply(rotationFix, GLKQuaternionMakeWithAngleAndAxis(90 * 0.0174532925f, 1, 0, 0));
+        
+        self.orientation = result;
     }
     return self;
 }

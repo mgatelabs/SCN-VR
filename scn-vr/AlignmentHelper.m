@@ -117,19 +117,11 @@ enum
 
 -(void) draw {
     
-    //[mesh checkGlErrorStatus:800];
-    
     glUseProgram(_program);
-    
-    //[mesh checkGlErrorStatus:801];
     
     glUniform2f(alignmentUniforms[UNIFORM_MMSIZE], horSize, verSize);
     
-    //[mesh checkGlErrorStatus:803];
-    
     [mesh draw];
-    
-    //[mesh checkGlErrorStatus:804];
     
     glUseProgram(0);
 }

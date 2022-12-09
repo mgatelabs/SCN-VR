@@ -84,7 +84,7 @@
     if (_profiles.count <= index) return @"";
     ProfileConfiguration * p = [_profiles objectAtIndex:index];
     NSString * value = [p.values valueForKey:key];
-    return value == nil ? @"" : value;
+    return value == nil ? @"" : [NSString stringWithFormat:@"%@", value];
     
 }
 

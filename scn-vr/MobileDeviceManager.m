@@ -300,6 +300,19 @@
         [tempList addObject: tempConfig];
     }
     
+    // iPhone 14 Pro Max (Zoomed), 6.7", 1290 x 2796 (458 ppi), 3x, 430 x 932
+    
+    {
+        tempConfig = [MobileDeviceManager createDevice: NSLocalizedStringFromTableInBundle(@"IOS_IPHONE_14MAXZO", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"iPhone 14 Max (Zoomed)") identifier:@"iphone14promaxzo" widthPx:2796 heightPx:1290 dpi:458 tablet:NO];
+        tempConfig.virtualName = NSLocalizedStringFromTableInBundle(@"SIZE_6.7INCHZO", @"SCN-VRDevices", [SCNVRResourceBundler getSCNVRResourceBundle], @"6.7 (Zoomed)\"");
+        tempConfig.widthPoint = 932;
+        tempConfig.heightPoint = 430;
+        tempConfig.minNativeScale = MIN_3X;
+        tempConfig.maxNativeScale = MAX_3X;
+        tempConfig.zoomed = YES;
+        [tempList addObject: tempConfig];
+    }
+    
     ///---------------------------------
     /// iPads
     /// -------------------------------
